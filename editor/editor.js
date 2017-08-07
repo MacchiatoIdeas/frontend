@@ -1,20 +1,20 @@
 //(function ($) {
 	var sections = [];
-	var titleHtml = ["<div id=\"%id\" class=\"section title\">",
+	var titleHtml = ["<li><div id=\"%id\" class=\"section title\">",
 						"<div class=\"options\">",
-							"<button class=\"btn btn-link drag\"><span class=\"glyphicon glyphicon-th\"></span></button>",
+							"<span class=\"btn btn-link drag\"><span class=\"glyphicon glyphicon-th\"></span></span>",
 							"<button class=\"btn btn-link remove remove\"><span class=\"glyphicon glyphicon-remove\"></span></button>",
 						"</div>",
 						"<h1><input type=\"text\" class=\"section-input\" placeholder=\"Inserte un título aquí\"></h1>",
-					"</div>"
+					"</div></li>"
 					];
-	var textHtml = ["<div id=\"%id\" class=\"section text\">",
+	var textHtml = ["<li><div id=\"%id\" class=\"section text\">",
 						"<div class=\"options\">",
-							"<button class=\"btn btn-link drag\"><span class=\"glyphicon glyphicon-th\"></span></button>",
+							"<span class=\"btn btn-link drag\"><span class=\"glyphicon glyphicon-th\"></span></span>",
 							"<button class=\"btn btn-link remove\"><span class=\"glyphicon glyphicon-remove\"></span></button>",
 						"</div>",
 						"<textarea type=\"text\" class=\"section-input\" placeholder=\"Inserte un texto aquí\"></textarea>",
-					"</div>"
+					"</div></li>"
 					];
 	var graphHtml = "<div id=\"%id\" class=\"section graph\"><img src=\"http://placekitten.com/g/512/200\"></div>"
 
@@ -40,7 +40,7 @@
 
 		insert_section() {
 			let parent = this.source.closest('.options-buttons').closest('.editor-options')
-			$(parent).before(this.html)
+			$('.editor').append(this.html)
 			this.section = $(this.get_id());
 			this.enable_listener();
 		}
@@ -102,6 +102,16 @@
 		$(document).on('focus', '.section-input', function() {
 			$('.section').removeClass('focus');
 			$(this).closest('.section').addClass('focus').removeClass('hover');
+		});
+
+		$(document).on('input', 'textarea', function() {
+			var el = this;
+			setTimeout(function(){
+				el.style.cssText = 'height:auto; padding:0';
+				// for box-sizing other than "content-box" use:
+				// el.style.cssText = '-moz-box-sizing:content-box';
+				el.style.cssText = 'height:' + el.scrollHeight + 'px';
+			},0);
 		});
 
 	});
