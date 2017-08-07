@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Waves</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="font.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="restoreCaret.js"></script>
+  <script src="editor.js"></script>
+
+</head>
+<body>
+  <div id="nav">
+  <nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          APPUNTA
+        </a>
+      </div>
+    </div>
+  </nav>
+  </div>
+
+  <section>
+    <div class="row">
+      <div class="container">
+        <div class="col-sm-12 paper">
+          <div class="editor">
+            <div class="panel panel-default text-center editor-options col-xs-12">
+              <button class="lead btn btn-link options-add">Añadir sección</button>
+              <div class="col-xs-6 col-xs-offset-3 options-buttons">
+                <div class="col-xs-4"><button class="btn btn-warning options-btn" data-type="title">Título</button></div>
+                <div class="col-xs-4"><button class="btn btn-primary options-btn" data-type="text">Texto</button></div>
+                <div class="col-xs-4"><button class="btn btn-danger options-btn" data-type="graph">Gráfico</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+</body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#wave1').attr('width', (window.innerWidth + window.innerWidth/3)).attr('x', - $('#wave1').attr('width')/4);
+    $('#anim1').attr('from', - $('#wave1').attr('width')/4);
+
+    $('#wave2').attr('width', (window.innerWidth + window.innerWidth/3 + 200)).attr('x', - $('#wave2').attr('width')/4);
+    $('#anim2').attr('from', - $('#wave2').attr('width')/4);
+
+    $('#wave3').attr('width', (window.innerWidth + window.innerWidth/3 + 400)).attr('x', - $('#wave3').attr('width')/4);
+    $('#anim3').attr('from', - $('#wave3').attr('width')/4);
+
+    $('#wave4').attr('width', (window.innerWidth + window.innerWidth/3 + 500)).attr('x', - $('#wave4').attr('width')/4);
+    $('#anim4').attr('from', - $('#wave4').attr('width')/4);
+
+    $('.paper textarea').css('height', $('.paper').css('height'));
+    $('.paper-section').click(function() {
+      $(this).find('textarea').focus();
+    });
+    $(document).on('click', '.add-btn', function(){
+      var html = '<div class="paper-section"><textarea></textarea><div class="plus-button"><button class="glyphicon glyphicon-plus add-btn"></button></div></div>'
+      $(this).closest('.paper-section').after(html);
+
+      $('.paper-section textarea').css('height', $('.paper-section').css('height'));
+      $('.paper-section').click(function() {
+        $(this).find('textarea').focus();
+      });
+    });
+  });
+  $(window).resize(function() {
+    $('#wave1').attr('width', (window.innerWidth + window.innerWidth/3)).attr('x', - $('#wave1').attr('width')/4);
+    $('#anim1').attr('from', - $('#wave1').attr('width')/4);
+  });
+
+  /*var editors = [];
+  editors.push(new $.Editor($('#sct1p')));*/
+</script>
+</html>
