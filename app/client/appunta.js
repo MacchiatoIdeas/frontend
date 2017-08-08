@@ -6,7 +6,8 @@ import store, {history} from './store';
 import {render} from 'react-dom';
 
 // Import css
-import css from 'bootstrap-webpack';
+import 'bootstrap-webpack';
+import './style/index.less';
 
 // Import Components
 import App from './components/App';

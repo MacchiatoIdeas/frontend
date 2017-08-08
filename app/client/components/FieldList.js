@@ -1,20 +1,18 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-const FieldList = React.createClass({
+export default class FieldList extends React.Component {
   render() {
     return (
-      <div className="photo-grid">
-        {this.props.fields.map((field, i) => (
-            <div className="field-of-study" key={i}>
-              <Link to={`/field/${field.slug}`}>
-                {field.name}
-              </Link>
-            </div>
+      <div className="photo-grid panel panel-default">
+        <div className="list-group">
+          {this.props.fields.map((field, i) => (
+            <Link to={`/field/${field.slug}`} className="list-group-item" key={i}>
+              {field.name}
+            </Link>
           ))}
+        </div>
       </div>
     )
   }
-});
-
-export default FieldList;
+}

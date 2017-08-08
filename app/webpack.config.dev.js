@@ -40,9 +40,14 @@ module.exports = {
         include: path.join(__dirname, 'client')
       },
       {
-        test: /\.styl$/,
+        test: /\.css$/,
         include: path.join(__dirname, 'client'),
         loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.less$/,
+        include: path.join(__dirname, 'client'),
+        loader: 'style-loader!css-loader!less-loader'
       }
     ]
   }

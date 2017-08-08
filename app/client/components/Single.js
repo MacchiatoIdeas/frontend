@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Single = React.createClass({
+export default class Single extends React.Component {
   render() {
     const { postId } = this.props.params;
 
@@ -16,6 +16,4 @@ const Single = React.createClass({
       </div>
     )
   }
-});
-
-export default Single;
+}

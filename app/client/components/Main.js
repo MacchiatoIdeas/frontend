@@ -1,18 +1,18 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-const Main = React.createClass({
+export default class Main extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="page-header">
+        <h1>
           <Link to="/">Appunta</Link>
         </h1>
+
+        <hr/>
 
         {React.cloneElement({...this.props}.children, {...this.props})}
       </div>
     )
   }
-});
-
-export default Main;
+}

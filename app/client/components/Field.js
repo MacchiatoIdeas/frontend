@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-const Field = React.createClass({
+export default class Field extends React.Component {
   render() {
     const {slug} = this.props.params;
 
@@ -11,14 +11,17 @@ const Field = React.createClass({
     return (
       <div className="field">
         <h3>{field.name}</h3>
-        {units.map((unit, i) => (
-          <div className="field-item" key={i}>
-            <Link to={`/unit/${unit.slug}`}>{unit.name}</Link>
-          </div>
-        ))}
+
+        <hr/>
+
+        <div className="list-group">
+          {units.map((unit, i) => (
+            <Link to={`/unit/${unit.slug}`} key={i} className="list-group-item">
+              {unit.name}
+            </Link>
+          ))}
+        </div>
       </div>
     )
   }
-});
-
-export default Field;
+}
