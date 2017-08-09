@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="restoreCaret.js"></script>
+  <script src="https://cdn.geogebra.org/apps/deployggb.js"></script>
   <script src="editor.js"></script>
 
 </head>
@@ -50,38 +51,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-  $(document).ready(function() {
-    $('#wave1').attr('width', (window.innerWidth + window.innerWidth/3)).attr('x', - $('#wave1').attr('width')/4);
-    $('#anim1').attr('from', - $('#wave1').attr('width')/4);
-
-    $('#wave2').attr('width', (window.innerWidth + window.innerWidth/3 + 200)).attr('x', - $('#wave2').attr('width')/4);
-    $('#anim2').attr('from', - $('#wave2').attr('width')/4);
-
-    $('#wave3').attr('width', (window.innerWidth + window.innerWidth/3 + 400)).attr('x', - $('#wave3').attr('width')/4);
-    $('#anim3').attr('from', - $('#wave3').attr('width')/4);
-
-    $('#wave4').attr('width', (window.innerWidth + window.innerWidth/3 + 500)).attr('x', - $('#wave4').attr('width')/4);
-    $('#anim4').attr('from', - $('#wave4').attr('width')/4);
-
-    $('.paper textarea').css('height', $('.paper').css('height'));
-    $('.paper-section').click(function() {
-      $(this).find('textarea').focus();
-    });
-    $(document).on('click', '.add-btn', function(){
-      var html = '<div class="paper-section"><textarea></textarea><div class="plus-button"><button class="glyphicon glyphicon-plus add-btn"></button></div></div>'
-      $(this).closest('.paper-section').after(html);
-
-      $('.paper-section textarea').css('height', $('.paper-section').css('height'));
-      $('.paper-section').click(function() {
-        $(this).find('textarea').focus();
-      });
-    });
-  });
-  $(window).resize(function() {
-    $('#wave1').attr('width', (window.innerWidth + window.innerWidth/3)).attr('x', - $('#wave1').attr('width')/4);
-    $('#anim1').attr('from', - $('#wave1').attr('width')/4);
-  });
-
   $('#editor').sortable({
         handle: ".drag",
         placeholder: "ui-state-highlight"
