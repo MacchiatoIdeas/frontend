@@ -2,6 +2,7 @@ const prefixImage = "data:image/png;base64,";
 var sections = [];
 var titleHtml = ['<li>',
 					'<div id="%id" class="section title">',
+						'<input class="pointer" type="radio" name="focus">',
 						'<div class="options">',
 							'<span class="btn btn-link drag"><span class="glyphicon glyphicon-th"></span></span>',
 							'<button class="btn btn-link remove remove"><span class="glyphicon glyphicon-remove"></span></button>',
@@ -14,16 +15,22 @@ var titleHtml = ['<li>',
 				];
 var textHtml = ['<li>',
 					'<div id="%id" class="section text">',
+						'<input class="pointer" type="radio" name="focus">',
 						'<div class="options">',
 							'<span class="btn btn-link drag"><span class="glyphicon glyphicon-th"></span></span>',
 							'<button class="btn btn-link remove"><span class="glyphicon glyphicon-remove"></span></button>',
 						'</div>',
-						'<textarea type="text" class="section-input" placeholder="Inserte un texto aquí"></textarea>',
+						'<div id="text-%id" class="md">',
+							'<textarea style="display: none;" class="section-input"></textarea>',
+						'</div>',
+						'<div class="rendered hidden">',
+						'</div>',
 					'</div>',
 				'</li>',
 				];
 var graphHtml = ['<li>',
 					'<div id="%id" class="section graph placeholder">',
+						'<input class="pointer" type="radio" name="focus">',
 						'<div class="options">',
 							'<span class="btn btn-link drag"><span class="glyphicon glyphicon-th"></span></span>',
 							'<button class="btn btn-link edit"><span class="glyphicon glyphicon-pencil"></span></button>',
@@ -46,6 +53,7 @@ var graphHtml = ['<li>',
 
 class Section {
 	constructor(source, type) {
+		this.alive = true;
 		this.type = type;
 		this.source = source;
 		this.id = sections.length;
@@ -53,6 +61,7 @@ class Section {
 		this.content = "";
 		this.pngBase64 = "";
 		this.base64 = "";
+		this.editing = false;
 
 		// Include value '"ggbBase64"' to load graph.
 		this.params = {
@@ -76,7 +85,7 @@ class Section {
 		if (this.type == 'title') {
 			this.html = $(titleHtml.join('').replace('%id', this.id));
 		} else if (this.type == 'text') {
-			this.html = $(textHtml.join('').replace('%id', this.id));
+			this.html = $(textHtml.join('').replace(/\%id/g, this.id));
 		} else if (this.type == 'graph') {
 			this.html = $(graphHtml.join('').replace(/\%id/g, this.id));
 		}
@@ -88,14 +97,75 @@ class Section {
 			this.params['width'] = this.section.width()
 			this.params['id'] = this.get_graph_id()
 			this.load_graph();
+		} else if (this.type == 'text') {
+			this.load_text();
 		}
 	}
 
 	insert_section() {
 		$('.editor').append(this.html);
 		this.section = $(this.get_id());
+		this.section.find('input').focus();
 		this.enable_listener();
 	}
+
+	enable_listener() {
+		var self = this;
+		let listener = $(this.section).find('.remove').click(function() {
+			self.remove_section();
+		});
+
+		if (this.type == 'graph') 
+			this.enable_graph_listener();
+		else if (this.type == 'text')
+			this.enable_text_listener();
+
+		this.listeners.push(listener);
+	}
+
+	get_id() {
+		return '#' + this.id;
+	}
+
+	remove_section() {
+		$(this.section).remove();
+		this.alive = false;
+	}
+
+	// Text
+
+	render_() {
+		console.log(':D!!');
+		this.editing = false;
+		$(this.section).find('.md').addClass('hidden');
+		$(this.section).find('.rendered').removeClass('hidden').html(this.editormd.getHtml());
+	}
+
+	load_text() {
+		let self = this;
+		this.editormd = new Editor(this.get_text_id());
+	}
+
+
+	enable_text_listener() {
+		let self = this;
+		$(this.section).find('.pointer').change(function() {
+			self.editing = true;
+			console.log("this.editing", self.editing);
+			$(self.section).find('.md').removeClass('hidden');
+			$(self.section).find('.rendered').addClass('hidden')
+			$('.text-options').removeClass('hidden');
+
+		});
+	}
+
+
+
+	get_text_id() {
+		return 'text-' + this.id;
+	}
+
+	// Graph
 
 	load_graph() {
 		var self = this;
@@ -117,18 +187,6 @@ class Section {
 		}, 200);
 	}
 
-	enable_listener() {
-		var self = this;
-		let listener = $(this.section).find('.remove').click(function() {
-			self.remove_section();
-		});
-
-		if (this.type == 'graph') 
-			this.enable_graph_listener();
-
-		this.listeners.push(listener);
-	}
-
 	enable_graph_listener() {
 		var self = this;
 		let clickListener = $(this.section).find('.geogebra-options').find('button').on('click', function() {
@@ -146,16 +204,8 @@ class Section {
 
 	}
 
-	get_id() {
-		return '#' + this.id;
-	}
-
 	get_graph_id() {
 		return 'graph-' + this.id;
-	}
-
-	remove_section() {
-		$(this.section).remove();
 	}
 
 	close_graph() {
@@ -169,6 +219,17 @@ class Section {
 	}
 }
 
+function checkTextSections() {
+	$.each(sections, function(index, section) {
+		console.log(':(');
+		if (section.alive && section.editing) {
+			console.log(':D');
+			section.render_();
+		}
+		$('.text-options').addClass('hidden');
+	});
+}
+
 $(document).ready(function() {
 	$(document). on('click', '.options-add', function() {
 		$(this).parent('div').find('.options-buttons').css('display', 'inline-block');
@@ -178,7 +239,8 @@ $(document).ready(function() {
 		$('.options-buttons').css('display', 'none');
 
 	}).on('click', '.section', function() {
-		$(this).find('.section-input').focus();
+		$(this).find('input, textarea').focus();
+		$(this).find('.pointer')[0].click();
 
 	}).on('mouseover', '.section', function() {
 		if (!$(this).hasClass('focus'))
@@ -186,7 +248,7 @@ $(document).ready(function() {
 
 	}).on('mouseout', '.section', function() {
 
-		if ($(this).find('.section-input:focus').length == 0) {
+		if ($(this).find('input:focus').length == 0 && $(this).find('textarea:focus').length == 0) {
 			$(this).removeClass('focus');
 		}
 		$(this).removeClass('hover')
@@ -199,11 +261,17 @@ $(document).ready(function() {
 
 		if ($('.focus') && !($(e.target).hasClass('focus').length || $(e.target).closest('.focus').length )) {
 			$('.focus').removeClass('focus');
+			$('.pointer').prop('checked', false);
+
+			checkTextSections();
 		}
 
-	}).on('focus', '.section-input', function() {
-		$('.section').removeClass('focus');
-		$(this).closest('.section').addClass('focus').removeClass('hover');
+	}).on('change', '.pointer', function() {
+		console.log('asd');
+		if ($(this).is(':checked')) {
+			$('.section').removeClass('focus');
+			$(this).closest('.section').addClass('focus').removeClass('hover');
+		}
 
 	}).on('input', 'textarea', function() {
 		var el = this;

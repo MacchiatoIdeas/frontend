@@ -206,6 +206,16 @@ svg{
 	box-shadow: none;
 }
 
+.section.text {
+	min-height: 100px;
+}
+
+.section.text .rendered {
+	margin-top: 25px;
+	padding: 0px 10px;
+	line-height: 25px;
+}
+
 .section.text > textarea {
 	width: 100%;
 	border: none;
@@ -274,6 +284,43 @@ span.drag {
     cursor: -webkit-grab;
 }
 
+.pointer {
+	display: none;
+}
+
 .ui-state-highlight {
 	border-color: #3399ff !important;
+}
+
+.editormd, .CodeMirror {
+	border: none !important;
+	color: #777 !important;
+	margin: 0px !important;
+}
+
+.editormd .CodeMirror pre {
+	font-size: 20px !important;
+	font-family: "Helvetica Neue" !important;
+	padding: 0px 10px !important;
+	line-height: 25px !important;
+}
+
+.editormd {
+	margin-top: 25px !important;
+}
+
+.text-options {
+	position: fixed;
+	margin-left: -60px;
+	margin-top: 20px;
+}
+
+.text-options .option {
+	margin-top: 5px;
+}
+
+.text-options .option button {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
 }
