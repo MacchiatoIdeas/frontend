@@ -105,7 +105,7 @@ class Section {
 	insert_section() {
 		$('.editor').append(this.html);
 		this.section = $(this.get_id());
-		this.section.find('input').focus();
+		//this.section.find('input').focus();
 		this.enable_listener();
 	}
 
