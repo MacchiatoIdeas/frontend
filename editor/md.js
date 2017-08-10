@@ -3,7 +3,7 @@ class Editor {
 		this.id = id;
 		this.editor = editormd(id, {
 	        path: "vendor/editormd/lib/",
-	        tex: false,
+	        tex: true,
 	        autoHeight : true,
 	        watch: false,
 	        placeholder: "Inserte un texto aquí",
@@ -16,7 +16,7 @@ class Editor {
         	styleActiveLine: false,
         	saveHTMLToTextarea: true,
         	autoFocus: false,
-	    });   
+	    });
 	}
 
 	getHtml() {
