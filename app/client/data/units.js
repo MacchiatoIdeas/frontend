@@ -1,32 +1,32 @@
 const units = [
   {
-    field: 'matematicas',
-    slug: 'sistemas-de-ecuaciones-lineales-2x2',
+    field: 1,
+    id: 1,
     name: "Sistemas de ecuaciones lineales (2 x 2)"
   },
   {
-    field: 'matematicas',
-    slug: 'operatoria-de-numeros-racionales',
+    field: 1,
+    id: 2,
     name: "Operatoria de números racionales"
   },
   {
-    field: 'matematicas',
-    slug: 'potencia-de-base-racional-y-exponente-entero',
+    field: 1,
+    id: 3,
     name: "Potencia de base racional y exponente entero"
   },
   {
-    field: 'matematicas',
-    name: "Productos notables de manera-concreta-pictorica-y-simbolica",
-    slug: 'productos-notables-de-manera concreta, pictórica y simbólica'
+    field: 1,
+    id: 4,
+    name: "Productos notables de manera-concreta-pictorica-y-simbolica"
   },
   {
-    field: 'matematicas',
-    slug: 'area-de-la-superficie-y-volumen-del-cono',
+    field: 1,
+    id: 5,
     name: "Área de la superficie y volumen del cono"
   },
   {
-    field: 'matematicas',
-    slug: 'relaciones-lineales-en-dos-variables-de-la-forma-f-ax-by',
+    field: 1,
+    id: 6,
     name: "Relaciones lineales en dos variables de la forma f(x, y) = ax + by"
   }
 ];

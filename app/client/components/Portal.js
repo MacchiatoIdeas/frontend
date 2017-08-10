@@ -53,7 +53,7 @@ export default class Portal extends React.Component {
         </div>
 
         <div className="container" style={{marginTop: "32px"}}>
-          <Route path="/" component={Summary}/>
+          <Route path="" component={Summary}/>
         </div>
       </div>
     )
