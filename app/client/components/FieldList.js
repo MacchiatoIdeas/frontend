@@ -10,7 +10,7 @@ export default class FieldList extends React.Component {
     return (
       <div className="col-sm-4" key={i}>
         <div className="box" style={{borderBottomColor: field.color}}>
-          <Link to={`/fields/${field.slug}`}>
+          <Link to={`/site/fields/${field.slug}`}>
             <img src={field.thumbnail} className="box-thumbnail" alt=""/>
 
             <div className="box-body">

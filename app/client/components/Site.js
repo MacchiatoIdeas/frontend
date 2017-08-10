@@ -1,20 +1,24 @@
 import React from 'react';
-import {Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
+
+import Navbar from './Navbar';
+import FieldList from './FieldList';
+import Field from './Field';
+import Unit from './Unit';
+import Content from './Content';
 
 export default class Site extends React.Component {
   render() {
-    console.log(1);
-
     return (
       <div>
         <Navbar />
 
         <div className="container" style={{ marginTop: "32px" }}>
           <Switch>
-            <Route exact path="/fields" component={FieldList}/>
-            <Route path="/fields/:slug" component={Field}/>
-            <Route path="/unit/:slug" component={Unit}/>
-            <Route path="/content/:id" component={Content}/>
+            <Route path="/site/fields/:slug" component={Field}/>
+            <Route path="/site/units/:slug" component={Unit}/>
+            <Route path="/site/content/:id" component={Content}/>
+            <Route component={FieldList}/>
           </Switch>
         </div>
       </div>

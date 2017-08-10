@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 export default class Field extends React.Component {
   renderUnit(unit, i) {
     return (
-      <Link to={`/unit/${unit.slug}`} key={i} className="list-group-item">
+      <Link to={`/site/units/${unit.slug}`} key={i} className="list-group-item">
         {unit.name}
       </Link>
     )
@@ -31,7 +31,7 @@ export default class Field extends React.Component {
         <div className="row">
           <div className="col-sm-3">
             <div className="box" style={{borderBottomColor: field.color}}>
-              <Link to={`/field/${field.slug}`}>
+              <Link to={`/site/fields/${field.slug}`}>
                 <img src={field.thumbnail} className="box-thumbnail" alt=""/>
 
                 <div className="box-body">

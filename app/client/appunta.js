@@ -7,16 +7,17 @@ import store, {history} from './store';
 import {render} from 'react-dom';
 
 import './style/index.css';
+import './style/temp.css';
 
 import Site from './components/Site';
-import Portal from "./components/Portal2";
+import Portal from "./components/Portal";
 
 const router = (
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Portal}/>
-        <Route exact path="/site" component={Site}/>
+        <Route path="/site" component={Site}/>
+        <Route path="/portal" component={Portal}/>
       </Switch>
     </BrowserRouter>
   </Provider>
