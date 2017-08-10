@@ -8,7 +8,6 @@ function mapStateToProps(state) {
   return {
     fields: state.fields,
     units: state.units,
-    subUnits: state.subUnits,
     contents: state.contents,
   }
 }
