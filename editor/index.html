@@ -9,8 +9,8 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="vendor/editormd/css/editormd.min.css">
   <link rel="stylesheet" type="text/css" href="vendor/katex/katex.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="restoreCaret.js"></script>
@@ -20,19 +20,23 @@
   <script src="editor.js"></script>
   <script src="md.js"></script>
   <script src="text-options.js"></script>
+  <script src="backend-connection.js"></script>
 
 </head>
 <body>
   <div id="nav">
-  <nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">
-          APPUNTA
-        </a>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            APPUNTA
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <button type="button" class="btn btn-default navbar-btn pull-right" onclick="sendContent();">Guardar</button>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
   </div>
 
   <section>
@@ -64,12 +68,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-  $('#editor').sortable({</script>mtrsne
+  $('#editor').sortable({
         handle: ".drag",
         placeholder: "ui-state-highlight"
       });
 
   $('.tooltip-btn').tooltip();
-  renderMathInElement(document.getElementsByClassName('editormd-tex'))
+  //renderMathInElement(document.getElementsByClassName('editormd-tex'))
 </script>
 </html>

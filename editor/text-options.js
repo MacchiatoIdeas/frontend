@@ -5,7 +5,7 @@ class Buttons {
           					'</div>'	
           					];
 
-         this.
+         
 
 		this.element = $('.text-options');
 	}
