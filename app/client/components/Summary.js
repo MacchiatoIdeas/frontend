@@ -16,7 +16,6 @@ export default class Summary extends React.Component {
             </div>
 
             <div className="col-sm-9">
-
               <h2 style={{color: "#9cc374", marginTop: 0}}>Recomendaciones</h2>
               <hr style={{marginTop: 0, borderColor: "#9cc374"}}/>
 
@@ -24,7 +23,7 @@ export default class Summary extends React.Component {
                 <div className="playlist-item" style={{borderRightColor: "#6699dd"}}>
                   <div className="playlist-item-body">
                     <span className="glyphicon glyphicon-play-circle step"></span>
-                    <strong>Systemas de Ecuaciones</strong>
+                    <strong>Sistemas de Ecuaciones</strong>
                     <div className="playlist-item-tag">Matemáticas</div>
                   </div>
                 </div>

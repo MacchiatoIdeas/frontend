@@ -1,9 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
+@connect(state => ({
+  fields: state.fields,
+  units: state.units
+}))
 export default class Field extends React.Component {
   render() {
-    const {slug} = this.props.params;
+    const {slug} = this.props.match.params;
 
     const unit = this.props.units.find((obj) => obj.slug === slug);
     const field = this.props.fields.find((obj) => obj.slug === unit.field);

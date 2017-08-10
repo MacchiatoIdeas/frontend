@@ -1,12 +1,16 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
 
+@connect(state => ({
+  fields: state.fields
+}))
 export default class FieldList extends React.Component {
   renderField(field, i) {
     return (
       <div className="col-sm-4" key={i}>
         <div className="box" style={{borderBottomColor: field.color}}>
-          <Link to={`fields/${field.slug}`}>
+          <Link to={`/fields/${field.slug}`}>
             <img src={field.thumbnail} className="box-thumbnail" alt=""/>
 
             <div className="box-body">

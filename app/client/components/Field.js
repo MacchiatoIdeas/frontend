@@ -1,6 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
+@connect(state => ({
+  fields: state.fields,
+  units: state.units
+}))
 export default class Field extends React.Component {
   renderUnit(unit, i) {
     return (
@@ -11,7 +16,7 @@ export default class Field extends React.Component {
   }
 
   render() {
-    const {slug} = this.props.params;
+    const {slug} = this.props.match.params;
 
     const field = this.props.fields.find((field) => field.slug === slug);
     const units = this.props.units.filter((unit) => unit.field === slug);
