@@ -9,17 +9,19 @@ import {connect} from 'react-redux';
 export default class Field extends React.Component {
   renderUnit(unit, i) {
     return (
-      <Link to={`/site/units/${unit.slug}`} key={i} className="list-group-item">
+      <Link to={`/site/units/${unit.id}`} key={i} className="list-group-item">
         {unit.name}
       </Link>
     )
   }
 
   render() {
-    const {slug} = this.props.match.params;
+    const {id} = this.props.match.params;
 
-    const field = this.props.fields.find((field) => field.slug === slug);
-    const units = this.props.units.filter((unit) => unit.field === slug);
+    const field = this.props.fields.find((obj) => obj.id == parseInt(id));
+    const units = this.props.units.filter((obj) => obj.field == id);
+
+    console.log(field);
 
     return (
       <div className="field">

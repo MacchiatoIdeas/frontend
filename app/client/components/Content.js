@@ -1,32 +1,42 @@
 import React from 'react';
 import {Link} from 'react-router';
+import {connect} from 'react-redux';
+import {fetchContent} from '../actions';
 
+@connect(state => ({
+  fields: state.fields,
+  units: state.units,
+  contents: state.contents,
+  contentIsLoading: state.loadingContent
+}))
 export default class Content extends React.Component {
-  render() {
-    const {id} = this.props.params;
+  componentDidMount() {
+    const {id} = this.props.match.params;
+    this.props.dispatch(fetchContent(id));
+  }
 
-    const content = this.props.contents.find((obj) => obj.id === parseInt(id));
-    const subUnit = this.props.subUnits.find((obj) => obj.slug === content.subUnit);
-    const unit = this.props.units.find((obj) => obj.slug === subUnit.unit);
-    const field = this.props.fields.find((obj) => obj.slug === unit.field);
+  render() {
+    if (this.props.contentIsLoading) {
+      return (
+        <div>Loading....</div>
+      )
+    }
+
+    const {id} = this.props.match.params;
+
+    const content = this.props.contents[parseInt(id)];
+    // const unit = this.props.units.find((obj) => obj.slug === content.unit);
+    // const field = this.props.fields.find((obj) => obj.slug === unit.field);
 
     return (
       <div className="content">
-        <h3>
-          <small>{field.name}</small><br/>
-          <small>{unit.name}</small><br/>
-          {subUnit.name}
-        </h3>
-
-        <hr/>
+        <h2 className="page-header">{content.subtitle}</h2>
 
         <div className="panel panel-default">
-          <div className="panel-body">
-            {content.text}
-          </div>
+          <div className="panel-body" dangerouslySetInnerHTML={{ __html: content.html_text }}/>
 
           <div className="panel-footer text-right">
-            <strong>Author:</strong> {content.author}
+            <strong>Author:</strong> {content.author.first_name} {content.author.last_name}
           </div>
         </div>
       </div>

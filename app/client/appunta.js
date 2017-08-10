@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router';
+import {Route, Redirect, Switch} from 'react-router';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store, {history} from './store';
@@ -16,6 +16,7 @@ const router = (
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
+        <Redirect exact from='/' to='/portal'/>
         <Route path="/site" component={Site}/>
         <Route path="/portal" component={Portal}/>
       </Switch>

@@ -15,9 +15,9 @@ export default class Site extends React.Component {
 
         <div className="container" style={{ marginTop: "32px" }}>
           <Switch>
-            <Route path="/site/fields/:slug" component={Field}/>
-            <Route path="/site/units/:slug" component={Unit}/>
-            <Route path="/site/content/:id" component={Content}/>
+            <Route path="/site/fields/:id" component={Field}/>
+            <Route path="/site/units/:id" component={Unit}/>
+            <Route path="/site/contents/:id" component={Content}/>
             <Route component={FieldList}/>
           </Switch>
         </div>
