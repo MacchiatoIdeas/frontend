@@ -2,11 +2,11 @@ import fetch from 'isomorphic-fetch';
 
 import {API_URL} from '../api';
 
-export const getContentById = (index) => (dispatch) => {
+export const getContentById = (id) => (dispatch) => {
   dispatch({
     type: 'CONTENT_FETCH_ONE'
   });
-  return fetch(`${API_URL}/material/content/${index}`)
+  return fetch(`${API_URL}/material/content/${id}`)
     .then(
       response => response.json(),
       error => console.log(error)

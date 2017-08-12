@@ -1,21 +1,20 @@
 {
-  "name": "learn-redux",
+  "name": "appunta",
   "version": "1.0.0",
-  "description": ":) ",
+  "description": "Apputa FrontEnd",
   "scripts": {
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
-    "start": "node devServer.js",
-    "tunnel": "browser-sync start --proxy localhost:7770 --tunnel wesbos"
+    "start": "node devServer.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wesbos/Learn-Redux.git"
+    "url": "git@github.com:MacchiatoIdeas/frontend.git"
   },
   "author": "Wes Bos",
   "license": "MIT",
-  "homepage": "https://github.com/wesbos/Learn-Redux",
+  "homepage": "https://github.com/macchiatoIdeas/frontend",
   "dependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",

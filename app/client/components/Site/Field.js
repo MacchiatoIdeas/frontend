@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
+import FieldBox from './FieldBox';
+
 @connect(state => ({
   fields: state.fields,
   units: state.units
@@ -21,8 +23,6 @@ export default class Field extends React.Component {
     const field = this.props.fields.find((obj) => obj.id == parseInt(id));
     const units = this.props.units.filter((obj) => obj.field == id);
 
-    console.log(field);
-
     return (
       <div className="field">
         <h1 className="page-header">
@@ -32,15 +32,7 @@ export default class Field extends React.Component {
 
         <div className="row">
           <div className="col-sm-3">
-            <div className="box" style={{borderBottomColor: field.color}}>
-              <Link to={`/site/fields/${field.slug}`}>
-                <img src={field.thumbnail} className="box-thumbnail" alt=""/>
-
-                <div className="box-body">
-                  <h1>{field.name}</h1>
-                </div>
-              </Link>
-            </div>
+            <FieldBox field={field}/>
 
             <div className="playlist playlist-compact">
               <div className="playlist-item">
@@ -75,17 +67,6 @@ export default class Field extends React.Component {
 
             <div className="list-group">
               {units.map(this.renderUnit)}
-            </div>
-
-            <hr/>
-            <div>
-              <h2 style={{color: "#d9534f", marginTop: 0}}>Guías</h2>
-            </div>
-            <hr style={{marginTop: 0, borderColor: "#d9534f"}}/>
-
-            <div className="list-group">
-              <a href="#" className="list-group-item">Guía de Trigonometría</a>
-              <a href="#" className="list-group-item">Guía de Fracciones</a>
             </div>
           </div>
         </div>

@@ -2,39 +2,19 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
+import FieldBox from './FieldBox';
+import ContentBox from './ContentBox';
+
 @connect(state => ({
   fields: state.fields,
   units: state.units,
   contents: state.contents
 }))
 export default class Field extends React.Component {
-  renderCard(content, i) {
-    return (
-      <div className="col-sm-6" key={i}>
-        <div className="box box-fill">
-          <Link to={`/site/contents/${content.id}`}>
-            <div className="box-body box-body-min">
-              <h2>{content.subtitle}</h2>
-              <summary>{content.summary}</summary>
-            </div>
-
-            <div style={{position: "relative"}}>
-              <div className="backgrounded" style={{backgroundImage: "url('http://images.all-free-download.com/images/graphiclarge/green_blurred_background_200164.jpg')"}}></div>
-              <div className="box-footer box-footer-stylized">
-                <h3><small>Creado por:</small> {content.author.first_name} {content.author.last_name}</h3>
-              </div>
-            </div>
-          </Link>
-        </div>
-      </div>
-    )
-  }
-
   render() {
     const {id} = this.props.match.params;
 
     const unit = this.props.units.find((obj) => obj.id === parseInt(id));
-
     const field = this.props.fields.find((obj) => obj.id === unit.field);
 
     const contents = Object.keys(this.props.contents).map(key => {
@@ -52,15 +32,7 @@ export default class Field extends React.Component {
 
         <div className="row">
           <div className="col-sm-3">
-            <div className="box" style={{borderBottomColor: "#6699dd"}}>
-              <Link to={`/site/field/${field.slug}`}>
-                <img src={field.thumbnail} className="box-thumbnail" alt=""/>
-
-                <div className="box-body">
-                  <h1>{field.name}</h1>
-                </div>
-              </Link>
-            </div>
+            <FieldBox field={field}/>
 
             <div className="playlist playlist-compact">
               <div className="playlist-item active">
@@ -95,7 +67,11 @@ export default class Field extends React.Component {
             <hr style={{marginTop: 0, borderColor: "#6699dd"}}/>
 
             <div className="row">
-              {contents.map(this.renderCard)}
+              {contents.map((content, i) =>
+                <div className="col-sm-6" key={i}>
+                  <ContentBox content={content}/>
+                </div>
+              )}
             </div>
           </div>
         </div>

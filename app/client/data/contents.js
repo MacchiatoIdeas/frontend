@@ -8,13 +8,14 @@ const contents = {
         "academic_level": 1
     },
     "subtitle": "Las operaciones de Números Racionales",
-    "text": "Well fuck",
+    "text": "Testing",
     "summary": "Multiplicación, división, potenciación y sacar su factor común",
     "html_text": "<h1>Placeholder</h1>",
     "author": {
         "id": 1,
         "first_name": "Juan",
-        "last_name": "Perez"
+        "last_name": "Perez",
+        "banner": "http://images.all-free-download.com/images/graphiclarge/green_blurred_background_200164.jpg"
     }
   },
   2: {
@@ -26,13 +27,14 @@ const contents = {
         "academic_level": 1
     },
     "subtitle": "Las operaciones de Números Racionales",
-    "text": "Well fuck",
+    "text": "Testing",
     "summary": "Multiplicación, división, potenciación y sacar su factor común",
     "html_text": "<h1>Placeholder</h1>",
     "author": {
         "id": 1,
         "first_name": "Juan",
-        "last_name": "Perez"
+        "last_name": "Perez",
+        "banner": "http://images.all-free-download.com/images/graphiclarge/green_blurred_background_200164.jpg"
     }
   },
   3: {
@@ -44,13 +46,14 @@ const contents = {
         "academic_level": 1
     },
     "subtitle": "Las operaciones de Números Racionales",
-    "text": "Well fuck",
+    "text": "Testing",
     "summary": "Multiplicación, división, potenciación y sacar su factor común",
     "html_text": "<h1>Placeholder</h1>",
     "author": {
         "id": 1,
         "first_name": "Juan",
-        "last_name": "Perez"
+        "last_name": "Perez",
+        "banner": "http://images.all-free-download.com/images/graphiclarge/green_blurred_background_200164.jpg"
     }
   }
 };

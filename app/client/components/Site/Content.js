@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
-import {fetchContent} from '../../actions/contents';
+import {getContentById} from '../../actions/contents';
 
 @connect(state => ({
   fields: state.fields,
@@ -9,23 +9,20 @@ import {fetchContent} from '../../actions/contents';
   contents: state.contents,
   contentIsLoading: state.loadingContent
 }), {
-  fetchContent: fetchContent
+  getContentById
 })
 export default class Content extends React.Component {
   componentDidMount() {
     const {id} = this.props.match.params;
-    this.props.fetchContent(id);
+    this.props.getContentById(id);
   }
 
   render() {
     if (this.props.contentIsLoading) {
-      return (
-        <div>Loading....</div>
-      )
+      return null;
     }
 
     const {id} = this.props.match.params;
-
     const content = this.props.contents[parseInt(id)];
 
     return (
