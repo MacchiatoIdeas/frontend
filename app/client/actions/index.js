@@ -1,1 +1,0 @@
-export {fetchContent} from './contents';

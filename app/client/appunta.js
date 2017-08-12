@@ -9,7 +9,7 @@ import {render} from 'react-dom';
 import './style/index.css';
 import './style/temp.css';
 
-import Site from './components/Site';
+import Site from './components/Site/Site';
 import Portal from "./components/Portal";
 
 const router = (

@@ -1,25 +1,22 @@
 import fetch from 'isomorphic-fetch';
 
-export function fetchContent(index) {
-  return (dispatch) => {
-    dispatch({
-      type: 'CONTENT_FETCH'
-    });
+import {API_URL} from '../api';
 
-    return fetch(`http://localhost:8000/material/content/${index}`)
-      .then(
-        response => response.json(),
-        error => console.log(error)
-      )
-      .then(content => {
-        dispatch(receiveContent(content));
-      })
-  }
+export const getContentById = (index) => (dispatch) => {
+  dispatch({
+    type: 'CONTENT_FETCH_ONE'
+  });
+  return fetch(`${API_URL}/material/content/${index}`)
+    .then(
+      response => response.json(),
+      error => console.log(error)
+    )
+    .then(content => {
+      dispatch(receiveContent(content));
+    })
 }
 
-export function receiveContent(content) {
-  return {
-    type: 'CONTENT_RECEIVE',
-    payload: content
-  }
-}
+export const receiveContent = (content) => ({
+  type: 'CONTENT_RECEIVE_ONE',
+  payload: content
+})

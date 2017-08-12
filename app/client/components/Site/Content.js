@@ -1,18 +1,20 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
-import {fetchContent} from '../actions';
+import {fetchContent} from '../../actions/contents';
 
 @connect(state => ({
   fields: state.fields,
   units: state.units,
   contents: state.contents,
   contentIsLoading: state.loadingContent
-}))
+}), {
+  fetchContent: fetchContent
+})
 export default class Content extends React.Component {
   componentDidMount() {
     const {id} = this.props.match.params;
-    this.props.dispatch(fetchContent(id));
+    this.props.fetchContent(id);
   }
 
   render() {
@@ -25,8 +27,6 @@ export default class Content extends React.Component {
     const {id} = this.props.match.params;
 
     const content = this.props.contents[parseInt(id)];
-    // const unit = this.props.units.find((obj) => obj.slug === content.unit);
-    // const field = this.props.fields.find((obj) => obj.slug === unit.field);
 
     return (
       <div className="content">
