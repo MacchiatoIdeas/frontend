@@ -1,13 +1,25 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { getAllFields } from '../../actions/fields';
 import FieldBox from './FieldBox';
 
-@connect(state => ({
-  fields: state.fields
-}))
+const denormalizeFields = (fields) =>
+  Object.keys(fields).map(id => fields[id]);
+
+@connect(state => {
+  return {
+    fields: denormalizeFields(state.fields)
+  }
+}, {
+  getAllFields
+})
 export default class FieldList extends React.Component {
+  componentDidMount() {
+    this.props.getAllFields();
+  }
+
   render() {
     return (
       <div>

@@ -27,6 +27,7 @@
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.2",
     "isomorphic-fetch": "^2.2.1",
+    "normalizr": "^3.2.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",

@@ -8,23 +8,11 @@ import contents from "./data/contents";
 
 // create an object for the default data
 const defaultState = {
-  fields,
+  fields: undefined,
   units,
   contents,
-  loadingContent: {
-    status: false
-  }
+  loadingContent: false,
 };
-
-function addLoggerToStore(store) {
-  const rawDispatch = store.dispatch;
-  return action => {
-    console.group(action.type);
-    console.log('action', action);
-    console.groupEnd(action.type);
-    return rawDispatch(action);
-  };
-}
 
 const store = createStore(rootReducer, defaultState, applyMiddleware(thunk));
 
