@@ -1,27 +1,40 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { getFieldById } from '../../actions/fields';
 
 import FieldBox from './FieldBox';
 
-@connect(state => ({
-  fields: state.fields,
-  units: state.units
-}))
+@connect((state, props) => ({
+  field: state.fields[props.match.params.id],
+  units: state.units,
+  isFetching : state.isFetching
+}), {
+  getFieldById
+})
 export default class Field extends React.Component {
-  renderUnit(unit, i) {
-    return (
-      <Link to={`/site/units/${unit.id}`} key={i} className="list-group-item">
-        {unit.name}
-      </Link>
-    )
+  loadData() {
+    const { id } = this.props.match.params;
+    if (!this.props.field || !this.props.field.units) {
+      this.props.getFieldById(id, true);
+    } else {
+      this.props.getFieldById(id);
+    }
+  }
+
+  componentDidMount() {
+    this.loadData();
   }
 
   render() {
-    const {id} = this.props.match.params;
+    const { field } = this.props;
 
-    const field = this.props.fields.find((obj) => obj.id == parseInt(id));
-    const units = this.props.units.filter((obj) => obj.field == id);
+    if (!this.props.field || !this.props.field.units) {
+      return null;
+    }
+
+    const units = field.units.map(id => this.props.units[id]);
 
     return (
       <div className="field">
@@ -66,7 +79,11 @@ export default class Field extends React.Component {
             <hr style={{marginTop: 0, borderColor: "#6699dd"}}/>
 
             <div className="list-group">
-              {units.map(this.renderUnit)}
+              {units.map((unit, i) =>
+                <Link to={`/site/units/${unit.id}`} key={i} className="list-group-item">
+                  {unit.name}
+                </Link>
+              )}
             </div>
           </div>
         </div>

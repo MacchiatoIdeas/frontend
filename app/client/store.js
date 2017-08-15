@@ -9,7 +9,7 @@ import contents from "./data/contents";
 // create an object for the default data
 const defaultState = {
   fields: undefined,
-  units,
+  units: undefined,
   contents,
   loadingContent: false,
 };

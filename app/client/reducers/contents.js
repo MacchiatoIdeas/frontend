@@ -1,7 +1,6 @@
 export function loadingContent(state = false, action) {
   switch (action.type) {
     case 'CONTENT_FETCH':
-      console.log(state);
       return true;
     case 'CONTENT_RECEIVE':
       return false;

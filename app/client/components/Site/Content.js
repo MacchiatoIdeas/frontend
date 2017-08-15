@@ -1,7 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router';
-import {connect} from 'react-redux';
-import {getContentById} from '../../actions/contents';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { getContentById } from '../../actions/contents';
 
 @connect(state => ({
   fields: state.fields,
@@ -13,7 +13,7 @@ import {getContentById} from '../../actions/contents';
 })
 export default class Content extends React.Component {
   componentDidMount() {
-    const {id} = this.props.match.params;
+    const { id } = this.props.match.params;
     this.props.getContentById(id);
   }
 
