@@ -3,41 +3,62 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getUnitById } from '../../actions/units';
+import { getFieldById } from '../../actions/fields';
 
 import FieldBox from './FieldBox';
 import ContentBox from './ContentBox';
 
-@connect((state, props) => ({
-  unit: state.units[props.match.params.id],
-  fields: state.fields,
-  contents: state.contents
-}), {
-  getUnitById
+@connect((state, props) => {
+  const { id } = props.match.params;
+
+  let unit = state.units[id];
+  if (!unit) {
+    return { isFetching: true };
+  }
+
+  let contents = unit.contents;
+  if (!contents) {
+    return { isFetching: true, unit };
+  }
+  contents = unit.contents.map(id => state.contents[id]);
+  contents = contents.map(content => ({...content, author: state.authors[content.author]}));
+
+  let field = state.fields[unit.field_of_study];
+  if (!field) {
+    return { isFetching: true, unit, contents };
+  }
+
+  return {
+    isFetching: false,
+    unit,
+    contents,
+    field,
+  }
+}, {
+  getUnitById,
+  getFieldById,
 })
 export default class Field extends React.Component {
-  componentDidMount() {
+  loadData() {
     const { id } = this.props.match.params;
 
-    if (!this.props.unit || !this.props.unit.units) {
+    if (!this.props.unit || !this.props.contents) {
       this.props.getUnitById(id);
+      return;
+    }
+
+    if (!this.props.field) {
+      this.props.getFieldById(this.props.unit.field_of_study);
     }
   }
 
   render() {
-    const {id} = this.props.match.params;
-
-    if (!this.props.unit || !this.props.unit.contents) {
+    if (this.props.isFetching) {
+      this.loadData();
       return null;
     }
 
-    const { unit } = this.props;
-    const field = this.props.fields[unit.field_of_study];
-
-    const contents = Object.keys(this.props.contents).map(key => {
-      if (this.props.contents[key].unit.id === parseInt(id)) {
-        return this.props.contents[key];
-      }
-    });
+    const { unit, contents, field } = this.props;
 
     return (
       <div>

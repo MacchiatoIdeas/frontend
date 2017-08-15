@@ -1,18 +1,20 @@
 import {schema} from 'normalizr';
 
-export const field = new schema.Entity('fields');
+export const author = new schema.Entity('authors');
+
+export const content = new schema.Entity('contents', {
+  author
+});
 
 export const unit = new schema.Entity('units', {
-  field: field
-}, {
-  processStrategy: (value, parent, key) => ({
-    ...value,
-    field: key === 'units' ? parent.id : undefined,
-  })
+  contents: [content]
 });
 
-field.define({
+export const field = new schema.Entity('fields', {
   units: [unit]
 });
+
+content.define({ unit });
+unit.define({ field });
 
 export const fieldArray = [field];

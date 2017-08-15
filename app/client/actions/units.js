@@ -17,7 +17,6 @@ export const getUnitById = (id, force) => (dispatch) => {
     )
     .then(response => dispatch({
       type: 'UNIT_RECEIVE_ONE',
-      payload: normalize(response, unit),
-      test: 1,
+      payload: normalize(response, unit)
     }));
 }

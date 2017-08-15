@@ -10,7 +10,8 @@ import contents from "./data/contents";
 const defaultState = {
   fields: undefined,
   units: undefined,
-  contents,
+  authors: undefined,
+  contents: undefined,
   loadingContent: false,
 };
 

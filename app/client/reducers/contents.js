@@ -8,15 +8,10 @@ export function loadingContent(state = false, action) {
   return state;
 }
 
-function contents(state = [], action) {
+function contents(state = {}, action) {
   switch (action.type) {
-    case 'CONTENT_RECEIVE':
-      const obj = state[1];
-
-      return {
-        ...state,
-        1: action.payload
-      };
+    case 'UNIT_RECEIVE_ONE':
+      return {...state, ...action.payload.entities.contents};
   }
   return state;
 }
