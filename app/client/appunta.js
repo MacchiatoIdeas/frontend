@@ -10,7 +10,8 @@ import './style/index.css';
 import './style/temp.css';
 
 import Site from './components/Site/Site';
-import Portal from "./components/Portal";
+import Portal from './components/Portal';
+import Editor from './components/Editor/Editor';
 
 const router = (
   <Provider store={store}>
@@ -19,6 +20,7 @@ const router = (
         <Redirect exact from='/' to='/portal'/>
         <Route path="/site" component={Site}/>
         <Route path="/portal" component={Portal}/>
+        <Route path="/editor" component={Editor}/>
       </Switch>
     </BrowserRouter>
   </Provider>
