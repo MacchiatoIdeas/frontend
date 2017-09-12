@@ -3,6 +3,10 @@ import Navbar from '../Navbar';
 import '../../style/editor.css';
 
 import Title from './title';
+import Content from './content';
+import Graph from './graph';
+
+import Modal from ''
 
 
 export default class Wrapper extends React.Component {
@@ -20,16 +24,24 @@ export default class Wrapper extends React.Component {
     console.log('Adding Title');
     const inputList = this.state.inputList;
     this.setState({
-      inputList: inputList.concat(<Title key={inputList.length}/>)
+      inputList: inputList.concat(<Title key={inputList.length} index={inputList.length} />)
     });
   }
 
   onClickAddContent(event) {
     console.log('Adding Content');
+    const inputList = this.state.inputList;
+    this.setState({
+      inputList: inputList.concat(<Content key={inputList.length} index={inputList.length} />)
+    });
   }
 
   onClickAddGraph(event) {
     console.log('Adding Graph');
+    const inputList = this.state.inputList;
+    this.setState({
+      inputList: inputList.concat(<Graph key={inputList.length} index={inputList.length} />)
+    });
   }
 
   render() {
@@ -38,7 +50,7 @@ export default class Wrapper extends React.Component {
         <Navbar/>
         <div className="col-sm-12">
           <div className="paper">
-            <ul classID="editor" className="editor ui-sortable">
+            <ul id="editor" className="editor ui-sortable">
               {this.state.inputList.map((input, i) => input)}
             </ul>
             <div className="col-sm-12">

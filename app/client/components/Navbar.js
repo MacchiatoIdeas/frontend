@@ -15,13 +15,14 @@ export default class Navbar extends React.Component {
               <span className="icon-bar"></span>
             </button>
 
-            <a className="navbar-brand" href="#">Appuntas</a>
+            <a className="navbar-brand" href="#">Appunta</a>
           </div>
 
           <div className="collapse navbar-collapse" id="collapse-target">
             <ul className="nav navbar-nav">
               <li><NavLink to="/portal" activeClassName="active">Mi Portal</NavLink></li>
               <li><NavLink to="/site" activeClassName="active">Materias</NavLink></li>
+              <li><NavLink to="/editor" activeClassName="active">Editor</NavLink></li>
             </ul>
 
             <div className="navbar-nav navbar-right">
