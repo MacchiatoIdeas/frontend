@@ -1,37 +1,40 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import {Link, NavLink} from 'react-router-dom';
+import {Redirect, Route, Switch} from "react-router";
 
-import { getUnitById } from '../../actions/units';
-import { getFieldById } from '../../actions/fields';
+import {connect} from 'react-redux';
+
+import {getUnitById} from '../../actions/units';
+import {getFieldById} from '../../actions/fields';
 
 import FieldBox from './FieldBox';
-import ContentBox from './ContentBox';
+import UnitContents from "./UnitContents";
+import UnitExercises from "./UnitExercises";
+import UnitSidebar from "./UnitSidebar";
 
 @connect((state, props) => {
-  const { id } = props.match.params;
+  const {id} = props.match.params;
 
-  let unit = state.units[id];
+  let unit = {...state.units[id]};
   if (!unit) {
-    return { isFetching: true };
+    return {isFetching: true};
   }
 
   let contents = unit.contents;
   if (!contents) {
-    return { isFetching: true, unit };
+    return {isFetching: true, unit};
   }
-  contents = unit.contents.map(id => state.contents[id]);
-  contents = contents.map(content => ({...content, author: state.authors[content.author]}));
+  unit.contents = unit.contents.map(id => state.contents[id]);
+  unit.contents = unit.contents.map(content => ({...content, author: state.authors[content.author]}));
 
   let field = state.fields[unit.field_of_study];
   if (!field) {
-    return { isFetching: true, unit, contents };
+    return {isFetching: true, unit, contents};
   }
 
   return {
     isFetching: false,
     unit,
-    contents,
     field,
   }
 }, {
@@ -40,7 +43,7 @@ import ContentBox from './ContentBox';
 })
 export default class Field extends React.Component {
   loadData() {
-    const { id } = this.props.match.params;
+    const {id} = this.props.match.params;
 
     if (!this.props.unit || !this.props.contents) {
       this.props.getUnitById(id);
@@ -58,59 +61,32 @@ export default class Field extends React.Component {
       return null;
     }
 
-    const { unit, contents, field } = this.props;
+    const {unit, field} = this.props;
+    unit.field = field;
 
     return (
       <div>
         <h1 className="page-header">
           {unit.name}
-          <span className="glyphicon glyphicon-apple pull-right"></span>
+          <span className="glyphicon glyphicon-apple pull-right"/>
         </h1>
 
         <div className="row">
-          <div className="col-sm-3">
-            <FieldBox field={field}/>
+          <Switch>
+            <Route path="/site/units/:id/contents/:filter" render={({match}) =>
+              <UnitContents unit={unit} match={match}/>
+            }/>
+            <Route path="/site/units/:id/exercises/:filter" render={({match}) =>
+              <UnitExercises unit={unit} match={match}/>
+            }/>
 
-            <div className="playlist playlist-compact">
-              <div className="playlist-item active">
-                <a href="#">
-                  <div className="playlist-item-body">
-                    Trending
-                  </div>
-                </a>
-              </div>
-
-              <div className="playlist-item">
-                <a href="#">
-                  <div className="playlist-item-body">
-                    Más Visitados
-                  </div>
-                </a>
-              </div>
-
-              <div className="playlist-item">
-                <a href="#">
-                  <div className="playlist-item-body">
-                    Recientes
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-sm-9">
-            <div className="head-link"><span className="glyphicon glyphicon-plus"></span> Crear Nuevo Documento</div>
-            <h2 style={{color: "#6699dd", marginTop: 0}}>Trending</h2>
-            <hr style={{marginTop: 0, borderColor: "#6699dd"}}/>
-
-            <div className="row">
-              {contents.map((content, i) =>
-                <div className="col-sm-6" key={i}>
-                  <ContentBox content={content}/>
-                </div>
-              )}
-            </div>
-          </div>
+            <Route path="/site/units/:id/exercises" render={({ match }) => (
+              <Redirect to={`/site/units/${match.params.id}/exercises/trending`} />
+            )}/>
+            <Route path="/site/units/:id" render={({ match }) => (
+              <Redirect to={`/site/units/${match.params.id}/contents/trending`} />
+            )}/>
+          </Switch>
         </div>
       </div>
     )

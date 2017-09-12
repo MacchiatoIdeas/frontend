@@ -1,8 +1,11 @@
 import React from 'react';
-import {Route} from 'react-router';
+import {Route, Switch} from 'react-router';
 
 import Navbar from './Navbar';
 import Summary from './Summary';
+import Folders from "./Portal/Folders";
+import Courses from "./Portal/Courses";
+import Exercises from "./Portal/Exercises";
 
 export default class Portal extends React.Component {
   render() {
@@ -22,7 +25,7 @@ export default class Portal extends React.Component {
               <div className="col-sm-12">
                 <h1 className="page-header">
                     Marcelo Ignacio Jara Almeyda
-                    <span className="glyphicon glyphicon-user pull-right"></span>
+                    <span className="glyphicon glyphicon-user pull-right"/>
                   </h1>
 
                   <div className="row">
@@ -53,7 +56,12 @@ export default class Portal extends React.Component {
         </div>
 
         <div className="container" style={{marginTop: "32px"}}>
-          <Route path="" component={Summary}/>
+          <Switch>
+            <Route path="/portal/folders" component={Folders}/>
+            <Route path="/portal/courses" component={Courses}/>
+            <Route path="/portal/exercises" component={Exercises}/>
+            <Route component={Summary}/>
+          </Switch>
         </div>
       </div>
     )

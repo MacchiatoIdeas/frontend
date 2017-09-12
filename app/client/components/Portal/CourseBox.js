@@ -1,0 +1,26 @@
+import React from 'react';
+
+const CourseBox = ({course}) =>
+  <div className="playlist-item" style={{borderRightColor: course.subject.color}}>
+    <a href="#">
+      <div className="playlist-item-body">
+        <span className="glyphicon glyphicon-apple step"/>
+        <strong>{course.name}</strong>
+        <div className="playlist-item-tag hidden-xs">{course.subject.name}</div>
+
+        <div style={{borderTop: '1px #ccc solid', marginTop: '8px', paddingTop: '8px', color: '#333'}}>
+          <span className="hidden-xs hidden-sm">
+            12 estudiantes, 6 controles, 4 guías
+          </span>
+
+          <div className="pull-right">
+            <div className="badge" style={{backgroundColor: '#cc1216'}}>8</div>
+            nuevas respuestas
+          </div>
+          <div className="clearfix"/>
+        </div>
+      </div>
+    </a>
+  </div>;
+
+export default CourseBox;

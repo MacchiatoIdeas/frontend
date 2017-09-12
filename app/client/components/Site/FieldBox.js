@@ -10,6 +10,6 @@ const FieldBox = ({ field }) =>
         <h1>{field.name}</h1>
       </div>
     </Link>
-  </div>
+  </div>;
 
 export default FieldBox;

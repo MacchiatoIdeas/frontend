@@ -46,6 +46,7 @@
     "webpack-hot-middleware": "^2.18.2"
   },
   "devDependencies": {
+    "babel-plugin-transform-react-display-name": "^6.25.0",
     "express": "^4.15.4"
   }
 }

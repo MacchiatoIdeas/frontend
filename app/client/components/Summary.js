@@ -1,4 +1,5 @@
 import React from 'react';
+import PortalSidebar from "./Portal/PortalSidebar";
 
 export default class Summary extends React.Component {
   render() {
@@ -6,17 +7,11 @@ export default class Summary extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
-            <div className="list-group main">
-              <a href="" className="list-group-item active">Resumen</a>
-              <a href="" className="list-group-item">Mis Carpetas</a>
-              <a href="" className="list-group-item">Mis Guías</a>
-              <a href="" className="list-group-item">Mis Cursos</a>
-            </div>
+            <PortalSidebar/>
           </div>
 
           <div className="col-sm-9">
-            <h2 style={{ color: "#9cc374", marginTop: 0 }}>Recomendaciones</h2>
-            <hr style={{ marginTop: 0, borderColor: "#9cc374" }} />
+            <h2 className="page-header">Recomendaciones</h2>
 
             <div className="playlist playlist-accents">
               <div className="playlist-item" style={{ borderRightColor: "#6699dd" }}>
@@ -37,9 +32,7 @@ export default class Summary extends React.Component {
             </div>
 
             <hr />
-
-            <h2 style={{ color: "#6699dd" }}>Guías Pendientes</h2>
-            <hr style={{ marginTop: 0, borderColor: "#6699dd" }} />
+            <h2 className="page-header">Guías Pendientes</h2>
 
             <div className="playlist playlist-progress">
               <div className="playlist-item">
