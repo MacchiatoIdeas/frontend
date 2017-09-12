@@ -6,13 +6,11 @@ import Title from './title';
 import Content from './content';
 import Graph from './graph';
 
-import Modal from ''
-
 
 export default class Wrapper extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {inputList: []};
+    this.state = {inputList: [], showModal: false, img: "", };
 
     this.onClickAddTitle = this.onClickAddTitle.bind(this);
     this.onClickAddContent = this.onClickAddContent.bind(this);
@@ -24,7 +22,7 @@ export default class Wrapper extends React.Component {
     console.log('Adding Title');
     const inputList = this.state.inputList;
     this.setState({
-      inputList: inputList.concat(<Title key={inputList.length} index={inputList.length} />)
+      inputList: inputList.concat(<Title key={inputList.length} index={inputList.length}/>)
     });
   }
 
@@ -32,7 +30,7 @@ export default class Wrapper extends React.Component {
     console.log('Adding Content');
     const inputList = this.state.inputList;
     this.setState({
-      inputList: inputList.concat(<Content key={inputList.length} index={inputList.length} />)
+      inputList: inputList.concat(<Content key={inputList.length} index={inputList.length}/>)
     });
   }
 
@@ -40,9 +38,10 @@ export default class Wrapper extends React.Component {
     console.log('Adding Graph');
     const inputList = this.state.inputList;
     this.setState({
-      inputList: inputList.concat(<Graph key={inputList.length} index={inputList.length} />)
+      inputList: inputList.concat(<Graph key={inputList.length} index={inputList.length}/>)
     });
   }
+
 
   render() {
     return (
@@ -56,16 +55,16 @@ export default class Wrapper extends React.Component {
             <div className="col-sm-12">
               <div className="btn-group btn-group-justified">
                 <div className="btn group">
-                  <button type="button" onClick={this.onClickAddTitle} className="btn btn-default red">Añadir título
+                  <button type="button" onClick={this.onClickAddTitle} className="btn btn-default custom red">Añadir título
                   </button>
                 </div>
                 <div className="btn group">
-                  <button type="button" onClick={this.onClickAddContent} className="btn btn-default yellow">Añadir
+                  <button type="button" onClick={this.onClickAddContent} className="btn btn-default custom yellow">Añadir
                     Parrafo
                   </button>
                 </div>
                 <div className="btn group">
-                  <button type="button" onClick={this.onClickAddGraph} className="btn btn-default green">Añadir
+                  <button type="button" onClick={this.onClickAddGraph} className="btn btn-default custom green">Añadir
                     Gráfico
                   </button>
                 </div>
