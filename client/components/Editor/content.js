@@ -39,7 +39,6 @@ export default class Content extends React.Component {
 
   onClickFocus() {
     console.log('Click!');
-    this.refs.content.focus();
     this.setState({
       checked: true,
       renderVisibility: 'hidden',
@@ -52,7 +51,7 @@ export default class Content extends React.Component {
     console.log(editor);
 
     let html = this.editor.getHTML();
-    if (html == ""){
+    if (html === ""){
       html = "<blockquote><span class='lead text-warning'>Elemento vacío</span></blockquote>"
     }
 
