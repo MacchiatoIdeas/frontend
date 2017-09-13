@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch';
-import { normalize } from 'normalizr';
-import { unit } from '../schema';
+import {normalize} from 'normalizr';
+import {unit} from '../schema';
 
-import { API_URL } from '../api';
+import {API_URL} from '../api';
 
 
 export const getUnitById = (id, force) => (dispatch) => {
@@ -19,4 +19,4 @@ export const getUnitById = (id, force) => (dispatch) => {
       type: 'UNIT_RECEIVE_ONE',
       payload: normalize(response, unit)
     }));
-}
+};

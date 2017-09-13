@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { getAllFields } from '../../actions/fields';
+import { getAllFields } from '../../actions/subjects';
 import FieldBox from './FieldBox';
 
 const denormalizeFields = (fields) =>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { getFieldById } from '../../actions/fields';
+import { getFieldById } from '../../actions/subjects';
 
 import FieldBox from './FieldBox';
 

@@ -20,21 +20,19 @@ export default class Exercises extends React.Component {
     ];
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-3">
-            <PortalSidebar/>
-          </div>
+      <div className="row">
+        <div className="col-sm-3">
+          <PortalSidebar/>
+        </div>
 
-          <div className="col-sm-9">
-            <h2 className="page-header">Mis Ejercicios</h2>
+        <div className="col-sm-9">
+          <h2 className="page-header">Mis Ejercicios</h2>
 
-            <div className="row">
-              {exercises.map((exercise, i) =>
-                <div className="col-md-6" key={i}>
-                </div>
-              )}
-            </div>
+          <div className="row">
+            {exercises.map((exercise, i) =>
+              <div className="col-md-6" key={i}>
+              </div>
+            )}
           </div>
         </div>
       </div>

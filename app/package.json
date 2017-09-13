@@ -25,7 +25,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",
-    "file-loader": "^0.11.2",
+    "editor.md": "^1.5.0",
     "isomorphic-fetch": "^2.2.1",
     "normalizr": "^3.2.3",
     "react": "^15.6.1",
@@ -47,6 +47,9 @@
   },
   "devDependencies": {
     "babel-plugin-transform-react-display-name": "^6.25.0",
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "file-loader": "^0.11.2",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5"
   }
 }

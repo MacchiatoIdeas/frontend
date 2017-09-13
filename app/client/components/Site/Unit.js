@@ -5,7 +5,7 @@ import {Redirect, Route, Switch} from "react-router";
 import {connect} from 'react-redux';
 
 import {getUnitById} from '../../actions/units';
-import {getFieldById} from '../../actions/fields';
+import {getFieldById} from '../../actions/subjects';
 
 import FieldBox from './FieldBox';
 import UnitContents from "./UnitContents";

@@ -11,7 +11,7 @@ export default class Site extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar backgroundColor="rgba(255, 255, 255)" />
 
         <div className="container" style={{ marginTop: "32px" }}>
           <Switch>

@@ -6,7 +6,7 @@ const UnitPageTitle = ({filter}) => {
       filter = 'Trending';
       break;
     case 'most-viewed':
-      filter = 'Most Viewed';
+      filter = 'Más Visitado';
       break;
     case 'recent':
       filter = 'Recientes';

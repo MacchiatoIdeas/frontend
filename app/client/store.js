@@ -12,6 +12,7 @@ const defaultState = {
   units: undefined,
   authors: undefined,
   contents: undefined,
+  auth: undefined,
   loadingContent: false,
 };
 
