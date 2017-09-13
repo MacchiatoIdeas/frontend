@@ -2,14 +2,14 @@
   "name": "appunta",
   "version": "1.0.0",
   "description": "Appunta FrontEnd",
+  "main": "server.js",
   "scripts": {
-    "start": "node devServer.js"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:MacchiatoIdeas/frontend.git"
   },
-  "author": "Wes Bos",
+  "author": "Marcelo Ignacio Jara Almeyda",
   "license": "MIT",
   "homepage": "https://github.com/macchiatoIdeas/frontend",
   "dependencies": {
