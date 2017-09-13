@@ -8,6 +8,13 @@
   padding-bottom: 0px !important;
 }
 
+.paper .main-options {
+  padding: 20px;
+  border: 2px dashed #e6e6e6;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
 .custom.btn {
   background: transparent;
   border-width: 2px;
@@ -15,6 +22,12 @@
   box-shadow: none;
   outline: none;
   padding: 10px 40px;
+}
+
+.custom.btn:active {
+  background: transparent;
+  box-shadow: none;
+  outline: none;
 }
 
 .custom.btn:active {
@@ -119,13 +132,13 @@
 
 .section {
   padding: 10px;
-  margin: 10px;
   position: relative;
   border: 4px solid transparent;
   background: #fff;
   overflow: hidden;
   border-radius: 4px;
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .section:hover {

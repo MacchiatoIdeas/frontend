@@ -28,7 +28,8 @@ export default class Geogebra extends React.Component {
       'showTutorialLink': true,
       'showLogging': false,
       'useBrowserForJS': true,
-      'perspective': 'AG'
+      'perspective': 'AG',
+      'ggbBase64': this.props.base64
     };
   }
 
