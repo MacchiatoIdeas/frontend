@@ -40,9 +40,7 @@
     "url-loader": "^0.5.9",
     "webpack": "^3.5.2",
     "webpack-dev-middleware": "^1.12.0",
-    "webpack-hot-middleware": "^2.18.2"
-  },
-  "devDependencies": {
+    "webpack-hot-middleware": "^2.18.2",
     "babel-plugin-transform-react-display-name": "^6.25.0",
     "express": "^4.15.4",
     "file-loader": "^0.11.2",
