@@ -28,6 +28,7 @@ export default class Navbar extends React.Component {
             <ul className="nav navbar-nav">
               <li><NavLink to="/portal" activeClassName="active">Mi Portal</NavLink></li>
               <li><NavLink to="/site" activeClassName="active">Materias</NavLink></li>
+              <li><NavLink to="/editor" activeClassName="active">Editor</NavLink></li>
             </ul>
 
             <div className="navbar-nav navbar-right">
