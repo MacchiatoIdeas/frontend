@@ -33,10 +33,11 @@ export default class Content extends React.Component {
       lineNumbers: false,
       styleActiveLine: false,
       autoFocus: false,
+      appendMarkdown: this.state.markdown
     };
   }
 
-  onClickFocus(event) {
+  onClickFocus() {
     console.log('Click!');
     this.refs.content.focus();
     this.setState({
@@ -46,15 +47,20 @@ export default class Content extends React.Component {
     });
   }
 
-  onBlur(event) {
+  onBlur() {
     console.log('Blur!');
-    let editor = this.editor;
     console.log(editor);
+
+    let html = this.editor.getHTML();
+    if (html == ""){
+      html = "<blockquote><span class='lead text-warning'>Elemento vacío</span></blockquote>"
+    }
+
     this.setState({
       checked: false,
       editorVisibility: 'hidden',
       renderVisibility: '',
-      render: editor.getHTML()
+      render: html
     });
   }
 
@@ -82,14 +88,17 @@ export default class Content extends React.Component {
             <input className="pointer" type="radio" tabIndex="0" name="focus" checked={this.state.checked}/>
             <div className="section text">
               <div className="options">
-                <span className="btn btn-link drag"><span className="glyphicon glyphicon-th"/></span>
-                <button className="btn btn-link remove" onClick={() => this.props.remove(this.props.index)}><span
-                  className="glyphicon glyphicon-remove"/></button>
+                <span className="btn btn-link drag">
+                  <span className="glyphicon glyphicon-th"/>
+                </span>
+                <button className="btn btn-link remove" onClick={() => this.props.remove(this.props.index)}>
+                  <span className="glyphicon glyphicon-remove"/>
+                </button>
               </div>
               <div className={this.state.editorVisibility}>
                 <div ref="editor" className="md" id={'editormd' + this.props.index}>
                 <textarea ref="content" id={'content' + this.props.index} style={{display: 'none'}}
-                          className="section-input" defaultValue={this.state.markdown}/>
+                          className="section-input"/>
                 </div>
               </div>
               <div className={this.state.renderVisibility}>

@@ -24,7 +24,7 @@ export default class Graph extends React.Component {
 
   }
 
-  onClickFocus(event) {
+  onClickFocus() {
     console.log('Click!');
     this.setState({
       checked: true
@@ -32,7 +32,6 @@ export default class Graph extends React.Component {
   }
 
   closeModalGraph(base64, PNGBase64) {
-    console.log('PNG', PNGBase64);
     if (base64 === null || PNGBase64 === null) {
       this.setState({
         showModal: false
@@ -53,7 +52,7 @@ export default class Graph extends React.Component {
     })
   }
 
-  onBlur(event) {
+  onBlur() {
     console.log('Blur!');
     this.setState({
       checked: false,
@@ -72,11 +71,15 @@ export default class Graph extends React.Component {
             <input className="pointer" type="radio" name="focus" checked={this.state.checked}/>
             <div className={'section graph ' + this.state.placeholder}>
               <div className="options">
-                <span className="btn btn-link drag"><span className="glyphicon glyphicon-th"></span></span>
-                <button className="btn btn-link edit" onClick={this.openModalGraph}><span
-                  className="glyphicon glyphicon-pencil"></span></button>
-                <button className="btn btn-link remove" onClick={() => this.props.remove(this.props.index)}><span
-                  className="glyphicon glyphicon-remove"></span></button>
+                <span className="btn btn-link drag">
+                  <span className="glyphicon glyphicon-th"/>
+                </span>
+                <button className="btn btn-link edit" onClick={this.openModalGraph}>
+                  <span className="glyphicon glyphicon-pencil"/>
+                </button>
+                <button className="btn btn-link remove" onClick={() => this.props.remove(this.props.index)}>
+                  <span className="glyphicon glyphicon-remove"/>
+                </button>
               </div>
               <div className="graph-image">
                 <img src={this.state.PNGBase64}/>

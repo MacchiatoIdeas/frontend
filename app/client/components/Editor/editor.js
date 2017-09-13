@@ -34,7 +34,7 @@ export default class Wrapper extends React.Component {
     console.log('Adding Content');
     let inputList = this.state.inputList;
     const inputCount = this.state.inputCount;
-    inputList[inputCount] = <Content markdown="asd" key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}/>;
+    inputList[inputCount] = <Content key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}/>;
     this.setState({
       inputList: inputList,
       inputCount: inputCount + 1

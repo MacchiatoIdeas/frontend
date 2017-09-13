@@ -18,7 +18,7 @@ export default class Title extends React.Component {
     this.onBlur = this.onBlur.bind(this);
   }
 
-  onClickFocus(event) {
+  onClickFocus() {
     console.log('Click!');
     this.refs.title.focus();
     this.setState({
@@ -26,7 +26,7 @@ export default class Title extends React.Component {
     });
   }
 
-  onBlur(event) {
+  onBlur() {
     console.log('Blur!');
     this.setState({
       checked: false,
@@ -47,9 +47,11 @@ export default class Title extends React.Component {
             <input className="pointer" type="radio" name="focus" checked={this.state.checked}/>
             <div className="section title">
               <div className="options">
-                <span className="btn btn-link drag"><span className="glyphicon glyphicon-th"></span></span>
-                <button className="btn btn-link remove remove" onClick={() => this.props.remove(this.props.index)}><span
-                  className="glyphicon glyphicon-remove"></span>
+                <span className="btn btn-link drag">
+                  <span className="glyphicon glyphicon-th"/>
+                </span>
+                <button className="btn btn-link remove remove" onClick={() => this.props.remove(this.props.index)}>
+                  <span className="glyphicon glyphicon-remove"/>
                 </button>
               </div>
               <h1>
