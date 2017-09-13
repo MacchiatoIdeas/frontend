@@ -16,7 +16,7 @@ app.get('*', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.listen(7770, '0.0.0.0', function(err) {
+app.listen(process.env.PORT || 7770, '0.0.0.0', function(err) {
   if (err) {
     console.log(err);
     return;
