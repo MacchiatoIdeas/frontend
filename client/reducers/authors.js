@@ -1,6 +1,8 @@
+import {UNIT_RECEIVE} from '../actions/index';
+
 export default (state = {}, action) => {
   switch (action.type) {
-    case 'UNIT_RECEIVE_ONE':
+    case UNIT_RECEIVE:
       return {...state, ...action.payload.entities.authors};
   }
   return state;

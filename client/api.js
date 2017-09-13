@@ -1,4 +1,4 @@
-export const API_URL = "http://api.macchiato.cl";
+export const API_URL = 'http://api.macchiato.cl';
 
 export const addHeaders = (state) => {
   return {

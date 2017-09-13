@@ -1,18 +1,17 @@
 import {combineReducers} from 'redux';
 
-import fields from './fields';
+import subjects from './subjects';
 import units from './units';
-import contents, {loadingContent} from './contents';
+import contents from './contents';
 import authors from './authors';
 import auth from './auth';
 
 const rootReducer = combineReducers({
-  fields,
+  subjects,
   units,
   contents,
   authors,
   auth,
-  loadingContent,
 });
 
 export default rootReducer;

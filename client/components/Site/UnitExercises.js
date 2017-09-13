@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
 
-import FieldBox from './FieldBox';
+import FieldBox from './SubjectBox';
 import ContentBox from './ContentBox';
 import UnitSidebar from "./UnitSidebar";
 import UnitPageTitle from "./UnitPageTitle";

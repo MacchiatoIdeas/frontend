@@ -2,10 +2,10 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 
 import Navbar from '../Navbar';
-import FieldList from './FieldList';
-import Field from './Field';
-import Unit from './Unit';
+import Subject from './Subject';
 import Content from './Content';
+import Subjects from './Subjects';
+import Unit from './Unit';
 
 export default class Site extends React.Component {
   render() {
@@ -13,12 +13,12 @@ export default class Site extends React.Component {
       <div>
         <Navbar backgroundColor="rgba(255, 255, 255)" />
 
-        <div className="container" style={{ marginTop: "32px" }}>
+        <div className="container" style={{ marginTop: '32px' }}>
           <Switch>
-            <Route path="/site/fields/:id" component={Field}/>
+            <Route path="/site/subjects/:id" component={Subject}/>
             <Route path="/site/units/:id" component={Unit}/>
             <Route path="/site/contents/:id" component={Content}/>
-            <Route component={FieldList}/>
+            <Route component={Subjects}/>
           </Switch>
         </div>
       </div>

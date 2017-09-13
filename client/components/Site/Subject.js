@@ -1,26 +1,41 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-import { getFieldById } from '../../actions/subjects';
+import {getSubjectById} from '../../actions/subjects';
 
-import FieldBox from './FieldBox';
+import SubjectBox from './SubjectBox';
 
-@connect((state, props) => ({
-  field: state.fields[props.match.params.id],
-  units: state.units,
-  isFetching : state.isFetching
-}), {
-  getFieldById
-})
-export default class Field extends React.Component {
-  loadData() {
-    const { id } = this.props.match.params;
-    if (!this.props.field || !this.props.field.units) {
-      this.props.getFieldById(id, true);
-    } else {
-      this.props.getFieldById(id);
+const denormalizeSubject = (subject, units) => {
+  subject.units = subject.units.map(id => units[id]);
+  return subject;
+};
+
+
+@connect((state, props) => {
+  let subject = state.subjects[props.match.params.id];
+  if (!subject) {
+    return {
+      isFetching: true
     }
+  }
+
+  if (!subject.units) {
+    return {
+      isFetching: true
+    }
+  }
+
+  return {
+    subject: denormalizeSubject({...subject}, state.units)
+  }
+}, {
+  getSubjectById
+})
+export default class Subject extends React.Component {
+  loadData() {
+    const {id} = this.props.match.params;
+    this.props.getSubjectById(id);
   }
 
   componentDidMount() {
@@ -28,24 +43,22 @@ export default class Field extends React.Component {
   }
 
   render() {
-    const { field } = this.props;
+    const {subject} = this.props;
 
-    if (!this.props.field || !this.props.field.units) {
+    if (this.props.isFetching) {
       return null;
     }
 
-    const units = field.units.map(id => this.props.units[id]);
-
     return (
-      <div className="field">
+      <div className="subject">
         <h1 className="page-header">
-          {field.name}
-          <span className="glyphicon glyphicon-apple pull-right"></span>
+          {subject.name}
+          <span className="glyphicon glyphicon-apple pull-right"/>
         </h1>
 
         <div className="row">
           <div className="col-sm-3">
-            <FieldBox field={field}/>
+            <SubjectBox subject={subject}/>
 
             <div className="playlist playlist-compact">
               <div className="playlist-item">
@@ -75,11 +88,11 @@ export default class Field extends React.Component {
           </div>
 
           <div className="col-sm-9">
-            <h2 style={{color: "#6699dd", marginTop: 0}}>Contenidos</h2>
-            <hr style={{marginTop: 0, borderColor: "#6699dd"}}/>
+            <h2 style={{color: '#6699dd', marginTop: 0}}>Contenidos</h2>
+            <hr style={{marginTop: 0, borderColor: '#6699dd'}}/>
 
             <div className="list-group">
-              {units.map((unit, i) =>
+              {subject.units.map((unit, i) =>
                 <Link to={`/site/units/${unit.id}`} key={i} className="list-group-item">
                   {unit.name}
                 </Link>

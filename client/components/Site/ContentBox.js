@@ -9,7 +9,7 @@ const ContentBox = ({ content }) =>
         <summary>{content.summary}</summary>
       </div>
 
-      <div style={{position: "relative"}}>
+      <div style={{position: 'relative'}}>
         <div className="backgrounded" style={{backgroundImage: `url("${content.author.banner}")`}}/>
         <div className="box-footer box-footer-stylized">
           <h3><small>Creado por:</small> {content.author.first_name} {content.author.last_name}</h3>

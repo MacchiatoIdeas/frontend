@@ -1,16 +1,8 @@
-export function loadingContent(state = false, action) {
-  switch (action.type) {
-    case 'CONTENT_FETCH':
-      return true;
-    case 'CONTENT_RECEIVE':
-      return false;
-  }
-  return state;
-}
+import {UNIT_RECEIVE} from '../actions/index';
 
 function contents(state = {}, action) {
   switch (action.type) {
-    case 'UNIT_RECEIVE_ONE':
+    case UNIT_RECEIVE:
       return {...state, ...action.payload.entities.contents};
   }
   return state;

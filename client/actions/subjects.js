@@ -1,12 +1,13 @@
 import fetch from 'isomorphic-fetch';
 import {normalize} from 'normalizr';
-import {fieldArray, field} from '../schema';
+import {subjectArray, subject} from '../schema';
 
 import {addHeaders, API_URL} from '../api';
+import {SUBJECT_FETCH, SUBJECT_RECEIVE} from './index';
 
-export const getAllFields = () => (dispatch, getState) => {
+export const getAllSubjects = () => (dispatch, getState) => {
   dispatch({
-    type: 'FIELD_FETCH_LIST',
+    type: SUBJECT_FETCH,
   });
 
   return fetch(`${API_URL}/material/field-of-study/`, addHeaders(getState()))
@@ -15,14 +16,14 @@ export const getAllFields = () => (dispatch, getState) => {
       error => console.log(error)
     )
     .then(response => dispatch({
-      type: 'FIELD_RECEIVE_LIST',
-      payload: normalize(response, fieldArray)
+      type: SUBJECT_RECEIVE,
+      payload: normalize(response, subjectArray)
     }))
 };
 
-export const getFieldById = (id) => (dispatch, getState) => {
+export const getSubjectById = (id) => (dispatch, getState) => {
   dispatch({
-    type: 'FIELD_FETCH_ONE'
+    type: SUBJECT_FETCH
   });
 
   return fetch(`${API_URL}/material/field-of-study/${id}/`)
@@ -31,7 +32,7 @@ export const getFieldById = (id) => (dispatch, getState) => {
       error => console.log(error)
     )
     .then(response => dispatch({
-      type: 'FIELD_RECEIVE_ONE',
-      payload: normalize(response, field)
+      type: SUBJECT_RECEIVE,
+      payload: normalize(response, subject)
     }));
 };

@@ -3,11 +3,12 @@ import {normalize} from 'normalizr';
 import {unit} from '../schema';
 
 import {API_URL} from '../api';
+import {UNIT_FETCH, UNIT_RECEIVE} from './index';
 
 
 export const getUnitById = (id, force) => (dispatch) => {
   dispatch({
-    type: 'UNIT_FETCH_ONE',
+    type: UNIT_FETCH,
   });
 
   return fetch(`${API_URL}/material/unit/${id}/`)
@@ -16,7 +17,7 @@ export const getUnitById = (id, force) => (dispatch) => {
       error => console.log(error)
     )
     .then(response => dispatch({
-      type: 'UNIT_RECEIVE_ONE',
+      type: UNIT_RECEIVE,
       payload: normalize(response, unit)
     }));
 };

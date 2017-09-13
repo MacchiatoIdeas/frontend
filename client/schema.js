@@ -10,11 +10,11 @@ export const unit = new schema.Entity('units', {
   contents: [content]
 });
 
-export const field = new schema.Entity('fields', {
+export const subject = new schema.Entity('subjects', {
   units: [unit]
 });
 
 content.define({ unit });
-unit.define({ field });
+unit.define({ subject });
 
-export const fieldArray = [field];
+export const subjectArray = [subject];

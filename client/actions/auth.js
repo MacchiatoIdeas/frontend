@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 import {API_URL} from '../api';
+import {AUTH_LOGIN_FETCH, AUTH_LOGIN_RECEIVE, AUTH_USERDATA_FETCH, AUTH_USERDATA_RECEIVE} from './index';
 
 export const getUserData = (token) => (dispatch, getState) => {
   if (getState().auth.user) {
@@ -8,7 +9,7 @@ export const getUserData = (token) => (dispatch, getState) => {
   }
 
   dispatch({
-    type: 'AUTH_USERDATA_REQUEST'
+    type: AUTH_USERDATA_FETCH
   });
   return fetch(`${API_URL}/users/1/`, {
     headers: {
@@ -25,13 +26,13 @@ export const getUserData = (token) => (dispatch, getState) => {
 };
 
 export const receiveUserData = (data) => ({
-  type: 'AUTH_USERDATA_SUCCESS',
+  type: AUTH_USERDATA_RECEIVE,
   payload: data
 });
 
 export const sendLogin = (username, password) => (dispatch) => {
   dispatch({
-    type: 'AUTH_LOGIN_REQUEST'
+    type: AUTH_LOGIN_FETCH
   });
   return fetch(`${API_URL}/o/token/`, {
     method: 'POST',
@@ -51,6 +52,6 @@ export const sendLogin = (username, password) => (dispatch) => {
 };
 
 export const receiveLogin = (data) => ({
-  type: 'AUTH_LOGIN_SUCCESS',
+  type: AUTH_LOGIN_RECEIVE,
   payload: data
 });

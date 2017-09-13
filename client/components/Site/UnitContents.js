@@ -1,22 +1,20 @@
 import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
 
-import FieldBox from './FieldBox';
+import SubjectBox from './SubjectBox';
 import ContentBox from './ContentBox';
-import UnitSidebar from "./UnitSidebar";
+import UnitSidebar from './UnitSidebar';
 import UnitPageTitle from './UnitPageTitle';
 
 export default class UnitContents extends React.Component {
   render() {
     let {filter} = this.props.match.params;
-
     const {unit} = this.props;
-    const {contents, field} = unit;
 
     return (
       <div>
         <div className="col-sm-3">
-          <FieldBox field={field}/>
+          <SubjectBox subject={unit.subject}/>
 
           <div className="playlist playlist-compact" style={{marginBottom: '8px'}}>
             <div className="playlist-item">
@@ -44,7 +42,7 @@ export default class UnitContents extends React.Component {
           <UnitPageTitle filter={filter}/>
 
           <div className="row">
-            {contents.map((content, i) =>
+            {unit.contents.map((content, i) =>
               <div className="col-sm-6" key={i}>
                 <ContentBox content={content}/>
               </div>

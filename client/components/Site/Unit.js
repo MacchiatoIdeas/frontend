@@ -1,16 +1,14 @@
 import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import {Redirect, Route, Switch} from "react-router";
+import {Redirect, Route, Switch} from 'react-router';
 
 import {connect} from 'react-redux';
 
 import {getUnitById} from '../../actions/units';
-import {getFieldById} from '../../actions/subjects';
+import {getSubjectById} from '../../actions/subjects';
 
-import FieldBox from './FieldBox';
-import UnitContents from "./UnitContents";
-import UnitExercises from "./UnitExercises";
-import UnitSidebar from "./UnitSidebar";
+import UnitContents from './UnitContents';
+import UnitExercises from './UnitExercises';
 
 @connect((state, props) => {
   const {id} = props.match.params;
@@ -27,31 +25,29 @@ import UnitSidebar from "./UnitSidebar";
   unit.contents = unit.contents.map(id => state.contents[id]);
   unit.contents = unit.contents.map(content => ({...content, author: state.authors[content.author]}));
 
-  let field = state.fields[unit.field_of_study];
-  if (!field) {
+  let subject = state.subjects[unit.subject];
+  if (!subject) {
     return {isFetching: true, unit, contents};
   }
+  unit.subject = subject;
 
   return {
-    isFetching: false,
     unit,
-    field,
   }
 }, {
   getUnitById,
-  getFieldById,
+  getSubjectById,
 })
 export default class Field extends React.Component {
   loadData() {
     const {id} = this.props.match.params;
 
     if (!this.props.unit || !this.props.contents) {
-      this.props.getUnitById(id);
-      return;
+      return this.props.getUnitById(id);
     }
 
     if (!this.props.field) {
-      this.props.getFieldById(this.props.unit.field_of_study);
+      this.props.getSubjectById(this.props.unit.subject);
     }
   }
 
@@ -61,8 +57,7 @@ export default class Field extends React.Component {
       return null;
     }
 
-    const {unit, field} = this.props;
-    unit.field = field;
+    const {unit} = this.props;
 
     return (
       <div>
