@@ -6,6 +6,7 @@ import Subject from './Subject';
 import Content from './Content';
 import Subjects from './Subjects';
 import Unit from './Unit';
+import Guide from "./Guide";
 
 export default class Site extends React.Component {
   render() {
@@ -13,14 +14,13 @@ export default class Site extends React.Component {
       <div>
         <Navbar backgroundColor="rgba(255, 255, 255)" />
 
-        <div className="container" style={{ marginTop: '32px' }}>
           <Switch>
             <Route path="/site/subjects/:id" component={Subject}/>
             <Route path="/site/units/:id" component={Unit}/>
             <Route path="/site/contents/:id" component={Content}/>
+            <Route path="/site/guides/:id" component={Guide}/>
             <Route component={Subjects}/>
           </Switch>
-        </div>
       </div>
     )
   }

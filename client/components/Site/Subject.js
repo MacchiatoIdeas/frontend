@@ -1,45 +1,30 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import * as denormalizers from '../../denormalizers';
 
 import {getSubjectById} from '../../actions/subjects';
 
 import SubjectBox from './SubjectBox';
-
-const denormalizeSubject = (subject, units) => {
-  subject.units = subject.units.map(id => units[id]);
-  return subject;
-};
-
+import SubjectSidebar from './SubjectSidebar';
+import ExerciseBox from './ExercisesBox';
 
 @connect((state, props) => {
   let subject = state.subjects[props.match.params.id];
-  if (!subject) {
-    return {
-      isFetching: true
-    }
-  }
-
-  if (!subject.units) {
-    return {
-      isFetching: true
-    }
+  if (!subject || !subject.units) {
+    return {isFetching: true}
   }
 
   return {
-    subject: denormalizeSubject({...subject}, state.units)
+    subject: denormalizers.subject({...subject}, state.units)
   }
 }, {
   getSubjectById
 })
 export default class Subject extends React.Component {
-  loadData() {
+  componentWillMount() {
     const {id} = this.props.match.params;
     this.props.getSubjectById(id);
-  }
-
-  componentDidMount() {
-    this.loadData();
   }
 
   render() {
@@ -49,8 +34,19 @@ export default class Subject extends React.Component {
       return null;
     }
 
+    const guides = [
+      {
+        title: 'Guide 1',
+        brief: 'lorem ipsum dolor sit amet.',
+        author: {
+          first_name: 'Marcelo',
+          last_name: 'Jara',
+        }
+      }
+    ];
+
     return (
-      <div className="subject">
+      <div className="container">
         <h1 className="page-header">
           {subject.name}
           <span className="glyphicon glyphicon-apple pull-right"/>
@@ -59,43 +55,33 @@ export default class Subject extends React.Component {
         <div className="row">
           <div className="col-sm-3">
             <SubjectBox subject={subject}/>
-
-            <div className="playlist playlist-compact">
-              <div className="playlist-item">
-                <a href="#">
-                  <div className="playlist-item-body">
-                    Primero Medio
-                  </div>
-                </a>
-              </div>
-
-              <div className="playlist-item">
-                <a href="#">
-                  <div className="playlist-item-body">
-                    Segundo Medio
-                  </div>
-                </a>
-              </div>
-
-              <div className="playlist-item">
-                <a href="#">
-                  <div className="playlist-item-body">
-                    Tercero Medio
-                  </div>
-                </a>
-              </div>
-            </div>
+            <SubjectSidebar/>
           </div>
 
-          <div className="col-sm-9">
-            <h2 style={{color: '#6699dd', marginTop: 0}}>Contenidos</h2>
-            <hr style={{marginTop: 0, borderColor: '#6699dd'}}/>
+          <hr className="visible-xs"/>
 
-            <div className="list-group">
-              {subject.units.map((unit, i) =>
-                <Link to={`/site/units/${unit.id}`} key={i} className="list-group-item">
-                  {unit.name}
-                </Link>
+          <div className="col-sm-9">
+            <h2 className="page-header">Contenidos</h2>
+
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="list-group">
+                  {subject.units.map((unit, i) =>
+                    <Link to={`/site/units/${unit.id}`} key={i} className="list-group-item">
+                      {unit.name}
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <h2 className="page-header">Guías</h2>
+
+            <div className="row">
+              {guides.map((guide, i) =>
+                <div className="col-md-6" key={i}>
+                  <ExerciseBox guide={guide}/>
+                </div>
               )}
             </div>
           </div>
