@@ -7,7 +7,8 @@ import {getUnitById} from '../../actions/units';
 
 import UnitContents from './UnitContents';
 import UnitExercises from './UnitExercises';
-import ExerciseDetail from "./ExerciseDetail";
+import ExerciseDetail from "./Exercises/ExerciseDetail";
+import NewExercise from "./Exercises/NewExercise";
 
 const normalizeContent = (state, id) => {
   return {...state.contents[id], author: state.authors[state.contents[id].author]};
@@ -60,6 +61,9 @@ export default class Unit extends React.Component {
             }/>
             <Route path="/site/units/:id/exercises/:filter" render={({match}) =>
               <UnitExercises unit={unit} match={match}/>
+            }/>
+            <Route path="/site/units/:id/new/exercise" render={({match}) =>
+              <NewExercise unit={unit} match={match}/>
             }/>
             <Route path="/site/units/:id/exercise/:exerciseId" render={({match}) =>
               <ExerciseDetail unit={unit} match={match}/>
