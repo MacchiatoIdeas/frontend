@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import SubjectBox from '../SubjectBox';
 import UnitSidebar from "../UnitSidebar";
@@ -60,12 +60,9 @@ export default class NewExercise extends React.Component {
   }
 
   render() {
-    let {filter} = this.props.match.params;
-    filter = "Creando nuevo ejercicio";
+    let filter = "Creando nuevo ejercicio";
     console.log('NEW EXERCISES');
     const {unit} = this.props;
-    const {field} = unit;
-    let {exercises} = this.props;
 
     return (
       <div>

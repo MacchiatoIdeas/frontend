@@ -62,7 +62,7 @@ export default class Unit extends React.Component {
             <Route path="/site/units/:id/exercises/:filter" render={({match}) =>
               <UnitExercises unit={unit} match={match}/>
             }/>
-            <Route path="/site/units/:id/new/exercise" render={({match}) =>
+            <Route path="/site/units/:id/exercise/create" render={({match}) =>
               <NewExercise unit={unit} match={match}/>
             }/>
             <Route path="/site/units/:id/exercise/:exerciseId" render={({match}) =>
