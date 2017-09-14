@@ -81,6 +81,14 @@ export default class ExerciseDetail extends React.Component {
                 </div>
               </div>
             </div>
+            <div className="col-sm-12">
+              <div className="box box-fill">
+                <div className="box-body text-center">
+                  <h2 className="text-center">Ejercicios recomendados</h2>
+                  <h2 className="text-center">...</h2>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
