@@ -6,6 +6,7 @@ import contents from './contents';
 import exercises from './exercises';
 import authors from './authors';
 import auth from './auth';
+import guides from './guides';
 
 const rootReducer = combineReducers({
   subjects,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   exercises,
   authors,
   auth,
+  guides,
 });
 
 export default rootReducer;

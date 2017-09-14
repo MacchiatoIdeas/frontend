@@ -16,7 +16,7 @@ import GuideBox from './GuideBox';
   }
 
   return {
-    subject: denormalizers.subject({...subject}, state.units)
+    subject: denormalizers.subject({...subject}, state)
   }
 }, {
   getSubjectById
@@ -28,23 +28,11 @@ export default class Subject extends React.Component {
   }
 
   render() {
-    const {subject} = this.props;
-
     if (this.props.isFetching) {
       return null;
     }
 
-    const guides = [
-      {
-        id: 1,
-        title: 'MockUp',
-        brief: 'lorem ipsum dolor sit amet.',
-        author: {
-          first_name: 'Marcelo',
-          last_name: 'Jara',
-        }
-      }
-    ];
+    const {subject} = this.props;
 
     return (
       <div className="container">
@@ -79,7 +67,7 @@ export default class Subject extends React.Component {
             <h2 className="page-header">Guías</h2>
 
             <div className="row">
-              {guides.map((guide, i) =>
+              {subject.guides.map((guide, i) =>
                 <div className="col-md-6" key={i}>
                   <GuideBox guide={guide}/>
                 </div>
