@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 export default ({guide}) =>
   <div className="box box-fill">
-    <Link to={`/site/contents/1`}>
+    <Link to={`/site/guides/${guide.id}`}>
       <div className="box-body box-body-min">
         <h2>{guide.title}</h2>
         <summary>{guide.brief}</summary>

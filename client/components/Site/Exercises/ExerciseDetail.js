@@ -1,20 +1,43 @@
 import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
+import {connect} from "react-redux";
 
 import SubjectBox from '../SubjectBox';
 import UnitSidebar from "../Unit/UnitSidebar";
 import MatchingExercise from "./MatchingExercise";
 import Exercises from "./Exercise";
+import AlternativeExercise from "./AlternativeExercise";
+import {getExerciseById} from "../../../actions/exercises";
 
+@connect((state, props) => {
+  let exercise = state.exercises[props.match.params.exerciseId];
+  if (!exercise || !exercise.content) {
+    return {isFetching: true};
+  }
 
+  exercise = {
+    ...exercise,
+    content: JSON.parse(exercise.content),
+    right_answer: JSON.parse(exercise.right_answer)
+  };
+
+  return {
+    exercise
+  }
+}, {
+  getExerciseById
+})
 export default class ExerciseDetail extends React.Component {
-  render() {
-    let {filter} = this.props.match.params;
-    console.log('EXERCISE DETAIL');
-    const {unit} = this.props;
-    const {field} = unit;
-    let {exercises} = this.props;
+  componentWillMount() {
+    this.props.getExerciseById(this.props.match.params.exerciseId);
+  }
 
+  render() {
+    if (this.props.isFetching) {
+      return null;
+    }
+
+    /*
     let exercise = {
       title: 'Título Primer Ejercicio',
       text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos doloremque eligendi eos facere illum itaque labore maxime molestias nesciunt, obcaecati optio quis sed sequi, similique soluta tenetur ullam voluptatum! Numquam!',
@@ -30,34 +53,17 @@ export default class ExerciseDetail extends React.Component {
         'Cuarta Alternativa',
       ],
       correctAnswer: 2,
-      sideA: ["Mickey","Tom","Rick Sanchez"],
-      sideB: ["Human","Cat","Dog","Mouse"]
-
     };
+    */
+
+    // AQUI HERNAN!
+    let {exercise, unit} = this.props;
+    console.log(exercise);
 
     return (
       <div>
         <div className="col-sm-3">
           <SubjectBox subject={unit.subject}/>
-
-          <div className="playlist playlist-compact" style={{marginBottom: '8px'}}>
-            <div className="playlist-item">
-              <NavLink to={`/site/units/${unit.id}/contents`} exact>
-                <div className="playlist-item-body">
-                  Contenido
-                </div>
-              </NavLink>
-            </div>
-
-            <div className="playlist-item">
-              <NavLink to={`/site/units/${unit.id}/exercises`} exact>
-                <div className="playlist-item-body">
-                  Ejercicios
-                </div>
-              </NavLink>
-            </div>
-          </div>
-
           <UnitSidebar type="exercises" unit={unit}/>
         </div>
 
