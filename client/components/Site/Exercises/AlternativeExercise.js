@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
 
-import SubjectBox from './SubjectBox';
-import ContentBox from './ContentBox';
-import UnitSidebar from "./UnitSidebar";
-import UnitPageTitle from "./UnitPageTitle";
+import SubjectBox from '../SubjectBox';
+import ContentBox from '../ContentBox';
+import UnitSidebar from "../UnitSidebar";
+import UnitPageTitle from "../UnitPageTitle";
 
 
 export default class AlternativeExercise extends React.Component {

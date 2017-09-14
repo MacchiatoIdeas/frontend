@@ -65,7 +65,7 @@ export default class UnitExercises extends React.Component {
         </div>
 
         <div className="col-sm-9">
-          <div className="head-link"><span className="glyphicon glyphicon-plus"/> Crear Nuevo Ejercicio</div>
+          <Link to={`/site/units/${unit.id}/new/exercise`} className="head-link"><span className="glyphicon glyphicon-plus"/> Crear Nuevo Ejercicio</Link>
           <UnitPageTitle filter={filter}/>
 
           <div className="row">
