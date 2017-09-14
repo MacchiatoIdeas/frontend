@@ -2,7 +2,7 @@ import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
 
 import SubjectBox from '../SubjectBox';
-import UnitSidebar from "../UnitSidebar";
+import UnitSidebar from "../Unit/UnitSidebar";
 import AlternativeExercise from "./AlternativeExercise";
 
 
