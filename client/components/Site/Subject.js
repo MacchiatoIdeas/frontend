@@ -7,7 +7,7 @@ import {getSubjectById} from '../../actions/subjects';
 
 import SubjectBox from './SubjectBox';
 import SubjectSidebar from './SubjectSidebar';
-import ExerciseBox from './ExercisesBox';
+import GuideBox from './GuideBox';
 
 @connect((state, props) => {
   let subject = state.subjects[props.match.params.id];
@@ -36,7 +36,7 @@ export default class Subject extends React.Component {
 
     const guides = [
       {
-        title: 'Guide 1',
+        title: 'MockUp',
         brief: 'lorem ipsum dolor sit amet.',
         author: {
           first_name: 'Marcelo',
@@ -80,7 +80,7 @@ export default class Subject extends React.Component {
             <div className="row">
               {guides.map((guide, i) =>
                 <div className="col-md-6" key={i}>
-                  <ExerciseBox guide={guide}/>
+                  <GuideBox guide={guide}/>
                 </div>
               )}
             </div>

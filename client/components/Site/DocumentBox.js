@@ -16,7 +16,8 @@ export default ({content}) => {
           <div className="box-footer box-footer-stylized">
             <h3>
               <small>Creado por:</small>
-              {content.author.first_name} {content.author.last_name}</h3>
+              {content.author.first_name} {content.author.last_name}
+            </h3>
           </div>
         </div>
       </Link>

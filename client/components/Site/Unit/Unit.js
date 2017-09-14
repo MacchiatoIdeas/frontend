@@ -3,12 +3,12 @@ import {Redirect, Route, Switch} from 'react-router';
 
 import {connect} from 'react-redux';
 
-import {getUnitById} from '../../actions/units';
+import {getUnitById} from '../../../actions/units';
 
 import UnitContents from './UnitContents';
 import UnitExercises from './UnitExercises';
-import ExerciseDetail from "./Exercises/ExerciseDetail";
-import NewExercise from "./Exercises/NewExercise";
+import ExerciseDetail from "../Exercises/ExerciseDetail";
+import NewExercise from "../Exercises/NewExercise";
 
 const normalizeContent = (state, id) => {
   return {...state.contents[id], author: state.authors[state.contents[id].author]};

@@ -2,8 +2,8 @@ import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
 
 import SubjectBox from '../SubjectBox';
-import UnitSidebar from "../UnitSidebar";
-import UnitPageTitle from "../UnitPageTitle";
+import UnitSidebar from "../Unit/UnitSidebar";
+import UnitPageTitle from "../Unit/UnitPageTitle";
 
 import NewAlternatives from "./NewAlternatives";
 import NewMatching from "./NewMatching";

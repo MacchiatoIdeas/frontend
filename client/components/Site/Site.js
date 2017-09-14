@@ -5,7 +5,7 @@ import Navbar from '../Navbar';
 import Subject from './Subject';
 import Content from './Content';
 import Subjects from './Subjects';
-import Unit from './Unit';
+import Unit from './Unit/Unit';
 import Guide from "./Guide";
 
 export default class Site extends React.Component {
