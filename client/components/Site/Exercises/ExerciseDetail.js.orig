@@ -4,10 +4,13 @@ import {connect} from "react-redux";
 
 import SubjectBox from '../SubjectBox';
 import UnitSidebar from "../Unit/UnitSidebar";
+<<<<<<< HEAD
 import MatchingExercise from "./MatchingExercise";
 import Exercises from "./Exercise";
+=======
 import AlternativeExercise from "./AlternativeExercise";
 import {getExerciseById} from "../../../actions/exercises";
+>>>>>>> 326939184e4db77152b1f186150997aa49988279
 
 @connect((state, props) => {
   let exercise = state.exercises[props.match.params.exerciseId];
@@ -53,6 +56,12 @@ export default class ExerciseDetail extends React.Component {
         'Cuarta Alternativa',
       ],
       correctAnswer: 2,
+<<<<<<< HEAD
+      sideA: ["Mickey","Tom","Rick Sanchez"],
+      sideB: ["Human","Cat","Dog","Mouse"]
+
+=======
+>>>>>>> 326939184e4db77152b1f186150997aa49988279
     };
     */
 
@@ -72,7 +81,12 @@ export default class ExerciseDetail extends React.Component {
             <div className="col-sm-12">
               <div className="box box-fill">
                 <div className="box-body exercise">
+<<<<<<< HEAD
                   <Exercises exercise={exercise}/>
+=======
+                  <p>{exercise.briefing}</p>
+                  <AlternativeExercise alternatives={exercise.content.alts}/>
+>>>>>>> 326939184e4db77152b1f186150997aa49988279
                 </div>
               </div>
             </div>
