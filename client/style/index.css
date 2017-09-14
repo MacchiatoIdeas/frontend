@@ -7007,14 +7007,12 @@ body {
 }
 .document-badge {
   border-radius: 5px;
-  padding: 8px;
-  padding-top: 92px;
+  padding: 92px 8px 8px;
   border-bottom: 2px #ccc solid;
   background-color: rgba(255, 255, 255, 0.2);
 }
 .document-badge .backgrounded {
   border-radius: 5px;
-  z-index: -1;
 }
 .document-badge small {
   text-transform: uppercase;

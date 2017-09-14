@@ -1,10 +1,10 @@
-import {SUBJECT_RECEIVE, UNIT_RECEIVE} from '../actions/index';
+import {SUBJECT_RECEIVE, UNIT_RECEIVE, CONTENT_RECEIVE} from '../actions/index';
 
 const units = (state = {}, action) => {
   switch (action.type) {
     case SUBJECT_RECEIVE:
-      return {...state, ...action.payload.entities.units};
     case UNIT_RECEIVE:
+    case CONTENT_RECEIVE:
       return {...state, ...action.payload.entities.units};
   }
   return state;

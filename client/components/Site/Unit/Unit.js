@@ -21,13 +21,17 @@ const normalizeExercise = (state, id) => {
 @connect((state, props) => {
   const {id} = props.match.params;
 
-  let unit = {...state.units[id]};
+  let unit = state.units[id];
   if (!unit || !unit.contents) {
     return {isFetching: true};
   }
-  unit.contents = unit.contents.map(id => normalizeContent(state, id));
-  unit.exercises = unit.exercises.map(id => normalizeExercise(state, id));
-  unit.subject = state.subjects[unit.subject];
+
+  unit = {
+    ...unit,
+    contents: unit.contents.map(id => normalizeContent(state, id)),
+    exercises: unit.exercises.map(id => normalizeExercise(state, id)),
+    subject: state.subjects[unit.subject],
+  };
 
   return {
     unit

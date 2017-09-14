@@ -1,9 +1,9 @@
-import {SUBJECT_RECEIVE, UNIT_RECEIVE} from '../actions/index';
+import {SUBJECT_RECEIVE, UNIT_RECEIVE, CONTENT_RECEIVE} from '../actions/index';
 
 export default (state = {}, action) => {
   switch (action.type) {
     case SUBJECT_RECEIVE:
-      return {...state, ...action.payload.entities.subjects};
+    case CONTENT_RECEIVE:
     case UNIT_RECEIVE:
       return {...state, ...action.payload.entities.subjects};
   }
