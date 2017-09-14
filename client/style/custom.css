@@ -1,0 +1,40 @@
+.box .box-body h1 {
+  text-align: left;
+}
+
+.box .box-footer .difficulty span{
+  opacity: 0.5;
+}
+.box .box-footer .difficulty small{
+  width: 100%;
+}
+
+.box .box-body.exercise h1{
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.box .box-body.exercise p{
+  text-align: justify;
+}
+
+.playlist-item {
+  width: 100%;
+}
+
+
+.alternative .alternative-radio:checked + label{
+  background: #4ca2e8;
+}
+
+.alternative .alternative-radio:checked + label span{
+  color: white;
+}
+
+
+.alternative label {
+  cursor: pointer;
+  margin-bottom: 10px !important;
+}

@@ -9,6 +9,7 @@ import {getSubjectById} from '../../actions/subjects';
 
 import UnitContents from './UnitContents';
 import UnitExercises from './UnitExercises';
+import ExerciseDetail from "./ExerciseDetail";
 
 @connect((state, props) => {
   const {id} = props.match.params;
@@ -74,12 +75,14 @@ export default class Field extends React.Component {
             <Route path="/site/units/:id/exercises/:filter" render={({match}) =>
               <UnitExercises unit={unit} match={match}/>
             }/>
-
-            <Route path="/site/units/:id/exercises" render={({ match }) => (
-              <Redirect to={`/site/units/${match.params.id}/exercises/trending`} />
+            <Route path="/site/units/:id/exercise/:exerciseId" render={({match}) =>
+              <ExerciseDetail unit={unit} match={match}/>
+            }/>
+            <Route path="/site/units/:id/exercises" render={({match}) => (
+              <Redirect to={`/site/units/${match.params.id}/exercises/trending`}/>
             )}/>
-            <Route path="/site/units/:id" render={({ match }) => (
-              <Redirect to={`/site/units/${match.params.id}/contents/trending`} />
+            <Route path="/site/units/:id" render={({match}) => (
+              <Redirect to={`/site/units/${match.params.id}/contents/trending`}/>
             )}/>
           </Switch>
         </div>

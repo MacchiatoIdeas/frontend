@@ -11,7 +11,7 @@ export const getUnitById = (id, force) => (dispatch) => {
     type: UNIT_FETCH,
   });
 
-  return fetch(`${API_URL}/material/unit/${id}/`)
+  return fetch(`${API_URL}/material/units/${id}/`)
     .then(
       response => response.json(),
       error => console.log(error)

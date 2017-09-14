@@ -10,7 +10,7 @@ export const getAllSubjects = () => (dispatch, getState) => {
     type: SUBJECT_FETCH,
   });
 
-  return fetch(`${API_URL}/material/field-of-study/`, addHeaders(getState()))
+  return fetch(`${API_URL}/material/subjects/`, addHeaders(getState()))
     .then(
       response => response.json(),
       error => console.log(error)
@@ -26,7 +26,7 @@ export const getSubjectById = (id) => (dispatch, getState) => {
     type: SUBJECT_FETCH
   });
 
-  return fetch(`${API_URL}/material/field-of-study/${id}/`)
+  return fetch(`${API_URL}/material/subjects/${id}/`)
     .then(
       response => response.json(),
       error => console.log(error)

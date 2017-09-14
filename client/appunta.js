@@ -7,6 +7,7 @@ import store from './store';
 import {render} from 'react-dom';
 
 import './style/index.css';
+import './style/custom.css';
 import './style/temp.css';
 import './style/icons.css';
 

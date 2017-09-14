@@ -2,9 +2,9 @@ import React from 'react';
 import Navbar from '../Navbar';
 import '../../style/editor.css';
 
-import Title from './title';
-import Content from './content';
-import Graph from './graph';
+import Title from './Title';
+import Content from './Content';
+import Graph from './Graph';
 
 
 export default class Wrapper extends React.Component {
@@ -19,7 +19,7 @@ export default class Wrapper extends React.Component {
 
   }
 
-  onClickAddTitle(event) {
+  onClickAddTitle() {
     console.log('Adding Title');
     let inputList = this.state.inputList;
     const inputCount = this.state.inputCount;
@@ -30,7 +30,7 @@ export default class Wrapper extends React.Component {
     });
   }
 
-  onClickAddContent(event) {
+  onClickAddContent() {
     console.log('Adding Content');
     let inputList = this.state.inputList;
     const inputCount = this.state.inputCount;
@@ -42,7 +42,7 @@ export default class Wrapper extends React.Component {
     console.log(this.state.inputList);
   }
 
-  onClickAddGraph(event) {
+  onClickAddGraph() {
     console.log('Adding Graph');
     let inputList = this.state.inputList;
     const inputCount = this.state.inputCount;

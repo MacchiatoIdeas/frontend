@@ -2,7 +2,7 @@ import React from 'react';
 import '../../style/editor.css';
 
 import {Modal, ModalTitle, ModalHeader} from 'react-bootstrap';
-import Geogebra from './geogebra';
+import Geogebra from './Geogebra';
 
 import ClickOutHandler from 'react-onclickout';
 
