@@ -2,7 +2,7 @@ import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
 
 import SubjectBox from './SubjectBox';
-import ContentBox from './ContentBox';
+import ContentBox from './DocumentBox';
 import UnitSidebar from "./UnitSidebar";
 import UnitPageTitle from "./UnitPageTitle";
 
@@ -10,7 +10,6 @@ import UnitPageTitle from "./UnitPageTitle";
 export default class UnitExercises extends React.Component {
   render() {
     let {filter} = this.props.match.params;
-    console.log('UNIT EXERCISES');
     const {unit} = this.props;
     const {field} = unit;
     let {exercises} = this.props;
