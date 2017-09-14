@@ -1,5 +1,18 @@
 import React from 'react';
 
+const Alternative = () => {
+  return (
+    <div className="form-group">
+      <div className="input-group">
+        <span className="input-group-addon">
+          <input type="radio" name="alternative" aria-label="Checkbox for following text input"/>
+        </span>
+        <input type="text" className="form-control" aria-label="Text input with checkbox"/>
+      </div>
+    </div>
+  )
+}
+
 export default class NewAlternatives extends React.Component {
   constructor(props) {
     super(props);
@@ -15,16 +28,6 @@ export default class NewAlternatives extends React.Component {
       countAlternatives: 0
     };
 
-    this.alternativeCode = (
-      <div className="form-group">
-        <div className="input-group">
-        <span className="input-group-addon">
-          <input type="radio" name="alternative" aria-label="Checkbox for following text input"/>
-        </span>
-          <input type="text" className="form-control" aria-label="Text input with checkbox"/>
-        </div>
-      </div>
-    );
   }
 
   updateTitle(event) {
@@ -47,7 +50,7 @@ export default class NewAlternatives extends React.Component {
 
   addAlternative() {
     let alternatives = this.state.alternatives;
-    alternatives[this.state.countAlternatives] = this.alternativeCode;
+    alternatives[this.state.countAlternatives] = <Alternative/>;
     this.setState({
       alternatives: alternatives,
       countAlternatives: this.state.countAlternatives + 1

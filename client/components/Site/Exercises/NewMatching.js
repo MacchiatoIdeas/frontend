@@ -68,10 +68,6 @@ export default class NewAlternatives extends React.Component {
             <label htmlFor="text">Enunciado:</label>
             <input type="text" className="form-control" id="text" onClick={this.updateText}/>
           </div>
-          <div className="form-group">
-            <label htmlFor="text">Resumen:</label>
-            <input type="text" className="form-control" id="summary" onClick={this.updateText}/>
-          </div>
           <label>Alternativas:</label>
           {Object.keys(this.state.alternatives).map((key, i) => this.state.alternatives[key])}
           <div className="alert alert-warning">Recuerde seleccionar la alternativa correcta</div>
