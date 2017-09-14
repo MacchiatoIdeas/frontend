@@ -71,25 +71,6 @@ export default class NewExercise extends React.Component {
       <div>
         <div className="col-sm-3">
           <SubjectBox subject={unit.subject}/>
-
-          <div className="playlist playlist-compact" style={{marginBottom: '8px'}}>
-            <div className="playlist-item">
-              <NavLink to={`/site/units/${unit.id}/contents`} exact>
-                <div className="playlist-item-body">
-                  Contenido
-                </div>
-              </NavLink>
-            </div>
-
-            <div className="playlist-item">
-              <NavLink to={`/site/units/${unit.id}/exercises`} exact>
-                <div className="playlist-item-body">
-                  Ejercicios
-                </div>
-              </NavLink>
-            </div>
-          </div>
-
           <UnitSidebar type="exercises" unit={unit}/>
         </div>
         <div className="col-sm-9">
