@@ -1,60 +1,46 @@
 import React from 'react';
-import {Link, NavLink} from 'react-router-dom';
 import {Redirect, Route, Switch} from 'react-router';
 
 import {connect} from 'react-redux';
 
 import {getUnitById} from '../../actions/units';
-import {getSubjectById} from '../../actions/subjects';
 
 import UnitContents from './UnitContents';
 import UnitExercises from './UnitExercises';
 import ExerciseDetail from "./ExerciseDetail";
 
+const normalizeContent = (state, id) => {
+  return {...state.contents[id], author: state.authors[state.contents[id].author]};
+};
+
+const normalizeExercise = (state, id) => {
+  return {...state.exercises[id], author: state.authors[state.exercises[id].author]};
+};
+
 @connect((state, props) => {
   const {id} = props.match.params;
 
   let unit = {...state.units[id]};
-  if (!unit) {
+  if (!unit || !unit.contents) {
     return {isFetching: true};
   }
-
-  let contents = unit.contents;
-  if (!contents) {
-    return {isFetching: true, unit};
-  }
-  unit.contents = unit.contents.map(id => state.contents[id]);
-  unit.contents = unit.contents.map(content => ({...content, author: state.authors[content.author]}));
-
-  let subject = state.subjects[unit.subject];
-  if (!subject) {
-    return {isFetching: true, unit, contents};
-  }
-  unit.subject = subject;
+  unit.contents = unit.contents.map(id => normalizeContent(state, id));
+  unit.exercises = unit.exercises.map(id => normalizeExercise(state, id));
+  unit.subject = state.subjects[unit.subject];
 
   return {
-    unit,
+    unit
   }
 }, {
-  getUnitById,
-  getSubjectById,
+  getUnitById
 })
-export default class Field extends React.Component {
-  loadData() {
-    const {id} = this.props.match.params;
-
-    if (!this.props.unit || !this.props.contents) {
-      return this.props.getUnitById(id);
-    }
-
-    if (!this.props.field) {
-      this.props.getSubjectById(this.props.unit.subject);
-    }
+export default class Unit extends React.Component {
+  componentWillMount() {
+    this.props.getUnitById(this.props.match.params.id);
   }
 
   render() {
     if (this.props.isFetching) {
-      this.loadData();
       return null;
     }
 

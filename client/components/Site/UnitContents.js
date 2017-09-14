@@ -1,8 +1,8 @@
 import React from 'react';
-import {Link, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import SubjectBox from './SubjectBox';
-import ContentBox from './ContentBox';
+import ContentBox from './DocumentBox';
 import UnitSidebar from './UnitSidebar';
 import UnitPageTitle from './UnitPageTitle';
 
