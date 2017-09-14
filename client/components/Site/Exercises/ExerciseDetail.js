@@ -3,7 +3,8 @@ import {Link, NavLink} from 'react-router-dom';
 
 import SubjectBox from '../SubjectBox';
 import UnitSidebar from "../Unit/UnitSidebar";
-import AlternativeExercise from "./AlternativeExercise";
+import MatchingExercise from "./MatchingExercise";
+import Exercises from "./Exercise";
 
 
 export default class ExerciseDetail extends React.Component {
@@ -29,6 +30,8 @@ export default class ExerciseDetail extends React.Component {
         'Cuarta Alternativa',
       ],
       correctAnswer: 2,
+      sideA: ["Mickey","Tom","Rick Sanchez"],
+      sideB: ["Human","Cat","Dog","Mouse"]
 
     };
 
@@ -63,11 +66,7 @@ export default class ExerciseDetail extends React.Component {
             <div className="col-sm-12">
               <div className="box box-fill">
                 <div className="box-body exercise">
-                  <h1>{exercise.title}</h1>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, cumque dolor ex fuga odit provident
-                    quae quasi vel! Architecto, assumenda atque earum error id nesciunt perspiciatis praesentium quasi
-                    quidem quisquam!</p>
-                  <AlternativeExercise alternatives={exercise.alternatives}/>
+                  <Exercises exercise={exercise}/>
                 </div>
               </div>
             </div>
