@@ -47,7 +47,7 @@ export default class Unit extends React.Component {
     const {unit} = this.props;
 
     return (
-      <div>
+      <div className="container">
         <h1 className="page-header">
           {unit.name}
           <span className="glyphicon glyphicon-apple pull-right"/>

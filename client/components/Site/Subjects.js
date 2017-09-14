@@ -21,14 +21,16 @@ export default class Subjects extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h1 className="page-header">Materias</h1>
 
-        {this.props.subjects.map((subject, i) =>
-          <div className="col-sm-4" key={i}>
-            <SubjectBox subject={subject}/>
-          </div>
-        )}
+        <div className="row">
+          {this.props.subjects.map((subject, i) =>
+            <div className="col-sm-4" key={i}>
+              <SubjectBox subject={subject}/>
+            </div>
+          )}
+        </div>
       </div>
     )
   }
