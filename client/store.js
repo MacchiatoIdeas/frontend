@@ -9,6 +9,7 @@ const defaultState = {
   authors: undefined,
   contents: undefined,
   exercises: undefined,
+  guides: undefined,
   auth: undefined,
 };
 

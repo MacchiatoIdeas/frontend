@@ -22,7 +22,7 @@ const normalizeExercise = (state, id) => {
   const {id} = props.match.params;
 
   let unit = state.units[id];
-  if (!unit || !unit.contents) {
+  if (!unit || !unit.contents || !unit.exercises) {
     return {isFetching: true};
   }
 

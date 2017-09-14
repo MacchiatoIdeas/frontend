@@ -15,12 +15,26 @@ export const unit = new schema.Entity('units', {
   exercises: [exercise],
 });
 
-export const subject = new schema.Entity('subjects', {
-  units: [unit],
+export const guide = new schema.Entity('guides', {
+  user: author
 });
 
-content.define({unit});
-exercise.define({unit});
-unit.define({subject});
+export const subject = new schema.Entity('subjects', {
+  units: [unit],
+  guides: [guide]
+});
+
+content.define({
+  unit
+});
+exercise.define({
+  unit
+});
+unit.define({
+  subject
+});
+guide.define({
+  subject
+});
 
 export const subjectArray = [subject];
