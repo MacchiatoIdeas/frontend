@@ -1,5 +1,18 @@
 import React from 'react';
 
+const Alternative = () => {
+  return (
+    <div className="form-group">
+      <div className="input-group">
+        <span className="input-group-addon">
+          <input type="radio" name="alternative" aria-label="Checkbox for following text input"/>
+        </span>
+        <input type="text" className="form-control" aria-label="Text input with checkbox"/>
+      </div>
+    </div>
+  )
+};
+
 export default class NewAlternatives extends React.Component {
   constructor(props) {
     super(props);
@@ -15,16 +28,6 @@ export default class NewAlternatives extends React.Component {
       countAlternatives: 0
     };
 
-    this.alternativeCode = (
-      <div className="form-group">
-        <div className="input-group">
-        <span className="input-group-addon">
-          <input type="radio" name="alternative" aria-label="Checkbox for following text input"/>
-        </span>
-          <input type="text" className="form-control" aria-label="Text input with checkbox"/>
-        </div>
-      </div>
-    );
   }
 
   updateTitle(event) {
@@ -35,19 +38,13 @@ export default class NewAlternatives extends React.Component {
 
   updateText(event) {
     this.setState({
-      text: event.target.value
-    });
-  }
-
-  updateText(event) {
-    this.setState({
-      text: event.target.value
+      summary: event.target.value
     });
   }
 
   addAlternative() {
     let alternatives = this.state.alternatives;
-    alternatives[this.state.countAlternatives] = this.alternativeCode;
+    alternatives[this.state.countAlternatives] = <Alternative key={this.state.countAlternatives}/>;
     this.setState({
       alternatives: alternatives,
       countAlternatives: this.state.countAlternatives + 1
@@ -67,10 +64,6 @@ export default class NewAlternatives extends React.Component {
           <div className="form-group">
             <label htmlFor="text">Enunciado:</label>
             <input type="text" className="form-control" id="text" onClick={this.updateText}/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="text">Resumen:</label>
-            <input type="text" className="form-control" id="summary" onClick={this.updateText}/>
           </div>
           <label>Alternativas:</label>
           {Object.keys(this.state.alternatives).map((key, i) => this.state.alternatives[key])}
