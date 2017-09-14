@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import SubjectBox from '../SubjectBox';
 import UnitSidebar from "../Unit/UnitSidebar";
 import MatchingExercise from "./MatchingExercise";
-import Exercises from "./Exercise";
+import Exercise from "./Exercise";
 import AlternativeExercise from "./AlternativeExercise";
 import {getExerciseById} from "../../../actions/exercises";
 
@@ -72,7 +72,7 @@ export default class ExerciseDetail extends React.Component {
             <div className="col-sm-12">
               <div className="box box-fill">
                 <div className="box-body exercise">
-                  <Exercises exercise={exercise}/>
+                  <Exercise exercise={exercise}/>
                 </div>
               </div>
             </div>
