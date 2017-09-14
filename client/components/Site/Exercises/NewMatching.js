@@ -1,30 +1,46 @@
 import React from 'react';
 
+const MatchingRow = ({index}) => {
+  return (
+    <div>
+      <div className="col-sm-6">
+        <div className="form-group">
+          <div className="input-group">
+        <span className="input-group-addon">
+          <input className="match text-center" type="text" placeholder="Lado B"/>
+        </span>
+            <input type="text" className="form-control"/>
+          </div>
+        </div>
+      </div>
+      <div className="col-sm-6">
+        <div className="form-group">
+          <div className="input-group">
+        <span className="input-group-addon">
+          {index}
+        </span>
+            <input type="text" className="form-control" aria-label="Text input with checkbox"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+};
+
 export default class NewAlternatives extends React.Component {
   constructor(props) {
     super(props);
 
     this.updateTitle = this.updateTitle.bind(this);
-    this.addPair = this.addPair.bind(this);
+    this.addRow = this.addRow.bind(this);
 
     this.state = {
       title: "",
       summary: "",
       content: {},
-      alternatives: {},
-      countAlternatives: 0
+      rows: {},
+      countRows: 0
     };
-
-    this.alternativeCode = (
-      <div className="form-group">
-        <div className="input-group">
-        <span className="input-group-addon">
-          <input type="radio" name="alternative" aria-label="Checkbox for following text input"/>
-        </span>
-          <input type="text" className="form-control" aria-label="Text input with checkbox"/>
-        </div>
-      </div>
-    );
   }
 
   updateTitle(event) {
@@ -35,27 +51,21 @@ export default class NewAlternatives extends React.Component {
 
   updateText(event) {
     this.setState({
-      text: event.target.value
+      summary: event.target.value
     });
   }
 
-  updateText(event) {
+  addRow() {
+    let rows = this.state.rows;
+    rows[this.state.countRows] = <MatchingRow key={this.state.countRows} index={this.state.countRows + 1}/>;
     this.setState({
-      text: event.target.value
-    });
-  }
-
-  addPair() {
-    let alternatives = this.state.alternatives;
-    alternatives[this.state.countAlternatives] = this.alternativeCode;
-    this.setState({
-      alternatives: alternatives,
-      countAlternatives: this.state.countAlternatives + 1
+      rows: rows,
+      countRows: this.state.countRows + 1
     });
   }
 
   render() {
-    console.log('NEW ALTERNATIVES');
+    console.log('NEW MATCHING');
 
     return (
       <div>
@@ -68,11 +78,20 @@ export default class NewAlternatives extends React.Component {
             <label htmlFor="text">Enunciado:</label>
             <input type="text" className="form-control" id="text" onClick={this.updateText}/>
           </div>
-          <label>Alternativas:</label>
-          {Object.keys(this.state.alternatives).map((key, i) => this.state.alternatives[key])}
-          <div className="alert alert-warning">Recuerde seleccionar la alternativa correcta</div>
-          <button className="btn btn-default btn-block" onClick={this.addPair}>Agregar opción</button>
-          <button className="btn btn-success btn-block" onClick={this.addPair}>Guardar ejercicio</button>
+          <div>
+            <div className="col-sm-6">
+              <label>Lado A:</label>
+            </div>
+            <div className="col-sm-6">
+              <label>Lado B:</label>
+            </div>
+
+            {Object.keys(this.state.rows).map((key, i) => this.state.rows[key])}
+            <div className="clearfix"></div>
+          </div>
+          <div className="alert alert-warning">Recuerde relacionar los elementos del lado B con el lado A utilizando el número de orden.</div>
+          <button className="btn btn-default btn-block" onClick={this.addRow}>Agregar opción</button>
+          <button className="btn btn-success btn-block">Guardar ejercicio</button>
         </div>
       </div>
     )
