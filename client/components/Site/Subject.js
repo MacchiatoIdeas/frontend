@@ -36,6 +36,7 @@ export default class Subject extends React.Component {
 
     const guides = [
       {
+        id: 1,
         title: 'MockUp',
         brief: 'lorem ipsum dolor sit amet.',
         author: {
@@ -61,7 +62,7 @@ export default class Subject extends React.Component {
           <hr className="visible-xs"/>
 
           <div className="col-sm-9">
-            <h2 className="page-header">Contenidos</h2>
+            <h2 className="page-header">Unidades</h2>
 
             <div className="row">
               <div className="col-sm-12">

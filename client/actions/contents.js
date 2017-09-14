@@ -17,7 +17,7 @@ export const getContentById = (id) => (dispatch) => {
     .then(response => dispatch({
       type: CONTENT_RECEIVE,
       payload: normalize(response, content)
-    }))
+    }));
 };
 
 export const receiveContent = (content) => ({
