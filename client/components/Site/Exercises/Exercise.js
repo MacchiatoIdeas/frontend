@@ -8,7 +8,11 @@ import MatchingExercise from "./MatchingExercise";
 export default class Exercise extends React.Component {
 
   showSchema() {
-
+    console.log(this.props.exercise.content.schema);
+    if (this.props.exercise.content.schema === 'alternatives')
+      return (<AlternativeExercise alternatives={this.props.exercise.content.alts}/>)
+    else if (this.props.exercise.content.schema === 'matching')
+      return (<MatchingExercise sideA={this.props.exercise.content.sideA} sideB={this.props.exercise.content.sideB}/>)
   }
 
   render() {
@@ -19,9 +23,8 @@ export default class Exercise extends React.Component {
     return (
       <div>
         <h1>{this.props.exercise.title}</h1>
-        <p>{this.props.exercise.summary}</p>
-        {/*<AlternativeExercise alternatives={exercise.alternatives}/>*/}
-        <MatchingExercise sideA={this.props.exercise.sideA} sideB={this.props.exercise.sideB}/>
+        <p>{this.props.exercise.briefing}</p>
+        {this.showSchema.bind(this)()}
       </div>
 
     )
