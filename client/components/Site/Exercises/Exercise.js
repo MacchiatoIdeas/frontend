@@ -6,9 +6,7 @@ import MatchingExercise from "./MatchingExercise";
 
 
 export default class Exercise extends React.Component {
-
   showSchema() {
-    console.log(this.props.exercise.content.schema);
     if (this.props.exercise.content.schema === 'alternatives')
       return (<AlternativeExercise alternatives={this.props.exercise.content.alts}/>)
     else if (this.props.exercise.content.schema === 'matching')
@@ -16,17 +14,12 @@ export default class Exercise extends React.Component {
   }
 
   render() {
-    console.log('EXERCISE DETAIL');
-    const {unit} = this.props;
-
-
     return (
       <div>
         <h1>{this.props.exercise.title}</h1>
         <p>{this.props.exercise.briefing}</p>
         {this.showSchema.bind(this)()}
       </div>
-
     )
   }
 }
