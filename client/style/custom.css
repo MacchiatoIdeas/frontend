@@ -45,3 +45,120 @@
   width: 50px;
   background: none;
 }
+
+/*
+ * New Design
+ */
+
+body {
+  background-color: #4CA2E8;
+}
+
+body {
+  height: 100%;
+}
+
+a {
+  color: #0263b7;
+}
+
+.btn {
+  border-radius: 20px;
+  border: none;
+}
+
+.form-group input, .panel{
+  border-radius: 20px !important;
+}
+
+button {
+  outline: none !important;
+}
+
+.navbar.navbar-default {
+  border-radius: 10px;
+}
+
+#body {
+  margin: 0px 20px;
+  padding: 0px;
+  border-bottom: 0px;
+  border-radius: 10px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.borderless, .borderless * {
+  border: none;
+}
+
+.nobg, .nobg * {
+  background: transparent;
+}
+
+section {
+  padding: 20px;
+}
+
+.footer-wrapper {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+footer {
+  background: #f7fafd;
+  padding: 20px;
+}
+
+footer h3 {
+  font-weight: bold;
+  color: #777;
+}
+
+footer a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+footer a:hover, footer a:focus {
+  color: darken(#6295c7, 20%);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#image-subject-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+#image-subject-wrapper img {
+  width: 100%;
+}
+
+.breadcrumb {
+  background: #eceeef;
+  padding: 15px 15px;
+  margin: 0;
+}
+
+.social-icons a {
+  color: #AAA;
+  font-size: 20pt;
+  transition: color .2s;
+  margin: 5px;
+}
+
+.facebook:hover {
+  color: #3B5998;
+}
+
+.twitter:hover {
+  color: #00aced;
+}
+
+.page-header.color.blue {
+  color: #6699dd;
+  border-color: #6699dd;
+}

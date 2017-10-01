@@ -13,12 +13,12 @@ export default class UnitContents extends React.Component {
 
     return (
       <div>
-        <div className="col-sm-3">
+        <div className="col-md-4">
           <SubjectBox subject={unit.subject}/>
           <UnitSidebar type="contents" unit={unit}/>
         </div>
 
-        <div className="col-sm-9">
+        <div className="col-sm-8">
           <div className="head-link"><span className="glyphicon glyphicon-plus"/> Crear Nuevo Documento</div>
           <UnitPageTitle filter={filter}/>
 

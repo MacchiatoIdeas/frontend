@@ -52,35 +52,35 @@ export default class Unit extends React.Component {
     const {unit} = this.props;
 
     return (
-      <div className="container">
-        <h1 className="page-header">
-          {unit.name}
-          <span className="glyphicon glyphicon-apple pull-right"/>
-        </h1>
-
-        <div className="row">
-          <Switch>
-            <Route path="/site/units/:id/contents/:filter" render={({match}) =>
-              <UnitContents unit={unit} match={match}/>
-            }/>
-            <Route path="/site/units/:id/exercises/:filter" render={({match}) =>
-              <UnitExercises unit={unit} match={match}/>
-            }/>
-            <Route path="/site/units/:id/exercise/create" render={({match}) =>
-              <NewExercise unit={unit} match={match}/>
-            }/>
-            <Route path="/site/units/:id/exercise/:exerciseId" render={({match}) =>
-              <ExerciseDetail unit={unit} match={match}/>
-            }/>
-            <Route path="/site/units/:id/exercises" render={({match}) => (
-              <Redirect to={`/site/units/${match.params.id}/exercises/trending`}/>
-            )}/>
-            <Route path="/site/units/:id" render={({match}) => (
-              <Redirect to={`/site/units/${match.params.id}/contents/trending`}/>
-            )}/>
-          </Switch>
+      <section>
+        <div className="col-sm-12">
+          <h1>
+            {unit.name}
+          </h1>
         </div>
-      </div>
+
+        <Switch>
+          <Route path="/site/units/:id/contents/:filter" render={({match}) =>
+            <UnitContents unit={unit} match={match}/>
+          }/>
+          <Route path="/site/units/:id/exercises/:filter" render={({match}) =>
+            <UnitExercises unit={unit} match={match}/>
+          }/>
+          <Route path="/site/units/:id/exercise/create" render={({match}) =>
+            <NewExercise unit={unit} match={match}/>
+          }/>
+          <Route path="/site/units/:id/exercise/:exerciseId" render={({match}) =>
+            <ExerciseDetail unit={unit} match={match}/>
+          }/>
+          <Route path="/site/units/:id/exercises" render={({match}) => (
+            <Redirect to={`/site/units/${match.params.id}/exercises/trending`}/>
+          )}/>
+          <Route path="/site/units/:id" render={({match}) => (
+            <Redirect to={`/site/units/${match.params.id}/contents/trending`}/>
+          )}/>
+        </Switch>
+        <div className="clearfix"/>
+      </section>
     )
   }
 }

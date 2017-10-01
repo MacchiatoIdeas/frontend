@@ -9,7 +9,7 @@ export default class Navbar extends React.Component {
     const {backgroundColor} = this.props;
 
     return (
-      <nav className="navbar navbar-default" style={{
+      <nav id="navbar" className="navbar navbar-default" style={{
         backgroundColor: backgroundColor
       }}>
         <div className="container-fluid">

@@ -73,7 +73,7 @@ export default class Wrapper extends React.Component {
     return (
       <div>
         <Navbar/>
-        <div className="col-sm-12">
+        <div id="body" className="container-fluid panel panel-default">
           <div className="paper">
             <ul id="editor" className="editor ui-sortable">
               {Object.keys(this.state.inputList).map((key, i) => this.state.inputList[key])}
@@ -98,7 +98,7 @@ export default class Wrapper extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="clearfix"></div>
+            <div className="clearfix"/>
           </div>
         </div>
       </div>

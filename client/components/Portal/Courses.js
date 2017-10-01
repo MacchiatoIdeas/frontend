@@ -27,7 +27,7 @@ export default class Courses extends React.Component {
     ];
 
     return (
-      <div className="row">
+      <section>
         <div className="col-sm-3">
           <PortalSidebar/>
         </div>
@@ -45,7 +45,8 @@ export default class Courses extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+        <div className="clearfix"/>
+      </section>
     )
   }
 }

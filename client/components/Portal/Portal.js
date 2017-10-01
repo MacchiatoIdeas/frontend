@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {getUserData} from "../../actions/auth";
 
 import Navbar from '../Navbar';
+import Body from "../Body";
 import Summary from './Summary';
 import Folders from "./Folders";
 import Courses from "./Courses";
@@ -49,53 +50,57 @@ export default class Portal extends React.Component {
 
     return (
       <div>
-        <div id="header" className="appunta-bg">
-          <Navbar backgroundColor="rgba(255, 255, 255, 0.35)"/>
+        <div className={style.headerContainer}>
+          <div id="header" className={`appunta-bg ${style.header}`}>
+            <Navbar backgroundColor="rgba(255, 255, 255, 0.35)"/>
 
-          <div className="container-fluid">
-            <div className={`row ${style.summary}`}>
-              <div className="col-sm-12">
-                <h1 className="page-header">
-                  {auth.user.first_name} {auth.user.last_name}
-                  <span className="pull-right">
+            <div className="container-fluid">
+              <div className={`row ${style.summary}`}>
+                <div className="col-sm-12">
+                  <h1 className="page-header">
+                    {auth.user.first_name} {auth.user.last_name}
+                    <span className="pull-right">
 
                   </span>
-                </h1>
+                  </h1>
 
-                <div className="row">
-                  <div className="col-sm-4">
-                    <div className="box-alt">
-                      <div className="box-jumbo">4</div>
-                      <div className="box-body"><h3>Controles Pendientes</h3></div>
+                  <div className="row">
+                    <div className="col-sm-4">
+                      <div className="box-alt">
+                        <div className="box-jumbo">4</div>
+                        <div className="box-body"><h3>Controles Pendientes</h3></div>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="col-sm-4">
-                    <div className="box-alt">
-                      <div className="box-jumbo">7</div>
-                      <div className="box-body"><h3>Respuestas Nuevas</h3></div>
+                    <div className="col-sm-4">
+                      <div className="box-alt">
+                        <div className="box-jumbo">7</div>
+                        <div className="box-body"><h3>Respuestas Nuevas</h3></div>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="col-sm-4">
-                    <div className="box-alt">
-                      <div className="box-jumbo">3</div>
-                      <div className="box-body"><h3>Cursos</h3></div>
+                    <div className="col-sm-4">
+                      <div className="box-alt">
+                        <div className="box-jumbo">3</div>
+                        <div className="box-body"><h3>Cursos</h3></div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <div className={style.innerShadow}/>
         </div>
-
-        <div className="container" style={{marginTop: "32px"}}>
+        <div className={style.body}>
+          <Body>
           <Switch>
             <Route path="/portal/folders" component={Folders}/>
             <Route path="/portal/courses" component={Courses}/>
             <Route path="/portal/exercises" component={Exercises}/>
             <Route component={Summary}/>
           </Switch>
+          </Body>
         </div>
       </div>
     )

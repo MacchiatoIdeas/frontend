@@ -35,47 +35,43 @@ export default class Subject extends React.Component {
     const {subject} = this.props;
 
     return (
-      <div className="container">
-        <h1 className="page-header">
-          {subject.name}
-          <span className="glyphicon glyphicon-apple pull-right"/>
-        </h1>
+      <section>
+        <div className="col-sm-12">
+          <h1>
+            {subject.name}
+          </h1>
+        </div>
 
-        <div className="row">
-          <div className="col-sm-3">
-            <SubjectBox subject={subject}/>
-            <SubjectSidebar/>
+        <div className="col-md-4">
+          <SubjectBox subject={subject}/>
+          <SubjectSidebar/>
+        </div>
+
+        <hr className="visible-xs"/>
+
+        <div className="col-md-8">
+          <h2 className="page-header color blue">Unidades</h2>
+
+          <div className="list-group">
+            {subject.units.map((unit, i) =>
+              <Link to={`/site/units/${unit.id}`} key={i} className="list-group-item">
+                {unit.name}
+              </Link>
+            )}
           </div>
 
-          <hr className="visible-xs"/>
+          <h2 className="page-header color blue">Guías</h2>
 
-          <div className="col-sm-9">
-            <h2 className="page-header">Unidades</h2>
-
-            <div className="row">
-              <div className="col-sm-12">
-                <div className="list-group">
-                  {subject.units.map((unit, i) =>
-                    <Link to={`/site/units/${unit.id}`} key={i} className="list-group-item">
-                      {unit.name}
-                    </Link>
-                  )}
-                </div>
+          <div className="row">
+            {subject.guides.map((guide, i) =>
+              <div className="col-md-6" key={i}>
+                <GuideBox guide={guide}/>
               </div>
-            </div>
-
-            <h2 className="page-header">Guías</h2>
-
-            <div className="row">
-              {subject.guides.map((guide, i) =>
-                <div className="col-md-6" key={i}>
-                  <GuideBox guide={guide}/>
-                </div>
-              )}
-            </div>
+            )}
           </div>
         </div>
-      </div>
+        <div className="clearfix"/>
+      </section>
     )
   }
 }
