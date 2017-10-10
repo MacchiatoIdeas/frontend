@@ -1,11 +1,12 @@
-import React from "react";
-import {Redirect} from "react-router";
+import React from 'react';
+import {Redirect} from 'react-router';
+import {Link} from 'react-router-dom';
 
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 
-import {sendLogin} from "../../actions/auth";
+import {sendLogin} from '../../actions/auth';
 
-import Navbar from "../Navbar";
+import Navbar from '../Navbar';
 
 import style from './Login.less';
 
@@ -59,6 +60,10 @@ export default class Login extends React.Component {
                   </div>
                 </form>
               </div>
+            </div>
+
+            <div className="text-center">
+              <Link to="/register">Registro</Link>
             </div>
           </div>
         </div>

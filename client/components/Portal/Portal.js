@@ -1,16 +1,16 @@
 import React from 'react';
 
 import {Redirect, Route, Switch} from 'react-router';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 
-import {getUserData} from "../../actions/auth";
+import {getUserData} from '../../actions/auth';
 
 import Navbar from '../Navbar';
-import Body from "../Body";
+import Body from '../Body';
 import Summary from './Summary';
-import Folders from "./Folders";
-import Courses from "./Courses";
-import Exercises from "./Exercises";
+import Folders from './Folders';
+import Courses from './Courses';
+import Exercises from './Exercises';
 
 import style from './Portal.less';
 
