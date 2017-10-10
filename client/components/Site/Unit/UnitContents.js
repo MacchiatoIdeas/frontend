@@ -15,7 +15,7 @@ export default class UnitContents extends React.Component {
       <div>
         <section>
           <div className="col-md-4">
-            <SubjectBox subject={unit.subject} title={false}/>
+            <SubjectBox subject={unit.subject} showTitle={false}/>
             <UnitSidebar type="contents" unit={unit}/>
           </div>
 

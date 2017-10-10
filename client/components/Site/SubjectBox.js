@@ -6,15 +6,15 @@ import style from './SubjectBox.less'
 export default class SubjectBox extends React.Component {
 
   render() {
-    let title = this.props.title !== undefined ? this.props.title : true;
+    let showTitle = this.props.showTitle !== undefined ? this.props.showTitle : true;
     let subject = this.props.subject;
 
     let color;
     let htmlTitle;
     let cssClass;
 
-    if (title) color = subject.color;
-    if (title) htmlTitle = (
+    if (showTitle) color = subject.color;
+    if (showTitle) htmlTitle = (
       <div className={style.subjectNameWrapper}>
         <span className={`${style.subjectName} lead`}>
           {subject.name}
@@ -22,7 +22,7 @@ export default class SubjectBox extends React.Component {
       </div>
     );
 
-    if (title) cssClass = style.subjectWrapper;
+    if (showTitle) cssClass = style.subjectWrapper;
     else cssClass = style.subjectWrapper + ' ' + style.noBorder;
 
     return (

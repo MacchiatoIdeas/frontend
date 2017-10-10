@@ -43,7 +43,7 @@ export default class Subject extends React.Component {
         </div>
 
         <div className="col-md-4">
-          <SubjectBox subject={subject} title={false}/>
+          <SubjectBox subject={subject} showTitle={false}/>
           <SubjectSidebar/>
         </div>
 

@@ -24,7 +24,7 @@ export default class UnitExercises extends React.Component {
       <div>
         <section>
           <div className="col-sm-3">
-            <SubjectBox subject={unit.subject} title={false}/>
+            <SubjectBox subject={unit.subject} showTitle={false}/>
             <UnitSidebar type="exercises" unit={unit}/>
           </div>
 
