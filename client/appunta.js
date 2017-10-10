@@ -15,6 +15,7 @@ import Login from './components/Auth/Login';
 import Portal from './components/Portal/Portal';
 import Site from './components/Site/Site';
 import Editor from './components/Editor/Editor';
+import Register from './components/Auth/Register';
 
 const router = (
   <Provider store={store}>
@@ -22,6 +23,7 @@ const router = (
       <Switch>
         <Redirect exact from="/" to="/portal"/>
         <Route path="/login" component={Login}/>
+        <Route path="/register" component={Register}/>
         <Route path="/site" component={Site}/>
         <Route path="/portal" component={Portal}/>
         <Route path="/editor" component={Editor}/>
