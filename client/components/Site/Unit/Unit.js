@@ -52,12 +52,14 @@ export default class Unit extends React.Component {
     const {unit} = this.props;
 
     return (
-      <section>
-        <div className="col-sm-12">
-          <h1>
-            {unit.name}
-          </h1>
-        </div>
+      <div>
+        <section>
+          <div className="col-sm-12">
+            <h1>
+              {unit.name}
+            </h1>
+          </div>
+        </section>
 
         <Switch>
           <Route path="/site/units/:id/contents/:filter" render={({match}) =>
@@ -80,7 +82,7 @@ export default class Unit extends React.Component {
           )}/>
         </Switch>
         <div className="clearfix"/>
-      </section>
+      </div>
     )
   }
 }

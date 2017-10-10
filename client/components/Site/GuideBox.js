@@ -1,8 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import style from './GuideBox.less'
+
 export default ({guide}) =>
-  <div className="box box-fill">
+  <div className={`box box-fill ${style.wrapper}`}>
     <Link to={`/site/guides/${guide.id}`}>
       <div className="box-body box-body-min">
         <h2>{guide.title}</h2>

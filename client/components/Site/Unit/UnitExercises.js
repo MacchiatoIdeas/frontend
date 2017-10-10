@@ -22,48 +22,52 @@ export default class UnitExercises extends React.Component {
 
     return (
       <div>
-        <div className="col-sm-3">
-          <SubjectBox subject={unit.subject}/>
-          <UnitSidebar type="exercises" unit={unit}/>
-        </div>
-
-        <div className="col-sm-9">
-          <Link to={`/site/units/${unit.id}/exercise/create`} className="head-link"><span className="glyphicon glyphicon-plus"/> Crear Nuevo Ejercicio</Link>
-          <UnitPageTitle filter={filter}/>
-
-          <div className="row">
-            {unit.exercises.map((exercise, i) =>
-              <div className="col-sm-12" key={i}>
-                <div className="box box-fill">
-                  <Link to={`/site/units/${unit.id}/exercise/${exercise.id}`}>
-                    <div className="box-body box-body-min">
-                      <summary>{exercise.briefing}</summary>
-                    </div>
-
-                    <div style={{position: "relative"}}>
-                      <div className="backgrounded" style={{backgroundImage: `url("http://www.fotor.com/images2/features/blur/022.jpg")`}}/>
-                      <div className="box-footer box-footer-stylized">
-                        <h3 className="pull-left">
-                          <small>Creado por:</small>
-                          Marcelo Jara Almeyda
-                        </h3>
-
-                        <h3 className="pull-right difficulty">
-                          <div>
-                            <small className="pull-right">Dificultad</small>
-                          </div>
-
-                          <Stars stars={exercise.difficulty} of={4}/>
-                        </h3>
-                        <div className="clearfix"></div>
-                      </div>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-            )}
+        <section>
+          <div className="col-sm-3">
+            <SubjectBox subject={unit.subject} title={false}/>
+            <UnitSidebar type="exercises" unit={unit}/>
           </div>
-        </div>
+
+          <div className="col-sm-9">
+            <Link to={`/site/units/${unit.id}/exercise/create`} className="head-link"><span
+              className="glyphicon glyphicon-plus"/> Crear Nuevo Ejercicio</Link>
+            <UnitPageTitle filter={filter}/>
+
+            <div className="row">
+              {unit.exercises.map((exercise, i) =>
+                <div className="col-sm-12" key={i}>
+                  <div className="box box-fill">
+                    <Link to={`/site/units/${unit.id}/exercise/${exercise.id}`}>
+                      <div className="box-body box-body-min">
+                        <summary>{exercise.briefing}</summary>
+                      </div>
+
+                      <div style={{position: "relative"}}>
+                        <div className="backgrounded"
+                             style={{backgroundImage: `url("http://www.fotor.com/images2/features/blur/022.jpg")`}}/>
+                        <div className="box-footer box-footer-stylized">
+                          <h3 className="pull-left">
+                            <small>Creado por:</small>
+                            Marcelo Jara Almeyda
+                          </h3>
+
+                          <h3 className="pull-right difficulty">
+                            <div>
+                              <small className="pull-right">Dificultad</small>
+                            </div>
+
+                            <Stars stars={exercise.difficulty} of={4}/>
+                          </h3>
+                          <div className="clearfix"></div>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
       </div>
     )
   }

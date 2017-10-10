@@ -1,9 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import style from './DocumentBox.less'
+
 export default ({content}) => {
   return (
-    <div className="box box-fill">
+    <div className={`box box-fill ${style.wrapper}`}>
       <Link to={`/site/contents/${content.id}`}>
         <div className="box-body box-body-min">
           <h2>{content.subtitle}</h2>

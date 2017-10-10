@@ -13,23 +13,25 @@ export default class UnitContents extends React.Component {
 
     return (
       <div>
-        <div className="col-md-4">
-          <SubjectBox subject={unit.subject}/>
-          <UnitSidebar type="contents" unit={unit}/>
-        </div>
-
-        <div className="col-sm-8">
-          <div className="head-link"><span className="glyphicon glyphicon-plus"/> Crear Nuevo Documento</div>
-          <UnitPageTitle filter={filter}/>
-
-          <div className="row">
-            {unit.contents.map((content, i) =>
-              <div className="col-sm-6" key={i}>
-                <DocumentBox content={content}/>
-              </div>
-            )}
+        <section>
+          <div className="col-md-4">
+            <SubjectBox subject={unit.subject} title={false}/>
+            <UnitSidebar type="contents" unit={unit}/>
           </div>
-        </div>
+
+          <div className="col-sm-8">
+            <div className="head-link"><span className="glyphicon glyphicon-plus"/> Crear Nuevo Documento</div>
+            <UnitPageTitle filter={filter}/>
+
+            <div className="row">
+              {unit.contents.map((content, i) =>
+                <div className="col-sm-6" key={i}>
+                  <DocumentBox content={content}/>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
       </div>
     )
   }

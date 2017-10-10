@@ -66,23 +66,25 @@ export default class NewExercise extends React.Component {
 
     return (
       <div>
-        <div className="col-sm-3">
-          <SubjectBox subject={unit.subject}/>
-          <UnitSidebar type="exercises" unit={unit}/>
-        </div>
-        <div className="col-sm-9">
-          <UnitPageTitle filter={filter}/>
-          <div className="row">
-            <div className="col-sm-12">
-              <div className="box box-fill">
-                <div className="box-body">
-                  {this.showContent()}
-                  <div className="clearfix"/>
+        <section>
+          <div className="col-sm-3">
+            <SubjectBox subject={unit.subject}/>
+            <UnitSidebar type="exercises" unit={unit}/>
+          </div>
+          <div className="col-sm-9">
+            <UnitPageTitle filter={filter}/>
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="box box-fill">
+                  <div className="box-body">
+                    {this.showContent()}
+                    <div className="clearfix"/>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     )
   }

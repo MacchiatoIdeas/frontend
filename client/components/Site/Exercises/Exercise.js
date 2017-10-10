@@ -17,7 +17,7 @@ export default class Exercise extends React.Component {
     return (
       <div>
         <h1>{this.props.exercise.title}</h1>
-        <p>{this.props.exercise.briefing}</p>
+        <p className="lead">{this.props.exercise.briefing}</p>
         {this.showSchema.bind(this)()}
       </div>
     )
