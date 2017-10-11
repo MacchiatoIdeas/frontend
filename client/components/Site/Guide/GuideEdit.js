@@ -2,21 +2,17 @@ import React from 'react';
 
 import css from '../../../style/FluidPage.less';
 import style from './GuideEdit.less'
-import Exercise from '../Exercises/Exercise';
 import GuideItem from './GuideItem'
-import ClickOutHandler from 'react-onclickout';
-
-import Reorder, {reorder, reorderImmutable, reorderFromTo, reorderFromToImmutable} from 'react-reorder';
 
 export default class GuideEdit extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       title: this.props.guide.title,
       items:
       this.props.guide.items
-    }
+    };
 
     this.onTitleChange = this.onTitleChange.bind(this);
   }
@@ -29,8 +25,8 @@ export default class GuideEdit extends React.Component {
 
   componentDidMount() {
     $('#guide').sortable({
-      handle: ".drag",
-      placeholder: "ui-state-highlight",
+      handle: '.drag',
+      placeholder: 'ui-state-highlight',
       start: function (e, ui) {
         ui.placeholder.height(ui.helper.outerHeight());
       },
