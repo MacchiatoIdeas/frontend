@@ -13,7 +13,7 @@ export default ({guide}) =>
 
       <div style={{position: 'relative'}}>
         <div className="backgrounded"
-             style={{backgroundImage: `url("http://www.twitrcovers.com/wp-content/uploads/2012/11/Gaussian-Blur-l.jpg")`}}/>
+             style={{backgroundImage: 'url("http://www.twitrcovers.com/wp-content/uploads/2012/11/Gaussian-Blur-l.jpg")'}}/>
         <div className="box-footer box-footer-stylized">
           <h3>
             <small>Creada por:</small>

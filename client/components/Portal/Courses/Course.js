@@ -4,6 +4,8 @@ import {Route, Switch} from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Students from './Students';
 import Summary from './Summary';
+import Guides from './Guides';
+import Tests from './Tests';
 
 export default class Course extends React.Component {
   render() {
@@ -34,6 +36,8 @@ export default class Course extends React.Component {
               <div className="col-sm-9">
                 <Switch>
                   <Route path="/portal/course/:id/students" component={Students}/>
+                  <Route path="/portal/course/:id/guides" component={Guides}/>
+                  <Route path="/portal/course/:id/tests" component={Tests}/>
                   <Route component={Summary}/>
                 </Switch>
               </div>
