@@ -7,7 +7,7 @@ import {getSubjectById} from '../../actions/subjects';
 
 import SubjectBox from './SubjectBox';
 import SubjectSidebar from './SubjectSidebar';
-import GuideBox from './GuideBox';
+import GuideBox from './Guide/GuideBox';
 
 @connect((state, props) => {
   let subject = state.subjects[props.match.params.id];
