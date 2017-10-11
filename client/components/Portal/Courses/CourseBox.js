@@ -1,8 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const CourseBox = ({course}) =>
   <div className="playlist-item" style={{borderRightColor: course.subject.color}}>
-    <a href="#">
+    <Link to={`/portal/course/${course.id}`}>
       <div className="playlist-item-body">
         <span className="glyphicon glyphicon-apple step" style={{background: course.subject.color}}/>
 
@@ -24,7 +25,7 @@ const CourseBox = ({course}) =>
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   </div>;
 
 export default CourseBox;

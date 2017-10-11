@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 
-import Exercise from "./Exercise";
-import Comments from "./Comments";
-import {getExerciseById} from "../../../actions/exercises";
+import Exercise from './Exercise';
+import Comments from './Comments';
+import {getExerciseById} from '../../../actions/exercises';
 
 import style from './ExerciseDetail.less'
 

@@ -71,8 +71,9 @@ a {
   border: none;
 }
 
-.form-group input, .panel{
-  border-radius: 20px !important;
+.form-group input, .panel {
+  border-radius: 10px !important;
+  border: 0;
 }
 
 button {

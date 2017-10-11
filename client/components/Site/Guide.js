@@ -1,15 +1,18 @@
 import React from 'react';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 
-import {getGuideById} from "../../actions/guides";
+import {getGuideById} from '../../actions/guides';
 import Exercise from './Exercises/Exercise';
 
 import css from '../../style/FluidPage.less';
 
 @connect((state, props) => {
   let guide = state.guides[props.match.params.id];
-  if (!guide) {
-    return {isFetching: true}
+
+  if (!guide || !guide.items) {
+    return {
+      isFetching: true
+    }
   }
 
   return {
@@ -42,14 +45,14 @@ export default class Guide extends React.Component {
           <div className="row">
             <div className={`col-sm-9 ${css.content}`}>
               {guide.items.map((item, i) => {
-                if (item.type == 'content') {
+                if (item.type === 'content') {
                   return (
                     <div key={i}>
                       <div dangerouslySetInnerHTML={{__html: item.item.html_text}}/>
                       <hr/>
                     </div>
                   )
-                } else if (item.type == 'exercise') {
+                } else if (item.type === 'exercise') {
                   let exercise = {...item.item};
                   exercise.content = JSON.parse(exercise.content);
                   exercise.right_answer = JSON.parse(exercise.right_answer);

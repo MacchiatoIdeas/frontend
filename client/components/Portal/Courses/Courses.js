@@ -1,7 +1,6 @@
 import React from 'react';
-import PortalSidebar from "./PortalSidebar";
-import FolderBox from "./FolderBox";
-import CourseBox from "./CourseBox";
+import PortalSidebar from '../PortalSidebar';
+import CourseBox from './CourseBox';
 
 export default class Courses extends React.Component {
   render() {
@@ -16,7 +15,7 @@ export default class Courses extends React.Component {
         }
       },
       {
-        id: 1,
+        id: 2,
         name: '2do Medio - Alicante',
         subject: {
           id: 1,

@@ -39,7 +39,7 @@ export default class CommentDetail extends React.Component {
           <div className="clearfix"/>
         </div>
         {comment.comment.comments.map((comment, i) => (
-          <div className={style.subComment}>
+          <div className={style.subComment} key={i}>
             <CommentDetail comment={comment}/>
           </div>
         ))}

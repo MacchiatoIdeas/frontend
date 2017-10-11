@@ -14,7 +14,7 @@ export default ({content}) => {
 
         <div style={{position: 'relative'}}>
           <div className="backgrounded"
-               style={{backgroundImage: `url("http://www.fotor.com/images2/features/blur/022.jpg")`}}/>
+               style={{backgroundImage: 'url("http://www.fotor.com/images2/features/blur/022.jpg")'}}/>
           <div className="box-footer box-footer-stylized">
             <h3>
               <small>Creado por:</small>

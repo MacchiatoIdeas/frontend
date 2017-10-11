@@ -25,16 +25,13 @@ const OptionButton = ({icon, text, onClick}) => (
 export default class Register extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      form: undefined,
-    }
+    this.state = {};
   }
 
   onOptionSelect(form) {
     this.setState({
       form
-    })
+    });
   }
 
   getForm() {
@@ -45,8 +42,8 @@ export default class Register extends React.Component {
         <Form title="Estudiante" onBackClick={() => {
           this.onOptionSelect(undefined);
         }}>
-          <input type="text" className="form-control" placeholder="Nombres" autoFocus required/>
-          <input type="text" className="form-control" placeholder="Apellidos" required/>
+          <input type="text" className="form-control" placeholder="nombres" autoFocus required/>
+          <input type="text" className="form-control" placeholder="apellidos" required/>
 
           <button className="btn btn-block btn-primary">Siguiente Paso</button>
         </Form>
@@ -56,8 +53,8 @@ export default class Register extends React.Component {
         <Form title="Profesor" onBackClick={() => {
           this.onOptionSelect(undefined);
         }}>
-          <input type="text" className="form-control" placeholder="Nombres" autoFocus required/>
-          <input type="text" className="form-control" placeholder="Apellidos" required/>
+          <input type="text" className="form-control" placeholder="nombres" autoFocus required/>
+          <input type="text" className="form-control" placeholder="apellidos" required/>
 
           <button className="btn btn-block btn-primary">Siguiente Paso</button>
         </Form>

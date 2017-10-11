@@ -19,6 +19,3 @@ export const getContentById = (id) => (dispatch) => {
       payload: normalize(response, content)
     }));
 };
-
-export const receiveContent = (content) => ({
-});

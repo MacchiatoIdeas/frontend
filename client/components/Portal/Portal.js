@@ -9,10 +9,11 @@ import Navbar from '../Navbar';
 import Body from '../Body';
 import Summary from './Summary';
 import Folders from './Folders';
-import Courses from './Courses';
+import Courses from './Courses/Courses';
 import Exercises from './Exercises';
 
 import style from './Portal.less';
+import Course from './Courses/Course';
 
 @connect(state => {
   const {auth} = state;
@@ -98,6 +99,7 @@ export default class Portal extends React.Component {
             <Route path="/portal/folders" component={Folders}/>
             <Route path="/portal/courses" component={Courses}/>
             <Route path="/portal/exercises" component={Exercises}/>
+            <Route path="/portal/course/:id" component={Course}/>
             <Route component={Summary}/>
           </Switch>
           </Body>
