@@ -1,5 +1,5 @@
 import React from 'react';
-import GuideBox from '../../Site/GuideBox';
+import GuideBox from '../../Site/Guide/GuideBox';
 
 export default class Guides extends React.Component {
   render() {

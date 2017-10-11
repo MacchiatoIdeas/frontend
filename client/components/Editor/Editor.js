@@ -5,6 +5,7 @@ import '../../style/editor.css';
 import Title from './Title';
 import Content from './Content';
 import Graph from './Graph';
+import Body from '../Body';
 
 
 export default class Wrapper extends React.Component {
@@ -73,7 +74,7 @@ export default class Wrapper extends React.Component {
     return (
       <div>
         <Navbar/>
-        <div id="body" className="container-fluid panel panel-default">
+        <Body showBreadcrumbs={false} showFooter={false}>
           <div className="paper">
             <ul id="editor" className="editor ui-sortable">
               {Object.keys(this.state.inputList).map((key, i) => this.state.inputList[key])}
@@ -100,7 +101,7 @@ export default class Wrapper extends React.Component {
             </div>
             <div className="clearfix"/>
           </div>
-        </div>
+        </Body>
       </div>
     )
   }

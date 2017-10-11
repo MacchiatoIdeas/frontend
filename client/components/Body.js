@@ -52,10 +52,10 @@ export default class Body extends React.Component {
   render() {
     let breadcrumbs, footer;
 
-    if (this.props.breadcrumbs === undefined || this.props.breadcrumbs)
+    if (this.props.showBreadcrumbs === undefined || this.props.showBreadcrumbs)
       breadcrumbs = <Breadcrumbs/>;
 
-    if (this.props.footer === undefined || this.props.footer)
+    if (this.props.showFooter === undefined || this.props.showFooter)
       footer = <Footer/>;
 
     return (
