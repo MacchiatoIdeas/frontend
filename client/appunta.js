@@ -15,6 +15,7 @@ import Login from './components/Auth/Login';
 import Portal from './components/Portal/Portal';
 import Site from './components/Site/Site';
 import Editor from './components/Editor/Editor';
+import GuidesEditor from './components/GuidesEditor/GuidesEditor'
 import Register from './components/Auth/Register';
 
 const router = (
@@ -27,6 +28,7 @@ const router = (
         <Route path="/site" component={Site}/>
         <Route path="/portal" component={Portal}/>
         <Route path="/editor" component={Editor}/>
+        <Route path="/guides-editor" component={GuidesEditor}/>
       </Switch>
     </BrowserRouter>
   </Provider>
