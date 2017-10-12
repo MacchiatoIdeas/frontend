@@ -2,6 +2,8 @@ import React from 'React';
 import {Modal, ModalTitle, ModalHeader, ModalBody} from 'react-bootstrap';
 import style from './AddItemModal.less';
 import {connect} from 'react-redux';
+import {sendGuideItem} from '../../../actions/guides';
+import * as denormalizers from '../../../denormalizers';
 
 const GuideItem = ({title, click, selected}) =>
   <div
@@ -20,15 +22,18 @@ const GuideItem = ({title, click, selected}) =>
   </div>;
 
 @connect((state) => ({
-  auth: state.auth
-}))
+  auth: state.auth,
+  guides: denormalizers.guides(state.auth.user.guides, state)
+}), {
+  sendGuideItem
+})
 export default class AddItemModal extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       showModal: false,
-      selectedPk: null,
+      selectedId: null,
     };
 
     this.hide = this.hide.bind(this);
@@ -41,7 +46,7 @@ export default class AddItemModal extends React.Component {
   hide() {
     this.setState({
       showModal: false,
-      selectedPk: null,
+      selectedId: null,
     })
   }
 
@@ -53,25 +58,32 @@ export default class AddItemModal extends React.Component {
 
   onSelect(pk) {
     this.setState({
-      selectedPk: pk,
+      selectedId: pk,
     });
   }
 
   submit() {
-    if (this.state.selectedPk !== null) {
+    if (this.state.selectedId !== null) {
       if (this.props.content) {
         let pk = this.props.content.id;
         console.log('CONTENT', pk)
       } else if (this.props.exercise) {
-        let pk = this.props.exercise.id;
-        console.log('EXERCISE', pk);
+        let id = this.props.exercise.id;
+
+        this.props.sendGuideItem(this.props.auth.access_token, {
+          guide: this.state.selectedId,
+          exercise: id,
+          content: null,
+          order: Math.floor(Math.random() * 100),
+        });
       }
       this.hide();
     }
   }
 
   renderComponent() {
-    let {user} = this.props.auth;
+    const {user} = this.props.auth;
+    const {guides} = this.props;
     if (user.isAuthenticated) {
       return (
         <div>
@@ -103,15 +115,6 @@ export default class AddItemModal extends React.Component {
   }
 
   render() {
-    let guides = [
-      {
-        'id': 1,
-        'title': 'Guia 1',
-      }, {
-        'id': 2,
-        'title': 'Guia 2',
-      }
-    ];
     return (
       <div>
         {this.renderComponent}

@@ -51,7 +51,7 @@ export default class Comment extends React.Component {
   render() {
     const {auth} = this.props;
     const {comments} = this.props;
-    console.log(auth);
+
     return (
       <div>
         <section>

@@ -4,7 +4,6 @@ import style from './AlternativeExercise.less'
 
 export default class AlternativeExercise extends React.Component {
   render() {
-    console.log('ALTERNATIVE EXERCISE');
     return (
       <div className="playlist playlist-accents">
         {this.props.alternatives.map((alternative, i) => (
