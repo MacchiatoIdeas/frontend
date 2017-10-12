@@ -77,7 +77,7 @@ export default class Content extends React.Component {
             </div>
           </div>
         </div>
-        <Comments content={content}/>
+        <Comments content={content} comments={content.comments}/>
       </div>
     )
   }

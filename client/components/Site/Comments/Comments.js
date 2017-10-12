@@ -5,7 +5,7 @@ import CommentDetail from "./CommentDetail";
 import NewComment from "./NewComment";
 import {connect} from 'react-redux';
 
-let comments = [
+let _comments = [
   {
     'user': {
       'name': 'Hernán Herreros niño',
@@ -50,6 +50,7 @@ export default class Comment extends React.Component {
 
   render() {
     const {auth} = this.props;
+    const {comments} = this.props;
     console.log(auth);
     return (
       <div>

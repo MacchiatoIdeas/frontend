@@ -60,7 +60,7 @@ export default class ExerciseDetail extends React.Component {
           <div className="clearfix"/>
         </section>
         <RecommendedExercises/>
-        <Comments exercise={exercise}/>
+        <Comments exercise={exercise} comments={exercise.comments}/>
       </div>
     )
   }
