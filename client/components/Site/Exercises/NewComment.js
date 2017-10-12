@@ -10,9 +10,6 @@ export default class NewComment extends React.Component {
   render() {
     const {auth} = this.props;
 
-    // AQUI!
-    console.log(auth);
-
     return (
       <div>
         <div className={styleDetail.commentWrapper}>

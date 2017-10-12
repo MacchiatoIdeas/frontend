@@ -1,7 +1,10 @@
 import fetch from 'isomorphic-fetch';
 
 import {API_URL} from '../api';
-import {AUTH_LOGIN_FETCH, AUTH_LOGIN_RECEIVE, AUTH_USERDATA_FETCH, AUTH_USERDATA_RECEIVE} from './index';
+import {
+  AUTH_LOGIN_FETCH, AUTH_LOGIN_RECEIVE, AUTH_USERDATA_FAILED, AUTH_USERDATA_FETCH,
+  AUTH_USERDATA_RECEIVE
+} from './index';
 
 export const getUserData = (token) => (dispatch, getState) => {
   if (getState().auth.user) {
@@ -11,6 +14,7 @@ export const getUserData = (token) => (dispatch, getState) => {
   dispatch({
     type: AUTH_USERDATA_FETCH
   });
+
   return fetch(`${API_URL}/users/1/`, {
     headers: {
       'Authorization': `Bearer ${token}`
@@ -21,6 +25,13 @@ export const getUserData = (token) => (dispatch, getState) => {
       error => console.log(error)
     )
     .then(data => {
+      if (!data.username) {
+        dispatch({
+          type: AUTH_USERDATA_FAILED,
+        });
+        return;
+      }
+
       dispatch(receiveUserData(data));
     })
 };
@@ -49,6 +60,21 @@ export const sendLogin = (username, password) => (dispatch) => {
     .then(data => {
       dispatch(receiveLogin(data));
     })
+};
+
+export const loadFromLocalStorage = () => (dispatch) => {
+  const authJSON = localStorage.getItem('auth');
+
+  if (authJSON !== null) {
+    const auth = JSON.parse(authJSON);
+
+    dispatch(receiveLogin(auth));
+    dispatch(getUserData(auth.access_token));
+  } else {
+    dispatch({
+      type: AUTH_USERDATA_FAILED,
+    });
+  }
 };
 
 export const receiveLogin = (data) => ({

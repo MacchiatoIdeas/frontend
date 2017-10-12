@@ -3,7 +3,7 @@ import React from 'react';
 import {Redirect, Route, Switch} from 'react-router';
 import {connect} from 'react-redux';
 
-import {getUserData} from '../../actions/auth';
+import {getUserData, loadFromLocalStorage} from '../../actions/auth';
 
 import Navbar from '../Navbar';
 import Body from '../Body';
@@ -30,11 +30,11 @@ import Guides from './Guides';
     auth
   }
 }, {
-  getUserData
+  loadFromLocalStorage
 })
 export default class Portal extends React.Component {
   componentDidMount() {
-    this.props.getUserData(this.props.auth.access_token);
+    this.props.loadFromLocalStorage();
   }
 
   render() {

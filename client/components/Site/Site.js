@@ -8,13 +8,13 @@ import Content from './Content';
 import Subjects from './Subjects';
 import Unit from './Unit/Unit';
 import Guide from './Guide/Guide';
-import {getUserData} from '../../actions/auth';
+import {getUserData, loadFromLocalStorage} from '../../actions/auth';
 import {connect} from 'react-redux';
 
 @connect(state => {
   const {auth} = state;
 
-  if (!auth.user) {
+  if (auth.isAuthenticated === undefined) {
     return {
       isFetching: true,
     }
@@ -24,11 +24,12 @@ import {connect} from 'react-redux';
     isFetching: false,
   }
 }, {
-  getUserData
+  getUserData,
+  loadFromLocalStorage
 })
 export default class Site extends React.Component {
   componentWillMount() {
-    this.props.getUserData();
+    this.props.loadFromLocalStorage();
   }
 
   render() {

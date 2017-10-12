@@ -35,11 +35,7 @@ export default class Body extends React.Component {
     }
 
     if (body !== undefined) {
-      console.log('UPDATED');
       let bodyRect = body.getBoundingClientRect();
-
-      console.log('RECT', bodyRect);
-      console.log('RES', bodyRect.height < window.innerHeight - bodyRect.y);
 
       if (bodyRect.height < window.innerHeight - bodyRect.y) {
         this.setState({
