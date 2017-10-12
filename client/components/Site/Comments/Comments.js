@@ -3,6 +3,7 @@ import {Link, NavLink} from 'react-router-dom';
 
 import CommentDetail from "./CommentDetail";
 import NewComment from "./NewComment";
+import {connect} from 'react-redux';
 
 let comments = [
   {
@@ -42,10 +43,14 @@ let comments = [
 
 ];
 
-
+@connect((state) => ({
+  auth: state.auth,
+}))
 export default class Comment extends React.Component {
 
   render() {
+    const {auth} = this.props;
+    console.log(auth);
     return (
       <div>
         <section>
@@ -57,10 +62,11 @@ export default class Comment extends React.Component {
             )}
           </div>
           <br/>
-          <div className="col-sm-12">
-            <NewComment/>
-          </div>
+          <div className="clearfix"/>
         </section>
+        {auth.isAuthenticated ?
+          <NewComment user={auth.user} exercise={this.props.exercise}/>
+          : null}
       </div>
     )
   }
