@@ -4,7 +4,14 @@ import css from '../../../style/FluidPage.less';
 import style from './GuideEdit.less'
 import GuideItem from './GuideItem'
 import Textarea from 'react-textarea-autosize';
+import {connect} from 'react-redux';
+import {updateGuide} from '../../../actions/guides';
 
+@connect((state) => ({
+  auth: state.auth,
+}), {
+  updateGuide
+})
 export default class GuideEdit extends React.Component {
   constructor(props) {
     super(props);
@@ -62,7 +69,13 @@ export default class GuideEdit extends React.Component {
   }
 
   submit() {
+    const guide = {
+      title: this.state.title,
+      brief: this.state.brief,
+      subject: this.props.guide.subject
+    };
 
+    this.props.updateGuide(this.props.auth.access_token, this.props.guide.id, guide);
   }
 
   render() {

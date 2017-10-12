@@ -49,6 +49,33 @@ export const sendGuide = (token, guide) => (dispatch) => {
     });
 };
 
+export const updateGuide = (token, id, guide) => (dispatch) => {
+  dispatch({
+    type: GUIDE_ITEM_SEND,
+  });
+
+  return fetch(`${API_URL}/material/guides/${id}/`, {
+    method: 'PUT',
+    body: JSON.stringify(guide),
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    }
+  })
+    .then(
+      response => response.json(),
+      error => console.log(error)
+    )
+    .then(response => {
+      console.log('response', response);
+
+      return dispatch({
+        type: GUIDE_RECEIVE,
+        payload: normalize(response, guide)
+      });
+    });
+};
+
 export const sendGuideItem = (token, item) => (dispatch) => {
   dispatch({
     type: GUIDE_ITEM_SEND,
@@ -67,6 +94,8 @@ export const sendGuideItem = (token, item) => (dispatch) => {
       error => console.log(error)
     )
     .then(response => {
+      console.log('response', response);
+
       return dispatch(getGuideById(response.guide));
     });
 };

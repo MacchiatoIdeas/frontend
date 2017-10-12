@@ -26,8 +26,6 @@ export default class MatchingExercise extends React.Component {
   }
 
   render() {
-    console.log('ALTERNATIVE EXERCISE');
-    console.log(this.state.answers);
     return (
       <div>
         <div className="col-sm-6">

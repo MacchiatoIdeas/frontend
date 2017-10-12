@@ -46,7 +46,7 @@ export const sendLogin = (username, password) => (dispatch) => {
     body: `grant_type=password&username=${username}&password=${password}`,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Basic TjYxbVZSSnU1UXM0NGJ4VmZ5Tlp1TkZ4TUNXMDI4MDVDVVFzamQ3QjplRzFqSGJIcm56RUxpSjN3R0t0anBFWDcxZkxSTFhTVGxmRXV6OFFXSWxrYW1FY21iTkJnTjNrQ1AxOFlGYzd2OUVnR0s5M3dPMTRiUUVYRDVaZkdTMjVkVlZrMUVvcDV1SGoyblNTQWUza1V4ODRBNjd6N01xOXNTcmdrZGhPMw=='
+      'Authorization': 'Basic VTRSZlhtMkpnRFRQYmZmWmNUblVDV0tMUU90emNEdUQ4T3dvTFRrYTpGM0M3eWtWMElTbUNHYlZxVVJQUzJWckNMSXd3a2lkSFVabHRNYnFFa3lrcjNxUVoyMFh4VXhQaHV5c0ZQMHBsakNwclNpdkxXQ243WlZPNllaZDlDeFNJRzJaZEhEMnNYWDJ5OEdBbGp5aVF0YUJUU21tTXpkRmNqZHk1UkZDaQ=='
     }
   })
     .then(

@@ -1,6 +1,9 @@
 import React from 'React';
 import {Modal, ModalTitle, ModalHeader, ModalBody} from 'react-bootstrap';
 import style from './AddItemModal.less';
+import {sendGuideItem} from '../../../actions/guides';
+import {connect} from 'react-redux';
+import * as denormalizers from '../../../denormalizers';
 
 const GuideItem = ({title, click, selected}) =>
   <div
@@ -18,13 +21,19 @@ const GuideItem = ({title, click, selected}) =>
     </a>
   </div>;
 
+@connect((state) => ({
+  auth: state.auth,
+  guides: denormalizers.guides(state.auth.user.guides, state)
+}), {
+  sendGuideItem
+})
 export default class AddItemModal extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       showModal: false,
-      selectedPk: null,
+      selectedId: null,
     };
 
     this.hide = this.hide.bind(this);
@@ -36,7 +45,7 @@ export default class AddItemModal extends React.Component {
   hide() {
     this.setState({
       showModal: false,
-      selectedPk: null,
+      selectedId: null,
     })
   }
 
@@ -48,24 +57,31 @@ export default class AddItemModal extends React.Component {
 
   onSelect(pk) {
     this.setState({
-      selectedPk: pk,
+      selectedId: pk,
     });
   }
 
   submit() {
-    if (this.state.selectedPk !== null) {
+    if (this.state.selectedId !== null) {
       if (this.props.content) {
         let pk = this.props.content.id;
         console.log('CONTENT', pk)
       } else if (this.props.exercise) {
-        let pk = this.props.exercise.id;
-        console.log('EXERCISE', pk);
+        let id = this.props.exercise.id;
+
+        this.props.sendGuideItem(this.props.auth.access_token, {
+          guide: this.state.selectedId,
+          exercise: id,
+          content: null,
+          order: Math.floor(Math.random() * 100),
+        });
       }
       this.hide();
     }
   }
 
   render() {
+    /*
     let guides = [
       {
         'id': 1,
@@ -75,6 +91,10 @@ export default class AddItemModal extends React.Component {
         'title': 'Guia 2',
       }
     ];
+   */
+
+    const {guides} = this.props;
+
     return (
       <div>
         <button className={`btn btn-block btn-warning ${style.button}`} onClick={this.show}>Agregar a mis guías</button>
@@ -88,7 +108,7 @@ export default class AddItemModal extends React.Component {
               <div className="playlist playlist-accents">
                 {guides.map((guide, i) =>
                   <GuideItem title={guide.title} click={() => this.onSelect(guide.id)}
-                             selected={guide.id === this.state.selectedPk} key={i}/>
+                             selected={guide.id === this.state.selectedId} key={i}/>
                 )}
               </div>
               <br/>
