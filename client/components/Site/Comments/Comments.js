@@ -65,7 +65,7 @@ export default class Comment extends React.Component {
           <div className="clearfix"/>
         </section>
         {auth.isAuthenticated ?
-          <NewComment user={auth.user} exercise={this.props.exercise}/>
+          <NewComment user={auth.user} exercise={this.props.exercise} content={this.props.content}/>
           : null}
       </div>
     )
