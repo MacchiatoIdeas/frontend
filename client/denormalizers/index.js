@@ -9,3 +9,6 @@ export const subject = (subject, state) => {
 
 export const subjects = (subjects) =>
   Object.keys(subjects).map(id => subjects[id]);
+
+export const guides = (list, state) =>
+  list.map(id => state.guides[id]);

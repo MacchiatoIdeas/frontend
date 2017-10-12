@@ -7,8 +7,10 @@ export default (state = {
       localStorage.setItem('auth', JSON.stringify(action.payload));
       return {...action.payload};
     case AUTH_USERDATA_RECEIVE:
-      console.log(1);
-      return {...state, user: action.payload, isAuthenticated: true};
+      return {...state,
+        user: action.payload.entities.users[action.payload.result],
+        isAuthenticated: true
+      };
     case AUTH_USERDATA_FAILED:
       return {...state, isAuthenticated: false};
   }
