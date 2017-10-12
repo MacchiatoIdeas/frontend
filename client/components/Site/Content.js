@@ -17,6 +17,10 @@ import css from '../../style/FluidPage.less';
     return {isFetching: true}
   }
 
+  if (!content.comments) {
+    return {isFetching: true}
+  }
+
   content = {
     ...content,
     unit: state.units[content.unit]
