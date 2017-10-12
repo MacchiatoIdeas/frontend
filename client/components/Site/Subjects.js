@@ -27,7 +27,7 @@ export default class Subjects extends React.Component {
         <div className="row">
           {this.props.subjects.map((subject, i) =>
             <div className="col-sm-4" key={i}>
-              <SubjectBox subject={subject}/>
+              <SubjectBox subject={subject} showTitle={true}/>
             </div>
           )}
         </div>

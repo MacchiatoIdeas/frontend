@@ -6,3 +6,6 @@ export const subject = (subject, state) => {
   }));
   return subject;
 };
+
+export const subjects = (subjects) =>
+  Object.keys(subjects).map(id => subjects[id]);

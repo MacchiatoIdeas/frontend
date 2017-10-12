@@ -7,7 +7,7 @@ import Subject from './Subject';
 import Content from './Content';
 import Subjects from './Subjects';
 import Unit from './Unit/Unit';
-import Guide from "./Guide/Guide";
+import Guide from './Guide/Guide';
 
 export default class Site extends React.Component {
   render() {

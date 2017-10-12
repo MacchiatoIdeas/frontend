@@ -1,5 +1,5 @@
 import React from 'react';
-import PortalSidebar from "./PortalSidebar";
+import PortalSidebar from './PortalSidebar';
 
 export default class Exercises extends React.Component {
   render() {
