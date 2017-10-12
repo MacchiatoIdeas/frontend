@@ -9,10 +9,6 @@ import {normalize} from 'normalizr';
 import {user} from '../schema';
 
 export const getUserData = (token) => (dispatch, getState) => {
-  if (getState().auth.user) {
-    return;
-  }
-
   dispatch({
     type: AUTH_USERDATA_FETCH
   });

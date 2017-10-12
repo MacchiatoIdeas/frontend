@@ -2,6 +2,8 @@ import React from 'react';
 import {Modal, ModalBody, ModalHeader, ModalTitle} from 'react-bootstrap';
 import subjectBoxStyle from '../../Site/SubjectBox.less';
 import style from './style.less';
+import {sendGuide} from '../../../actions/guides';
+import {connect} from 'react-redux';
 
 class SubjectItem extends React.Component {
   render() {
@@ -33,16 +35,23 @@ class SubjectItem extends React.Component {
   }
 }
 
+@connect((state) => ({
+  auth: state.auth
+}), {
+  sendGuide
+})
 export default class NewGuideModal extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       selected: {},
+      title: '',
+      brief: '',
     };
   }
 
-  onClick(subject) {
+  onSubjectClick(subject) {
     this.setState({
       selected: subject,
     })
@@ -56,6 +65,20 @@ export default class NewGuideModal extends React.Component {
     this.props.hideModalEvent();
   }
 
+  onSubmit(e) {
+    e.preventDefault();
+
+    const guide = {
+      title: this.refs.title.value,
+      brief: this.refs.brief.value,
+      subject: this.state.selected.id,
+    };
+
+    const token = this.props.auth.access_token;
+    this.props.sendGuide(token, guide);
+    this.onCloseEvent();
+  }
+
   render() {
     const {subjects, showModal} = this.props;
     const {selected} = this.state;
@@ -66,24 +89,34 @@ export default class NewGuideModal extends React.Component {
           <ModalTitle id="contained-modal-title">Crear Nueva Guía</ModalTitle>
         </ModalHeader>
 
-        <input type="text" className={`form-control ${style.formTitle}`}
-               placeholder="Título de la nueva guía..."
-               autoFocus/>
+        <form onSubmit={this.onSubmit.bind(this)}>
+          <input type="text" className={`form-control ${style.formTitle}`}
+                 ref="title"
+                 placeholder="Título de la nueva guía..."
+                 autoFocus/>
 
-        <input type="text" className={`form-control ${style.formBrief}`}
-               placeholder="Descripción corta..."/>
+          <input type="text" className={`form-control ${style.formBrief}`}
+                 ref="brief"
+                 placeholder="Descripción corta..."/>
 
-        <ModalBody>
-          <div className="row">
-            {subjects.map((subject, i) =>
-              <div className="col-sm-4" key={i}>
-                <SubjectItem subject={subject}
-                             onClick={this.onClick.bind(this)}
-                             selected={selected.id === subject.id}/>
-              </div>
-            )}
-          </div>
-        </ModalBody>
+          <ModalBody>
+            <div className="row">
+              {subjects.map((subject, i) =>
+                <div className="col-sm-4" key={i}>
+                  <SubjectItem subject={subject}
+                               onClick={this.onSubjectClick.bind(this)}
+                               selected={selected.id === subject.id}/>
+                </div>
+              )}
+            </div>
+          </ModalBody>
+
+          <ModalBody>
+            <div className="text-right">
+              <button className="btn btn-primary">Crear nueva guía</button>
+            </div>
+          </ModalBody>
+        </form>
       </Modal>
     )
   }

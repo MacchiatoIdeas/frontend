@@ -6,16 +6,16 @@ import {connect} from 'react-redux';
 import * as denormalizers from '../../../denormalizers';
 import NewGuideModal from './NewGuideModal';
 import {getAllSubjects} from '../../../actions/subjects';
+import {Link} from 'react-router-dom';
 
-const GuideItem = ({title, subject, color}) =>
+const GuideItem = ({id, title, subject, color}) =>
   <div className="playlist-item" style={{borderRightColor: color}}>
-    <a href="#" className="playlist-item-body playlist-item-link">
+    <Link to={`/site/guides/${id}/edit`} className="playlist-item-body playlist-item-link">
       <span className="icon-play-v3 step" style={{background: color}}/>
       <strong>{title}</strong>
       <div className="playlist-item-tag">{subject}</div>
-    </a>
+    </Link>
   </div>;
-
 
 @connect((state) => {
   const {auth} = state;
@@ -71,7 +71,7 @@ export default class Guides extends React.Component {
 
           <div className="playlist playlist-accents">
             {guides.map((guide, i) =>
-              <GuideItem title={guide.title} color="" subject="" key={i}/>
+              <GuideItem id={guide.id} title={guide.title} color="" subject="" key={i}/>
             )}
           </div>
         </div>
