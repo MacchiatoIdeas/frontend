@@ -26,25 +26,14 @@ export default class CommentDetail extends React.Component {
                 </div>
                 <div className="col-sm-12">
                   <div className={style.likes}>
-                    <button className="btn btn-primary pull-left">
-                      <span className={style.likesCount}>{comment.comment.likes}</span>
-                      <span className="glyphicon glyphicon-thumbs-up"/>
-                    </button>
+                    <span className={`pull-right ${style.date}`}>{comment.comment.date}</span>
                   </div>
-                  <button className="pull-right btn btn-link">Responder</button>
                 </div>
               </div>
             </div>
           </div>
           <div className="clearfix"/>
         </div>
-        {/*
-        {comment.comment.comments.map((comment, i) => (
-          <div className={style.subComment} key={i}>
-            <CommentDetail comment={comment} />
-          </div>
-        ))}
-          */}
       </div>
     )
   }

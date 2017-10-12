@@ -2,6 +2,7 @@ import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
 
 import CommentDetail from "./CommentDetail";
+import NewComment from "./NewComment";
 
 let comments = [
   {
@@ -13,6 +14,7 @@ let comments = [
     'comment': {
       'message': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, aperiam architecto aspernatur assumenda, corporis dolore impedit in incidunt nulla quasi, quisquam unde voluptas. Ad, consequatur distinctio nemo pariatur quod voluptatibus',
       'likes': 10,
+      'date': '11 de Octubre de 2017',
     }
   }, {
     'user': {
@@ -23,6 +25,7 @@ let comments = [
     'comment': {
       'message': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, aperiam architecto aspernatur assumenda, corporis dolore impedit in incidunt nulla quasi, quisquam unde voluptas. Ad, consequatur distinctio nemo pariatur quod voluptatibus',
       'likes': 10,
+      'date': '11 de Octubre de 2017',
     }
   }, {
     'user': {
@@ -33,6 +36,7 @@ let comments = [
     'comment': {
       'message': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, aperiam architecto aspernatur assumenda, corporis dolore impedit in incidunt nulla quasi, quisquam unde voluptas. Ad, consequatur distinctio nemo pariatur quod voluptatibus',
       'likes': 10,
+      'date': '11 de Octubre de 2017',
     }
   },
 
@@ -51,6 +55,10 @@ export default class Comment extends React.Component {
             {comments.map((comment, i) =>
               <CommentDetail comment={comment} key={i}/>
             )}
+          </div>
+          <br/>
+          <div className="col-sm-12">
+            <NewComment/>
           </div>
         </section>
       </div>
