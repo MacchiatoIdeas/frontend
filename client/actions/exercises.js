@@ -1,14 +1,14 @@
-import {EXERCISE_FETCH, EXERCISE_RECEIVE} from "./index";
-import {exercise} from "../schema";
-import {API_URL} from "../api";
-import {normalize} from "normalizr";
+import {EXERCISE_FETCH, EXERCISE_RECEIVE} from './index';
+import {exercise} from '../schema';
+import {API_URL} from '../api';
+import {normalize} from 'normalizr';
 
 export const getExerciseById = (id) => (dispatch) => {
   dispatch({
     type: EXERCISE_FETCH
   });
 
-  return fetch(`${API_URL}/exercises/${id}/`)
+  return fetch(`${API_URL}/exercises/exercises/${id}/`)
     .then(
       response => response.json(),
       error => console.log(error)

@@ -1,15 +1,16 @@
 import React from 'react';
 import {Modal, ModalBody, ModalHeader, ModalTitle} from 'react-bootstrap';
-import style from '../../Site/SubjectBox.less';
+import subjectBoxStyle from '../../Site/SubjectBox.less';
+import style from './style.less';
 
 class SubjectItem extends React.Component {
   render() {
     const {subject, onClick, selected = false} = this.props;
 
     return (
-      <div onClick={() => onClick(subject)} style={{cursor: 'pointer'}}>
+      <div onClick={() => onClick(subject)} style={{cursor: 'pointer', marginBottom: 4, marginTop: 4}}>
         <div id="image-subject-wrapper"
-             className={`${style.subjectWrapper}`}
+             className={`${subjectBoxStyle.subjectWrapper}`}
              style={{
                borderColor: subject.color,
                transform: selected ? 'scale(1.05, 1.05)' : '',
@@ -19,15 +20,14 @@ class SubjectItem extends React.Component {
 
           <img src={subject.thumbnail} className="box-thumbnail" alt={subject.name}/>
 
-          <div className={style.subjectNameWrapper} style={{
+          <div className={subjectBoxStyle.subjectNameWrapper} style={{
             backgroundColor: selected ? '#f1f1f1' : '#fff',
           }}>
-            <span className={`${style.subjectNameAlt} lead`}>
+            <span className={`${subjectBoxStyle.subjectNameAlt} lead`}>
               {subject.name}
             </span>
           </div>
         </div>
-        <br/>
       </div>
     )
   }
@@ -66,11 +66,11 @@ export default class NewGuideModal extends React.Component {
           <ModalTitle id="contained-modal-title">Crear Nueva Guía</ModalTitle>
         </ModalHeader>
 
-        <ModalBody>
-          <div className="form-group">
-            <input type="text" className="form-control" placeholder="Título de la Nueva Guía"/>
-          </div>
+        <input type="text" className={`form-control ${style.formTitle}`}
+               placeholder="Título de la Nueva Guía..."
+               autoFocus/>
 
+        <ModalBody>
           <div className="row">
             {subjects.map((subject, i) =>
               <div className="col-sm-4" key={i}>
