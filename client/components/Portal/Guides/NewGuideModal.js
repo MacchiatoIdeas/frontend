@@ -112,7 +112,9 @@ export default class NewGuideModal extends React.Component {
           </ModalBody>
 
           <ModalBody>
-            <button className="btn btn-primary">Save</button>
+            <div className="text-right">
+              <button className="btn btn-primary">Crear nueva guía</button>
+            </div>
           </ModalBody>
         </form>
       </Modal>
