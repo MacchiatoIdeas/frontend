@@ -23,12 +23,12 @@ export default class UnitExercises extends React.Component {
     return (
       <div>
         <section>
-          <div className="col-sm-3">
+          <div className="col-sm-4">
             <SubjectBox subject={unit.subject} showTitle={false}/>
             <UnitSidebar type="exercises" unit={unit}/>
           </div>
 
-          <div className="col-sm-9">
+          <div className="col-sm-8">
             <Link to={`/site/units/${unit.id}/exercise/create`} className="head-link"><span
               className="glyphicon glyphicon-plus"/> Crear Nuevo Ejercicio</Link>
             <UnitPageTitle filter={filter}/>
