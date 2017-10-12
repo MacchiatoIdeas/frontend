@@ -1,12 +1,20 @@
 import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
 
+import {IntlMixin} from 'react-intl';
+import {IntlProvider, FormattedDate, addLocaleData, FormattedTime} from 'react-intl';
+import es from 'react-intl/locale-data/es';
+
+
 import style from './CommentDetail.less'
 import Comment from "./Comments";
+
 
 export default class CommentDetail extends React.Component {
   render() {
     let {comment} = this.props;
+    let date = new Date(comment.date);
+    addLocaleData([...es]);
     return (
       <div>
         <div className={style.commentWrapper}>
@@ -26,7 +34,22 @@ export default class CommentDetail extends React.Component {
                 </div>
                 <div className="col-sm-12">
                   <div className={style.likes}>
-                    <span className={`pull-right ${style.date}`}>{comment.date}</span>
+                    <span className={`pull-right ${style.date}`}>
+                      <IntlProvider locale="es">
+                      <FormattedDate
+                        value={comment.date}
+                        day="numeric"
+                        month="long"
+                        year="numeric"
+                      />
+                      </IntlProvider>
+                      <span> a las </span>
+                      <IntlProvider locale="es">
+                      <FormattedTime
+                        value={comment.date}
+                      />
+                      </IntlProvider>
+                    </span>
                   </div>
                 </div>
               </div>
