@@ -4,6 +4,7 @@ import {normalize} from 'normalizr';
 import {API_URL} from '../api';
 import {guide} from '../schema';
 import {GUIDE_FETCH, GUIDE_RECEIVE, GUIDE_SEND} from './index';
+import {getUserData} from './auth';
 
 export const getGuideById = (id) => (dispatch) => {
   dispatch({
@@ -38,8 +39,12 @@ export const sendGuide = (token, guide) => (dispatch) => {
       response => response.json(),
       error => console.log(error)
     )
-    .then(response => dispatch({
-      type: GUIDE_RECEIVE,
-      payload: normalize(response, guide)
-    }));
+    .then(response => {
+      dispatch(getUserData(token));
+
+      return dispatch({
+        type: GUIDE_RECEIVE,
+        payload: normalize(response, guide)
+      })
+    });
 };
