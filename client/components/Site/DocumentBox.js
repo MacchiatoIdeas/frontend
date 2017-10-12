@@ -1,7 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import style from './DocumentBox.less'
+import AddItemModal from "./Guide/AddItemModal";
 
 export default ({content}) => {
   return (

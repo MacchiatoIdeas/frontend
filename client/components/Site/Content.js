@@ -8,6 +8,7 @@ import Comments from './Comments/Comments';
 import SubjectBox from './SubjectBox';
 
 import css from '../../style/FluidPage.less';
+import AddItemModal from "./Guide/AddItemModal";
 
 @connect((state, props) => {
   const {id} = props.match.params;
@@ -77,6 +78,7 @@ export default class Content extends React.Component {
                     </div>
                   </Link>
                 </div>
+                <AddItemModal content={content}/>
               </div>
             </div>
           </div>

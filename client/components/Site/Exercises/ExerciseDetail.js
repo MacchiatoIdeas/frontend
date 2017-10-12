@@ -8,6 +8,7 @@ import {getExerciseById} from '../../../actions/exercises';
 
 import RecommendedExercises from "./RecommendedExercises";
 import style from './ExerciseDetail.less'
+import AddItemModal from "../Guide/AddItemModal";
 
 @connect((state, props) => {
   let exercise = state.exercises[props.match.params.exerciseId];
@@ -54,6 +55,12 @@ export default class ExerciseDetail extends React.Component {
               <div className={`col-sm-12 ${style.navButtonsWrapper}`}>
                 <button className="btn btn-primary">Ejercicio anterior</button>
                 <button className="btn btn-success pull-right">Siguiente ejercicio</button>
+              </div>
+            </div>
+            <hr/>
+            <div className="row">
+              <div className="col-sm-2">
+                <AddItemModal exercise={exercise}/>
               </div>
             </div>
           </div>
