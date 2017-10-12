@@ -6,7 +6,7 @@ import Comment from "./Comments";
 
 export default class CommentDetail extends React.Component {
   render() {
-    let comment = this.props.comment;
+    let {comment} = this.props;
     return (
       <div>
         <div className={style.commentWrapper}>
@@ -38,11 +38,13 @@ export default class CommentDetail extends React.Component {
           </div>
           <div className="clearfix"/>
         </div>
+        {/*
         {comment.comment.comments.map((comment, i) => (
           <div className={style.subComment} key={i}>
-            <CommentDetail comment={comment}/>
+            <CommentDetail comment={comment} />
           </div>
         ))}
+          */}
       </div>
     )
   }

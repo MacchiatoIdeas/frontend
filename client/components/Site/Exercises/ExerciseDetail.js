@@ -6,6 +6,7 @@ import Exercise from './Exercise';
 import Comments from './Comments';
 import {getExerciseById} from '../../../actions/exercises';
 
+import RecommendedExercises from "./RecommendedExercises";
 import style from './ExerciseDetail.less'
 
 @connect((state, props) => {
@@ -58,10 +59,7 @@ export default class ExerciseDetail extends React.Component {
           </div>
           <div className="clearfix"/>
         </section>
-        <div className={`col-sm-12 ${style.recommendedExercises}`}>
-          <h2 className="text-center">Ejercicios recomendados</h2>
-          <h2 className="text-center">...</h2>
-        </div>
+        <RecommendedExercises/>
         <div className="col-sm-12">
           <Comments/>
         </div>
