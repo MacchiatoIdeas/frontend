@@ -2,6 +2,8 @@ import {schema} from 'normalizr';
 
 export const author = new schema.Entity('authors');
 
+export const user = new schema.Entity('users');
+
 export const content = new schema.Entity('contents', {
   author
 });
@@ -35,6 +37,9 @@ unit.define({
 });
 guide.define({
   subject
+});
+user.define({
+  guides: [guide],
 });
 
 export const subjectArray = [subject];

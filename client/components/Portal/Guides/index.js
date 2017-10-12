@@ -18,8 +18,11 @@ const GuideItem = ({title, subject, color}) =>
 
 
 @connect((state) => {
+  const {auth} = state;
+
   return {
-    subjects: denormalizers.subjects(state.subjects)
+    subjects: denormalizers.subjects(state.subjects),
+    guides: denormalizers.guides(auth.user.guides, state)
   }
 }, {
   getAllSubjects
@@ -50,10 +53,8 @@ export default class Guides extends React.Component {
   }
 
   render() {
-    const {subjects} = this.props;
+    const {subjects, guides} = this.props;
     const {showModal} = this.state;
-
-    console.log(subjects);
 
     return (
       <section>
@@ -69,9 +70,9 @@ export default class Guides extends React.Component {
           </h2>
 
           <div className="playlist playlist-accents">
-            <GuideItem title="Guía de Biología" color="#5cb85c" subject="Biología"/>
-            <GuideItem title="Guía de Lenguaje" color="#d9534f" subject="Lenguaje"/>
-            <GuideItem title="Guía de Inglés" color="#f0ad4e" subject="Inglés"/>
+            {guides.map((guide, i) =>
+              <GuideItem title={guide.title} color="" subject="" key={i}/>
+            )}
           </div>
         </div>
 
