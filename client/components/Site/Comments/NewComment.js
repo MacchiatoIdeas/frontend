@@ -5,12 +5,14 @@ import style from './NewComment.less';
 import Textarea from 'react-textarea-autosize';
 import {connect} from 'react-redux';
 import {sendExerciseComment} from '../../../actions/exercises';
+import {sendDocumentComment} from '../../../actions/contents';
 
 
 @connect((state) => ({
   auth: state.auth
 }), {
-  sendExerciseComment
+  sendExerciseComment,
+  sendDocumentComment
 })
 export default class NewComment extends React.Component {
   constructor(props) {
@@ -32,6 +34,7 @@ export default class NewComment extends React.Component {
       /* Submit comment */
       if (this.props.exercise) {
         let pk = this.props.exercise.id;
+
         this.props.sendExerciseComment(this.props.auth.access_token, {
           exercise: pk,
           text: this.state.comment,
@@ -39,6 +42,11 @@ export default class NewComment extends React.Component {
 
       } else if (this.props.content) {
         let pk = this.props.content.id;
+
+        this.props.sendDocumentComment(this.props.auth.access_token, {
+          content: pk,
+          text: this.state.comment,
+        });
       }
       this.clear();
     }
