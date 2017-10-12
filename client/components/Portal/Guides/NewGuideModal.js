@@ -13,7 +13,7 @@ class SubjectItem extends React.Component {
              className={`${subjectBoxStyle.subjectWrapper}`}
              style={{
                borderColor: subject.color,
-               transform: selected ? 'scale(1.05, 1.05)' : '',
+               transform: selected ? 'scale(1.025, 1.025)' : '',
                transition: '0.25s',
                opacity: selected ? 1 : 0.6
              }}>
@@ -67,8 +67,11 @@ export default class NewGuideModal extends React.Component {
         </ModalHeader>
 
         <input type="text" className={`form-control ${style.formTitle}`}
-               placeholder="Título de la Nueva Guía..."
+               placeholder="Título de la nueva guía..."
                autoFocus/>
+
+        <input type="text" className={`form-control ${style.formBrief}`}
+               placeholder="Descripción corta..."/>
 
         <ModalBody>
           <div className="row">

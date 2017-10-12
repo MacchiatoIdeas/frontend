@@ -3,7 +3,15 @@ import React from 'React';
 import styleDetail from './CommentDetail.less';
 import style from './NewComment.less';
 import Textarea from 'react-textarea-autosize';
+import {connect} from 'react-redux';
+import {sendExerciseComment} from '../../../actions/exercises';
 
+
+@connect((state) => ({
+  auth: state.auth
+}), {
+  sendExerciseComment
+})
 export default class NewComment extends React.Component {
   constructor(props) {
     super(props);
@@ -24,10 +32,13 @@ export default class NewComment extends React.Component {
       /* Submit comment */
       if (this.props.exercise) {
         let pk = this.props.exercise.id;
-        console.log('pk', pk);
+        this.props.sendExerciseComment(this.props.auth.access_token, {
+          exercise: pk,
+          text: this.state.comment,
+        });
+
       } else if (this.props.content) {
         let pk = this.props.content.id;
-        console.log('pk', pk);
       }
       this.clear();
     }
@@ -41,7 +52,7 @@ export default class NewComment extends React.Component {
 
   render() {
     const {user} = this.props;
-    console.log(user);
+
     return (
       <section className={style.wrapper}>
         <div className="col-sm-12">

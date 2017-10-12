@@ -1,14 +1,15 @@
 import fetch from 'isomorphic-fetch';
 
 import {API_URL} from '../api';
-import {CONTENT_FETCH, CONTENT_RECEIVE} from './index';
-import {normalize} from "normalizr";
-import {content} from "../schema";
+import {CONTENT_FETCH, CONTENT_RECEIVE, CONTENT_COMMENT_SEND, CONTENT_COMMENT_RECEIVE} from './index';
+import {normalize} from 'normalizr';
+import {content} from '../schema';
 
 export const getContentById = (id) => (dispatch) => {
   dispatch({
     type: CONTENT_FETCH
   });
+
   return fetch(`${API_URL}/material/contents/${id}`)
     .then(
       response => response.json(),
@@ -18,4 +19,8 @@ export const getContentById = (id) => (dispatch) => {
       type: CONTENT_RECEIVE,
       payload: normalize(response, content)
     }));
+};
+
+export const sendContentComment = (token, id) => (dispatch) => {
+
 };

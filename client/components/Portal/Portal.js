@@ -18,7 +18,8 @@ import Guides from './Guides';
 
 @connect(state => {
   const {auth} = state;
-  if (auth.user === undefined) {
+
+  if (auth.isAuthenticated === undefined) {
     return {
       isFetching: true,
       auth,
@@ -40,14 +41,14 @@ export default class Portal extends React.Component {
   render() {
     const {auth} = this.props;
 
-    if (!auth.access_token) {
+    if (this.props.isFetching) {
+      return null;
+    }
+
+    if (!auth.isAuthenticated) {
       return (
         <Redirect to="/login"/>
       )
-    }
-
-    if (this.props.isFetching) {
-      return null;
     }
 
     return (

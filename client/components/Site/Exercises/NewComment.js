@@ -2,10 +2,13 @@ import React from 'React';
 
 import styleDetail from './CommentDetail.less'
 import {connect} from 'react-redux';
+import {sendContentComment} from '../../../actions/contents';
 
 @connect((state) => ({
   auth: state.auth,
-}))
+}), {
+  sendContentComment
+})
 export default class NewComment extends React.Component {
   render() {
     const {auth} = this.props;
