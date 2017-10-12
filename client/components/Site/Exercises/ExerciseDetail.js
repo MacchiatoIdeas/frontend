@@ -6,7 +6,7 @@ import Exercise from './Exercise';
 import Comments from '../Comments/Comments';
 import {getExerciseById} from '../../../actions/exercises';
 
-import RecommendedExercises from "../Comments/RecommendedExercises";
+import RecommendedExercises from "./RecommendedExercises";
 import style from './ExerciseDetail.less'
 
 @connect((state, props) => {

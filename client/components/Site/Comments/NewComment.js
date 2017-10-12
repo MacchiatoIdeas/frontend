@@ -22,6 +22,13 @@ export default class NewComment extends React.Component {
   submit() {
     if (this.state.comment !== '') {
       /* Submit comment */
+      if (this.props.exercise) {
+        let pk = this.props.exercise.id;
+        console.log('pk', pk);
+      } else if (this.props.content) {
+        let pk = this.props.content.id;
+        console.log('pk', pk);
+      }
       this.clear();
     }
   }
