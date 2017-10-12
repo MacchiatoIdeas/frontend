@@ -3,10 +3,10 @@ import {Link, NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import Exercise from './Exercise';
-import Comments from './Comments';
+import Comments from '../Comments/Comments';
 import {getExerciseById} from '../../../actions/exercises';
 
-import RecommendedExercises from "./RecommendedExercises";
+import RecommendedExercises from "../Comments/RecommendedExercises";
 import style from './ExerciseDetail.less'
 
 @connect((state, props) => {
@@ -60,9 +60,7 @@ export default class ExerciseDetail extends React.Component {
           <div className="clearfix"/>
         </section>
         <RecommendedExercises/>
-        <div className="col-sm-12">
-          <Comments/>
-        </div>
+        <Comments exercise={exercise}/>
       </div>
     )
   }
