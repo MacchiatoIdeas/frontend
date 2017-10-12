@@ -12,6 +12,9 @@ class SubjectItem extends React.Component {
              className={`${style.subjectWrapper}`}
              style={{
                borderColor: subject.color,
+               transform: selected ? 'scale(1.05, 1.05)' : '',
+               transition: '0.25s',
+               opacity: selected ? 1 : 0.6
              }}>
 
           <img src={subject.thumbnail} className="box-thumbnail" alt={subject.name}/>
