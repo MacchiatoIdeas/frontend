@@ -1,9 +1,18 @@
 import React from 'React';
 
 import styleDetail from './CommentDetail.less'
+import {connect} from 'react-redux';
 
+@connect((state) => ({
+  auth: state.auth,
+}))
 export default class NewComment extends React.Component {
   render() {
+    const {auth} = this.props;
+
+    // AQUI!
+    console.log(auth);
+
     return (
       <div>
         <div className={styleDetail.commentWrapper}>
@@ -14,8 +23,8 @@ export default class NewComment extends React.Component {
               <h4>Usuario Logueado</h4>
               <h5 className="text-muted">@usuariologueado</h5>
             </div>
-
           </div>
+
           <div className="col-sm-10">
             <div className="panel panel-default">
               <div className="panel-body">
