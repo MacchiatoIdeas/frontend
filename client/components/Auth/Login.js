@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 
 import {sendLogin} from '../../actions/auth';
 
-import Navbar from '../Navbar';
+import Navbar from '../Navbar/Navbar';
 
 import style from './Login.less';
 

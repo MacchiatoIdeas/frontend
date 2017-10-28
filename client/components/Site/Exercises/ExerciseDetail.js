@@ -19,7 +19,8 @@ import AddItemModal from "../Guide/AddItemModal";
   exercise = {
     ...exercise,
     content: JSON.parse(exercise.content),
-    right_answer: JSON.parse(exercise.right_answer)
+    right_answer: JSON.parse(exercise.right_answer),
+    auth: state.auth,
   };
 
   return {
@@ -39,7 +40,24 @@ export default class ExerciseDetail extends React.Component {
     }
 
     let {exercise, unit} = this.props;
-    console.log(exercise);
+    const {auth} = this.props;
+
+    console.log(auth);
+
+    let addItem;
+
+    if (auth.isAuthenticated) {
+      addItem = (
+        <div>
+          <hr/>
+          <div className="row">
+            <div className="col-sm-2">
+              <AddItemModal exercise={exercise}/>
+            </div>
+          </div>
+        </div>
+      )
+    }
 
     return (
       <div>
@@ -57,12 +75,7 @@ export default class ExerciseDetail extends React.Component {
                 <button className="btn btn-success pull-right">Siguiente ejercicio</button>
               </div>
             </div>
-            <hr/>
-            <div className="row">
-              <div className="col-sm-2">
-                <AddItemModal exercise={exercise}/>
-              </div>
-            </div>
+            {addItem}
           </div>
           <div className="clearfix"/>
         </section>

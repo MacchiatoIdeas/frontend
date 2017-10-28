@@ -24,7 +24,8 @@ import AddItemModal from "./Guide/AddItemModal";
 
   content = {
     ...content,
-    unit: state.units[content.unit]
+    unit: state.units[content.unit],
+    auth: state.auth,
   };
   content.unit = {
     ...content.unit,
@@ -49,6 +50,7 @@ export default class Content extends React.Component {
     }
 
     const {content} = this.props;
+    const {auth} = this.props;
 
     return (
       <div>
@@ -78,7 +80,9 @@ export default class Content extends React.Component {
                     </div>
                   </Link>
                 </div>
+                {auth.isAuthenticated ?
                 <AddItemModal content={content}/>
+                : null}
               </div>
             </div>
           </div>

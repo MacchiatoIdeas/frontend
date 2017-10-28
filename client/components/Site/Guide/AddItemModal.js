@@ -40,7 +40,6 @@ export default class AddItemModal extends React.Component {
     this.show = this.show.bind(this);
     this.onSelect = this.onSelect.bind(this);
     this.submit = this.submit.bind(this);
-    this.renderComponent = this.renderComponent.bind(this);
   }
 
   hide() {
@@ -81,43 +80,32 @@ export default class AddItemModal extends React.Component {
     }
   }
 
-  renderComponent() {
-    const {user} = this.props.auth;
-    const {guides} = this.props;
-    if (user.isAuthenticated) {
-      return (
-        <div>
-          <button className={`btn btn-block btn-warning ${style.button}`} onClick={this.show}>Agregar a mis guías
-          </button>
-          <Modal bsSize="large" show={this.state.showModal} onHide={this.hide}>
-            <ModalHeader closeButton>
-              <ModalTitle id="contained-modal-title">Agregar a mis guías</ModalTitle>
-            </ModalHeader>
-            <ModalBody>
-              <h3 className="text-center text-muted">Selecciona la guía a la cual quieres agregar este elemento</h3>
-              <div className="col-sm-12">
-                <div className="playlist playlist-accents">
-                  {guides.map((guide, i) =>
-                    <GuideItem title={guide.title} click={() => this.onSelect(guide.id)}
-                               selected={guide.id === this.state.selectedPk} key={i}/>
-                  )}
-                </div>
-                <br/>
-                <button onClick={this.submit} className={`btn btn-success btn-block ${style.submit}`}>Agregar a guía
-                </button>
-              </div>
-              <div className="clearfix"/>
-            </ModalBody>
-          </Modal>
-        </div>
-      )
-    }
-  }
-
   render() {
+    const {guides} = this.props;
     return (
       <div>
-        {this.renderComponent}
+        <button className={`btn btn-block btn-warning ${style.button}`} onClick={this.show}>Agregar a mis guías
+        </button>
+        <Modal bsSize="large" show={this.state.showModal} onHide={this.hide}>
+          <ModalHeader closeButton>
+            <ModalTitle id="contained-modal-title">Agregar a mis guías</ModalTitle>
+          </ModalHeader>
+          <ModalBody>
+            <h3 className="text-center text-muted">Selecciona la guía a la cual quieres agregar este elemento</h3>
+            <div className="col-sm-12">
+              <div className="playlist playlist-accents">
+                {guides.map((guide, i) =>
+                  <GuideItem title={guide.title} click={() => this.onSelect(guide.id)}
+                             selected={guide.id === this.state.selectedPk} key={i}/>
+                )}
+              </div>
+              <br/>
+              <button onClick={this.submit} className={`btn btn-success btn-block ${style.submit}`}>Agregar a guía
+              </button>
+            </div>
+            <div className="clearfix"/>
+          </ModalBody>
+        </Modal>
       </div>
     )
   }

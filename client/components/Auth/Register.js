@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Navbar from '../Navbar';
+import Navbar from '../Navbar/Navbar';
 
 import style from './Register.less';
 import Form from './Form';

@@ -1,0 +1,115 @@
+.navbar {
+  -webkit-transition: all .1s ease-in-out;
+  -moz-transition: all .1s ease-in-out;
+  -ms-transition: all .1s ease-in-out;
+  -o-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
+  position: relative;
+
+  & .containerFluid {
+    position: relative;
+    display: block;
+  }
+
+  & .navbarBody {
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -ms-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+  }
+
+  & .searchBody {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+
+    & input {
+      width: 100% !important;
+      height: 100%;
+      border: none;
+      padding: 20px 0;
+      box-shadow: none;
+      display: inline-block;
+      outline: none;
+      background: none;
+    }
+
+    & .closeSearch {
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 20px 10px;
+      height: 100%;
+      border: 0;
+      background: none;
+    }
+
+  }
+  & .resultsBody {
+    visibility: hidden;
+    background: #fff;
+    position: absolute;
+    width: 100%;
+    height: 0px;
+    left: 0;
+    top: 100%;
+    z-index: 99;
+    opacity: 0;
+    overflow: hidden;
+    border-top: 2px solid #fefefe;
+    box-shadow:0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all .2s ease-in-out;
+
+    & .placeholder {
+      padding: 20px;
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      & .item {
+        & img {
+          padding: 0 20%;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+}
+
+.transparent {
+  background-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.navbarSearch {
+  padding: 20px;
+  margin: 0;
+  border-radius: 0 !important;
+  background: #fff !important;
+
+  & .navbarBody {
+    opacity: 0;
+  }
+
+  & .searchBody {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  & .resultsBody {
+    opacity: 1;
+    visibility: visible;
+    height: 400px;
+    transition: all 0.2s 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+}
+
+.button {
+  cursor: pointer;
+}

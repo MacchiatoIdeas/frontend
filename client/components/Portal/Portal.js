@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import {getUserData, loadFromLocalStorage} from '../../actions/auth';
 
-import Navbar from '../Navbar';
+import Navbar from '../Navbar/Navbar';
 import Body from '../Body';
 import Summary from './Summary';
 import Folders from './Folders';
@@ -55,7 +55,7 @@ export default class Portal extends React.Component {
       <div>
         <div className={style.headerContainer}>
           <div id="header" className={`appunta-bg ${style.header}`}>
-            <Navbar backgroundColor="rgba(255, 255, 255, 0.35)"/>
+            <Navbar transparent={true} />
 
             <div className="container-fluid">
               <div className={`row ${style.summary}`}>

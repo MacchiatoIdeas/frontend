@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 
-import Navbar from '../Navbar';
+import Navbar from '../Navbar/Navbar';
 import Body from '../Body';
 import Subject from './Subject';
 import Content from './Content';
