@@ -3,8 +3,6 @@ import React from 'react';
 import {Redirect, Route, Switch} from 'react-router';
 import {connect} from 'react-redux';
 
-import {getUserData, loadFromLocalStorage} from '../../actions/auth';
-
 import Navbar from '../Navbar';
 import Body from '../Body';
 import Summary from './Summary';
@@ -16,39 +14,17 @@ import style from './Portal.less';
 import Course from './Courses/Course';
 import Guides from './Guides';
 
-@connect(state => {
-  const {auth} = state;
-
-  if (auth.isAuthenticated === undefined) {
-    return {
-      isFetching: true,
-      auth,
-    }
-  }
-
-  return {
-    isFetching: false,
-    auth
-  }
-}, {
-  loadFromLocalStorage
-})
+@connect(state => ({
+  auth: state.auth
+}))
 export default class Portal extends React.Component {
-  componentDidMount() {
-    this.props.loadFromLocalStorage();
-  }
-
   render() {
     const {auth} = this.props;
 
-    if (this.props.isFetching) {
-      return null;
-    }
+    console.log('[Portal]', auth);
 
     if (!auth.isAuthenticated) {
-      return (
-        <Redirect to="/login"/>
-      )
+      return <Redirect to="/login"/>;
     }
 
     return (

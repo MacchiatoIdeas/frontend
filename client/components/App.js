@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 
 import Login from './Auth/Login';
 import Portal from './Portal/Portal';
@@ -7,21 +7,39 @@ import Site from './Site/Site';
 import Editor from './Editor/Editor';
 import GuidesEditor from './GuidesEditor/GuidesEditor'
 import Register from './Auth/Register';
+import {getUserData, loadFromLocalStorage} from '../actions/auth';
+import {connect} from 'react-redux';
 
+@connect(state => ({
+  auth: state.auth,
+}), {
+  getUserData,
+  loadFromLocalStorage
+})
 export default class App extends React.Component {
+  componentWillMount() {
+    this.props.loadFromLocalStorage();
+  }
+
   render() {
-     return (
-       <BrowserRouter>
-         <Switch>
-           <Redirect exact from="/" to="/portal"/>
-           <Route path="/login" component={Login}/>
-           <Route path="/register" component={Register}/>
-           <Route path="/site" component={Site}/>
-           <Route path="/portal" component={Portal}/>
-           <Route path="/editor" component={Editor}/>
-           <Route path="/guides-editor" component={GuidesEditor}/>
-         </Switch>
-       </BrowserRouter>
-     )
+    const {auth} = this.props;
+
+    if (auth.isFetching) {
+      return null;
+    }
+
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Redirect exact from="/" to="/portal"/>
+          <Route path="/portal" component={Portal}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/register" component={Register}/>
+          <Route path="/site" component={Site}/>
+          <Route path="/editor" component={Editor}/>
+          <Route path="/guides-editor" component={GuidesEditor}/>
+        </Switch>
+      </BrowserRouter>
+    )
   }
 }

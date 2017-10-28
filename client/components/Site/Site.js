@@ -8,37 +8,9 @@ import Content from './Content';
 import Subjects from './Subjects';
 import Unit from './Unit/Unit';
 import Guide from './Guide/Guide';
-import {getUserData, loadFromLocalStorage} from '../../actions/auth';
-import {connect} from 'react-redux';
 
-@connect(state => {
-  const {auth} = state;
-
-  if (auth.isAuthenticated === undefined) {
-    return {
-      isFetching: true,
-    }
-  }
-
-  return {
-    isFetching: false,
-  }
-}, {
-  getUserData,
-  loadFromLocalStorage
-})
 export default class Site extends React.Component {
-  componentWillMount() {
-    this.props.loadFromLocalStorage();
-  }
-
   render() {
-    const {isFetching} = this.props;
-
-    if (isFetching) {
-      return null;
-    }
-
     return (
       <div>
         <Navbar backgroundColor="rgba(255, 255, 255)"/>

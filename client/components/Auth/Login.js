@@ -10,11 +10,9 @@ import Navbar from '../Navbar';
 
 import style from './Login.less';
 
-@connect((state) => {
-  return {
-    auth: state.auth,
-  }
-}, {
+@connect((state) => ({
+  auth: state.auth,
+}), {
   sendLogin
 })
 export default class Login extends React.Component {
@@ -30,10 +28,10 @@ export default class Login extends React.Component {
   render() {
     const {auth} = this.props;
 
-    if (auth.access_token) {
-      return (
-        <Redirect to="/portal"/>
-      )
+    console.log('[Login]', auth);
+
+    if (auth.isAuthenticated) {
+      return <Redirect to="/portal"/>;
     }
 
     return (
