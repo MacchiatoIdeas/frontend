@@ -94,20 +94,22 @@ export default class Navbar extends React.Component {
             <div className="col-sm-8 col-sm-offset-2 text-center">
               <p className="lead text-muted">¿Qué estás buscando?</p>
               <div className="col-sm-12">
-                <div className="col-sm-4">
+                <div className="col-xs-4">
                   <div className={style.item}>
                     <img src={exercisesIcon} alt=""/>
+                    <p>Ejercicios</p>
                   </div>
                 </div>
-                <div className="col-sm-4">
+                <div className="col-xs-4">
                   <div className={style.item}>
                     <img src={guidesIcon} alt=""/>
+                    <p>Guías</p>
                   </div>
                 </div>
-
-                <div className="col-sm-4">
+                <div className="col-xs-4">
                   <div className={style.item}>
                     <img src={materialsIcon} alt=""/>
+                    <p>Material</p>
                   </div>
                 </div>
               </div>
