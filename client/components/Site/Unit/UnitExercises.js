@@ -17,21 +17,20 @@ const Stars = ({stars, of}) => {
 
 export default class UnitExercises extends React.Component {
   render() {
-    let {filter} = this.props.match.params;
     const {unit} = this.props;
 
     return (
       <div>
         <section>
           <div className="col-sm-4">
-            <SubjectBox subject={unit.subject} showTitle={false}/>
+            <SubjectBox subject={unit.subject} showTitle/>
             <UnitSidebar type="exercises" unit={unit}/>
           </div>
 
           <div className="col-sm-8">
             <Link to={`/site/units/${unit.id}/exercise/create`} className="head-link"><span
-              className="glyphicon glyphicon-plus"/> Crear Nuevo Ejercicio</Link>
-            <h2 className="page-header">Ejercicios</h2>
+              className="glyphicon glyphicon-plus"/> Crear Ejercicio</Link>
+            <h2 className="page-header">{unit.name} &raquo; Ejercicios</h2>
 
             <div className="row">
               <div className="col-sm-12">

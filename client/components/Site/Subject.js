@@ -36,21 +36,15 @@ export default class Subject extends React.Component {
 
     return (
       <section>
-        <div className="col-sm-12">
-          <h1>
-            {subject.name}
-          </h1>
-        </div>
-
         <div className="col-md-4">
-          <SubjectBox subject={subject} showTitle={false}/>
+          <SubjectBox subject={subject} showTitle/>
           <SubjectSidebar/>
         </div>
 
         <hr className="visible-xs"/>
 
         <div className="col-md-8">
-          <h2 className="page-header color blue">Unidades</h2>
+          <h1 className="page-header">Unidades</h1>
 
           <div className="list-group">
             {subject.units.map((unit, i) =>
@@ -60,7 +54,7 @@ export default class Subject extends React.Component {
             )}
           </div>
 
-          <h2 className="page-header color blue">Guías</h2>
+          <h1 className="page-header">Guías</h1>
 
           <div className="row">
             <div className="col-sm-12">

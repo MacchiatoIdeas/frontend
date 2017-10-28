@@ -53,14 +53,6 @@ export default class Unit extends React.Component {
 
     return (
       <div>
-        <section>
-          <div className="col-sm-12">
-            <h1>
-              {unit.name}
-            </h1>
-          </div>
-        </section>
-
         <Switch>
           <Route path="/site/units/:id/contents" render={({match}) =>
             <UnitContents unit={unit} match={match}/>

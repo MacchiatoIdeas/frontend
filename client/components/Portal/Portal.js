@@ -71,6 +71,7 @@ export default class Portal extends React.Component {
           </div>
           <div className={style.innerShadow}/>
         </div>
+
         <div className={style.body}>
           <Body>
           <Switch>
