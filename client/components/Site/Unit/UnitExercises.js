@@ -2,8 +2,8 @@ import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
 
 import SubjectBox from '../SubjectBox';
-import UnitSidebar from "./UnitSidebar";
-import UnitPageTitle from "./UnitPageTitle";
+import UnitSidebar from './UnitSidebar';
+import Box from "../../Box";
 
 
 const Stars = ({stars, of}) => {
@@ -17,54 +17,36 @@ const Stars = ({stars, of}) => {
 
 export default class UnitExercises extends React.Component {
   render() {
-    let {filter} = this.props.match.params;
     const {unit} = this.props;
 
     return (
       <div>
         <section>
           <div className="col-sm-4">
-            <SubjectBox subject={unit.subject} showTitle={false}/>
+            <SubjectBox subject={unit.subject} showTitle/>
             <UnitSidebar type="exercises" unit={unit}/>
           </div>
 
           <div className="col-sm-8">
             <Link to={`/site/units/${unit.id}/exercise/create`} className="head-link"><span
-              className="glyphicon glyphicon-plus"/> Crear Nuevo Ejercicio</Link>
-            <UnitPageTitle filter={filter}/>
+              className="glyphicon glyphicon-plus"/> Crear Ejercicio</Link>
+            <h2 className="page-header">{unit.name} &raquo; Ejercicios</h2>
 
             <div className="row">
-              {unit.exercises.map((exercise, i) =>
-                <div className="col-sm-12" key={i}>
-                  <div className="box box-fill">
-                    <Link to={`/site/units/${unit.id}/exercise/${exercise.id}`}>
-                      <div className="box-body box-body-min">
-                        <summary>{exercise.briefing}</summary>
-                      </div>
-
-                      <div style={{position: "relative"}}>
-                        <div className="backgrounded"
-                             style={{backgroundImage: `url("http://www.fotor.com/images2/features/blur/022.jpg")`}}/>
-                        <div className="box-footer box-footer-stylized">
-                          <h3 className="pull-left">
-                            <small>Creado por:</small>
-                            Marcelo Jara Almeyda
-                          </h3>
-
-                          <h3 className="pull-right difficulty">
-                            <div>
-                              <small className="pull-right">Dificultad</small>
-                            </div>
-
-                            <Stars stars={exercise.difficulty} of={4}/>
-                          </h3>
-                          <div className="clearfix"></div>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-                </div>
-              )}
+              <div className="col-sm-12">
+                {unit.exercises.map((exercise, i) =>
+                  <Box
+                    key={exercise.id}
+                    title={''}
+                    author={exercise.author}
+                    date={'25 de Mayo de 2017'}
+                    text={exercise.briefing}
+                    comments={0}
+                    link={`/site/units/${unit.id}/exercise/${exercise.id}`}
+                    linkText='Ver Ejercicio'
+                  />
+                )}
+              </div>
             </div>
           </div>
         </section>

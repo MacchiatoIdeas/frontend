@@ -7,8 +7,8 @@ import {getUnitById} from '../../../actions/units';
 
 import UnitContents from './UnitContents';
 import UnitExercises from './UnitExercises';
-import ExerciseDetail from "../Exercises/ExerciseDetail";
-import NewExercise from "../Exercises/NewExercise";
+import ExerciseDetail from '../Exercises/ExerciseDetail';
+import NewExercise from '../Exercises/NewExercise';
 
 const normalizeContent = (state, id) => {
   return {...state.contents[id], author: state.authors[state.contents[id].author]};
@@ -53,19 +53,11 @@ export default class Unit extends React.Component {
 
     return (
       <div>
-        <section>
-          <div className="col-sm-12">
-            <h1>
-              {unit.name}
-            </h1>
-          </div>
-        </section>
-
         <Switch>
-          <Route path="/site/units/:id/contents/:filter" render={({match}) =>
+          <Route path="/site/units/:id/contents" render={({match}) =>
             <UnitContents unit={unit} match={match}/>
           }/>
-          <Route path="/site/units/:id/exercises/:filter" render={({match}) =>
+          <Route path="/site/units/:id/exercises" render={({match}) =>
             <UnitExercises unit={unit} match={match}/>
           }/>
           <Route path="/site/units/:id/exercise/create" render={({match}) =>
@@ -74,11 +66,8 @@ export default class Unit extends React.Component {
           <Route path="/site/units/:id/exercise/:exerciseId" render={({match}) =>
             <ExerciseDetail unit={unit} match={match}/>
           }/>
-          <Route path="/site/units/:id/exercises" render={({match}) => (
-            <Redirect to={`/site/units/${match.params.id}/exercises/trending`}/>
-          )}/>
           <Route path="/site/units/:id" render={({match}) => (
-            <Redirect to={`/site/units/${match.params.id}/contents/trending`}/>
+            <Redirect to={`/site/units/${match.params.id}/contents`}/>
           )}/>
         </Switch>
         <div className="clearfix"/>

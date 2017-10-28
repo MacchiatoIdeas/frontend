@@ -2,11 +2,10 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 import SubjectBox from '../SubjectBox';
-import UnitSidebar from "../Unit/UnitSidebar";
-import UnitPageTitle from "../Unit/UnitPageTitle";
+import UnitSidebar from '../Unit/UnitSidebar';
 
-import NewAlternatives from "./NewAlternatives";
-import NewMatching from "./NewMatching";
+import NewAlternatives from './NewAlternatives';
+import NewMatching from './NewMatching';
 
 
 export default class NewExercise extends React.Component {
@@ -60,7 +59,7 @@ export default class NewExercise extends React.Component {
   }
 
   render() {
-    let filter = "Creando nuevo ejercicio";
+    let filter = 'Creando nuevo ejercicio';
     console.log('NEW EXERCISES');
     const {unit} = this.props;
 
@@ -72,7 +71,8 @@ export default class NewExercise extends React.Component {
             <UnitSidebar type="exercises" unit={unit}/>
           </div>
           <div className="col-sm-9">
-            <UnitPageTitle filter={filter}/>
+            <h2 className="page-header">Nuevo Ejercicio</h2>
+
             <div className="row">
               <div className="col-sm-12">
                 <div className="box box-fill">

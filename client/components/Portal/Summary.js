@@ -5,11 +5,7 @@ export default class Summary extends React.Component {
   render() {
     return (
       <section>
-        <div className="col-sm-3">
-          <PortalSidebar/>
-        </div>
-
-        <div className="col-sm-9">
+        <div className="col-sm-12">
           <h2 className="page-header">Recomendaciones</h2>
 
           <div className="playlist playlist-accents">

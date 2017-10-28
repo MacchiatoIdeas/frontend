@@ -8,10 +8,12 @@ import {
 import {normalize} from 'normalizr';
 import {user} from '../schema';
 
-export const getUserData = (token) => (dispatch, getState) => {
+export const getUserData = (token) => (dispatch) => {
   dispatch({
     type: AUTH_USERDATA_FETCH
   });
+
+  console.log('[getUserData]', 'working...');
 
   return fetch(`${API_URL}/users/1/`, {
     headers: {
@@ -55,6 +57,7 @@ export const sendLogin = (username, password) => (dispatch) => {
     )
     .then(data => {
       dispatch(receiveLogin(data));
+      dispatch(getUserData(data.access_token));
     })
 };
 
