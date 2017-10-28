@@ -7,7 +7,7 @@ import {getSubjectById} from '../../actions/subjects';
 
 import SubjectBox from './SubjectBox';
 import SubjectSidebar from './SubjectSidebar';
-import GuideBox from './Guide/GuideBox';
+import Box from '../Box';
 
 @connect((state, props) => {
   let subject = state.subjects[props.match.params.id];
@@ -63,11 +63,16 @@ export default class Subject extends React.Component {
           <h2 className="page-header color blue">Guías</h2>
 
           <div className="row">
-            {subject.guides.map((guide, i) =>
-              <div className="col-md-6" key={i}>
-                <GuideBox guide={guide}/>
-              </div>
-            )}
+            <div className="col-sm-12">
+              {subject.guides.map((guide, i) => <Box
+                key={guide.id}
+                title={guide.title}
+                author={guide.author}
+                text={guide.brief}
+                link={`/site/guides/${guide.id}`}
+                date='25 de Mayo de 2017'
+              />)}
+            </div>
           </div>
         </div>
         <div className="clearfix"/>
