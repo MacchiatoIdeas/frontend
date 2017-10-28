@@ -4,12 +4,34 @@ import * as icons from '../../assets/flaticons';
 import Header from './Header/index';
 
 import style from './Portal.less';
+import CourseBox from './Courses/CourseBox';
 
 export default class Summary extends React.Component {
   render() {
+    const courses = [
+      {
+        id: 1,
+        name: '1ro Medio - Champagnat',
+        subject: {
+          id: 1,
+          name: 'Lenguaje',
+          color: '#cc1216',
+        }
+      },
+      {
+        id: 2,
+        name: '2do Medio - Alicante',
+        subject: {
+          id: 1,
+          name: 'Matemáticas',
+          color: '#006699',
+        }
+      }
+    ];
+
     return (
       <div>
-        <Header color="#0E7886" icon={icons.notes} textColor="#fff">Recomendaciones</Header>
+        <Header color="#0E7886" icon={icons.notes} textColor="#fff">Mis Recomendaciones</Header>
 
         <section className={style.section}>
           <div className="playlist playlist-accents">
@@ -31,9 +53,9 @@ export default class Summary extends React.Component {
           </div>
         </section>
 
-        <Header color="#efa467" textColor="#fff" icon={icons.guides}>Guías Pendientes</Header>
+        <Header color="#efa467" textColor="#fff" icon={icons.guides}>Mis Guías</Header>
 
-        <section>
+        <section className={style.section}>
           <div className="playlist playlist-progress">
             <div className="playlist-item">
               <div className="playlist-item-body">
@@ -73,6 +95,16 @@ export default class Summary extends React.Component {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <Header color="#5DDDD3" textColor="#fff" icon={icons.courses}>Mis Cursos</Header>
+
+        <section className={style.section}>
+          <div className="playlist playlist-accents">
+            {courses.map((course, i) =>
+              <CourseBox key={i} course={course}/>
+            )}
           </div>
         </section>
       </div>

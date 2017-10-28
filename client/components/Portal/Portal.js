@@ -74,7 +74,7 @@ export default class Portal extends React.Component {
         </div>
 
         <div className={style.body}>
-          <Body>
+          <Body showBreadcrumbs={false}>
           <Switch>
             <Route path="/portal/folders" component={Folders}/>
             <Route path="/portal/courses" component={Courses}/>
