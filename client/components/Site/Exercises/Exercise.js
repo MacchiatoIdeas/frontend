@@ -1,9 +1,7 @@
 import React from 'react';
-import {Link, NavLink} from 'react-router-dom';
 
 import AlternativeExercise from './AlternativeExercise';
 import MatchingExercise from './MatchingExercise';
-
 
 export default class Exercise extends React.Component {
   showSchema() {
