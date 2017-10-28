@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 
 import styleDetail from './CommentDetail.less';
 import style from './NewComment.less';

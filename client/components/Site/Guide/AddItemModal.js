@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import {Modal, ModalTitle, ModalHeader, ModalBody} from 'react-bootstrap';
 import style from './AddItemModal.less';
 import {connect} from 'react-redux';
