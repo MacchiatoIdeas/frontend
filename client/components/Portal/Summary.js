@@ -1,13 +1,17 @@
 import React from 'react';
-import PortalSidebar from './PortalSidebar';
+
+import * as icons from '../../assets/flaticons';
+import Header from './Header/index';
+
+import style from './Portal.less';
 
 export default class Summary extends React.Component {
   render() {
     return (
-      <section>
-        <div className="col-sm-12">
-          <h2 className="page-header">Recomendaciones</h2>
+      <div>
+        <Header color="#0E7886" icon={icons.notes} textColor="#fff">Recomendaciones</Header>
 
+        <section className={style.section}>
           <div className="playlist playlist-accents">
             <div className="playlist-item" style={{borderRightColor: '#6699dd'}}>
               <a href="#" className="playlist-item-body playlist-item-link">
@@ -25,10 +29,11 @@ export default class Summary extends React.Component {
               </div>
             </div>
           </div>
+        </section>
 
-          <hr/>
-          <h2 className="page-header">Guías Pendientes</h2>
+        <Header color="#efa467" textColor="#fff" icon={icons.guides}>Guías Pendientes</Header>
 
+        <section>
           <div className="playlist playlist-progress">
             <div className="playlist-item">
               <div className="playlist-item-body">
@@ -69,9 +74,8 @@ export default class Summary extends React.Component {
               </div>
             </div>
           </div>
-        </div>
-        <div className="clearfix"/>
-      </section>
+        </section>
+      </div>
     )
   }
 }

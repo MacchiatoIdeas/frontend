@@ -85,15 +85,19 @@ button {
 }
 
 #body {
-  margin: 0px 20px;
-  padding: 0px;
-  border-bottom: 0px;
+  margin: 0 20px;
+  padding: 0;
+  border-bottom: 0;
   border-radius: 10px;
-  border-bottom-right-radius: 0px !important;
-  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
 
 .borderless, .borderless * {
+  border: none;
+}
+
+.body-borderless {
   border: none;
 }
 

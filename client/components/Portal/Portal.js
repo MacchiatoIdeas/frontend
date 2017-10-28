@@ -32,7 +32,7 @@ export default class Portal extends React.Component {
       <div>
         <div className={style.headerContainer}>
           <div id="header" className={`appunta-bg ${style.header}`}>
-            <Navbar transparent={true} />
+            <Navbar transparent={true}/>
 
             <div className="container-fluid">
               <div className={`row ${style.summary}`}>

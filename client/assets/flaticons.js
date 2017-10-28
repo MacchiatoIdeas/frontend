@@ -1,5 +1,6 @@
-import exercisesIcon from './svg/flaticons/icons2/calculation.svg';
-import guidesIcon from './svg/flaticons/icons2/library.svg';
-import materialsIcon from './svg/flaticons/icons1/reading-1.svg';
+import exercises from './svg/flaticons/icons2/calculation.svg';
+import guides from './svg/flaticons/icons2/library.svg';
+import materials from './svg/flaticons/icons1/reading-1.svg';
+import notes from './svg/flaticons/icons1/notes.svg';
 
-export {exercisesIcon, guidesIcon, materialsIcon};
+export {exercises, guides, materials, notes};

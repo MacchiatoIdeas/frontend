@@ -1,7 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
-import {NavLink} from 'react-router-dom';
 
 import Footer from './Footer';
 import Breadcrumbs from './Breadcrumbs';
@@ -55,7 +52,7 @@ export default class Body extends React.Component {
       footer = <Footer/>;
 
     return (
-      <div ref="body" id="body" className="container-fluid panel panel-default"
+      <div ref="body" id="body" className="container-fluid panel panel-default body-borderless"
            style={{minHeight: this.state.minHeight}}>
           {breadcrumbs}
         <div ref="wrapper" style={{marginBottom: this.state.footerMargin}}>
