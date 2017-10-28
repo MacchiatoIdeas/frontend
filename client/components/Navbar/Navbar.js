@@ -3,7 +3,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 import logo from '../../assets/img/logo.png';
-import {exercisesIcon, guidesIcon, materialsIcon} from '../../assets/flaticons';
+import * as icons from '../../assets/flaticons';
 import style from './Navbar.less';
 
 export default class Navbar extends React.Component {
@@ -96,19 +96,19 @@ export default class Navbar extends React.Component {
               <div className="col-sm-12">
                 <div className="col-xs-4">
                   <div className={style.item}>
-                    <img src={exercisesIcon} alt=""/>
+                    <img src={icons.exercises} alt=""/>
                     <p>Ejercicios</p>
                   </div>
                 </div>
                 <div className="col-xs-4">
                   <div className={style.item}>
-                    <img src={guidesIcon} alt=""/>
+                    <img src={icons.guides} alt=""/>
                     <p>Guías</p>
                   </div>
                 </div>
                 <div className="col-xs-4">
                   <div className={style.item}>
-                    <img src={materialsIcon} alt=""/>
+                    <img src={icons.materials} alt=""/>
                     <p>Material</p>
                   </div>
                 </div>
