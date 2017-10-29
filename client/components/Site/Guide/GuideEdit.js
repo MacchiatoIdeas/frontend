@@ -26,6 +26,7 @@ export default class GuideEdit extends React.Component {
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onBriefChange = this.onBriefChange.bind(this);
     this.submit = this.submit.bind(this);
+    this.updatePosition = this.updatePosition.bind(this);
   }
 
   onTitleChange(event) {
@@ -40,19 +41,33 @@ export default class GuideEdit extends React.Component {
     });
   }
 
+  updatePosition(start, end) {
+    let items =  this.state.items;
+    let element = items[start];
+    items.splice(start, 1);
+    items.splice(end, 0, element);
+
+    this.setState({
+      items: items,
+    });
+    console.log('ITEMS', this.state.items);
+  }
+
   componentDidMount() {
     $('#guide').sortable({
       handle: '.drag',
       placeholder: 'ui-state-highlight',
       start: function (e, ui) {
         ui.placeholder.height(ui.helper.outerHeight());
+        ui.item.startPos = ui.item.index();
       },
+      update: (event, ui) => {this.updatePosition(ui.item.startPos, ui.item.index())},
     });
   }
 
   removeChild(index) {
     console.log('remove', index);
-    const {items} = this.state;
+    let {items} = this.state;
     let deleted = this.state[index];
     items.splice(index, 1);
     this.setState({
