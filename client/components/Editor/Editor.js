@@ -27,7 +27,10 @@ export default class Editor extends React.Component {
     console.log('Adding Title');
     let inputList = this.state.inputList;
     const inputCount = this.state.inputCount;
-    let newItem = {'key': inputCount, 'item':<Title key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}/>};
+    let newItem = {
+      'key': inputCount,
+      'item': <Title key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}/>
+    };
     this.setState({
       inputList: [...inputList, newItem],
       inputCount: inputCount + 1
@@ -40,7 +43,10 @@ export default class Editor extends React.Component {
     console.log('Adding Content');
     let inputList = this.state.inputList;
     const inputCount = this.state.inputCount;
-    let newItem = {'key': inputCount, 'item':<Content key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}/>};
+    let newItem = {
+      'key': inputCount,
+      'item': <Content key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}/>
+    };
     this.setState({
       inputList: [...inputList, newItem],
       inputCount: inputCount + 1
@@ -52,7 +58,10 @@ export default class Editor extends React.Component {
     console.log('Adding Graph');
     let inputList = this.state.inputList;
     const inputCount = this.state.inputCount;
-    let newItem = {'key': inputCount, 'item':<Graph key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}/>};
+    let newItem = {
+      'key': inputCount,
+      'item': <Graph key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}/>
+    };
     this.setState({
       inputList: [...inputList, newItem],
       inputCount: inputCount + 1
@@ -78,7 +87,7 @@ export default class Editor extends React.Component {
   }
 
   updatePosition(start, end) {
-    let list =  this.state.inputList;
+    let list = this.state.inputList;
     let element = list[start];
     list.splice(start, 1);
     list.splice(end, 0, element);
@@ -98,7 +107,9 @@ export default class Editor extends React.Component {
         ui.placeholder.height(ui.helper.outerHeight());
         ui.item.startPos = ui.item.index();
       },
-      update: (event, ui) => {this.updatePosition(ui.item.startPos, ui.item.index())},
+      update: (event, ui) => {
+        this.updatePosition(ui.item.startPos, ui.item.index())
+      },
     });
   }
 
@@ -107,13 +118,14 @@ export default class Editor extends React.Component {
       <div>
         <Navbar/>
         <Body showBreadcrumbs={false} showFooter={false}>
-          <div className="paper clearfix">
-            <ul id="editor" className="editor ui-sortable">
-              {this.state.inputList.map((item, i) => item.item)}
-            </ul>
-          </div>
-          <div>
-            <div className={`btn-group btn-group-justified ${style.customBtns}`}>
+        <div className="paper clearfix">
+          <ul id="editor" className="editor ui-sortable">
+            {this.state.inputList.map((item, i) => item.item)}
+          </ul>
+        </div>
+        <div>
+          <div className={style.customBtns}>
+            <div className="btn-group btn-group-justified">
               <div className={`btn-group ${style.wrapper} ${style.title}`}>
                 <img src={icons.newTitle} alt=""/>
                 <button type="button" onClick={this.onClickAddTitle} className={`btn btn-default`}>
@@ -126,20 +138,21 @@ export default class Editor extends React.Component {
                   Añadir Parrafo
                 </button>
               </div>
-              <div className={`btn-group ${style.wrapper}`}>
+              <div className={`btn-group ${style.wrapper} ${style.graph}`}>
                 <img src={icons.newGraph} alt=""/>
                 <button type="button" onClick={this.onClickAddGraph} className={`btn btn-default`}>
                   Añadir Gráfico
                 </button>
               </div>
-              <div className={`btn-group ${style.wrapper}`}>
+              <div className={`btn-group ${style.wrapper} ${style.image}`}>
                 <img src={icons.newPicture} alt=""/>
-                <button type="button" onClick={this.onClickAddGraph} className={`btn btn-default ${style.image}`}>
+                <button type="button" onClick={this.onClickAddGraph} className={`btn btn-default`}>
                   Añadir Imagen
                 </button>
               </div>
             </div>
           </div>
+        </div>
         </Body>
       </div>
     )
