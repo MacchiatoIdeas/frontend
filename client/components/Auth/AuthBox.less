@@ -15,6 +15,7 @@
     animation: login 1s ease;
     overflow: hidden;
     border-radius: 10px;
+    margin-bottom: 16px;
   }
   .form {
     background-color: #ffffff;
@@ -31,7 +32,8 @@
         font-weight: bold;
       }
 
-      input {
+      input, textarea {
+        outline: none;
         display: block;
         width: 100%;
         box-sizing: border-box;
@@ -39,6 +41,13 @@
         padding: 12px;
         border: 1px #ccc solid;
         background-color: #f7f7f7;
+        resize: none;
+        transition: 0.5s ease;
+
+        &:focus {
+          border: 1px #999 solid;
+          background-color: #f0f0f0;
+        }
       }
     }
 
@@ -53,6 +62,11 @@
       font-size: 18px;
       margin-top: 8px;
       border-bottom: 2px #327eae solid;
+
+      &:hover {
+        background-color: lighten(#4ca2e8, 5%);
+        border-bottom-color: lighten(#327eae, 5%);
+      }
     }
 
     .new-account {

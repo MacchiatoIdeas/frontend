@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 
-import Login from './Auth/Login';
+import Login from './Auth/Login/Login';
 import Portal from './Portal/Portal';
 import Site from './Site/Site';
 import Editor from './Editor/Editor';

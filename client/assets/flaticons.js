@@ -10,6 +10,7 @@ import newGraph from './svg/flaticons/icons3/geometry.svg';
 import newPicture from './svg/flaticons/icons4/picture.svg';
 import login from './svg/flaticons/icons2/id-card.svg';
 import register from './svg/flaticons/icons1/pen.svg';
+import file from './svg/flaticons/icons2/ereader.svg';
 
 
 export {
@@ -24,5 +25,6 @@ export {
   newTitle,
   newParagraph,
   newGraph,
-  newPicture
+  newPicture,
+  file,
 };

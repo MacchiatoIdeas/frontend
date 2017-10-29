@@ -57,7 +57,7 @@ export default class Register extends React.Component {
   render() {
     const {auth} = this.props;
 
-    if (auth.access_token) {
+    if (auth.isAuthenticated) {
       return (
         <Redirect to="/portal"/>
       )
