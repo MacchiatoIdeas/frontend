@@ -1,7 +1,8 @@
 #header {
   position: relative;
   background: #fff;
-  overflow: hidden;
+  display: inline-block;
+  width: 100%;
 }
 #header:before {
   content: ' ';
