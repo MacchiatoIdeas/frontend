@@ -98,7 +98,9 @@ export default class Summary extends React.Component {
           </div>
         </section>
 
-        <Header color="#5DDDD3" textColor="#fff" icon={icons.courses}>Mis Cursos</Header>
+        <Header color="#5DDDD3" textColor="#fff" icon={icons.courses} sideButton="/portal/courses/create">
+          Mis Cursos
+        </Header>
 
         <section className={style.section}>
           <div className="playlist playlist-accents">

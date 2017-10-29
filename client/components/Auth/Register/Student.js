@@ -4,6 +4,8 @@ import SpecialButton from '../SpecialButton';
 import style from './style.less';
 import EqualFields from '../EqualFields';
 
+import {Form} from '../../Utilities/Form/style.less';
+
 export default class Student extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,7 @@ export default class Student extends React.Component {
 
   render() {
     return (
-      <div className={style.Form}>
+      <form className={`${style.Form} ${Form}`}>
         <label>
           <div>Nombres</div>
           <input type="text" ref="firstName" placeholder="Juan Pablo" required/>
@@ -57,7 +59,7 @@ export default class Student extends React.Component {
         <SpecialButton text="Ya tengo una Cuenta" link="/login"/>
 
         <button>Continuar</button>
-      </div>
+      </form>
     )
   }
 }

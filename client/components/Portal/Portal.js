@@ -8,7 +8,7 @@ import Navbar from '../Navbar/Navbar';
 import Body from '../Body';
 import Summary from './Summary';
 import Folders from './Folders';
-import Courses from './Courses/Courses';
+import Courses from './Courses';
 import Exercises from './Exercises';
 
 import style from './Portal.less';
