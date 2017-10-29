@@ -8,7 +8,7 @@ import newTitle from './svg/flaticons/icons1/pen.svg';
 import newParagraph from './svg/flaticons/icons2/writing.svg';
 import newGraph from './svg/flaticons/icons3/geometry.svg';
 import newPicture from './svg/flaticons/icons4/picture.svg';
+import login from './svg/flaticons/icons2/id-card.svg';
 
 
-
-export {exercises, guides, guidesv2, materials, notes, courses, newTitle, newParagraph, newGraph, newPicture};
+export {exercises, guides, guidesv2, materials, notes, courses, login, newTitle, newParagraph, newGraph, newPicture};

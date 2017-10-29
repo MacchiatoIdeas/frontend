@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
+import ReactLoading from 'react-loading';
 
 import Login from './Auth/Login';
 import Portal from './Portal/Portal';
@@ -9,6 +10,7 @@ import GuidesEditor from './GuidesEditor/GuidesEditor'
 import Register from './Auth/Register';
 import {getUserData, loadFromLocalStorage} from '../actions/auth';
 import {connect} from 'react-redux';
+import Loading from "./Utilities/Loading/index";
 
 @connect(state => ({
   auth: state.auth,
@@ -25,7 +27,7 @@ export default class App extends React.Component {
     const {auth} = this.props;
 
     if (auth.isFetching) {
-      return null;
+      return <Loading/>
     }
 
     return (
