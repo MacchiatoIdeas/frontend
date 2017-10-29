@@ -8,7 +8,9 @@ import {sendLogin} from '../../actions/auth';
 
 import Navbar from '../Navbar/Navbar';
 
-import style from './Login.less';
+import * as icons from '../../assets/flaticons';
+import AuthBox from './AuthBox';
+import SpecialButton from './SpecialButton';
 
 @connect((state) => ({
   auth: state.auth,
@@ -38,9 +40,28 @@ export default class Login extends React.Component {
       <div>
         <Navbar backgroundColor="rgba(255, 255, 255)"/>
 
-        <div className="container">
-          <div className="col-sm-4 col-sm-offset-4">
-            <div className={`panel panel-default ${style.panel}`}>
+        <AuthBox icon={icons.login} title="Iniciar Sesión" color="#FFCA4F">
+          <label>
+            <div>Nombre de Usuario</div>
+            <input type="text" placeholder="ejemplo@ejemplo.com"/>
+          </label>
+
+          <label>
+            <div>Contraseña</div>
+            <input type="password" placeholder="*****"/>
+          </label>
+
+          <SpecialButton text="Crear una cuenta" link="/register"/>
+
+          <button>Continuar</button>
+        </AuthBox>
+      </div>
+    )
+  }
+}
+
+/*
+<div className={`panel panel-default ${style.panel}`}>
               <div className={`panel-body ${style.panelBody}`}>
                 <h2 className={style.title}>Iniciar Sesión</h2>
 
@@ -59,13 +80,4 @@ export default class Login extends React.Component {
                 </form>
               </div>
             </div>
-
-            <div className="text-center">
-              <Link to="/register">Registro</Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
+ */

@@ -1,16 +1,15 @@
 import React from 'react';
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
-import ReactLoading from 'react-loading';
 
 import Login from './Auth/Login';
 import Portal from './Portal/Portal';
 import Site from './Site/Site';
 import Editor from './Editor/Editor';
 import GuidesEditor from './GuidesEditor/GuidesEditor'
-import Register from './Auth/Register';
+import Register from './Auth/Register/index';
 import {getUserData, loadFromLocalStorage} from '../actions/auth';
 import {connect} from 'react-redux';
-import Loading from "./Utilities/Loading/index";
+import Loading from './Utilities/Loading/index';
 
 @connect(state => ({
   auth: state.auth,
