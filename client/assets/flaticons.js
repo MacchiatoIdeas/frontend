@@ -4,5 +4,11 @@ import guidesv2 from './svg/flaticons/icons2/library-2.svg';
 import materials from './svg/flaticons/icons1/reading-1.svg';
 import notes from './svg/flaticons/icons1/notes.svg';
 import courses from './svg/flaticons/icons2/laptop.svg';
+import newTitle from './svg/flaticons/icons1/pen.svg';
+import newParagraph from './svg/flaticons/icons2/writing.svg';
+import newGraph from './svg/flaticons/icons3/geometry.svg';
+import newPicture from './svg/flaticons/icons4/picture.svg';
 
-export {exercises, guides, guidesv2, materials, notes, courses};
+
+
+export {exercises, guides, guidesv2, materials, notes, courses, newTitle, newParagraph, newGraph, newPicture};
