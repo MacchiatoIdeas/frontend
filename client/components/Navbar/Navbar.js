@@ -39,6 +39,7 @@ export default class Navbar extends React.Component {
       searchInput: "",
       searching: false,
       showing: false,
+      listResult: [],
     });
   }
 
@@ -61,6 +62,7 @@ export default class Navbar extends React.Component {
       this.setState({
         searching: this.state.searchInput !== "",
         showing: false,
+        listResult: [],
       });
       if (this.state.searchInput !== "") {
         setTimeout(() => {
