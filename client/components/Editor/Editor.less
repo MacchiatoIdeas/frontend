@@ -1,4 +1,10 @@
 .customBtns {
+  padding: 10px;
+  & > div {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+  }
   & .wrapper {
     & button {
       display: block;
@@ -7,6 +13,11 @@
       padding: 20px;
       font-size: 14pt;
       color: #666;
+      background: transparent;
+
+      &:focus {
+        background: rgba(0, 0, 0, 0.1);
+      }
     }
     & img {
       position: absolute;
@@ -14,6 +25,34 @@
       left: 5px;
       height: 100%;
       z-index: 99;
+    }
+
+    &.title {
+      background: #1A91A1;
+      & button {
+        color: #fff;
+      }
+    }
+
+    &.paragraph {
+      background: #90DFAA;
+      & button {
+        color: #fff;
+      }
+    }
+
+    &.graph {
+      background: #1A91A1;
+      & button {
+        color: #fff;
+      }
+    }
+
+    &.image {
+      background: #FFD05B;
+      & button {
+        color: #fff;
+      }
     }
   }
 }
