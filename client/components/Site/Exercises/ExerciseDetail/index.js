@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, NavLink, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import Exercise from '../Exercise';
@@ -16,6 +16,9 @@ import {Form} from '../../../Utilities/Form/style.less';
 import Select from '../../../Utilities/Select/index';
 
 import style from './style.less';
+import Menu from '../../../Utilities/Menu/index';
+
+import {active} from '../../../Utilities/Menu/style.less';
 
 @connect((state, props) => {
   let exercise = state.exercises[props.match.params.exerciseId];
@@ -102,7 +105,23 @@ export default class ExerciseDetail extends React.Component {
         </section>
 
         <RecommendedExercises/>
-        <Comments exercise={exercise} comments={exercise.comments}/>
+
+        <section>
+          <Menu>
+            <NavLink exact to={`/site/units/${unit.id}/exercise/${exercise.id}`} activeClassName={active}>Comentarios</NavLink>
+            <NavLink exact to={`/site/units/${unit.id}/exercise/${exercise.id}/feedback`} activeClassName={active}>Feedback</NavLink>
+          </Menu>
+        </section>
+
+        <Switch>
+          <Route exact path="/site/units/:unitId/exercise/:id" render={({match}) => (
+            <Comments exercise={exercise} comments={exercise.comments}/>
+          )}/>
+
+          <Route exact path="/site/units/:unitId/exercise/:id/feedback" render={({match}) => (
+            <Comments exercise={exercise} comments={[]}/>
+          )}/>
+        </Switch>
 
         <AppuntaModal show={this.state.showModal}
                       onHide={() => this.setState({showModal: false})}
