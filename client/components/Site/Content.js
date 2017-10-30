@@ -5,10 +5,8 @@ import {getContentById} from '../../actions/contents';
 
 import Comments from './Comments/Comments';
 
-import SubjectBox from './SubjectBox';
-
 import css from '../../style/FluidPage.less';
-import AddItemModal from "./Guide/AddItemModal";
+import AddItemModal from './Guide/AddItemModal';
 
 @connect((state, props) => {
   const {id} = props.match.params;
@@ -25,7 +23,6 @@ import AddItemModal from "./Guide/AddItemModal";
   content = {
     ...content,
     unit: state.units[content.unit],
-    auth: state.auth,
   };
   content.unit = {
     ...content.unit,
@@ -33,7 +30,8 @@ import AddItemModal from "./Guide/AddItemModal";
   };
 
   return {
-    content
+    content,
+    auth: state.auth,
   }
 }, {
   getContentById

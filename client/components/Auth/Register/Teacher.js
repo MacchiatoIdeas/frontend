@@ -56,7 +56,8 @@ export default class Teacher extends React.Component {
           <input type="text" ref="username" placeholder="jperez" required/>
         </label>
 
-        <EqualFields name="email" text="Correo electrónico" placeholder="ejemplo@ejemplo.com" onChange={this.onInputChange}/>
+        <EqualFields name="email" text="Correo electrónico" placeholder="ejemplo@ejemplo.com"
+                     onChange={this.onInputChange}/>
 
         <label>
           <div>Fecha de Nacimiento</div>
@@ -78,30 +79,31 @@ export default class Teacher extends React.Component {
           <Textarea ref="experience" placeholder="Aquí escriba sobre su experiencia profesional..."/>
         </label>
 
-        <label>
+        <label htmlFor="dropzone" style={{marginBottom: 0}}>
           <div>Curriculum</div>
-
-          <Dropzone className={`${style.Dropzone} ${this.state.files.length > 0 ? style.DropzoneReady : ''}`} onDrop={this.onDrop} multiple={false}>
-            <p>
-              <div className="row">
-                <div className="col-sm-2 text-center">
-                  <img src={icons.file} height="50"/>
-                </div>
-
-                <div className="col-sm-10">
-                  {
-                    this.state.files.length === 0 ?
-                      'Arrastre su curriculum aquí o presione para abrir una ventana de selección.'
-                      :
-                      this.state.files[0].name
-                  }
-                </div>
-              </div>
-            </p>
-          </Dropzone>
         </label>
 
-        <EqualFields name="password" text="Contraseña" placeholder="********" type="password" onChange={this.onInputChange}/>
+        <Dropzone className={`${style.Dropzone} ${this.state.files.length > 0 ? style.DropzoneReady : ''}`}
+                  onDrop={this.onDrop} multiple={false}>
+          <p>
+            <div className="row">
+              <div className="col-sm-2 text-center">
+                <img src={icons.file} height="50"/>
+              </div>
+
+              <div className="col-sm-10">
+                {this.state.files.length === 0 ?
+                  'Arrastre su curriculum aquí o presione para abrir una ventana de selección.'
+                  :
+                  this.state.files[0].name
+                }
+              </div>
+            </div>
+          </p>
+        </Dropzone>
+
+        <EqualFields name="password" text="Contraseña" placeholder="********" type="password"
+                     onChange={this.onInputChange}/>
 
         <SpecialButton text="Ya tengo una Cuenta" link="/login"/>
 

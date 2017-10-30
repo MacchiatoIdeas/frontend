@@ -1,0 +1,36 @@
+.Option {
+  transition: 0.5s ease;
+  z-index: 0;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  .title {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: #ffffff;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.35);
+    border-top: 1px #cccccc solid;
+  }
+
+  &:hover {
+    transform: scale(1.1, 1.1);
+    z-index: 1;
+    cursor: pointer;
+    opacity: 1 !important;
+  }
+
+  .selected {
+    opacity: 1;
+  }
+
+  &.not-selected {
+    opacity: 0.5;
+  }
+}

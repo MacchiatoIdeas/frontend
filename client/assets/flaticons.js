@@ -12,7 +12,8 @@ import image from './svg/flaticons/icons4/picture-2.svg';
 import login from './svg/flaticons/icons2/id-card.svg';
 import register from './svg/flaticons/icons1/pen.svg';
 import file from './svg/flaticons/icons2/ereader.svg';
-
+import student from './svg/flaticons/icons3/graduates.svg';
+import subject from './svg/flaticons/icons3/book.svg';
 
 export {
   exercises,
@@ -29,4 +30,6 @@ export {
   newImage,
   image,
   file,
+  student,
+  subject
 };

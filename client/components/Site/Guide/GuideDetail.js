@@ -14,6 +14,7 @@ export default class GuideDetail extends React.Component {
             <h2 className="page-header">{guide.title}</h2>
           </div>
         </div>
+
         <div className="row">
           <div className={`col-sm-9 ${css.content}`}>
             {guide.items.map((item, i) => {
