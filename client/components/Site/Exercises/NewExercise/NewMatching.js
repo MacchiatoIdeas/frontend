@@ -69,30 +69,21 @@ export default class NewAlternatives extends React.Component {
 
     return (
       <div>
-        <div className="col-sm-12">
-          <div className="form-group">
-            <label htmlFor="title">Título:</label>
-            <input type="text" className="form-control" id="title" onClick={this.updateTitle}/>
+        <div>
+          <div className="col-sm-6">
+            <label>Lado A:</label>
           </div>
-          <div className="form-group">
-            <label htmlFor="text">Enunciado:</label>
-            <input type="text" className="form-control" id="text" onClick={this.updateText}/>
+          <div className="col-sm-6">
+            <label>Lado B:</label>
           </div>
-          <div>
-            <div className="col-sm-6">
-              <label>Lado A:</label>
-            </div>
-            <div className="col-sm-6">
-              <label>Lado B:</label>
-            </div>
 
-            {Object.keys(this.state.rows).map((key, i) => this.state.rows[key])}
-            <div className="clearfix"></div>
-          </div>
-          <div className="alert alert-warning">Recuerde relacionar los elementos del lado B con el lado A utilizando el número de orden.</div>
-          <button className="btn btn-default btn-block" onClick={this.addRow}>Agregar opción</button>
-          <button className="btn btn-success btn-block">Guardar ejercicio</button>
+          {Object.keys(this.state.rows).map((key, i) => this.state.rows[key])}
+          <div className="clearfix"></div>
         </div>
+        <div className="alert alert-warning">Recuerde relacionar los elementos del lado B con el lado A utilizando el
+          número de orden.
+        </div>
+        <button className="btn btn-default btn-block" onClick={this.addRow}>Agregar opción</button>
       </div>
     )
   }
