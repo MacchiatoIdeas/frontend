@@ -1,11 +1,13 @@
 import React from 'react';
+import {Route, Switch} from 'react-router-dom';
 import {NavLink} from 'react-router-dom';
 
-import SubjectBox from '../SubjectBox';
-import UnitSidebar from '../Unit/UnitSidebar';
+import SubjectBox from '../../SubjectBox';
+import UnitSidebar from '../../Unit/UnitSidebar';
 
 import NewAlternatives from './NewAlternatives';
 import NewMatching from './NewMatching';
+import Options from './Options'
 
 
 export default class NewExercise extends React.Component {
@@ -59,33 +61,14 @@ export default class NewExercise extends React.Component {
   }
 
   render() {
-    let filter = 'Creando nuevo ejercicio';
-    console.log('NEW EXERCISES');
-    const {unit} = this.props;
-
     return (
-      <div>
-        <section>
-          <div className="col-sm-3">
-            <SubjectBox subject={unit.subject}/>
-            <UnitSidebar type="exercises" unit={unit}/>
-          </div>
-          <div className="col-sm-9">
-            <h2 className="page-header">Nuevo Ejercicio</h2>
-
-            <div className="row">
-              <div className="col-sm-12">
-                <div className="box box-fill">
-                  <div className="box-body">
-                    {this.showContent()}
-                    <div className="clearfix"/>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+      <Switch>
+        <Route path="/site/units/:id/exercise/create/alternatives" component={NewAlternatives}/>
+        <Route path="/site/units/:id/exercise/create/matching" component={NewMatching}/>
+        <Route render={({match}) =>
+          <Options unit={this.props.unit} match={match}/>
+        }/>
+      </Switch>
     )
   }
 }
