@@ -3,7 +3,7 @@ import React from 'react';
 import {Form} from '../../../Utilities/Form/style.less';
 import style from './Form.less';
 import Textarea from 'react-textarea-autosize';
-import Editor from "../../../Editor/Editor";
+import Editor from '../../../Editor/Editor';
 
 const Alternative = () => {
   return (
@@ -27,7 +27,7 @@ export default class NewAlternatives extends React.Component {
     this.updateText = this.updateText.bind(this);
 
     this.state = {
-      brief: "",
+      brief: '',
       content: {},
       alternatives: [],
       text: [],
