@@ -76,7 +76,9 @@ export default class NewExercise extends React.Component {
               <Route path="/site/units/:id/exercises/create/alternatives" render={({match}) => (
                 <NewAlternatives update={this.updateQuestionAnswer} match={match}/>
               )}/>
-              <Route path="/site/units/:id/exercises/create/matching" component={NewMatching}/>
+              <Route path="/site/units/:id/exercises/create/matching" render={({match}) => (
+                <NewMatching update={this.updateQuestionAnswer} match={match}/>
+                )}/>
             </Switch>
           </div>
         </section>

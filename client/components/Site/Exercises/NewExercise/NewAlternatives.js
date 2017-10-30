@@ -47,17 +47,17 @@ export default class NewAlternatives extends React.Component {
     this.setState({
       answer
     });
-    this.updateParent(undefined, answer);
+    this.updateParent(null, answer);
   }
 
   updateParent(alternatives, correctAnswer) {
     let question = {
       schema: 'alternatives',
-      alts: alternatives !== undefined ? alternatives.slice(0, -1) : this.state.alternatives.slice(0, -1),
+      alts: alternatives !== null ? alternatives.slice(0, -1) : this.state.alternatives.slice(0, -1),
     };
     let answer = {
       schema: 'alternatives',
-      answer: correctAnswer !== undefined ? correctAnswer : this.state.answer,
+      answer: correctAnswer !== null ? correctAnswer : this.state.answer,
     };
     this.props.update(question, answer);
   }

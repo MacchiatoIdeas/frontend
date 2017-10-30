@@ -1,89 +1,82 @@
 import React from 'react';
+import {Form} from '../../../Utilities/Form/style.less';
+import MatchLine from "./MatchLine";
 
-const MatchingRow = ({index}) => {
-  return (
-    <div>
-      <div className="col-sm-6">
-        <div className="form-group">
-          <div className="input-group">
-        <span className="input-group-addon">
-          <input className="match text-center" type="text" placeholder="Lado B"/>
-        </span>
-            <input type="text" className="form-control"/>
-          </div>
-        </div>
-      </div>
-      <div className="col-sm-6">
-        <div className="form-group">
-          <div className="input-group">
-        <span className="input-group-addon">
-          {index}
-        </span>
-            <input type="text" className="form-control" aria-label="Text input with checkbox"/>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-};
-
-export default class NewAlternatives extends React.Component {
+export default class NewMatching extends React.Component {
   constructor(props) {
     super(props);
 
-    this.updateTitle = this.updateTitle.bind(this);
-    this.addRow = this.addRow.bind(this);
+    this.onSideChange = this.onSideChange.bind(this);
+    this.updateParent = this.updateParent.bind(this);
 
     this.state = {
-      title: "",
-      summary: "",
-      content: {},
-      rows: {},
-      countRows: 0
+      sideA: [
+        '',
+      ],
+      sideB: [
+        '',
+      ],
+      answer: [],
     };
   }
 
-  updateTitle(event) {
-    this.setState({
-      title: event.target.value
-    });
+  onSideChange(_side, index, newValue) {
+    let side;
+    if (_side === 'A') side = [...this.state.sideA];
+    else side = [...this.state.sideB];
+    side[index] = newValue;
+
+    if (index === side.length - 1 && newValue !== '') {
+      side.push('');
+    }
+
+    if (newValue === '') {
+      side.splice(index, 1);
+    }
+
+    if (_side === 'A') {
+      this.setState({
+        sideA: side,
+      });
+      //this.updateParent(side, null, null);
+    }
+    else {
+      this.setState({
+        sideB: side,
+      });
+      //this.updateParent(null, side, null);
+    }
   }
 
-  updateText(event) {
-    this.setState({
-      summary: event.target.value
-    });
-  }
-
-  addRow() {
-    let rows = this.state.rows;
-    rows[this.state.countRows] = <MatchingRow key={this.state.countRows} index={this.state.countRows + 1}/>;
-    this.setState({
-      rows: rows,
-      countRows: this.state.countRows + 1
-    });
+  updateParent(sideA, sideB, correctAnswer) {
+    let question = {
+      schema: 'matching',
+      sideA: sideA !== null ? sideA.slice(0, -1) : this.state.sideA.slice(0, -1),
+      sideB: sideB !== null ? sideB.slice(0, -1) : this.state.sideB.slice(0, -1),
+    };
+    let answer = {
+      schema: 'matching',
+      answer: correctAnswer !== null ? correctAnswer : this.state.answer,
+    };
+    this.props.update(question, answer);
   }
 
   render() {
-    console.log('NEW MATCHING');
-
     return (
-      <div>
-        <div>
-          <div className="col-sm-6">
-            <label>Lado A:</label>
-          </div>
-          <div className="col-sm-6">
-            <label>Lado B:</label>
-          </div>
+      <div className={Form} style={{paddingLeft: 0, paddingRight: 0}}>
+        <label style={{marginBottom: 0}}>
+          <div>Términos pareados</div>
+        </label>
 
-          {Object.keys(this.state.rows).map((key, i) => this.state.rows[key])}
-          <div className="clearfix"></div>
+        <div className="col-sm-6">
+          {this.state.sideA.map((item, i) =>
+            <MatchLine key={i} index={i} value={item} onChange={(index, value) => this.onSideChange('A', index, value)}/>)}
         </div>
-        <div className="alert alert-warning">Recuerde relacionar los elementos del lado B con el lado A utilizando el
-          número de orden.
+
+        <div className="col-sm-6">
+          {this.state.sideB.map((item, i) =>
+            <MatchLine key={i} index={i} value={item} onChange={(index, value) => this.onSideChange('B', index, value)}/>)}
         </div>
-        <button className="btn btn-default btn-block" onClick={this.addRow}>Agregar opción</button>
       </div>
     )
   }
