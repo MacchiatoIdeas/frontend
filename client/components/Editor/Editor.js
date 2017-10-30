@@ -145,6 +145,9 @@ export default class Editor extends React.Component {
         <div className="paper clearfix">
           <ul id="editor" className="editor ui-sortable">
             {this.state.inputList.map((item, i) => item.item)}
+            {this.state.inputList.length === 0 ?
+              <h3 className="text-muted text-center">Utiliza los botones para agregar elementos</h3>
+            : undefined}
           </ul>
         </div>
         <div>

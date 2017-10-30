@@ -8,7 +8,7 @@ import {getUnitById} from '../../../actions/units';
 import UnitDocuments from './UnitDocuments';
 import UnitExercises from './UnitExercises';
 import ExerciseDetail from '../Exercises/ExerciseDetail';
-import NewExercise from '../Exercises/NewExercise';
+import NewExercise from '../Exercises/NewExercise/NewExercise';
 import Header from '../../Portal/Header';
 import * as icons from '../../../assets/flaticons';
 
