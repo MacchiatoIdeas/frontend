@@ -6,9 +6,9 @@ import Exercise from './Exercise';
 import Comments from '../Comments/Comments';
 import {getExerciseById} from '../../../actions/exercises';
 
-import RecommendedExercises from "./RecommendedExercises";
+import RecommendedExercises from './RecommendedExercises';
 import style from './ExerciseDetail.less'
-import AddItemModal from "../Guide/AddItemModal";
+import AddItemModal from '../Guide/AddItemModal';
 
 @connect((state, props) => {
   let exercise = state.exercises[props.match.params.exerciseId];
@@ -20,10 +20,10 @@ import AddItemModal from "../Guide/AddItemModal";
     ...exercise,
     content: JSON.parse(exercise.content),
     right_answer: JSON.parse(exercise.right_answer),
-    auth: state.auth,
   };
 
   return {
+    auth: state.auth,
     exercise
   }
 }, {
