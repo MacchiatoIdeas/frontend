@@ -1,0 +1,30 @@
+.input {
+  position: relative;
+  & div {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    & button {
+      position: relative;
+      background: transparent;
+      color: #666;
+      padding: 5px;
+      margin: 0 10px;
+      border: 1px solid #666;
+      top: -1px;
+
+      &:hover {
+        color: #fff;
+        background: #AAA;
+        border: 1px solid #AAA;
+      }
+
+      &.selected {
+        color: #fff;
+        background: #90DFAA;
+        border: 1px solid #90DFAA;
+      }
+    }
+  }
+}

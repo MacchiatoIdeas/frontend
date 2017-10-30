@@ -18,14 +18,15 @@ export default class NewExercise extends React.Component {
     super(props);
 
     this.updateBrief = this.updateBrief.bind(this);
-    this.addAlternative = this.addAlternative.bind(this);
     this.updateText = this.updateText.bind(this);
+    this.updateQuestionAnswer = this.updateQuestionAnswer.bind(this);
 
     this.state = {
       brief: '',
       content: {},
-      alternatives: [],
       text: [],
+      question: {},
+      answer: {},
     };
 
   }
@@ -42,11 +43,10 @@ export default class NewExercise extends React.Component {
     });
   }
 
-  addAlternative() {
-    let alternatives = this.state.alternatives;
-    let newAlternative = <Alternative key={this.state.countAlternatives}/>;
+  updateQuestionAnswer(question, answer) {
     this.setState({
-      alternatives: [...alternatives, newAlternative]
+      question,
+      answer,
     });
   }
 
@@ -73,7 +73,9 @@ export default class NewExercise extends React.Component {
 
           <div className={style.wrapper}>
             <Switch>
-              <Route path="/site/units/:id/exercises/create/alternatives" component={NewAlternatives}/>
+              <Route path="/site/units/:id/exercises/create/alternatives" render={({match}) => (
+                <NewAlternatives update={this.updateQuestionAnswer} match={match}/>
+              )}/>
               <Route path="/site/units/:id/exercises/create/matching" component={NewMatching}/>
             </Switch>
           </div>

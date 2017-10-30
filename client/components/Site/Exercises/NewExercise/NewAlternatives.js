@@ -8,16 +8,20 @@ export default class NewAlternatives extends React.Component {
     super(props);
 
     this.onAlternativeChange = this.onAlternativeChange.bind(this);
+    this.onAlternativeClick = this.onAlternativeClick.bind(this);
+    this.updateParent = this.updateParent.bind(this);
 
     this.state = {
       alternatives: [
         '',
       ],
+      answer: undefined,
     };
   }
 
   onAlternativeChange(index, newValue) {
     let alternatives = [...this.state.alternatives];
+    let answer = this.state.answer;
     alternatives[index] = newValue;
 
     if (index === alternatives.length - 1 && newValue !== '') {
@@ -28,9 +32,34 @@ export default class NewAlternatives extends React.Component {
       alternatives.splice(index, 1);
     }
 
+    if (answer > alternatives.length - 2) {
+      answer = undefined;
+    }
+
     this.setState({
       alternatives,
+      answer,
     });
+    this.updateParent(alternatives, answer);
+  }
+
+  onAlternativeClick(answer) {
+    this.setState({
+      answer
+    });
+    this.updateParent(undefined, answer);
+  }
+
+  updateParent(alternatives, correctAnswer) {
+    let question = {
+      schema: 'alternatives',
+      alts: alternatives !== undefined ? alternatives.slice(0, -1) : this.state.alternatives.slice(0, -1),
+    };
+    let answer = {
+      schema: 'alternatives',
+      answer: correctAnswer !== undefined ? correctAnswer : this.state.answer,
+    };
+    this.props.update(question, answer);
   }
 
   render() {
@@ -41,7 +70,8 @@ export default class NewAlternatives extends React.Component {
         </label>
 
         {this.state.alternatives.map((alt, i) =>
-          <Alternative value={alt} onChange={this.onAlternativeChange} index={i} key={i}/>)}
+          <Alternative value={alt} onChange={this.onAlternativeChange} onClick={this.onAlternativeClick} index={i}
+                       key={i} selected={i === this.state.answer}/>)}
       </div>
     )
   }

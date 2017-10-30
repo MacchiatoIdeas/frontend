@@ -1,13 +1,17 @@
 import React from 'react';
+import style from './Alternative.less';
 
-const Alternative = ({value, index, onChange}) =>
-  <table width="100%">
-    <tr>
-      <td width="100%"><label style={{margin: 0, padding: 0, marginBottom: 8}}>
-        <input type="text" value={value} onChange={(e) => onChange(index, e.target.value)}/>
-      </label></td>
-      <td width="0"><span className="glyphicon glyphicon-check" style={{width: 35, padding: 10}}/></td>
-    </tr>
-  </table>;
+const Alternative = ({value, index, selected, onChange, onClick}) =>
+
+  <label style={{margin: 0, padding: 0, marginBottom: 8}} className={style.input}>
+    <input type="text" value={value} onChange={(e) => onChange(index, e.target.value)}
+           placeholder={`alternativa ${index + 1}`}/>
+    <div>
+      {value !== '' ?
+        <button tabIndex="-1" onClick={() => onClick(index)} className={`btn btn-default ${selected ? style.selected : ""}`}>Correcta
+        </button>
+        : undefined}
+    </div>
+  </label>;
 
 export default Alternative;
