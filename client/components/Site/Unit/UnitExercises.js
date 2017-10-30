@@ -1,22 +1,13 @@
 import React from 'react';
-import {Link, NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import SubjectBox from '../SubjectBox';
-import UnitSidebar from './UnitSidebar';
 import Box from '../../Box';
 
 import * as icons from '../../../assets/flaticons';
-import Header from "../../Portal/Header/index";
+import Header from '../../Portal/Header/index';
+import UnitMenu from './UnitMenu';
 
-
-const Stars = ({stars, of}) => {
-  return (
-    <div>
-      {[...new Array(stars)].map((_, i) => <span className="glyphicon glyphicon-star" key={i}/>)}
-      {[...new Array(of - stars)].map((_, i) => <span className="glyphicon glyphicon-star-empty" key={i}/>)}
-    </div>
-  )
-};
 
 export default class UnitExercises extends React.Component {
   render() {
@@ -24,19 +15,21 @@ export default class UnitExercises extends React.Component {
 
     return (
       <div>
-        <Header icon={icons.exercises} color="#5DDDD3">{unit.name}</Header>
+        <Header icon={icons.exercises} color="#5DDDD3" sideButton={
+          <Link to={`/site/units/${unit.id}/exercises/create`}>
+            <span className="glyphicon glyphicon-plus-sign"/>
+          </Link>
+        }>
+          {unit.name}
+        </Header>
 
         <section>
           <div className="col-sm-4">
             <SubjectBox subject={unit.subject} showTitle/>
-            <UnitSidebar type="exercises" unit={unit}/>
           </div>
 
           <div className="col-sm-8">
-            <Link to={`/site/units/${unit.id}/exercises/create`} className="head-link"><span
-              className="glyphicon glyphicon-plus"/> Crear Ejercicio</Link>
-
-            <h2 className="page-header">Ejercicios</h2>
+            <UnitMenu unitId={unit.id}/>
 
             <div className="row">
               <div className="col-sm-12">
@@ -50,6 +43,7 @@ export default class UnitExercises extends React.Component {
                     comments={0}
                     link={`/site/units/${unit.id}/exercise/${exercise.id}`}
                     linkText='Ver Ejercicio'
+                    stars={4}
                   />
                 )}
               </div>
