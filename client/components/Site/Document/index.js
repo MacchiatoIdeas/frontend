@@ -6,7 +6,6 @@ import {getContentById} from '../../../actions/contents';
 
 import Comments from '../Comments/Comments';
 
-import css from '../../../style/FluidPage.less';
 import Header from '../../Portal/Header/index';
 
 import * as icons from '../../../assets/flaticons';

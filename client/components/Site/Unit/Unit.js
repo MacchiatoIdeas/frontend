@@ -7,7 +7,7 @@ import {getUnitById} from '../../../actions/units';
 
 import UnitDocuments from './UnitDocuments';
 import UnitExercises from './UnitExercises';
-import ExerciseDetail from '../Exercises/ExerciseDetail';
+import ExerciseDetail from '../Exercises/ExerciseDetail/index';
 import NewExercise from '../Exercises/NewExercise/NewExercise';
 
 const normalizeContent = (state, id) => {
