@@ -1,7 +1,6 @@
 import React from 'react';
 
 import style from './style.less';
-import {Link} from 'react-router-dom';
 
 const Header = ({color, icon, children, textColor, sideButton}) =>
   <div className={style.Header} style={{backgroundColor: color}}>

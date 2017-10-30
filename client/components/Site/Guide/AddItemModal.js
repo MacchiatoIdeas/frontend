@@ -84,8 +84,8 @@ export default class AddItemModal extends React.Component {
     const {guides} = this.props;
     return (
       <div>
-        <button className={`btn btn-block btn-warning ${style.button}`} onClick={this.show}>Agregar a mis guías
-        </button>
+        <button className={`btn btn-block btn-warning ${style.button}`} onClick={this.show}>Agregar a mis guías</button>
+
         <Modal bsSize="large" show={this.state.showModal} onHide={this.hide}>
           <ModalHeader closeButton>
             <ModalTitle id="contained-modal-title">Agregar a mis guías</ModalTitle>
