@@ -4,7 +4,7 @@ import {Route, Switch} from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Body from '../Body';
 import Subject from './Subject';
-import Content from './Content';
+import Content from './Document';
 import Subjects from './Subjects';
 import Unit from './Unit/Unit';
 import Guide from './Guide/Guide';

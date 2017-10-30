@@ -1,16 +1,20 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
 
 import SubjectBox from '../SubjectBox';
 import UnitSidebar from './UnitSidebar';
 import Box from '../../Box';
+import Header from '../../Portal/Header/index';
 
-export default class UnitContents extends React.Component {
+import * as icons from '../../../assets/flaticons';
+
+export default class UnitDocuments extends React.Component {
   render() {
     const {unit} = this.props;
 
     return (
       <div>
+        <Header icon={icons.document} color="#FF757C">{unit.name}</Header>
+
         <section>
           <div className="col-md-4">
             <SubjectBox subject={unit.subject} showTitle/>

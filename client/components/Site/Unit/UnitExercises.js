@@ -3,7 +3,10 @@ import {Link, NavLink} from 'react-router-dom';
 
 import SubjectBox from '../SubjectBox';
 import UnitSidebar from './UnitSidebar';
-import Box from "../../Box";
+import Box from '../../Box';
+
+import * as icons from '../../../assets/flaticons';
+import Header from "../../Portal/Header/index";
 
 
 const Stars = ({stars, of}) => {
@@ -21,6 +24,8 @@ export default class UnitExercises extends React.Component {
 
     return (
       <div>
+        <Header icon={icons.exercises} color="#5DDDD3">{unit.name}</Header>
+
         <section>
           <div className="col-sm-4">
             <SubjectBox subject={unit.subject} showTitle/>
