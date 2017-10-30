@@ -51,7 +51,7 @@ export default class Student extends React.Component {
 
         <label>
           <div>Institución</div>
-          <input type="text" ref="institution" placeholder="Colegio, instituto, univerdad, etc..." required/>
+          <input type="text" ref="institution" placeholder="Colegio, instituto, universidad, etc..." required/>
         </label>
 
         <EqualFields name="password" text="Contraseña" placeholder="********" type="password" onChange={this.onInputChange}/>

@@ -9,15 +9,23 @@ import {Link} from 'react-router-dom';
 import AppuntaModal from '../../Utilities/AppuntaModal/index';
 
 import {Form} from '../../Utilities/Form/style.less';
-import Select from "../../Utilities/Select/index";
+import Select from '../../Utilities/Select/index';
 
 export default class GuideDetail extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showAddModal: false,
+    }
+  }
+
   render() {
     const {guide} = this.props;
     return (
       <div>
         <Header color="#efa467" textColor="#fff" icon={icons.guides} sideButton={
-          <Link to='#'>
+          <Link to="#" onClick={() => {this.setState({showAddModal: true})}}>
             <span className="glyphicon glyphicon-plus-sign"/>
           </Link>
         }>{guide.title}</Header>
@@ -68,12 +76,28 @@ export default class GuideDetail extends React.Component {
           </div>
         </section>
 
-        <AppuntaModal show={true} icon={icons.courses} color="#5DDDD3" title="Agregar guía a curso">
+        <AppuntaModal
+          show={this.state.showAddModal}
+          onHide={() => {this.setState({showAddModal: false})}}
+          icon={icons.courses}
+          color="#5DDDD3"
+          title="Agregar guía a curso">
           <form className={Form}>
             <label>
               <div>Curso</div>
 
-              <Select/>
+              <Select options={[
+                {
+                  value: 1,
+                  name: 'Primero Medio Champagnat',
+                  sideText: 'Matemáticas',
+                },
+                {
+                  value: 2,
+                  name: 'Segundo Medio Champagnat',
+                  sideText: 'Lenguaje',
+                }
+              ]}/>
             </label>
 
             <button>Continuar</button>
