@@ -6,8 +6,8 @@ import {Route, Switch} from 'react-router-dom';
 import {getGuideById} from '../../../actions/guides';
 
 import css from '../../../style/FluidPage.less';
-import GuideDetail from "./GuideDetail";
-import GuideEdit from "./GuideEdit";
+import GuideDetail from './GuideDetail';
+import GuideEdit from './GuideEdit';
 
 @connect((state, props) => {
   let guide = state.guides[props.match.params.id];

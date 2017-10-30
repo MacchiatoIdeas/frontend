@@ -12,7 +12,7 @@ import Courses from './Courses';
 import Exercises from './Exercises';
 
 import style from './Portal.less';
-import Course from './Courses/Course';
+import Course from './Courses/Course/Course';
 import Guides from './Guides';
 
 @connect(state => ({
@@ -80,7 +80,6 @@ export default class Portal extends React.Component {
             <Route path="/portal/courses" component={Courses}/>
             <Route path="/portal/exercises" component={Exercises}/>
             <Route path="/portal/guides" component={Guides}/>
-            <Route path="/portal/course/:id" component={Course}/>
             <Route component={Summary}/>
           </Switch>
           </Body>

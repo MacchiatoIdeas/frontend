@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Footer from './Footer';
-import Breadcrumbs from './Breadcrumbs';
 
 import ReactResizeDetector from 'react-resize-detector';
 
@@ -43,10 +42,7 @@ export default class Body extends React.Component {
   }
 
   render() {
-    let breadcrumbs, footer;
-
-    if (this.props.showBreadcrumbs === undefined || this.props.showBreadcrumbs)
-      breadcrumbs = <Breadcrumbs/>;
+    let footer;
 
     if (this.props.showFooter === undefined || this.props.showFooter)
       footer = <Footer/>;
@@ -54,7 +50,6 @@ export default class Body extends React.Component {
     return (
       <div ref="body" id="body" className="container-fluid panel panel-default body-borderless"
            style={{minHeight: this.state.minHeight}}>
-          {breadcrumbs}
         <div ref="wrapper" style={{marginBottom: this.state.footerMargin}}>
           {this.props.children}
         </div>

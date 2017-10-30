@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {getAllSubjects} from '../../actions/subjects';
 import SubjectBox from './SubjectBox';
 
+import * as icons from '../../assets/flaticons';
+
 const denormalizeSubjects = (subjects) =>
   Object.keys(subjects).map(id => subjects[id]);
 
@@ -21,7 +23,9 @@ export default class Subjects extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
+        <Header icon={}>Materias</Header>
+
         <h1 className="page-header">Materias</h1>
 
         <div className="row">

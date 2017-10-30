@@ -1,7 +1,5 @@
 import React from 'react';
 import PortalSidebar from '../PortalSidebar';
-import {Modal, ModalBody, ModalHeader, ModalTitle} from 'react-bootstrap';
-import SubjectBox from '../../Site/SubjectBox';
 import {connect} from 'react-redux';
 import * as denormalizers from '../../../denormalizers';
 import NewGuideModal from './NewGuideModal';
