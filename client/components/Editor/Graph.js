@@ -45,6 +45,7 @@ export default class Graph extends React.Component {
         PNGBase64: 'data:image/png;base64,' + PNGBase64,
         placeholder: ''
       });
+      this.props.update('data:image/png;base64,' + PNGBase64, base64);
     }
   }
 

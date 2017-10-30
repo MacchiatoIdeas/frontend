@@ -41,6 +41,7 @@ export default class Image extends React.Component {
         imageUrl: url,
         placeholder: false,
       });
+      this.props.update(url);
     }
   }
 
