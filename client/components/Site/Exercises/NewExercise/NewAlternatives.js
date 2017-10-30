@@ -1,5 +1,10 @@
 import React from 'react';
 
+import {Form} from '../../../Utilities/Form/style.less';
+import style from './Form.less';
+import Textarea from 'react-textarea-autosize';
+import Editor from "../../../Editor/Editor";
+
 const Alternative = () => {
   return (
     <div className="form-group">
@@ -17,22 +22,21 @@ export default class NewAlternatives extends React.Component {
   constructor(props) {
     super(props);
 
-    this.updateTitle = this.updateTitle.bind(this);
+    this.updateBrief = this.updateBrief.bind(this);
     this.addAlternative = this.addAlternative.bind(this);
 
     this.state = {
-      title: "",
+      brief: "",
       summary: "",
       content: {},
-      alternatives: {},
-      countAlternatives: 0
+      alternatives: [],
     };
 
   }
 
-  updateTitle(event) {
+  updateBrief(event) {
     this.setState({
-      title: event.target.value
+      brief: event.target.value
     });
   }
 
@@ -44,32 +48,32 @@ export default class NewAlternatives extends React.Component {
 
   addAlternative() {
     let alternatives = this.state.alternatives;
-    alternatives[this.state.countAlternatives] = <Alternative key={this.state.countAlternatives}/>;
+    let newAlternative = <Alternative key={this.state.countAlternatives}/>;
     this.setState({
-      alternatives: alternatives,
-      countAlternatives: this.state.countAlternatives + 1
+      alternatives: [...alternatives, newAlternative]
     });
   }
 
   render() {
-    console.log('NEW ALTERNATIVES');
-
     return (
       <div>
         <div className="col-sm-12">
-          <div className="form-group">
-            <label htmlFor="title">Título:</label>
-            <input type="text" className="form-control" id="title" onClick={this.updateTitle}/>
+          <div className={Form}>
+            <label>
+              <div>Descripción</div>
+              <Textarea onChange={this.updateBrief} ref="experience"
+                        placeholder="Aquí escriba una descripción del ejercicio"/>
+            </label>
           </div>
-          <div className="form-group">
-            <label htmlFor="text">Enunciado:</label>
-            <input type="text" className="form-control" id="text" onClick={this.updateText}/>
+          <div className={style.wrapper}>
+            <div className={style.text}>Enunciado</div>
+            <div className={style.editorContainer}>
+              <Editor useTitle={false}/>
+            </div>
           </div>
-          <label>Alternativas:</label>
-          {Object.keys(this.state.alternatives).map((key, i) => this.state.alternatives[key])}
-          <div className="alert alert-warning">Recuerde seleccionar la alternativa correcta</div>
-          <button className="btn btn-default btn-block" onClick={this.addAlternative}>Agregar opción</button>
-          <button className="btn btn-success btn-block" onClick={this.addAlternative}>Guardar ejercicio</button>
+          <div className={style.wrapper}>
+            <div className={style.text}>Alternativas</div>
+          </div>
         </div>
       </div>
     )

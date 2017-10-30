@@ -101,6 +101,7 @@ export default class Content extends React.Component {
     this.setState({
       markdown: event.target.value
     });
+    this.props.update(event.target.value)
   }
 
   render() {

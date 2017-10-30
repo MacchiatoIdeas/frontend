@@ -37,6 +37,7 @@ export default class Title extends React.Component {
     this.setState({
       text: event.target.value
     });
+    this.props.update(event.target.value);
   }
 
   render() {

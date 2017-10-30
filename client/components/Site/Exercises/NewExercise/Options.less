@@ -1,0 +1,39 @@
+.item {
+  display: block;
+  outline: none;
+  text-align: left;
+  position: relative;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+  &.alternatives {
+    background: #324A5E;
+  }
+  &.matching {
+    background: #84DBFF;
+  }
+  &.complete {
+    background: #84DBFF;
+  }
+
+  & img {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  & span {
+    font-size: 15pt;
+    text-decoration: none;
+    color: #fff;
+    padding-left: 60px;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+}
