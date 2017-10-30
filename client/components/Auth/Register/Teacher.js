@@ -71,7 +71,7 @@ export default class Teacher extends React.Component {
 
         <label>
           <div>Institución</div>
-          <input type="text" ref="institution" placeholder="Colegio, instituto, univerdad, etc..." required/>
+          <input type="text" ref="institution" placeholder="Colegio, instituto, universidad, etc..." required/>
         </label>
 
         <label>
