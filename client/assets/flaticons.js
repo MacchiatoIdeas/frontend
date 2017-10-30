@@ -15,6 +15,7 @@ import file from './svg/flaticons/icons2/ereader.svg';
 import student from './svg/flaticons/icons3/graduates.svg';
 import subject from './svg/flaticons/icons3/book.svg';
 import unit from './svg/flaticons/icons3/backpack.svg';
+import document from './svg/flaticons/icons1/ebook.svg';
 
 export {
   exercises,
@@ -33,5 +34,6 @@ export {
   file,
   student,
   subject,
-  unit
+  unit,
+  document,
 };
