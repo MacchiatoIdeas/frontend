@@ -37,7 +37,7 @@ export default class UnitExercises extends React.Component {
         'class': style.matching,
       }, {
         'name': 'Completar la oración',
-        'url': '/site/units/' + this.props.unit.id + '/exercises/create/complete',
+        'url': '/site/units/' + this.props.unit.id + '/exercises/create/completion',
         'icon': icons.newComplete,
         'class': style.complete,
       }

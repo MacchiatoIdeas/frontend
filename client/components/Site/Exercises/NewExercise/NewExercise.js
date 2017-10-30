@@ -4,6 +4,7 @@ import Textarea from 'react-textarea-autosize';
 
 import NewAlternatives from './NewAlternatives';
 import NewMatching from './NewMatching';
+import NewCompletion from './NewCompletion'
 import Editor from '../../../Editor/Editor';
 
 import {Form} from '../../../Utilities/Form/style.less';
@@ -79,6 +80,9 @@ export default class NewExercise extends React.Component {
               <Route path="/site/units/:id/exercises/create/matching" render={({match}) => (
                 <NewMatching update={this.updateQuestionAnswer} match={match}/>
                 )}/>
+              <Route path="/site/units/:id/exercises/create/completion" render={({match}) => (
+                <NewCompletion update={this.updateQuestionAnswer} match={match}/>
+              )}/>
             </Switch>
           </div>
         </section>

@@ -1,0 +1,105 @@
+.alert {
+  padding: 10px !important;
+}
+
+.wrapper {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0 !important;
+  overflow: hidden;
+
+  & > div {
+  }
+
+  & .textarea {
+    border-right: 1px solid #ccc;
+    background-color: #f7f7f7;
+    & textarea {
+      background: transparent;
+      border: none;
+      padding: 10px !important;
+      &:focus {
+        background: transparent;
+        border: none;
+      }
+    }
+  }
+
+  & .result {
+    padding: 10px !important;
+    font-size: 15px;
+    margin: 0;
+
+
+    & > div > div {
+      padding: 0 !important;
+
+      & > input {
+        display: inline-block;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #666;
+        border-radius: 0;
+        min-width: 50px;
+        width: inherit;
+        padding: 0;
+        text-align: center;
+
+        &:focus {
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid #666;
+        }
+      }
+    }
+  }
+}
+
+.words {
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0 !important;
+  overflow: hidden;
+  & > span {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    padding-right: 40px;
+    background: #1A91A1;
+    color: #fff;
+    margin: 5px;
+    position: relative;
+
+    & button {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      height: 100%;
+      border: none;
+      background: transparent;
+      padding: 0;
+      margin: 0;
+
+      &:focus, &:hover {
+        background: transparent;
+        border: none;
+      }
+
+      & span {
+        line-height: 30px;
+      }
+    }
+  }
+
+  & > input {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background: #bed6da;
+    outline: none;
+    margin: 5px;
+
+  }
+}
