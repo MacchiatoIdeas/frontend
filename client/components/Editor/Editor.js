@@ -1,23 +1,31 @@
 import React from 'react';
-import Navbar from '../Navbar/Navbar';
-import '../../style/editor.css';
-import style from './Editor.less';
 
+import Navbar from '../Navbar/Navbar';
+import Body from '../Body';
 import Title from './Title';
 import Content from './Content';
 import Graph from './Graph';
-import Body from '../Body';
+import Image from './Image';
+
+import '../../style/editor.css';
+import style from './Editor.less';
 import * as icons from '../../assets/flaticons';
 
 
 export default class Editor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {inputList: [], showModal: false, img: '', inputCount: 0};
+    this.state = {
+      inputList: [],
+      showModal: false,
+      img: '',
+      inputCount: 0
+    };
 
     this.onClickAddTitle = this.onClickAddTitle.bind(this);
     this.onClickAddContent = this.onClickAddContent.bind(this);
     this.onClickAddGraph = this.onClickAddGraph.bind(this);
+    this.onClickAddImage = this.onClickAddImage.bind(this);
     this.removeChild = this.removeChild.bind(this);
     this.updatePosition = this.updatePosition.bind(this);
 
@@ -70,6 +78,22 @@ export default class Editor extends React.Component {
 
   }
 
+  onClickAddImage() {
+    console.log('Adding Image');
+    let inputList = this.state.inputList;
+    const inputCount = this.state.inputCount;
+    let newItem = {
+      'key': inputCount,
+      'item': <Image key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}/>
+    };
+    this.setState({
+      inputList: [...inputList, newItem],
+      inputCount: inputCount + 1
+    });
+    console.log(this.state.inputList);
+
+  }
+
   removeChild(key) {
     console.log('remove', key);
     // getting index
@@ -102,7 +126,7 @@ export default class Editor extends React.Component {
   componentDidMount() {
     $('#editor').sortable({
       handle: ".drag",
-      placeholder: "ui-state-highlight",
+      placeholder: style.placeholder,
       start: function (e, ui) {
         ui.placeholder.height(ui.helper.outerHeight());
         ui.item.startPos = ui.item.index();
@@ -145,8 +169,8 @@ export default class Editor extends React.Component {
                 </button>
               </div>
               <div className={`btn-group ${style.wrapper} ${style.image}`}>
-                <img src={icons.newPicture} alt=""/>
-                <button type="button" onClick={this.onClickAddGraph} className={`btn btn-default`}>
+                <img src={icons.newImage} alt=""/>
+                <button type="button" onClick={this.onClickAddImage} className={`btn btn-default`}>
                   Añadir Imagen
                 </button>
               </div>

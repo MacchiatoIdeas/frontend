@@ -4,6 +4,8 @@ import '../../style/editor.css';
 import {Modal, ModalTitle, ModalHeader} from 'react-bootstrap';
 import Geogebra from './Geogebra';
 
+import * as icons from '../../assets/flaticons';
+import style from './Graph.less';
 import ClickOutHandler from 'react-onclickout';
 
 
@@ -87,8 +89,9 @@ export default class Graph extends React.Component {
             </div>
 
             {/* Modal that contains Geogebra */}
-            <Modal bsSize="large" show={this.state.showModal} onHide={(a, b) => this.closeModalGraph(null, null)}>
-              <ModalHeader closeButton>
+            <Modal bsSize="large" className={style.modal} show={this.state.showModal} onHide={(a, b) => this.closeModalGraph(null, null)}>
+              <ModalHeader closeButton className={style.modalHeader}>
+                <img src={icons.newGraph}/>
                 <ModalTitle id="contained-modal-title">Editor de gráficos</ModalTitle>
               </ModalHeader>
               <Geogebra base64={this.state.base64}
