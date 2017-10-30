@@ -3,7 +3,7 @@ import React from 'react';
 import {Form} from '../../../Utilities/Form/style.less';
 import style from './Form.less';
 import Textarea from 'react-textarea-autosize';
-import Editor from '../../../Editor/Editor';
+import Editor from "../../../Editor/Editor";
 
 const Alternative = () => {
   return (
@@ -24,12 +24,13 @@ export default class NewAlternatives extends React.Component {
 
     this.updateBrief = this.updateBrief.bind(this);
     this.addAlternative = this.addAlternative.bind(this);
+    this.updateText = this.updateText.bind(this);
 
     this.state = {
-      brief: '',
-      summary: '',
+      brief: "",
       content: {},
       alternatives: [],
+      text: [],
     };
 
   }
@@ -40,9 +41,9 @@ export default class NewAlternatives extends React.Component {
     });
   }
 
-  updateText(event) {
+  updateText(json) {
     this.setState({
-      summary: event.target.value
+      text: json
     });
   }
 
@@ -53,6 +54,7 @@ export default class NewAlternatives extends React.Component {
       alternatives: [...alternatives, newAlternative]
     });
   }
+
 
   render() {
     return (
@@ -68,7 +70,7 @@ export default class NewAlternatives extends React.Component {
           <div className={style.wrapper}>
             <div className={style.text}>Enunciado</div>
             <div className={style.editorContainer}>
-              <Editor useTitle={false}/>
+              <Editor useTitle={false} update={(json) => this.updateText(json)}/>
             </div>
           </div>
           <div className={style.wrapper}>

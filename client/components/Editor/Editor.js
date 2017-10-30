@@ -32,7 +32,8 @@ export default class Editor extends React.Component {
     this.updateContent = this.updateContent.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
     this.updateImage = this.updateImage.bind(this);
-    this.updateGraph = this.updateContent.bind(this);
+    this.updateGraph = this.updateGraph.bind(this);
+    this.updateParent = this.updateParent.bind(this);
 
   }
 
@@ -50,12 +51,13 @@ export default class Editor extends React.Component {
       'key': inputCount,
       'text': text,
     };
+    json = [...json, newJson];
     this.setState({
       inputList: [...inputList, newItem],
-      json: [...json, newJson],
+      json: json,
       inputCount: inputCount + 1
     });
-    console.log(this.state.inputList);
+    this.updateParent(json);
 
   }
 
@@ -73,12 +75,13 @@ export default class Editor extends React.Component {
       'key': inputCount,
       'md': md,
     };
+    json = [...json, newJson];
     this.setState({
       inputList: [...inputList, newItem],
-      json: [...json, newJson],
+      json: json,
       inputCount: inputCount + 1
     });
-    console.log(this.state.inputList);
+    this.updateParent(json);
   }
 
   onClickAddGraph(image = "", editable = "") {
@@ -96,13 +99,13 @@ export default class Editor extends React.Component {
       'image': image,
       'editable': editable,
     };
+    json = [...json, newJson];
     this.setState({
       inputList: [...inputList, newItem],
-      json: [...json, newJson],
+      json: json,
       inputCount: inputCount + 1
     });
-    console.log(this.state.inputList);
-
+    this.updateParent(json);
   }
 
   onClickAddImage(url = "") {
@@ -119,13 +122,14 @@ export default class Editor extends React.Component {
       'key': inputCount,
       'url': url,
     };
+    json = [...json, newJson];
     this.setState({
       inputList: [...inputList, newItem],
-      json: [...json, newJson],
+      json: json,
       inputCount: inputCount + 1
     });
     console.log(this.state.inputList);
-
+    this.updateParent(json);
   }
 
   removeChild(key) {
@@ -136,7 +140,7 @@ export default class Editor extends React.Component {
     for (let index = 0; index < inputList.length; index++) {
       if (inputList[index].key === key) {
         inputList.splice(index, 1);
-        json.splicre(index, 1);
+        json.splice(index, 1);
         break;
       }
     }
@@ -145,23 +149,25 @@ export default class Editor extends React.Component {
       json: json,
     });
     console.log(this.state.inputList);
+    this.updateParent(json);
   }
 
   updatePosition(start, end) {
     let list = this.state.inputList;
     let json = this.state.json;
     let element = list[start];
+    let jsonElement = json[start];
     list.splice(start, 1);
     json.splice(start, 1);
     list.splice(end, 0, element);
-    json.splice(end, 0, element);
+    json.splice(end, 0, jsonElement);
 
     this.setState({
       inputList: list,
       json: json,
     });
     console.log(this.state.inputList);
-
+    this.updateParent(json);
   }
 
   updateContent(md, key) {
@@ -174,6 +180,7 @@ export default class Editor extends React.Component {
     this.setState({
       json: json,
     });
+    this.updateParent(json);
   }
 
   updateTitle(text, key) {
@@ -186,6 +193,7 @@ export default class Editor extends React.Component {
     this.setState({
       json: json,
     });
+    this.updateParent(json);
   }
 
   updateImage(url, key) {
@@ -198,6 +206,7 @@ export default class Editor extends React.Component {
     this.setState({
       json: json,
     });
+    this.updateParent(json);
   }
 
   updateGraph(image, editable, key) {
@@ -211,6 +220,7 @@ export default class Editor extends React.Component {
     this.setState({
       json: json,
     });
+    this.updateParent(json);
   }
 
   componentDidMount() {
@@ -225,6 +235,11 @@ export default class Editor extends React.Component {
         this.updatePosition(ui.item.startPos, ui.item.index())
       },
     });
+  }
+
+  updateParent(json) {
+    this.props.update(json);
+    console.log("UPDATING", json);
   }
 
   render() {
