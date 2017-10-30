@@ -35,6 +35,7 @@ export default class UnitDocuments extends React.Component {
         <section>
           <div className="col-md-4">
             <SubjectBox subject={unit.subject} showTitle/>
+            <br/>
           </div>
 
           <div className="col-sm-8">
