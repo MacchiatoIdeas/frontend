@@ -1,0 +1,27 @@
+@keyframes first-comment {
+  0% {
+    opacity: 0;
+    transform: translate(0, -10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.Comments {
+  .empty-message {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: #999999;
+
+    span {
+      display: block;
+      margin-top: 8px;
+      color: #666666;
+      animation: first-comment 0.5s ease;
+    }
+  }
+}

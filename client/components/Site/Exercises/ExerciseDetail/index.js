@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import Exercise from '../Exercise';
-import Comments from '../../Comments/Comments';
+import Comments from '../../Comments/index';
 import {getExerciseById} from '../../../../actions/exercises';
 
 import RecommendedExercises from '../RecommendedExercises';
