@@ -51,7 +51,7 @@ export default class Content extends React.Component {
     console.log(editor);
 
     let html = this.editor.getHTML();
-    if (html === ""){
+    if (html === "") {
       html = "<blockquote><span class='lead text-warning'>Elemento vacío</span></blockquote>"
     }
 
@@ -61,6 +61,30 @@ export default class Content extends React.Component {
       renderVisibility: '',
       render: html
     });
+    this.renderKatex();
+  }
+
+  renderKatex() {
+    // inline
+    let children = this.refs.render.querySelectorAll('.tex-inline');
+    for (let i = 0, len = children.length; i < len; i++) {
+      renderMathInElement(children[i], {
+        delimiters: [
+          {left: "$$", right: "$$", display: false},
+        ]
+      });
+    }
+
+    // line
+    children = this.refs.render.querySelectorAll('.tex-line');
+    for (let i = 0, len = children.length; i < len; i++) {
+      renderMathInElement(children[i], {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+        ]
+      });
+      console.log('asd');
+    }
   }
 
   componentDidMount() {
@@ -101,7 +125,7 @@ export default class Content extends React.Component {
                 </div>
               </div>
               <div className={this.state.renderVisibility}>
-                <div className="rendered"
+                <div ref="render" className="rendered"
                      dangerouslySetInnerHTML={{__html: this.state.render}}>
                 </div>
               </div>

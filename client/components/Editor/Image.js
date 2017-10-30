@@ -90,7 +90,7 @@ export default class Image extends React.Component {
             <Modal bsSize="large" className={style.modal} show={this.state.showModal}
                    onHide={(a, b) => this.closeModalGallery(null, null)}>
               <ModalHeader closeButton className={style.modalHeader}>
-                <img src={icons.newImage} alt=""/>
+                <img src={icons.newImage}/>
                 <ModalTitle id="contained-modal-title">Mi Galería de Imágenes</ModalTitle>
               </ModalHeader>
               <ModalBody>

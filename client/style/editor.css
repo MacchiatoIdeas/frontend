@@ -323,3 +323,7 @@ span.drag {
   background-size: 70px;
   background-color: #324A5E;
 }
+
+annotation {
+  display: none;
+}
