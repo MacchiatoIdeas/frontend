@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import Create from './Create';
-import Course from './Course/Course';
+import Course from './Course/index';
 
 export default class Courses extends React.Component {
   render() {

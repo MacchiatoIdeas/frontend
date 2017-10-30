@@ -7,12 +7,10 @@ import Navbar from '../Navbar/Navbar';
 
 import Body from '../Body';
 import Summary from './Summary';
-import Folders from './Folders';
 import Courses from './Courses';
 import Exercises from './Exercises';
 
 import style from './Portal.less';
-import Course from './Courses/Course/Course';
 import Guides from './Guides';
 
 @connect(state => ({
@@ -74,9 +72,8 @@ export default class Portal extends React.Component {
         </div>
 
         <div className={style.body}>
-          <Body showBreadcrumbs={false}>
+          <Body>
           <Switch>
-            <Route path="/portal/folders" component={Folders}/>
             <Route path="/portal/courses" component={Courses}/>
             <Route path="/portal/exercises" component={Exercises}/>
             <Route path="/portal/guides" component={Guides}/>

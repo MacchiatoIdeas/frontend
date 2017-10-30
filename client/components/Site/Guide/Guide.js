@@ -37,18 +37,14 @@ export default class Guide extends React.Component {
     const {guide} = this.props;
 
     return (
-      <div className={`container-fluid ${css.fluidPage}`}>
-        <div className="container">
-          <Switch>
-            <Route path="/site/guides/:id/edit" render={({match}) =>
-              <GuideEdit guide={guide} match={match}/>
-            }/>
-            <Route path="/site/guides/:id" render={({match}) =>
-              <GuideDetail guide={guide} match={match}/>
-            }/>
-          </Switch>
-        </div>
-      </div>
+      <Switch>
+        <Route path="/site/guides/:id/edit" render={({match}) =>
+          <GuideEdit guide={guide} match={match}/>
+        }/>
+        <Route path="/site/guides/:id" render={({match}) =>
+          <GuideDetail guide={guide} match={match}/>
+        }/>
+      </Switch>
     )
   }
 }

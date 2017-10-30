@@ -140,7 +140,6 @@ footer a:hover, footer a:focus {
 #image-subject-wrapper {
   position: relative;
   overflow: hidden;
-  border-radius: 10px;
 }
 
 #image-subject-wrapper img {

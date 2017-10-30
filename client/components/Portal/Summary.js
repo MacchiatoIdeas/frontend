@@ -5,6 +5,7 @@ import Header from './Header/index';
 
 import style from './Portal.less';
 import CourseBox from './Courses/CourseBox';
+import {Link} from "react-router-dom";
 
 export default class Summary extends React.Component {
   render() {
@@ -98,7 +99,11 @@ export default class Summary extends React.Component {
           </div>
         </section>
 
-        <Header color="#5DDDD3" textColor="#fff" icon={icons.courses} sideButton="/portal/courses/create">
+        <Header color="#5DDDD3" textColor="#fff" icon={icons.courses} sideButton={
+          <Link to="/portal/courses/create">
+            <span className="glyphicon glyphicon-plus-sign"/>
+          </Link>
+        }>
           Mis Cursos
         </Header>
 

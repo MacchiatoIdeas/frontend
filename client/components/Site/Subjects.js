@@ -5,6 +5,7 @@ import {getAllSubjects} from '../../actions/subjects';
 import SubjectBox from './SubjectBox';
 
 import * as icons from '../../assets/flaticons';
+import Header from '../Portal/Header';
 
 const denormalizeSubjects = (subjects) =>
   Object.keys(subjects).map(id => subjects[id]);
@@ -24,17 +25,17 @@ export default class Subjects extends React.Component {
   render() {
     return (
       <div>
-        <Header icon={}>Materias</Header>
+        <Header icon={icons.subject} color="#FFCA4F">Materias</Header>
 
-        <h1 className="page-header">Materias</h1>
-
-        <div className="row">
-          {this.props.subjects.map((subject, i) =>
-            <div className="col-sm-4" key={i}>
-              <SubjectBox subject={subject} showTitle={true}/>
-            </div>
-          )}
-        </div>
+        <section>
+          <div className="row">
+            {this.props.subjects.map((subject, i) =>
+              <div className="col-sm-4" key={i}>
+                <SubjectBox subject={subject} showTitle={true}/>
+              </div>
+            )}
+          </div>
+        </section>
       </div>
     )
   }

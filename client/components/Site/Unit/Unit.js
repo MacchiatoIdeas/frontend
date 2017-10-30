@@ -5,10 +5,12 @@ import {connect} from 'react-redux';
 
 import {getUnitById} from '../../../actions/units';
 
-import UnitContents from './UnitContents';
+import UnitDocuments from './UnitDocuments';
 import UnitExercises from './UnitExercises';
 import ExerciseDetail from '../Exercises/ExerciseDetail';
 import NewExercise from '../Exercises/NewExercise';
+import Header from '../../Portal/Header';
+import * as icons from '../../../assets/flaticons';
 
 const normalizeContent = (state, id) => {
   return {...state.contents[id], author: state.authors[state.contents[id].author]};
@@ -53,9 +55,11 @@ export default class Unit extends React.Component {
 
     return (
       <div>
+        <Header icon={icons.unit} color="#1A91A1">{unit.name}</Header>
+
         <Switch>
           <Route path="/site/units/:id/contents" render={({match}) =>
-            <UnitContents unit={unit} match={match}/>
+            <UnitDocuments unit={unit} match={match}/>
           }/>
           <Route path="/site/units/:id/exercises" render={({match}) =>
             <UnitExercises unit={unit} match={match}/>

@@ -15,6 +15,7 @@ import {Modal, ModalBody, ModalHeader, ModalTitle} from 'react-bootstrap';
 import Textarea from 'react-textarea-autosize';
 
 import {Form} from '../../../Utilities/Form/style.less';
+import AppuntaModal from '../../../Utilities/AppuntaModal/index';
 
 export default class Course extends React.Component {
   constructor(props) {
@@ -77,30 +78,26 @@ export default class Course extends React.Component {
           </div>
         </section>
 
-        <Modal show={this.state.addStudentModal} onHide={() => this.setState({addStudentModal: false})}>
-          <ModalHeader closeButton className={style.addStudentModal}>
-            <img src={icons.student} alt=""/>
-            <ModalTitle>
-              Agregar estudiante al curso
-            </ModalTitle>
-          </ModalHeader>
+        <AppuntaModal icon={icons.student}
+                      color="#FBB429"
+                      show={this.state.addStudentModal}
+                      title="Agregar estudiante al curso"
+                      onHide={() => this.setState({addStudentModal: false})}>
 
-          <ModalBody>
-            <form className={Form}>
-              <label>
-                <div>Correo(s) electrónico(s)</div>
-                <Textarea placeholder="ejemplo1@ejemplo.com, ejemplo2@ejemplo.com"/>
-              </label>
+          <form className={Form}>
+            <label>
+              <div>Correo(s) electrónico(s)</div>
+              <Textarea placeholder="ejemplo1@ejemplo.com, ejemplo2@ejemplo.com"/>
+            </label>
 
-              <label>
-                <div>Mensaje</div>
-                <Textarea placeholder="mensaje para indicar a sus estudiantes por qué recibieron esta invitación..."/>
-              </label>
+            <label>
+              <div>Mensaje</div>
+              <Textarea placeholder="mensaje para indicar a sus estudiantes por qué recibieron esta invitación..."/>
+            </label>
 
-              <button>Continuar</button>
-            </form>
-          </ModalBody>
-        </Modal>
+            <button>Continuar</button>
+          </form>
+        </AppuntaModal>
       </div>
     )
   }

@@ -30,7 +30,8 @@ export default class UnitExercises extends React.Component {
           <div className="col-sm-8">
             <Link to={`/site/units/${unit.id}/exercise/create`} className="head-link"><span
               className="glyphicon glyphicon-plus"/> Crear Ejercicio</Link>
-            <h2 className="page-header">{unit.name} &raquo; Ejercicios</h2>
+
+            <h2 className="page-header">Ejercicios</h2>
 
             <div className="row">
               <div className="col-sm-12">
