@@ -1,9 +1,5 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {NavLink} from 'react-router-dom';
-
-import SubjectBox from '../../SubjectBox';
-import UnitSidebar from '../../Unit/UnitSidebar';
 
 import NewAlternatives from './NewAlternatives';
 import NewMatching from './NewMatching';

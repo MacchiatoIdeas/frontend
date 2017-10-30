@@ -1,10 +1,10 @@
 /* eslint-disable quotes */
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, NavLink, Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getContentById} from '../../../actions/contents';
 
-import Comments from '../Comments/Comments';
+import Comments from '../Comments/index';
 
 import Header from '../../Portal/Header/index';
 
@@ -16,6 +16,8 @@ import AppuntaModal from "../../Utilities/AppuntaModal/index";
 import Select from "../../Utilities/Select/index";
 
 import {Form} from '../../Utilities/Form/style.less';
+import {active} from '../../Utilities/Menu/style.less';
+import Menu from "../../Utilities/Menu/index";
 
 @connect((state, props) => {
   const {id} = props.match.params;
@@ -76,19 +78,20 @@ export default class Content extends React.Component {
     const {content} = this.props;
     const {auth} = this.props;
 
-    console.log(content);
-
     return (
       <div>
         <Header icon={icons.document} color="#FF757C" sideButton={
-          <Link to="#" onClick={() => {this.setState({showModal: true})}}>
+          <Link to="#" onClick={() => {
+            this.setState({showModal: true})
+          }}>
             <span className="glyphicon glyphicon-plus-sign"/>
           </Link>
         }>{content.subtitle}</Header>
 
         <section>
           <div className="row">
-            <div className={`col-md-8 col-sm-offset-2 ${style.Document}`} dangerouslySetInnerHTML={{__html: content.html_text}}/>
+            <div className={`col-md-8 col-sm-offset-2 ${style.Document}`}
+                 dangerouslySetInnerHTML={{__html: content.html_text}}/>
 
             <div className="col-md-6 col-sm-offset-2">
               <div className={`row ${style.Author}`}>
@@ -115,10 +118,27 @@ export default class Content extends React.Component {
           </div>
         </section>
 
-        <Comments content={content} comments={content.comments}/>
+        <section>
+          <Menu>
+            <NavLink exact to={`/site/contents/${content.id}`} activeClassName={active}>Comentarios</NavLink>
+            <NavLink exact to={`/site/contents/${content.id}/feedback`} activeClassName={active}>Feedback</NavLink>
+          </Menu>
+        </section>
+
+        <Switch>
+          <Route exact path="/site/contents/:id" render={({match}) => (
+            <Comments content={content} comments={content.comments}/>
+          )}/>
+
+          <Route exact path="/site/contents/:id/feedback" render={({match}) => (
+            <Comments content={content} comments={[]}/>
+          )}/>
+        </Switch>
 
         <AppuntaModal show={this.state.showModal}
-                      onHide={() => {this.setState({showModal: false})}}
+                      onHide={() => {
+                        this.setState({showModal: false})
+                      }}
                       title="Agregar documento a guía"
                       icon={icons.guidesv2}
                       color="#FFCA4F">

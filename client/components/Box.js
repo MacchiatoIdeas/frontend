@@ -3,7 +3,16 @@ import React from 'react';
 import style from './Box.less';
 import {Link} from 'react-router-dom';
 
-const Box = ({title, link, text, author, date, comments, linkText}) =>
+const Stars = ({stars, of}) => {
+  return (
+    <div>
+      {[...new Array(stars)].map((_, i) => <span className="glyphicon glyphicon-star" key={i}/>)}
+      {[...new Array(of - stars)].map((_, i) => <span className="glyphicon glyphicon-star-empty" key={i}/>)}
+    </div>
+  )
+};
+
+const Box = ({title, link, text, author, date, comments, linkText, stars}) =>
   <div className={`box box-fill ${style.Box}`}>
     <div className="row">
       <div className="col-sm-1">
@@ -55,6 +64,13 @@ const Box = ({title, link, text, author, date, comments, linkText}) =>
       {comments !== undefined ?
         <div className="pull-right">
           {comments} comentarios
+        </div>
+        : null
+      }
+
+      {stars !== undefined ?
+        <div className="pull-right" style={{paddingRight: 16, marginTop: 1}}>
+          <Stars stars={4} of={5}/>
         </div>
         : null
       }

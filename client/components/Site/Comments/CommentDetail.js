@@ -1,14 +1,10 @@
 import React from 'react';
-import {Link, NavLink} from 'react-router-dom';
 
 import {IntlMixin} from 'react-intl';
 import {IntlProvider, FormattedDate, addLocaleData, FormattedTime} from 'react-intl';
 import es from 'react-intl/locale-data/es';
 
-
 import style from './CommentDetail.less'
-import Comment from "./Comments";
-
 
 export default class CommentDetail extends React.Component {
   render() {
