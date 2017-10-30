@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {NavLink} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 
 import logo from '../../assets/img/logo.png';
 import * as icons from '../../assets/flaticons';
@@ -163,7 +163,7 @@ export default class Navbar extends React.Component {
                 <span className="icon-bar"/>
                 <span className="icon-bar"/>
               </button>
-              <a className="brand" href="#"><img height="20" src={logo}/></a>
+              <Link className="brand" to="/"><img height="20" src={logo}/></Link>
             </div>
 
             <div className="collapse navbar-collapse" id="collapse-target">

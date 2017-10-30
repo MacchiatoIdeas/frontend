@@ -5,9 +5,25 @@ import Header from './Header/index';
 
 import style from './Portal.less';
 import CourseBox from './Courses/CourseBox';
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
+import AppuntaModal from '../Utilities/AppuntaModal/index';
+
+import {Form} from '../Utilities/Form/style.less';
+import SubjectSelect from '../Utilities/SubjectSelect/index';
 
 export default class Summary extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showCourseModal: false,
+    }
+  }
+
+  onSubjectSelect() {
+
+  }
+
   render() {
     const courses = [
       {
@@ -100,7 +116,7 @@ export default class Summary extends React.Component {
         </section>
 
         <Header color="#5DDDD3" textColor="#fff" icon={icons.courses} sideButton={
-          <Link to="/portal/courses/create">
+          <Link to="#" onClick={() => this.setState({showCourseModal: true})}>
             <span className="glyphicon glyphicon-plus-sign"/>
           </Link>
         }>
@@ -114,6 +130,40 @@ export default class Summary extends React.Component {
             )}
           </div>
         </section>
+
+        <AppuntaModal show={this.state.showCourseModal}
+                      icon={icons.courses}
+                      onHide={() => this.setState({showCourseModal: false})}
+                      color="#5DDDD3"
+                      title="Crear curso">
+
+          <form className={Form}>
+            <label>
+              <div>Nombre del curso</div>
+              <input type="text" placeholder="nombre de su curso"/>
+            </label>
+
+            <label style={{marginBottom: 0}}>
+              <div>Materia</div>
+            </label>
+
+            <div style={{marginBottom: 16}}>
+              <SubjectSelect subjects={[{
+                'id': 1,
+                'name': 'Matemáticas',
+                'color': '#1A91A1',
+                'thumbnail': 'http://static.macchiato.cl/images/mathematics.jpg'
+              }, {
+                'id': 2,
+                'name': 'Lenguaje',
+                'color': '#F1543F',
+                'thumbnail': 'http://static.macchiato.cl/images/language.jpg'
+              }]} onChange={this.onSubjectSelect}/>
+            </div>
+
+            <button>Continuar</button>
+          </form>
+        </AppuntaModal>
       </div>
     )
   }
