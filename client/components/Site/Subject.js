@@ -8,7 +8,7 @@ import {getSubjectById} from '../../actions/subjects';
 import SubjectBox from './SubjectBox';
 import SubjectSidebar from './SubjectSidebar';
 import Box from '../Box';
-import Header from "../Portal/Header/index";
+import Header from "../Utilities/Header/index";
 
 import * as icons from '../../assets/flaticons';
 

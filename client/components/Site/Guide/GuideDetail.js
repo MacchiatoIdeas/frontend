@@ -2,7 +2,7 @@ import React from 'react';
 
 import css from '../../../style/FluidPage.less';
 import Exercise from '../Exercises/Exercise';
-import Header from '../../Portal/Header';
+import Header from '../../Utilities/Header';
 
 import * as icons from '../../../assets/flaticons';
 import {Link} from 'react-router-dom';

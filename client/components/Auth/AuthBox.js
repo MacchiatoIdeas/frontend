@@ -1,7 +1,7 @@
 import React from 'react';
 
 import style from './AuthBox.less';
-import Header from '../Portal/Header/index';
+import Header from '../Utilities/Header/index';
 
 const AuthBox = ({icon, title, color, children}) =>
   <div className={style.AuthBox}>

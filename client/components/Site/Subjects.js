@@ -5,7 +5,7 @@ import {getAllSubjects} from '../../actions/subjects';
 import SubjectBox from './SubjectBox';
 
 import * as icons from '../../assets/flaticons';
-import Header from '../Portal/Header';
+import Header from '../Utilities/Header';
 
 const denormalizeSubjects = (subjects) =>
   Object.keys(subjects).map(id => subjects[id]);

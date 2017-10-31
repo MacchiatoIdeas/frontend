@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import SubjectBox from '../SubjectBox';
 import Box from '../../Box';
-import Header from '../../Portal/Header/index';
+import Header from '../../Utilities/Header/index';
 
 import * as icons from '../../../assets/flaticons';
 import AppuntaModal from '../../Utilities/AppuntaModal/index';

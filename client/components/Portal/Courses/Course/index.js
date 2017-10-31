@@ -5,7 +5,7 @@ import * as icons from '../../../../assets/flaticons';
 
 import Guides from './Guides';
 import Tests from './Tests';
-import Header from '../../Header/index';
+import Header from '../../../Utilities/Header/index';
 import Student from '../Student/index';
 import Menu from '../Menu/index';
 

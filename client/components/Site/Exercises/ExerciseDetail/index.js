@@ -7,7 +7,7 @@ import Comments from '../../Comments/index';
 import {getExerciseById} from '../../../../actions/exercises';
 
 import RecommendedExercises from '../RecommendedExercises';
-import Header from '../../../Portal/Header/index';
+import Header from '../../../Utilities/Header/index';
 
 import * as icons from '../../../../assets/flaticons';
 import AppuntaModal from '../../../Utilities/AppuntaModal/index';

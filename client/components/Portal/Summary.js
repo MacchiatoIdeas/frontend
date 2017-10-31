@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as icons from '../../assets/flaticons';
-import Header from './Header/index';
+import Header from '../Utilities/Header/index';
 
 import style from './Portal.less';
 import CourseBox from './Courses/CourseBox';

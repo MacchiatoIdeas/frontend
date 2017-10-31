@@ -10,7 +10,7 @@ import Editor from '../../../Editor/Editor';
 import {Form} from '../../../Utilities/Form/style.less';
 
 import style from './Form.less';
-import Header from "../../../Portal/Header/index";
+import Header from "../../../Utilities/Header/index";
 
 import * as icons from '../../../../assets/flaticons';
 

@@ -6,7 +6,7 @@ import {getContentById} from '../../../actions/contents';
 
 import Comments from '../Comments/index';
 
-import Header from '../../Portal/Header/index';
+import Header from '../../Utilities/Header/index';
 
 import * as icons from '../../../assets/flaticons';
 import Loading from '../../Utilities/Loading/index';
