@@ -13,6 +13,7 @@ import style from './Form.less';
 import Header from "../../../Utilities/Header/index";
 
 import * as icons from '../../../../assets/flaticons';
+import NewTrueOrFalse from "./NewTrueOrFalse";
 
 export default class NewExercise extends React.Component {
   constructor(props) {
@@ -82,6 +83,11 @@ export default class NewExercise extends React.Component {
                 )}/>
               <Route path="/site/units/:id/exercises/create/completion" render={({match}) => (
                 <NewCompletion update={this.updateQuestionAnswer} match={match}/>
+
+              )}/>
+              <Route path="/site/units/:id/exercises/create/trueorfalse" render={({match}) => (
+                <NewTrueOrFalse update={this.updateQuestionAnswer} match={match}/>
+
               )}/>
             </Switch>
           </div>

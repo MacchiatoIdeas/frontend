@@ -1,0 +1,49 @@
+.input {
+  position: relative;
+  & div {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    & button {
+      position: relative;
+      background: #FF757C;
+      color: #fff;
+      padding: 5px 20px;
+      margin: 0 10px;
+      border: 1px solid #FF757C;
+      top: -1px;
+
+      &:hover {
+        background: darken(#FF757C, 10%);
+        border: 1px solid #FF757C;
+        color: #fff;
+      }
+
+      &:active, &:focus {
+        color: #fff !important;
+        background: darken(#FF757C, 20%) !important;
+        border-color: #FF757C !important;
+        box-shadow: none;
+      }
+
+      &.true {
+        color: #fff;
+        background: #90DFAA;
+        border-color: #90DFAA;
+
+        &:hover {
+          background: darken(#90DFAA, 10%);
+        }
+
+        &:active, &:focus {
+          color: #fff;
+          background: darken(#90DFAA, 20%) !important;
+          border-color: #90DFAA !important;
+          box-shadow: none;
+
+        }
+      }
+    }
+  }
+}
