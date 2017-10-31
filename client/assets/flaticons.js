@@ -18,6 +18,7 @@ import unit from './svg/flaticons/icons3/backpack.svg';
 import newAlternatives from './svg/flaticons/icons4/clipboard-2.svg';
 import newMatching from './svg/flaticons/icons4/networking.svg';
 import newComplete from './svg/flaticons/icons4/exam-2.svg';
+import newTrueOrFalse from './svg/flaticons/icons1/notepad.svg';
 import document from './svg/flaticons/icons1/ebook.svg';
 
 export {
@@ -41,5 +42,6 @@ export {
   newAlternatives,
   newMatching,
   newComplete,
+  newTrueOrFalse,
   document,
 };

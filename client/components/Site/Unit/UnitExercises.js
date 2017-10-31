@@ -40,6 +40,11 @@ export default class UnitExercises extends React.Component {
         'url': '/site/units/' + this.props.unit.id + '/exercises/create/completion',
         'icon': icons.newComplete,
         'class': style.complete,
+      }, {
+        'name': 'Verdadero o falso',
+        'url': '/site/units/' + this.props.unit.id + '/exercises/create/trueorfalse',
+        'icon': icons.newTrueOrFalse,
+        'class': style.trueOrFalse,
       }
     ];
 
