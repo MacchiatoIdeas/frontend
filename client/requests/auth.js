@@ -1,0 +1,30 @@
+import {API_URL, createAuthHeaders} from './utils';
+import store from '../store';
+
+/**
+ * Gets the logged-in user data, such as name, email, etc.
+ */
+export const getUserData = () => {
+  return fetch(`${API_URL}/users/1/`, {
+    headers: createAuthHeaders(store.getState().auth.access_token)
+  })
+    .then(
+      response => response.json(),
+      error => console.log(error)
+    );
+};
+
+export const tryLogin = (username, password) => {
+  fetch(`${API_URL}/o/token/`, {
+    method: 'POST',
+    body: `grant_type=password&username=${username}&password=${password}`,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Basic VTRSZlhtMkpnRFRQYmZmWmNUblVDV0tMUU90emNEdUQ4T3dvTFRrYTpGM0M3eWtWMElTbUNHYlZxVVJQUzJWckNMSXd3a2lkSFVabHRNYnFFa3lrcjNxUVoyMFh4VXhQaHV5c0ZQMHBsakNwclNpdkxXQ243WlZPNllaZDlDeFNJRzJaZEhEMnNYWDJ5OEdBbGp5aVF0YUJUU21tTXpkRmNqZHk1UkZDaQ=='
+    }
+  })
+    .then(
+      response => response.json(),
+      error => console.log(error)
+    );
+};
