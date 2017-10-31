@@ -3,7 +3,9 @@ import {API_URL, createAuthHeaders} from './utils';
 import store from '../store';
 
 export const getAllOwnGuides = () => {
-  return fetch(`${API_URL}/material/guides?byuser=me`)
+  return fetch(`${API_URL}/material/guides?byuser=me`, {
+    headers: createAuthHeaders(store.getState().auth.access_token)
+  })
     .then(
       response => response.json(),
       error => console.log(error)
@@ -42,6 +44,22 @@ export const addExerciseToGuide = (guideId, exerciseId, order) => {
     body: {
       guide: guideId,
       exercise: exerciseId,
+      order,
+    }
+  })
+    .then(
+      response => response.json(),
+      error => console.log(error)
+    );
+};
+
+export const addDocumentToGuide = (guideId, documentId, order) => {
+  return fetch(`${API_URL}/material/guideitems/`, {
+    method: 'POST',
+    headers: createAuthHeaders(store.getState().auth.access_token),
+    body: {
+      guide: guideId,
+      document: documentId,
       order,
     }
   })

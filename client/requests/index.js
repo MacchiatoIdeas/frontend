@@ -1,4 +1,6 @@
+export {getOwnData, tryLogin} from './auth';
+export {getDocumentById, createDocument, createDocumentComment, createDocumentFeedbackComment} from './documents';
+export {getExerciseById, createExerciseComment, createExerciseAnswer} from './exercises';
+export {createGuide, getAllOwnGuides, addExerciseToGuide, addDocumentToGuide, deleteItemFromGuide} from './guides';
 export {getAllSubjects, getSubjectById} from './subjects';
-export {getDocumentById, createDocument, createDocumentComment, createFeedbackComment} from './documents';
-export {createGuide, getAllOwnGuides, addExerciseToGuide, deleteItemFromGuide} from './guides';
-export {getUserData, tryLogin} from 'auth';
+export {getUnitById} from './units';
