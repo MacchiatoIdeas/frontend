@@ -1,4 +1,4 @@
-import {API_URL, createAuthHeaders} from './utils';
+import {API_URL, createAuthHeaders, handleErrorIfAny} from './utils';
 
 import store from '../store';
 
@@ -6,18 +6,12 @@ export const getAllOwnGuides = () => {
   return fetch(`${API_URL}/material/guides?byuser=me`, {
     headers: createAuthHeaders(store.getState().auth.access_token)
   })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };
 
 export const getGuideById = (guideId) => {
   return fetch(`${API_URL}/material/guides/${guideId}`)
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };
 
 export const createGuide = (subjectId, title, brief, _private) => {
@@ -31,10 +25,7 @@ export const createGuide = (subjectId, title, brief, _private) => {
       private: _private
     }
   })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };
 
 export const addExerciseToGuide = (guideId, exerciseId, order) => {
@@ -47,10 +38,7 @@ export const addExerciseToGuide = (guideId, exerciseId, order) => {
       order,
     }
   })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };
 
 export const addDocumentToGuide = (guideId, documentId, order) => {
@@ -63,10 +51,7 @@ export const addDocumentToGuide = (guideId, documentId, order) => {
       order,
     }
   })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };
 
 export const deleteItemFromGuide = (id) => {
@@ -74,8 +59,5 @@ export const deleteItemFromGuide = (id) => {
     method: 'DELETE',
     headers: createAuthHeaders(store.getState().auth.access_token),
   })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };

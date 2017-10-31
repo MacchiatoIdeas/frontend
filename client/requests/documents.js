@@ -1,13 +1,10 @@
-import {API_URL, createAuthHeaders} from './utils';
+import {API_URL, createAuthHeaders, handleErrorIfAny} from './utils';
 
 import store from '../store';
 
 export const getDocumentById = (documentId) => {
   return fetch(`${API_URL}/material/contents/${documentId}`)
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };
 
 export const createDocument = (unitId, title, summary, text) => {
@@ -21,10 +18,7 @@ export const createDocument = (unitId, title, summary, text) => {
       text,
     })
   })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };
 
 export const createDocumentComment = (documentId, text) => {
@@ -36,10 +30,7 @@ export const createDocumentComment = (documentId, text) => {
       text,
     })
   })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    )
+    .then(handleErrorIfAny);
 };
 
 export const createDocumentFeedbackComment = (documentId, quote, text) => {
@@ -52,8 +43,5 @@ export const createDocumentFeedbackComment = (documentId, quote, text) => {
       text,
     })
   })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };

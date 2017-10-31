@@ -1,17 +1,11 @@
-import {API_URL, addAuthHeaders} from './utils';
+import {API_URL, addAuthHeaders, handleErrorIfAny} from './utils';
 
 export const getAllSubjects = () => {
   return fetch(`${API_URL}/material/subjects/`)
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };
 
 export const getSubjectById = (id) => {
   return fetch(`${API_URL}/material/subjects/${id}/`)
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };

@@ -7,14 +7,13 @@ import Site from './Site/Site';
 import Editor from './Editor/Editor';
 import GuidesEditor from './GuidesEditor/GuidesEditor'
 import Register from './Auth/Register/index';
-import {getUserData, loadFromLocalStorage} from '../actions/auth';
+import {loadFromLocalStorage} from '../actions/auth';
 import {connect} from 'react-redux';
 import Loading from './Utilities/Loading/index';
 
 @connect(state => ({
   auth: state.auth,
 }), {
-  getUserData,
   loadFromLocalStorage
 })
 export default class App extends React.Component {
@@ -25,7 +24,7 @@ export default class App extends React.Component {
   render() {
     const {auth} = this.props;
 
-    if (auth.isFetching) {
+    if (auth.isLoading) {
       return <Loading/>
     }
 

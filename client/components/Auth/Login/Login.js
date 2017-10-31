@@ -3,7 +3,7 @@ import {Redirect} from 'react-router';
 
 import {connect} from 'react-redux';
 
-import {sendLogin} from '../../../actions/auth';
+import {tryLoginAction} from '../../../actions/auth';
 
 import Navbar from '../../Navbar/Navbar';
 
@@ -16,7 +16,7 @@ import {Form} from '../../Utilities/Form/style.less';
 @connect((state) => ({
   auth: state.auth,
 }), {
-  sendLogin
+  tryLoginAction
 })
 export default class Login extends React.Component {
   handleSubmit(event) {
@@ -25,7 +25,7 @@ export default class Login extends React.Component {
     const username = this.refs.username.value;
     const password = this.refs.password.value;
 
-    this.props.sendLogin(username, password);
+    this.props.tryLoginAction(username, password);
   }
 
   render() {

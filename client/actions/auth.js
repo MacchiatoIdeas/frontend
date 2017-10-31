@@ -7,58 +7,39 @@ import {
 } from './index';
 import {normalize} from 'normalizr';
 import {user} from '../schema';
+import {getOwnData, tryLogin} from '../requests/auth';
 
-export const getUserData = (token) => (dispatch) => {
+export const getOwnDataAction = () => (dispatch) => {
   dispatch({
     type: AUTH_USERDATA_FETCH
   });
 
   console.log('[getUserData]', 'working...');
 
-  return fetch(`${API_URL}/users/1/`, {
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    )
+  return getOwnData()
     .then(data => {
-      if (!data.username) {
-        dispatch({
-          type: AUTH_USERDATA_FAILED,
-        });
-        return;
-      }
-
       dispatch({
         type: AUTH_USERDATA_RECEIVE,
         payload: normalize(data, user)
       });
-    })
+    });
 };
 
-export const sendLogin = (username, password) => (dispatch) => {
+export const tryLoginAction = (username, password) => (dispatch) => {
   dispatch({
     type: AUTH_LOGIN_FETCH
   });
-  return fetch(`${API_URL}/o/token/`, {
-    method: 'POST',
-    body: `grant_type=password&username=${username}&password=${password}`,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Basic VTRSZlhtMkpnRFRQYmZmWmNUblVDV0tMUU90emNEdUQ4T3dvTFRrYTpGM0M3eWtWMElTbUNHYlZxVVJQUzJWckNMSXd3a2lkSFVabHRNYnFFa3lrcjNxUVoyMFh4VXhQaHV5c0ZQMHBsakNwclNpdkxXQ243WlZPNllaZDlDeFNJRzJaZEhEMnNYWDJ5OEdBbGp5aVF0YUJUU21tTXpkRmNqZHk1UkZDaQ=='
-    }
-  })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    )
-    .then(data => {
-      dispatch(receiveLogin(data));
-      dispatch(getUserData(data.access_token));
-    })
+  return tryLogin(username, password)
+    .then(response => {
+      console.log(response.ok);
+
+      dispatch({
+        type: AUTH_LOGIN_RECEIVE,
+        payload: response
+      });
+
+      dispatch(getOwnDataAction());
+    });
 };
 
 export const loadFromLocalStorage = () => (dispatch) => {
@@ -67,16 +48,15 @@ export const loadFromLocalStorage = () => (dispatch) => {
   if (authJSON !== null) {
     const auth = JSON.parse(authJSON);
 
-    dispatch(receiveLogin(auth));
-    dispatch(getUserData(auth.access_token));
+    dispatch({
+      type: AUTH_LOGIN_RECEIVE,
+      payload: auth
+    });
+
+    dispatch(getOwnDataAction(auth.access_token));
   } else {
     dispatch({
       type: AUTH_USERDATA_FAILED,
     });
   }
 };
-
-export const receiveLogin = (data) => ({
-  type: AUTH_LOGIN_RECEIVE,
-  payload: data
-});

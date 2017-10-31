@@ -1,7 +1,7 @@
 import {AUTH_LOGIN_RECEIVE, AUTH_USERDATA_FAILED, AUTH_USERDATA_RECEIVE} from '../actions';
 
 export default (state = {
-  isFetching: true,
+  isLoading: true,
   isAuthenticated: false,
 }, action) => {
   switch (action.type) {
@@ -12,14 +12,15 @@ export default (state = {
 
     case AUTH_USERDATA_RECEIVE:
       // when user data is received, proceed with log-in.
-      return {...state,
-        user: action.payload.entities.users[action.payload.result],
+      return {
+        ...state,
+        user: action.payload,
         isAuthenticated: true,
-        isFetching: false
+        isLoading: false
       };
 
     case AUTH_USERDATA_FAILED:
-      return {...state, isAuthenticated: false, isFetching: false};
+      return {...state, isAuthenticated: false, isLoading: false};
   }
   return state;
 }

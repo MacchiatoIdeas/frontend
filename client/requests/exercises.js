@@ -1,13 +1,10 @@
-import {API_URL, createAuthHeaders} from './utils';
+import {API_URL, createAuthHeaders, handleErrorIfAny} from './utils';
 
 import store from '../store';
 
 export const getExerciseById = (exerciseId) => {
   return fetch(`${API_URL}/exercises/exercises/${exerciseId}`)
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };
 
 export const createExerciseComment = (exerciseId, text) => {
@@ -19,10 +16,7 @@ export const createExerciseComment = (exerciseId, text) => {
       text,
     }),
   })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };
 
 export const createExerciseAnswer = (exerciseId, answer) => {
@@ -34,8 +28,5 @@ export const createExerciseAnswer = (exerciseId, answer) => {
       answer,
     }),
   })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };

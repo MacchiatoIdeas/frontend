@@ -1,4 +1,4 @@
-import {API_URL, createAuthHeaders} from './utils';
+import {API_URL, createAuthHeaders, handleErrorIfAny} from './utils';
 import store from '../store';
 
 export const getOwnData = () => {
@@ -12,7 +12,7 @@ export const getOwnData = () => {
 };
 
 export const tryLogin = (username, password) => {
-  fetch(`${API_URL}/o/token/`, {
+  return fetch(`${API_URL}/o/token/`, {
     method: 'POST',
     body: `grant_type=password&username=${username}&password=${password}`,
     headers: {
@@ -20,8 +20,5 @@ export const tryLogin = (username, password) => {
       'Authorization': 'Basic VTRSZlhtMkpnRFRQYmZmWmNUblVDV0tMUU90emNEdUQ4T3dvTFRrYTpGM0M3eWtWMElTbUNHYlZxVVJQUzJWckNMSXd3a2lkSFVabHRNYnFFa3lrcjNxUVoyMFh4VXhQaHV5c0ZQMHBsakNwclNpdkxXQ243WlZPNllaZDlDeFNJRzJaZEhEMnNYWDJ5OEdBbGp5aVF0YUJUU21tTXpkRmNqZHk1UkZDaQ=='
     }
   })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    );
+    .then(handleErrorIfAny);
 };
