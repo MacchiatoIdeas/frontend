@@ -18,7 +18,6 @@ import {active} from '../../Utilities/Menu/style.less';
 import Menu from '../../Utilities/Menu/index';
 import BodyLoading from '../../Utilities/BodyLoading/index';
 
-
 @connect((state, props) => ({
   content: state.visibleDocument,
   auth: state.auth,

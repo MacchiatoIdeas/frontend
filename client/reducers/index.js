@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 
 import {subjects, visibleSubject} from './subjects';
 import {visibleUnit} from './units';
-import {visibleDocument} from './contents';
+import {visibleDocument} from './documents';
 import exercises from './exercises';
 import authors from './authors';
 import auth from './auth';

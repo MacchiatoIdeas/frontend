@@ -2,8 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 import {API_URL} from '../api';
 import {DOCUMENT_COMMENT_SEND, DOCUMENT_COMMENT_RECEIVE, DOCUMENT_FETCH, DOCUMENT_RECEIVE} from './index';
-import {content} from '../schema';
-import {getDocumentById} from '../requests/documents';
+import {createDocumentComment, getDocumentById} from '../requests/documents';
 
 export const getDocumentByIdAction = (documentId) => (dispatch) => {
   dispatch({
@@ -17,23 +16,12 @@ export const getDocumentByIdAction = (documentId) => (dispatch) => {
     }));
 };
 
-export const sendDocumentComment = (token, comment) => (dispatch) => {
+export const createDocumentCommentAction = (documentId, text) => (dispatch) => {
   dispatch({
     type: DOCUMENT_COMMENT_SEND,
   });
 
-  return fetch(`${API_URL}/material/comments/`, {
-    method: 'POST',
-    body: JSON.stringify(comment),
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    }
-  })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    )
+  return createDocumentComment(documentId, text)
     .then(data => {
       dispatch({
         type: DOCUMENT_COMMENT_RECEIVE,
