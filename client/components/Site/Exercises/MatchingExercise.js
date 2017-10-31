@@ -1,63 +1,111 @@
 import React from 'react';
+import style from './MatchingExercise.less';
 
 export default class MatchingExercise extends React.Component {
   constructor(props) {
     super(props);
 
-    this.setNumber = this.setNumber.bind(this);
-    this.reset = this.reset.bind(this);
     this.state = {
-      answers: []
+      answers: [],
+      itemsB: [],
     };
-
   }
 
-  setNumber(index) {
-    let answers = this.state.answers;
+  componentWillMount() {
+    let {content} = this.props;
+    let answers = [];
+    for (let i = 0; i < content.sideB.length; i++) {
+      answers.push(i);
+    }
+
     this.setState({
-      answers: answers.concat(index + 1)
+      answers: answers,
+      itemsB: content.sideB,
+    });
+
+    this.updateAnswer(answers);
+  }
+
+  componentDidMount() {
+    $(this.refs.list).sortable({
+      placeholder: style.placeholder,
+      start: function (e, ui) {
+        ui.placeholder.height(ui.helper.outerHeight());
+        ui.item.startPos = ui.item.index();
+      },
+      update: (event, ui) => {
+        this.updatePosition(ui.item.startPos, ui.item.index())
+      },
     });
   }
 
-  reset() {
+  updatePosition(start, end) {
+    let {answers, itemsB} = this.state;
+    let answerElement = answers[start];
+    let element = itemsB[start];
+    answers.splice(start, 1);
+    itemsB.splice(start, 1);
+    answers.splice(end, 0, answerElement);
+    itemsB.splice(end, 0, element);
+
     this.setState({
-      answers: []
+      answers,
+      itemsB,
     });
+    this.updateAnswer(answers);
+  }
+
+  updateAnswer(answer = "") {
+    let size = this.props.content.sideA.length;
+    let json = {
+      schema: 'matching',
+      matchs: answer !== "" ? answer.slice(0, size) : this.state.answer.slice(0, size),
+    };
+    this.props.update(json);
   }
 
   render() {
+    let {content} = this.props;
     return (
       <div>
         <div className="col-sm-6">
           <div className="playlist playlist-accents">
-            {this.props.sideA.map((alternative, i) => (
-              <div key={i} className="alternative">
-                <label htmlFor={`alternative${i}`} className="playlist-item">
+            <ul className={style.list}>
+              {content.sideA.map((alternative, i) => (
+                <li key={i} className={style.item}>
+                  <div className="alternative">
+                    <label className="playlist-item">
                         <span className="playlist-item-body playlist-item-link">
-                          <span className="step">{this.state.answers[i] !== undefined ? this.state.answers[i] : "?"}</span>
+                          <span className="step">
+                            {i + 1}
+                          </span>
                           {alternative}
                         </span>
-                </label>
-              </div>
-            ))}
+                    </label>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
         <div className="col-sm-6">
           <div className="playlist playlist-accents">
-            {this.props.sideB.map((alternative, i) => (
-              <div key={i} className="alternative">
-                <label className="playlist-item" onClick={() =>this.setNumber(i)}>
+            <ul ref="list" className={style.list}>
+              {content.sideB.map((alternative, i) => (
+                <li key={i} className={style.item}>
+                  <div className="alternative">
+                    <label className="playlist-item">
                         <span className="playlist-item-body playlist-item-link">
                           <span className="step">{i + 1}</span>
                           {alternative}
                         </span>
-                </label>
-              </div>
-            ))}
+                    </label>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-        <button className="btn btn-warning btn-block" onClick={this.reset}>Reiniciar</button>
-        <div className="clearfix"/>
       </div>
     )
   }

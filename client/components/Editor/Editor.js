@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Navbar from '../Navbar/Navbar';
-import Body from '../Body';
 import Title from './Title';
 import Content from './Content';
 import Graph from './Graph';
