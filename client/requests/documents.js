@@ -42,7 +42,7 @@ export const createDocumentComment = (documentId, text) => {
     )
 };
 
-export const createFeedbackComment = (documentId, quote, text) => {
+export const createDocumentFeedbackComment = (documentId, quote, text) => {
   return fetch(`${API_URL}/material/feedback-comments/`, {
     method: 'POST',
     headers: createAuthHeaders(store.getState().auth.access_token),

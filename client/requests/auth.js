@@ -1,10 +1,7 @@
 import {API_URL, createAuthHeaders} from './utils';
 import store from '../store';
 
-/**
- * Gets the logged-in user data, such as name, email, etc.
- */
-export const getUserData = () => {
+export const getOwnData = () => {
   return fetch(`${API_URL}/users/1/`, {
     headers: createAuthHeaders(store.getState().auth.access_token)
   })
