@@ -1,23 +1,14 @@
-import fetch from 'isomorphic-fetch';
-import {normalize} from 'normalizr';
-import {unit} from '../schema';
-
-import {API_URL} from '../api';
 import {UNIT_FETCH, UNIT_RECEIVE} from './index';
+import {getUnitById} from '../requests/units';
 
-
-export const getUnitById = (id, force) => (dispatch) => {
+export const getUnitByIdAction = (unitId) => (dispatch) => {
   dispatch({
     type: UNIT_FETCH,
   });
 
-  return fetch(`${API_URL}/material/units/${id}/`)
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    )
+  return getUnitById(unitId)
     .then(response => dispatch({
       type: UNIT_RECEIVE,
-      payload: normalize(response, unit)
+      payload: response
     }));
 };

@@ -5,7 +5,7 @@ import style from './NewComment.less';
 import Textarea from 'react-textarea-autosize';
 import {connect} from 'react-redux';
 import {sendExerciseComment} from '../../../actions/exercises';
-import {sendDocumentComment} from '../../../actions/contents';
+import {sendDocumentComment} from '../../../actions/documents';
 
 
 @connect((state) => ({

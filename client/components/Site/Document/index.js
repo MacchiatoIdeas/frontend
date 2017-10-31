@@ -1,56 +1,29 @@
-/* eslint-disable quotes */
 import React from 'react';
 import {Link, NavLink, Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getContentById} from '../../../actions/contents';
+import {getDocumentByIdAction} from '../../../actions/documents';
 
 import Comments from '../Comments/index';
 
 import Header from '../../Utilities/Header/index';
 
 import * as icons from '../../../assets/flaticons';
-import Loading from '../../Utilities/Loading/index';
 
 import style from './style.less';
-import AppuntaModal from "../../Utilities/AppuntaModal/index";
-import Select from "../../Utilities/Select/index";
+import AppuntaModal from '../../Utilities/AppuntaModal/index';
+import Select from '../../Utilities/Select/index';
 
 import {Form} from '../../Utilities/Form/style.less';
 import {active} from '../../Utilities/Menu/style.less';
-import Menu from "../../Utilities/Menu/index";
+import Menu from '../../Utilities/Menu/index';
+import BodyLoading from '../../Utilities/BodyLoading/index';
 
-@connect((state, props) => {
-  const {id} = props.match.params;
 
-  let content = state.contents[id];
-  if (!content) {
-    return {isFetching: true}
-  }
-
-  if (!content.comments) {
-    return {isFetching: true}
-  }
-
-  content = {
-    ...content,
-    unit: state.units[content.unit],
-    author: {
-      id: 1,
-      first_name: 'Marcelo',
-      last_name: 'Jara',
-    }
-  };
-  content.unit = {
-    ...content.unit,
-    subject: state.subjects[content.unit.subject],
-  };
-
-  return {
-    content,
-    auth: state.auth,
-  }
-}, {
-  getContentById
+@connect((state, props) => ({
+  content: state.visibleDocument,
+  auth: state.auth,
+}), {
+  getDocumentByIdAction
 })
 export default class Content extends React.Component {
   constructor(props) {
@@ -63,20 +36,15 @@ export default class Content extends React.Component {
 
   componentDidMount() {
     const {id} = this.props.match.params;
-    this.props.getContentById(id);
+    this.props.getDocumentByIdAction(id);
   }
 
   render() {
-    if (this.props.isFetching) {
-      return (
-        <div style={{marginTop: 64, marginBottom: 32}}>
-          <Loading color="#444"/>
-        </div>
-      );
-    }
+    const {auth, content} = this.props;
 
-    const {content} = this.props;
-    const {auth} = this.props;
+    if (content.isLoading) {
+      return <BodyLoading/>
+    }
 
     return (
       <div>

@@ -1,26 +1,19 @@
 import fetch from 'isomorphic-fetch';
 
 import {API_URL} from '../api';
-import {
-  CONTENT_FETCH, CONTENT_RECEIVE, CONTENT_COMMENT_SEND, CONTENT_COMMENT_RECEIVE,
-  DOCUMENT_COMMENT_SEND, DOCUMENT_COMMENT_RECEIVE
-} from './index';
-import {normalize} from 'normalizr';
+import {DOCUMENT_COMMENT_SEND, DOCUMENT_COMMENT_RECEIVE, DOCUMENT_FETCH, DOCUMENT_RECEIVE} from './index';
 import {content} from '../schema';
+import {getDocumentById} from '../requests/documents';
 
-export const getContentById = (id) => (dispatch) => {
+export const getDocumentByIdAction = (documentId) => (dispatch) => {
   dispatch({
-    type: CONTENT_FETCH
+    type: DOCUMENT_FETCH
   });
 
-  return fetch(`${API_URL}/material/contents/${id}`)
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    )
+  return getDocumentById(documentId)
     .then(response => dispatch({
-      type: CONTENT_RECEIVE,
-      payload: normalize(response, content)
+      type: DOCUMENT_RECEIVE,
+      payload: response,
     }));
 };
 

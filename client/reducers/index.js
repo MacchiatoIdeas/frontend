@@ -1,17 +1,18 @@
 import {combineReducers} from 'redux';
 
-import subjects from './subjects';
-import units from './units';
-import contents from './contents';
+import {subjects, visibleSubject} from './subjects';
+import {visibleUnit} from './units';
+import {visibleDocument} from './contents';
 import exercises from './exercises';
 import authors from './authors';
 import auth from './auth';
 import guides from './guides';
 
 const rootReducer = combineReducers({
-  subjects,
-  units,
-  contents,
+  subjects, visibleSubject,
+  visibleUnit,
+  visibleDocument,
+
   exercises,
   authors,
   auth,
