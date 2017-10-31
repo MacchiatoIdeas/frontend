@@ -4,14 +4,14 @@ import styleDetail from './CommentDetail.less';
 import style from './NewComment.less';
 import Textarea from 'react-textarea-autosize';
 import {connect} from 'react-redux';
-import {sendExerciseComment} from '../../../actions/exercises';
+import {createExerciseCommentAction} from '../../../actions/exercises';
 import {createDocumentCommentAction} from '../../../actions/documents';
 
 
 @connect((state) => ({
   auth: state.auth
 }), {
-  sendExerciseComment,
+  createExerciseCommentAction,
   createDocumentCommentAction
 })
 export default class NewComment extends React.Component {
@@ -31,20 +31,12 @@ export default class NewComment extends React.Component {
 
   submit() {
     if (this.state.comment !== '') {
-      /* Submit comment */
       if (this.props.exercise) {
-        let pk = this.props.exercise.id;
-
-        this.props.sendExerciseComment(this.props.auth.access_token, {
-          exercise: pk,
-          text: this.state.comment,
-        });
-
+        this.props.createExerciseCommentAction(this.props.exercise.id, this.state.comment);
       } else if (this.props.content) {
-        let pk = this.props.content.id;
-
-        this.props.createDocumentCommentAction(pk, this.state.comment);
+        this.props.createDocumentCommentAction(this.props.content.id, this.state.comment);
       }
+
       this.clear();
     }
   }

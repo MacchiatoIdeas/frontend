@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import Exercise from '../Exercise';
 import Comments from '../../Comments/index';
-import {getExerciseById} from '../../../../actions/exercises';
+import {getExerciseByIdAction} from '../../../../actions/exercises';
 
 import RecommendedExercises from '../RecommendedExercises';
 import Header from '../../../Utilities/Header/index';
@@ -19,29 +19,13 @@ import style from './style.less';
 import Menu from '../../../Utilities/Menu/index';
 
 import {active} from '../../../Utilities/Menu/style.less';
+import BodyLoading from '../../../Utilities/BodyLoading/index';
 
-@connect((state, props) => {
-  let exercise = state.exercises[props.match.params.exerciseId];
-  if (!exercise || !exercise.content) {
-    return {isFetching: true};
-  }
-
-  exercise = {
-    ...exercise,
-    content: JSON.parse(exercise.content),
-    right_answer: JSON.parse(exercise.right_answer),
-    author: {
-      first_name: 'Marcelo',
-      last_name: 'Jara'
-    }
-  };
-
-  return {
-    auth: state.auth,
-    exercise
-  }
-}, {
-  getExerciseById
+@connect((state, props) => ({
+  exercise: state.visibleExercise,
+  auth: state.auth,
+}), {
+  getExerciseByIdAction
 })
 export default class ExerciseDetail extends React.Component {
   constructor(props) {
@@ -52,17 +36,18 @@ export default class ExerciseDetail extends React.Component {
     }
   }
 
-  componentWillMount() {
-    this.props.getExerciseById(this.props.match.params.exerciseId);
+  componentDidMount() {
+    this.props.getExerciseByIdAction(this.props.match.params.exerciseId);
   }
 
   render() {
-    if (this.props.isFetching) {
-      return null;
-    }
+    const {auth, exercise, unit} = this.props;
 
-    let {exercise, unit} = this.props;
-    const {auth} = this.props;
+    console.log(exercise);
+
+    if (exercise.isLoading) {
+      return <BodyLoading/>;
+    }
 
     return (
       <div>
@@ -109,19 +94,10 @@ export default class ExerciseDetail extends React.Component {
         <section>
           <Menu>
             <NavLink exact to={`/site/units/${unit.id}/exercise/${exercise.id}`} activeClassName={active}>Comentarios</NavLink>
-            <NavLink exact to={`/site/units/${unit.id}/exercise/${exercise.id}/feedback`} activeClassName={active}>Feedback</NavLink>
           </Menu>
         </section>
 
-        <Switch>
-          <Route exact path="/site/units/:unitId/exercise/:id" render={({match}) => (
-            <Comments exercise={exercise} comments={exercise.comments}/>
-          )}/>
-
-          <Route exact path="/site/units/:unitId/exercise/:id/feedback" render={({match}) => (
-            <Comments exercise={exercise} comments={[]}/>
-          )}/>
-        </Switch>
+        <Comments exercise={exercise} comments={exercise.comments}/>
 
         <AppuntaModal show={this.state.showModal}
                       onHide={() => this.setState({showModal: false})}
