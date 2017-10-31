@@ -9,7 +9,7 @@ export default class Content extends React.Component {
     super(props);
     this.state = {
       checked: false,
-      markdown: this.props.markdown !== undefined ? this.props.markdown : '',
+      markdown: this.props.text !== undefined ? this.props.text : '',
       render: '',
       editorVisibility: '',
       renderVisibility: 'hidden'
@@ -36,6 +36,7 @@ export default class Content extends React.Component {
       appendMarkdown: this.state.markdown
     };
   }
+
 
   onClickFocus() {
     console.log('Click!');

@@ -15,7 +15,7 @@ export default class Image extends React.Component {
       checked: false,
       placeholder: true,
       showModal: false,
-      imageUrl: '',
+      imageUrl: this.props.url !== undefined ? this.props.url : '',
     };
 
     this.onClickFocus = this.onClickFocus.bind(this);
@@ -58,7 +58,13 @@ export default class Image extends React.Component {
   }
 
   componentDidMount() {
-    this.openModalGallery();
+    if (this.state.imageUrl === '') {
+      this.openModalGallery();
+    } else {
+      this.setState({
+        placeholder: false,
+      })
+    }
   }
 
   render() {

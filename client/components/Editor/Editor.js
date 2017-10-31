@@ -17,9 +17,7 @@ export default class Editor extends React.Component {
     super(props);
     this.state = {
       inputList: [],
-      json: [],
-      showModal: false,
-      img: '',
+      json: this.props.json !== undefined ? this.props.json : [],
       inputCount: 0
     };
 
@@ -35,21 +33,101 @@ export default class Editor extends React.Component {
     this.updateGraph = this.updateGraph.bind(this);
     this.updateParent = this.updateParent.bind(this);
 
+    this.addTitle = this.addTitle.bind(this);
+    this.addContent = this.addContent.bind(this);
+    this.addGraph = this.addGraph.bind(this);
+    this.addImage = this.addImage.bind(this);
+
   }
 
-  onClickAddTitle(text = "") {
+  componentWillMount() {
+    console.log(this.state.json);
+    let json = this.state.json;
+    let inputCount = this.state.inputCount;
+    let inputList = this.state.inputList;
+    let ret = [];
+    for (let item of json) {
+      item.key = inputCount;
+      switch (item.schema) {
+        case 'title':
+          ret = this.addTitle(item.title, inputList, inputCount);
+          break;
+
+        case 'text':
+          ret = this.addContent(item.text, inputList, inputCount);
+          break;
+
+        case 'geogebra':
+          ret = this.addGraph(item.image, item.editable, inputList, inputCount);
+          break;
+
+        case 'image':
+          ret = this.addImage(item.url, inputList, inputCount);
+          break;
+      }
+      inputList = ret[0];
+      inputCount = ret[1];
+    }
+
+    this.setState({
+      json,
+      inputCount,
+      inputList,
+    });
+    this.updateParent(json);
+  }
+
+  addTitle(text = "", inputList, inputCount) {
+    let newItem = {
+      'key': inputCount,
+      'item': <Title text={text} key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}
+                     update={(text) => this.updateTitle(text, inputCount)}/>
+    };
+    return [[...inputList, newItem], inputCount + 1];
+  }
+
+  addContent(text = "", inputList, inputCount) {
+    let newItem = {
+      'key': inputCount,
+      'item': <Content text={text} key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}
+                       update={(md) => this.updateContent(md, inputCount)}/>
+    };
+    return [[...inputList, newItem], inputCount + 1];
+  }
+
+  addGraph(image = "", editable = "", inputList, inputCount) {
+    let newItem = {
+      'key': inputCount,
+      'item': <Graph image={image} editable={editable} key={inputCount} index={inputCount}
+                     remove={(index) => this.removeChild(index)}
+                     update={(image, editable) => this.updateGraph(image, editable, inputCount)}/>
+    };
+    return [[...inputList, newItem], inputCount + 1];
+  }
+
+  addImage(url = "", inputList, inputCount) {
+    let newItem = {
+      'key': inputCount,
+      'item': <Image url={url} key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}
+                     update={(url) => this.updateImage(url, inputCount)}/>
+    };
+    return [[...inputList, newItem], inputCount + 1];
+  }
+
+  onClickAddTitle(title = "") {
     console.log('Adding Title');
     let inputList = this.state.inputList;
     let json = this.state.json;
     const inputCount = this.state.inputCount;
     let newItem = {
       'key': inputCount,
-      'item': <Title key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}
+      'item': <Title title={title} key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}
                      update={(text) => this.updateTitle(text, inputCount)}/>
     };
     let newJson = {
       'key': inputCount,
-      'text': text,
+      'schema': 'title',
+      'title': text,
     };
     json = [...json, newJson];
     this.setState({
@@ -68,11 +146,12 @@ export default class Editor extends React.Component {
     const inputCount = this.state.inputCount;
     let newItem = {
       'key': inputCount,
-      'item': <Content key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}
+      'item': <Content text={md} key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}
                        update={(md) => this.updateContent(md, inputCount)}/>
     };
     let newJson = {
       'key': inputCount,
+      'schema': 'text',
       'md': md,
     };
     json = [...json, newJson];
@@ -91,11 +170,13 @@ export default class Editor extends React.Component {
     const inputCount = this.state.inputCount;
     let newItem = {
       'key': inputCount,
-      'item': <Graph key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}
+      'item': <Graph image={image} editable={editable} key={inputCount} index={inputCount}
+                     remove={(index) => this.removeChild(index)}
                      update={(image, editable) => this.updateGraph(image, editable, inputCount)}/>
     };
     let newJson = {
       'key': inputCount,
+      'schema': 'geogebra',
       'image': image,
       'editable': editable,
     };
@@ -115,11 +196,12 @@ export default class Editor extends React.Component {
     const inputCount = this.state.inputCount;
     let newItem = {
       'key': inputCount,
-      'item': <Image key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}
+      'item': <Image url={url} key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}
                      update={(url) => this.updateImage(url, inputCount)}/>
     };
     let newJson = {
       'key': inputCount,
+      'schema': 'image',
       'url': url,
     };
     json = [...json, newJson];
@@ -170,11 +252,11 @@ export default class Editor extends React.Component {
     this.updateParent(json);
   }
 
-  updateContent(md, key) {
+  updateContent(text, key) {
     let json = this.state.json;
     for (let index = 0; index < json.length; index++) {
       if (json[index].key === key) {
-        json[index].md = md;
+        json[index].text = text;
       }
     }
     this.setState({
@@ -187,7 +269,7 @@ export default class Editor extends React.Component {
     let json = this.state.json;
     for (let index = 0; index < json.length; index++) {
       if (json[index].key === key) {
-        json[index].text = text;
+        json[index].title = text;
       }
     }
     this.setState({
@@ -237,7 +319,11 @@ export default class Editor extends React.Component {
     });
   }
 
-  updateParent(json) {
+  updateParent(_json) {
+    let json = JSON.parse(JSON.stringify(_json));
+    for (let i = 0; i < json.length; i++) {
+      delete json[i].key;
+    }
     this.props.update(json);
     console.log("UPDATING", json);
   }

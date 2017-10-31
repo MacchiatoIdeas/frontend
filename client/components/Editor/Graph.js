@@ -14,8 +14,8 @@ export default class Graph extends React.Component {
     super(props);
     this.state = {
       checked: false,
-      base64: this.props.base64 !== undefined ? this.props.base64 : '',
-      PNGBase64: this.props.PNGbase64 !== undefined ? this.props.PNGbase64 : '',
+      base64: this.props.editable !== undefined ? this.props.editable : '',
+      PNGBase64: this.props.image !== undefined ? this.props.image : '',
       placeholder: 'background-placeholder'
     };
 

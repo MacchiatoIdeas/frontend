@@ -128,11 +128,11 @@ export default class Gallery extends React.Component {
   render() {
     return (
       <div className="col-xs-12">
-        <ul className="nav nav-tabs">
+        <ul className={`nav nav-tabs ${style.tabs}`}>
           <li role="presentation" onClick={() => this.changeSection(false)}
-              className={!this.state.showImages ? "active" : ""}><a href="#">Nueva imagen</a></li>
+              className={!this.state.showImages ? "active" : ""}><a>Nueva imagen</a></li>
           <li role="presentation" onClick={() => this.changeSection(true)}
-              className={this.state.showImages ? "active" : ""}><a href="#">Galería</a></li>
+              className={this.state.showImages ? "active" : ""}><a>Galería</a></li>
         </ul>
         {this.state.showImages ?
           <div className={style.wrapper}>
