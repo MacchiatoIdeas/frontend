@@ -10,7 +10,7 @@ export default class Title extends React.Component {
     super(props);
     this.state = {
       checked: false,
-      text: this.props.text !== undefined ? this.props.text : ''
+      text: this.props.title !== undefined ? this.props.title : ''
     };
 
     this.onClickFocus = this.onClickFocus.bind(this);

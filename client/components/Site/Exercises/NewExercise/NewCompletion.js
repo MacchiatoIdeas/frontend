@@ -22,7 +22,7 @@ export default class NewCompletion extends React.Component {
   updateParent(text, words) {
     let question = {
       schema: 'completion',
-      text: text !== null ? text.slice(0, -1) : this.state.text.slice(0, -1),
+      text: text !== null ? text : this.state.text,
     };
     let answer = {
       schema: 'completion',
@@ -34,7 +34,8 @@ export default class NewCompletion extends React.Component {
   updateText(ev) {
     this.setState({
       text: ev.target.value,
-    })
+    });
+    this.updateParent(ev.target.value, null);
   }
 
   formatText() {
@@ -53,18 +54,22 @@ export default class NewCompletion extends React.Component {
     words.splice(index, 1);
     this.setState({
       words: words,
-    })
+    });
+    this.updateParent(null, words);
   }
 
   onKeyDownInputword(ev) {
     if (ev.keyCode === 13) {
       let words = this.state.words;
+      words = [...words, ev.target.value];
       this.setState({
-        words: [...words, ev.target.value],
+        words: words,
       });
       this.refs.inputWord.value = "";
+      this.updateParent(null, words);
     }
   }
+
 
   render() {
     return (
@@ -101,9 +106,11 @@ export default class NewCompletion extends React.Component {
         </div>
         <div className={style.words}>
           {this.state.words.map((word, i) =>
-            <span key={i}>{word} <button onClick={() => this.removeWord(i)}><span className="glyphicon glyphicon-remove"/></button></span>
+            <span key={i}>{word}
+              <button onClick={() => this.removeWord(i)}><span className="glyphicon glyphicon-remove"/></button></span>
           )}
-          <input ref="inputWord" onKeyDown={this.onKeyDownInputword} type="text" placeholder="Escriba una palabra aquí"/>
+          <input ref="inputWord" onKeyDown={this.onKeyDownInputword} type="text"
+                 placeholder="Escriba una palabra aquí"/>
         </div>
       </div>
     )
