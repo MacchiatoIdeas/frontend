@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class SubjectSidebar extends React.Component {
+export default class Sidebar extends React.Component {
   render() {
     return (
       <div className="playlist playlist-compact" style={{marginTop: 16}}>

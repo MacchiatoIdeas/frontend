@@ -1,14 +1,14 @@
-import {EXERCISE_RECEIVE, EXERCISE_FETCH, EXERCISE_COMMENT_RECEIVE} from '../actions/index';
+import {DOCUMENT_COMMENT_RECEIVE, DOCUMENT_FETCH, DOCUMENT_RECEIVE} from '../actions/index';
 
-export const visibleExercise = (state = {
+export const visibleDocument = (state = {
   isLoading: true,
 }, action) => {
   switch (action.type) {
-    case EXERCISE_FETCH:
+    case DOCUMENT_FETCH:
       return {isLoading: true};
-    case EXERCISE_RECEIVE:
+    case DOCUMENT_RECEIVE:
       return {...action.payload, isLoading: false};
-    case EXERCISE_COMMENT_RECEIVE:
+    case DOCUMENT_COMMENT_RECEIVE:
       return {
         ...state,
         comments: [...state.comments, action.payload]

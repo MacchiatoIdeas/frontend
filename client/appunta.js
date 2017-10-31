@@ -10,7 +10,6 @@ import './style/temp.css';
 import './style/icons.css';
 
 import App from './components/App';
-import {BrowserRouter} from 'react-router-dom';
 
 const router = (
   <Provider store={store}>

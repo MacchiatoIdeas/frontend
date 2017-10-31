@@ -4,44 +4,28 @@ import {
 import {exercise} from '../schema';
 import {API_URL} from '../api';
 import {normalize} from 'normalizr';
+import {createExerciseComment, getExerciseById} from '../requests/exercises';
 
-export const getExerciseById = (id) => (dispatch) => {
+export const getExerciseByIdAction = (exerciseId) => (dispatch) => {
   dispatch({
     type: EXERCISE_FETCH
   });
 
-  return fetch(`${API_URL}/exercises/exercises/${id}/`)
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    )
+  return getExerciseById(exerciseId)
     .then(response => dispatch({
       type: EXERCISE_RECEIVE,
-      payload: normalize(response, exercise)
+      payload: response,
     }));
 };
 
-export const sendExerciseComment = (token, comment) => (dispatch) => {
+export const createExerciseCommentAction = (exerciseId, text) => (dispatch) => {
   dispatch({
     type: EXERCISE_COMMENT_SEND,
   });
 
-  return fetch(`${API_URL}/exercises/comments/`, {
-    method: 'POST',
-    body: JSON.stringify(comment),
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    }
-  })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    )
-    .then(data => {
-      dispatch({
-        type: EXERCISE_COMMENT_RECEIVE,
-        payload: data,
-      });
-    });
+  return createExerciseComment(exerciseId, text)
+    .then(data => dispatch({
+      type: EXERCISE_COMMENT_RECEIVE,
+      payload: data,
+    }));
 };

@@ -1,13 +1,14 @@
-import {SUBJECT_RECEIVE, UNIT_RECEIVE, CONTENT_RECEIVE} from '../actions/index';
+import {UNIT_FETCH, UNIT_RECEIVE} from '../actions/index';
 
-const units = (state = {}, action) => {
+export const visibleUnit = (state = {
+  isLoading: true
+}, action) => {
   switch (action.type) {
-    case SUBJECT_RECEIVE:
+    case UNIT_FETCH:
+      return {isLoading: true};
     case UNIT_RECEIVE:
-    case CONTENT_RECEIVE:
-      return {...state, ...action.payload.entities.units};
+      return {...action.payload, isLoading: false};
   }
+
   return state;
 };
-
-export default units;

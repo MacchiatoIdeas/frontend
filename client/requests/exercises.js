@@ -1,5 +1,7 @@
 import {API_URL, createAuthHeaders} from './utils';
 
+import store from '../store';
+
 export const getExerciseById = (exerciseId) => {
   return fetch(`${API_URL}/exercises/exercises/${exerciseId}`)
     .then(
@@ -8,15 +10,14 @@ export const getExerciseById = (exerciseId) => {
     );
 };
 
-
 export const createExerciseComment = (exerciseId, text) => {
   return fetch(`${API_URL}/exercises/comments/`, {
     method: 'POST',
     headers: createAuthHeaders(store.getState().auth.access_token),
-    body: {
+    body: JSON.stringify({
       exercise: exerciseId,
       text,
-    },
+    }),
   })
     .then(
       response => response.json(),
@@ -28,10 +29,10 @@ export const createExerciseAnswer = (exerciseId, answer) => {
   return fetch(`${API_URL}/exercises/answers/`, {
     method: 'POST',
     headers: createAuthHeaders(store.getState().auth.access_token),
-    body: {
+    body: JSON.stringify({
       exercise: exerciseId,
       answer,
-    }
+    }),
   })
     .then(
       response => response.json(),

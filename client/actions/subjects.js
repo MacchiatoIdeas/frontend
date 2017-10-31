@@ -1,38 +1,30 @@
 import fetch from 'isomorphic-fetch';
 import {normalize} from 'normalizr';
-import {subjectArray, subject} from '../schema';
 
-import {addHeaders, API_URL} from '../api';
-import {SUBJECT_FETCH, SUBJECT_RECEIVE} from './index';
+import {API_URL} from '../api';
+import {SUBJECT_FETCH, SUBJECT_LIST_FETCH, SUBJECT_LIST_RECEIVE, SUBJECT_RECEIVE} from './index';
+import {getAllSubjects, getSubjectById} from '../requests/subjects';
 
-export const getAllSubjects = () => (dispatch, getState) => {
+export const getAllSubjectsAction = () => (dispatch) => {
   dispatch({
-    type: SUBJECT_FETCH,
+    type: SUBJECT_LIST_FETCH,
   });
 
-  return fetch(`${API_URL}/material/subjects/`, addHeaders(getState()))
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    )
+  return getAllSubjects()
     .then(response => dispatch({
-      type: SUBJECT_RECEIVE,
-      payload: normalize(response, subjectArray)
-    }))
+      type: SUBJECT_LIST_RECEIVE,
+      payload: response,
+    }));
 };
 
-export const getSubjectById = (id) => (dispatch, getState) => {
+export const getSubjectByIdAction = (subjectId) => (dispatch) => {
   dispatch({
     type: SUBJECT_FETCH
   });
 
-  return fetch(`${API_URL}/material/subjects/${id}/`)
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    )
+  return getSubjectById(subjectId)
     .then(response => dispatch({
       type: SUBJECT_RECEIVE,
-      payload: normalize(response, subject)
+      payload: response,
     }));
 };

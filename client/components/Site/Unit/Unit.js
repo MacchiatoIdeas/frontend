@@ -3,53 +3,29 @@ import {Redirect, Route, Switch} from 'react-router';
 
 import {connect} from 'react-redux';
 
-import {getUnitById} from '../../../actions/units';
+import {getUnitByIdAction} from '../../../actions/units';
 
 import UnitDocuments from './UnitDocuments';
 import UnitExercises from './UnitExercises';
 import ExerciseDetail from '../Exercises/ExerciseDetail/index';
 import NewExercise from '../Exercises/NewExercise/NewExercise';
 
-const normalizeContent = (state, id) => {
-  return {...state.contents[id], author: state.authors[state.contents[id].author]};
-};
-
-const normalizeExercise = (state, id) => {
-  return {...state.exercises[id], author: state.authors[state.exercises[id].author]};
-};
-
-@connect((state, props) => {
-  const {id} = props.match.params;
-
-  let unit = state.units[id];
-  if (!unit || !unit.contents || !unit.exercises) {
-    return {isFetching: true};
-  }
-
-  unit = {
-    ...unit,
-    contents: unit.contents.map(id => normalizeContent(state, id)),
-    exercises: unit.exercises.map(id => normalizeExercise(state, id)),
-    subject: state.subjects[unit.subject],
-  };
-
-  return {
-    unit
-  }
-}, {
-  getUnitById
+@connect((state, props) => ({
+  unit: state.visibleUnit,
+}), {
+  getUnitByIdAction
 })
 export default class Unit extends React.Component {
   componentWillMount() {
-    this.props.getUnitById(this.props.match.params.id);
+    this.props.getUnitByIdAction(this.props.match.params.id);
   }
 
   render() {
-    if (this.props.isFetching) {
+    const {unit} = this.props;
+
+    if (unit.isLoading) {
       return null;
     }
-
-    const {unit} = this.props;
 
     return (
       <div>

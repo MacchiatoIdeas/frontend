@@ -14,12 +14,12 @@ export const createDocument = (unitId, title, summary, text) => {
   return fetch(`${API_URL}/material/contents/`, {
     method: 'POST',
     headers: createAuthHeaders(store.getState().auth.access_token),
-    body: {
+    body: JSON.stringify({
       unit: unitId,
       title,
       summary,
       text,
-    }
+    })
   })
     .then(
       response => response.json(),
@@ -31,10 +31,10 @@ export const createDocumentComment = (documentId, text) => {
   return fetch(`${API_URL}/material/comments/`, {
     method: 'POST',
     headers: createAuthHeaders(store.getState().auth.access_token),
-    body: {
+    body: JSON.stringify({
       content: documentId,
       text,
-    }
+    })
   })
     .then(
       response => response.json(),
@@ -46,11 +46,11 @@ export const createDocumentFeedbackComment = (documentId, quote, text) => {
   return fetch(`${API_URL}/material/feedback-comments/`, {
     method: 'POST',
     headers: createAuthHeaders(store.getState().auth.access_token),
-    body: {
+    body: JSON.stringify({
       content: documentId,
       quote,
       text,
-    }
+    })
   })
     .then(
       response => response.json(),
