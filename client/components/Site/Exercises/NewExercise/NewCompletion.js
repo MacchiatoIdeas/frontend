@@ -42,7 +42,7 @@ export default class NewCompletion extends React.Component {
     let count = 0, formatted = this.state.text, flag = true;
     while (flag) {
       let val = this.state.words[count] !== undefined ? this.state.words[count] : '';
-      formatted = formatted.replace('??', `<input type="text" value="${val}" readonly/>(${count++})`);
+      formatted = formatted.replace('??', `<input type="text" value="${val.search(/\?\?/g) !== -1 ? ':D ' : val}" readonly/>(${count++})`);
       if (formatted.search(/\?\?/g) < 0)
         flag = false;
     }

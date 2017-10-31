@@ -27,14 +27,12 @@ export default class NewTrueOrFalse extends React.Component {
 
     if (index === sentences.length - 1 && newValue !== '') {
       sentences.push('');
+      choices.push(false);
     }
 
     if (newValue === '') {
       sentences.splice(index, 1);
-    }
-
-    if (choices > sentences.length - 2) {
-      choices = undefined;
+      choices.splice(index, 1);
     }
 
     this.setState({
@@ -60,7 +58,7 @@ export default class NewTrueOrFalse extends React.Component {
     };
     let choices = {
       schema: 'trueorfalse',
-      choices: correctAnswer !== null ? correctAnswer : this.state.choices,
+      choices: correctAnswer !== null ? correctAnswer.slice(0, -1) : this.state.choices.slice(0, -1),
     };
     this.props.update(question, choices);
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Form} from '../../../Utilities/Form/style.less';
-import MatchLine from "./MatchLine";
+import MatchLineA from "./MatchLineA";
+import MatchLineB from "./MatchLineB";
 
 export default class NewMatching extends React.Component {
   constructor(props) {
@@ -8,6 +9,8 @@ export default class NewMatching extends React.Component {
 
     this.onSideChange = this.onSideChange.bind(this);
     this.updateParent = this.updateParent.bind(this);
+    this.setHover = this.setHover.bind(this);
+    this.updateAnswer = this.updateAnswer.bind(this);
 
     this.state = {
       sideA: [
@@ -16,36 +19,56 @@ export default class NewMatching extends React.Component {
       sideB: [
         '',
       ],
+      hover: undefined,
       answer: [],
     };
   }
 
   onSideChange(_side, index, newValue) {
     let side;
+    let answer = this.state.answer;
     if (_side === 'A') side = [...this.state.sideA];
     else side = [...this.state.sideB];
     side[index] = newValue;
 
     if (index === side.length - 1 && newValue !== '') {
       side.push('');
+      if (_side === 'A') answer.push(undefined);
     }
 
     if (newValue === '') {
       side.splice(index, 1);
+      if (_side === 'A') answer.splice(index, 1);
     }
 
     if (_side === 'A') {
       this.setState({
         sideA: side,
+        answer: answer,
       });
-      //this.updateParent(side, null, null);
+      this.updateParent(side, null, answer);
     }
     else {
       this.setState({
         sideB: side,
       });
-      //this.updateParent(null, side, null);
+      this.updateParent(null, side, null);
     }
+  }
+
+  setHover(hover) {
+    this.setState({
+      hover,
+    });
+  }
+
+  updateAnswer(index, answerIndex) {
+    let answer = this.state.answer;
+    answer[index] = answerIndex;
+    this.setState({
+      answer: answer,
+    });
+    this.updateParent(null, null, answer);
   }
 
   updateParent(sideA, sideB, correctAnswer) {
@@ -70,12 +93,16 @@ export default class NewMatching extends React.Component {
 
         <div className="col-sm-6">
           {this.state.sideA.map((item, i) =>
-            <MatchLine key={i} index={i} value={item} onChange={(index, value) => this.onSideChange('A', index, value)}/>)}
+            <MatchLineA key={i} index={i} sideB={this.state.sideB.slice(0, -1)} value={item}
+                        selected={this.state.answer[i]}
+                        onChange={(index, value) => this.onSideChange('A', index, value)} setHover={this.setHover}
+                        updateAnswer={this.updateAnswer}/>)}
         </div>
 
         <div className="col-sm-6">
           {this.state.sideB.map((item, i) =>
-            <MatchLine key={i} index={i} value={item} onChange={(index, value) => this.onSideChange('B', index, value)}/>)}
+            <MatchLineB key={i} index={i} value={item} hover={this.state.hover === i}
+                        onChange={(index, value) => this.onSideChange('B', index, value)}/>)}
         </div>
       </div>
     )

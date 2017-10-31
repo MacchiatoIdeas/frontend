@@ -1,0 +1,107 @@
+.sideA {
+  position: relative;
+
+  & input {
+    padding-left: 30px !important;
+  }
+
+  & div {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    & button {
+      position: relative;
+      color: #fff;
+      background: #1A91A1;
+      padding: 5px 0;
+      width: 40px;
+      margin: 0 10px;
+      top: -1px;
+      border: none;
+
+      &:hover {
+        color: #fff;
+        background: darken(#1A91A1, 10%);
+      }
+
+      &:focus {
+        color: #fff;
+        background: #1A91A1;
+      }
+
+      &:active {
+        color: #fff !important;
+        background: darken(#1A91A1, 15%) !important;
+      }
+    }
+  }
+
+  @keyframes options {
+    0% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  & .optionsWrapper {
+    & .options {
+      padding: 10px;
+      border: 1px solid #ccc;
+      background: #fff;
+      width: 173px;
+      height: auto;
+      min-height: 100px;
+      position: absolute;
+      border-radius: 5px;
+      top: -210%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      animation: options .2s ease-out;
+
+      & button {
+        background: #1A91A1;
+        padding: 5px 10px;
+        color: #fff;
+        margin: 5px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.sideB {
+  position: relative;
+  transition: all .2s ease-in-out;
+  & input {
+    padding-left: 50px !important;
+  }
+
+  & div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 38px;
+    padding: 0 !important;
+    color: #fff;
+    background: #1A91A1;
+    border-radius: 5px 0 0 5px;
+    & span {
+      line-height: 50px;
+      width: 100%;
+      text-align: center;
+      display: block;
+    }
+  }
+
+  &.focus {
+    transform: scale(1.05, 1.05);
+    & input {
+      border-color: #1A91A1 !important;
+    }
+  }
+}

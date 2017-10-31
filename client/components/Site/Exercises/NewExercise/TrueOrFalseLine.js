@@ -9,11 +9,7 @@ const TrueOrFalseLine = ({value, index, isTrue, onChange, onClick}) =>
     <div>
       {value !== '' ?
         <button tabIndex="-1" onClick={() => onClick(index)} className={`btn btn-default lead ${isTrue ? style.true : ""}`}>
-          {isTrue ?
-            <span>V</span>
-          :
-            <span>F</span>
-          }
+          {isTrue ? <span>V</span> : <span>F</span>}
         </button>
         : undefined}
     </div>
