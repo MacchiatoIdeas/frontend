@@ -1,5 +1,6 @@
 import React from 'react';
 import Student from './Student';
+import style from './style.less';
 
 export default class Students extends React.Component {
   render() {
@@ -18,6 +19,17 @@ export default class Students extends React.Component {
 
     return (
       <div>
+        {(students.length === 0) && (limit === undefined) ?
+          <div className={style.Jumbo}>
+            <h1>Su curso no estudiantes.</h1>
+
+            <h2>Puede agregar estudiantes presionando <span className="glyphicon glyphicon-plus"/>
+              {' '}
+              al costado de esta página</h2>
+          </div>
+          : null
+        }
+
         {students.map((student, i) =>
           <Student image={images[i % images.length]}
                    onClick={() => onStudentClick(student)}

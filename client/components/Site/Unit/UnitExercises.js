@@ -76,7 +76,7 @@ export default class UnitExercises extends React.Component {
                     author={exercise.author}
                     date={exercise.moment}
                     text={exercise.briefing}
-                    comments={0}
+                    comments={exercise.comments_count}
                     link={`/site/units/${unit.id}/exercise/${exercise.id}`}
                     linkText='Ver Ejercicio'
                     stars={4}

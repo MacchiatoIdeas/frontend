@@ -3,6 +3,7 @@ import TreniumForm from '../../Utilities/TreniumForm';
 import TreniumModal, {icons} from '../../Utilities/TreniumModal';
 import {createCourse} from '../../../requests/courses';
 import ReactLoading from 'react-loading';
+import showAlert from "../../Alert";
 
 export default class CreateCourseModal extends React.Component {
   constructor(props) {
@@ -31,7 +32,9 @@ export default class CreateCourseModal extends React.Component {
 
     createCourse(name)
       .then(response => {
-        this.props.history.push(`/portal/course/${response.id}`);
+        showAlert('Curso creado con éxito, redirigiendo...', () => {
+          this.props.history.push(`/portal/course/${response.id}`);
+        })
       });
   }
 

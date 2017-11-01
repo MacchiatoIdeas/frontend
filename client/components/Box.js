@@ -76,7 +76,7 @@ const Box = ({title, link, text, author, date, comments, linkText, stars}) =>
 
       {stars !== undefined ?
         <div className="pull-right" style={{paddingRight: 16, marginTop: 1}}>
-          <Stars stars={4} of={5}/>
+          <Stars stars={4} of={4}/>
         </div>
         : null
       }
