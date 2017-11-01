@@ -11,13 +11,14 @@ import AppuntaModal from '../../Utilities/TreniumModal/index';
 import {Form} from '../../Utilities/TreniumForm/style.less';
 import Select from '../../Utilities/Select/index';
 import InlineDocument from '../Document/InlineDocument';
+import AddToCourseModal from "./AddToCourseModal/index";
 
 export default class GuideDetail extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showAddModal: false,
+      showModal: false,
     }
   }
 
@@ -27,7 +28,7 @@ export default class GuideDetail extends React.Component {
     return (
       <div>
         <Header color="#efa467" textColor="#fff" icon={icons.guides} sideButton={
-          <Link to="#" onClick={() => {this.setState({showAddModal: true})}}>
+          <Link to="#" onClick={() => {this.setState({showModal: true})}}>
             <span className="glyphicon glyphicon-plus-sign"/>
           </Link>
         }>{guide.title}</Header>
@@ -56,33 +57,9 @@ export default class GuideDetail extends React.Component {
           </div>
         </section>
 
-        <AppuntaModal
-          show={this.state.showAddModal}
-          onHide={() => {this.setState({showAddModal: false})}}
-          icon={icons.courses}
-          color="#5DDDD3"
-          title="Agregar guía a curso">
-          <form className={Form}>
-            <label>
-              <div>Curso</div>
-
-              <Select options={[
-                {
-                  value: 1,
-                  name: 'Primero Medio Champagnat',
-                  sideText: 'Matemáticas',
-                },
-                {
-                  value: 2,
-                  name: 'Segundo Medio Champagnat',
-                  sideText: 'Lenguaje',
-                }
-              ]}/>
-            </label>
-
-            <button>Continuar</button>
-          </form>
-        </AppuntaModal>
+        <AddToCourseModal show={this.state.showModal}
+                          guideId={guide.id}
+                          onHide={() => {this.setState({showModal: false})}} />
       </div>
     )
   }

@@ -13,11 +13,10 @@ import style from './Form.less';
 import Header from '../../../Utilities/Header/index';
 
 import * as icons from '../../../../assets/flaticons';
-import NewTrueOrFalse from "./NewTrueOrFalse";
-import ReactStars from 'react-stars'
+import NewTrueOrFalse from './NewTrueOrFalse';
+import ReactStars from 'react-stars';
 import TreniumButton from '../../../Utilities/TreniumButton';
 import {createExercise} from '../../../../requests/exercises';
-
 
 export default class NewExercise extends React.Component {
   constructor(props) {
@@ -28,7 +27,6 @@ export default class NewExercise extends React.Component {
     this.updateQuestionAnswer = this.updateQuestionAnswer.bind(this);
     this.updateDifficulty = this.updateDifficulty.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
-
 
     this.state = {
       brief: '',
