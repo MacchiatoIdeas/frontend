@@ -16,7 +16,7 @@ import * as icons from '../../../../assets/flaticons';
 import NewTrueOrFalse from './NewTrueOrFalse';
 
 import TreniumButton from '../../../Utilities/TreniumButton';
-import {createExercise} from "../../../../requests/exercises";
+import {createExercise} from '../../../../requests/exercises';
 
 export default class NewExercise extends React.Component {
   constructor(props) {
