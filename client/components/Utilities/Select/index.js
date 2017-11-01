@@ -17,9 +17,13 @@ export default class Select extends React.Component {
   }
 
   onOptionClick(value) {
+    const {onChange} = this.props;
+
     this.setState({
       selected: value,
-    })
+    });
+
+    onChange(value);
   }
 
   render() {

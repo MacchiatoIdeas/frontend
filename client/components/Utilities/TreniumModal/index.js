@@ -16,7 +16,7 @@ export default class TreniumModal extends React.Component {
           </ModalTitle>
         </ModalHeader>
 
-        <ModalBody>
+        <ModalBody className={style.Body}>
           {children}
         </ModalBody>
       </Modal>

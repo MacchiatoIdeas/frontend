@@ -3,6 +3,8 @@ import {
   AUTH_USERDATA_RECEIVE
 } from './index';
 import {getOwnData, tryLogin} from '../requests/auth';
+import {getAllOwnGuides} from '../requests/guides';
+import {getAllOwnGuidesAction} from './guides';
 
 export const getOwnDataAction = () => (dispatch) => {
   dispatch({
@@ -15,6 +17,8 @@ export const getOwnDataAction = () => (dispatch) => {
         type: AUTH_USERDATA_RECEIVE,
         payload: data,
       });
+    }).then(response => {
+      return dispatch(getAllOwnGuidesAction());
     });
 };
 
@@ -30,8 +34,6 @@ export const tryLoginAction = (username, password) => (dispatch) => {
         type: AUTH_LOGIN_RECEIVE,
         payload: response
       });
-
-      dispatch(getOwnDataAction());
     });
 };
 

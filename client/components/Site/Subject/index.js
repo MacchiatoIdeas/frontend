@@ -20,6 +20,7 @@ import Textarea from 'react-textarea-autosize';
 import {Form} from '../../Utilities/Form';
 import HeaderSideButton from '../../Utilities/Header/HeaderSideButtonSideButton';
 import {createGuideAction} from '../../../actions/guides';
+import {createGuide} from '../../../requests';
 
 @connect((state, props) => ({
   subject: state.visibleSubject,
@@ -31,7 +32,6 @@ export default class Subject extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onBriefChange = this.onBriefChange.bind(this);
     this.onModalSubmit = this.onModalSubmit.bind(this);
 
     this.state = {
@@ -45,10 +45,6 @@ export default class Subject extends React.Component {
     this.props.getSubjectByIdAction(id);
   }
 
-  onBriefChange(e) {
-    this.setState({brief: e.target.value});
-  }
-
   onModalSubmit(e) {
     e.preventDefault();
 
@@ -56,11 +52,10 @@ export default class Subject extends React.Component {
     const brief = this.state.brief;
     const _public = this.refs.visibility.checked;
 
-    const {subject} = this.props;
-
-    this.props.createGuideAction(subject.id, title, brief, !_public).then(response => {
-      this.props.history.push(`/guides-editor/${response.id}`);
-    })
+    createGuide(this.props.subject.id, title, brief, !_public)
+      .then(response => {
+        this.props.history.push(`/guides-editor/${response.id}`);
+      });
   }
 
   render() {
@@ -111,7 +106,7 @@ export default class Subject extends React.Component {
 
             <label>
               <div>Descripción</div>
-              <Textarea onChange={this.onBriefChange} placeholder="Descripción corta de su guía"/>
+              <Textarea onChange={(e) => this.setState({brief: e.target.value})} placeholder="Descripción corta de su guía"/>
             </label>
 
             <label>

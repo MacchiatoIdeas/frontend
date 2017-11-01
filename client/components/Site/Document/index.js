@@ -10,13 +10,12 @@ import Header from '../../Utilities/Header/index';
 import * as icons from '../../../assets/flaticons';
 
 import style from './style.less';
-import AppuntaModal from '../../Utilities/TreniumModal/index';
-import Select from '../../Utilities/Select/index';
 
-import {Form} from '../../Utilities/Form/style.less';
 import TreniumMenu, {active} from '../../Utilities/TreniumMenu/index';
 import BodyLoading from '../../Utilities/BodyLoading/index';
 import InlineDocument from './InlineDocument';
+import HeaderSideButton from '../../Utilities/Header/HeaderSideButtonSideButton';
+import AddToGuideModal from '../AddToGuideModal/AddToGuideModal';
 
 @connect((state, props) => ({
   document: state.visibleDocument,
@@ -48,11 +47,9 @@ export default class Content extends React.Component {
     return (
       <div>
         <Header icon={icons.document} color="#FF757C" sideButton={
-          <Link to="#" onClick={() => {
+          <HeaderSideButton onClick={() => {
             this.setState({showModal: true})
-          }}>
-            <span className="glyphicon glyphicon-plus-sign"/>
-          </Link>
+          }}/>
         }>{document.title}</Header>
 
         <section>
@@ -106,33 +103,9 @@ export default class Content extends React.Component {
           )}/>
         </Switch>
 
-        <AppuntaModal show={this.state.showModal}
-                      onHide={() => {
-                        this.setState({showModal: false})
-                      }}
-                      title="Agregar documento a guía"
-                      icon={icons.guidesv2}
-                      color="#FFCA4F">
-          <form className={Form}>
-            <label htmlFor="">
-              <div>Guía</div>
-              <Select options={[
-                {
-                  value: 1,
-                  name: 'Guia numero uno',
-                  sideText: 'Lenguaje'
-                }, {
-                  value: 2,
-                  name: 'Guia numero dos',
-                  sideText: 'Matemáticas'
-                }
-              ]}>
-              </Select>
-            </label>
-
-            <button>Continuar</button>
-          </form>
-        </AppuntaModal>
+        <AddToGuideModal documentId={document.id} subjectId={document.unit.subject.id} show={this.state.showModal} onHide={() => {
+          this.setState({showModal: false})
+        }}/>
       </div>
     )
   }

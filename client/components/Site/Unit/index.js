@@ -9,6 +9,7 @@ import UnitDocuments from './UnitDocuments';
 import UnitExercises from './UnitExercises';
 import ExerciseDetail from '../Exercises/ExerciseDetail/index';
 import NewExercise from '../Exercises/NewExercise/NewExercise';
+import BodyLoading from '../../Utilities/BodyLoading/index';
 
 @connect((state, props) => ({
   unit: state.visibleUnit,

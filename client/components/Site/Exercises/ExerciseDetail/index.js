@@ -19,6 +19,7 @@ import style from './style.less';
 import Menu, {active} from '../../../Utilities/TreniumMenu/index';
 
 import BodyLoading from '../../../Utilities/BodyLoading/index';
+import AddToGuideModal from '../../AddToGuideModal/AddToGuideModal';
 
 @connect((state, props) => ({
   exercise: state.visibleExercise,
@@ -98,30 +99,9 @@ export default class ExerciseDetail extends React.Component {
 
         <Comments exercise={exercise} comments={exercise.comments}/>
 
-        <AppuntaModal show={this.state.showModal}
-                      onHide={() => this.setState({showModal: false})}
-                      title="Agregar ejercicio a guía"
-                      icon={icons.guidesv2}
-                      color="#FFCA4F">
-          <form className={Form}>
-            <label>
-              <div>Curso</div>
-              <Select options={[
-                {
-                  value: 1,
-                  name: 'Guia numero uno',
-                  sideText: 'Lenguaje'
-                }, {
-                  value: 2,
-                  name: 'Guia numero dos',
-                  sideText: 'Lenguaje'
-                }
-              ]}/>
-            </label>
-
-            <button>Continuar</button>
-          </form>
-        </AppuntaModal>
+        <AddToGuideModal exerciseId={exercise.id} subjectId={unit.subject.id} show={this.state.showModal} onHide={() => {
+          this.setState({showModal: false})
+        }}/>
       </div>
     )
   }

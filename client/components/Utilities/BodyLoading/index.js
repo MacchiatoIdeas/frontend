@@ -1,8 +1,8 @@
 import React from 'react';
 import Loading from '../Loading/index';
 
-const BodyLoading = () =>
-  <div style={{padding: 128}}>
+const BodyLoading = ({padding = 128}) =>
+  <div style={{padding}}>
     <Loading color="#444"/>
   </div>;
 
