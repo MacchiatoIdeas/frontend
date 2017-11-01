@@ -10,11 +10,13 @@ import Editor from '../../../Editor/Editor';
 import {Form} from '../../../Utilities/TreniumForm/style.less';
 
 import style from './Form.less';
-import Header from "../../../Utilities/Header/index";
+import Header from '../../../Utilities/Header/index';
 
 import * as icons from '../../../../assets/flaticons';
 import NewTrueOrFalse from "./NewTrueOrFalse";
 import ReactStars from 'react-stars'
+import TreniumButton from '../../../Utilities/TreniumButton';
+import {createExercise} from '../../../../requests/exercises';
 
 
 export default class NewExercise extends React.Component {
@@ -25,16 +27,16 @@ export default class NewExercise extends React.Component {
     this.updateText = this.updateText.bind(this);
     this.updateQuestionAnswer = this.updateQuestionAnswer.bind(this);
     this.updateDifficulty = this.updateDifficulty.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+
 
     this.state = {
       brief: '',
-      content: {},
       text: [],
       question: {},
       answer: {},
       difficulty: 2,
     };
-
   }
 
   updateBrief(event) {
@@ -60,6 +62,18 @@ export default class NewExercise extends React.Component {
     this.setState({
       difficulty,
     });
+  }
+
+  onFormSubmit(e) {
+    e.preventDefault();
+
+    const {brief, text, answer, difficulty, question} = this.state;
+    const unitId = this.props.unit.id;
+
+    createExercise(unitId, brief, difficulty, JSON.stringify(question), JSON.stringify(text), JSON.stringify(answer))
+      .then(response => {
+        this.props.history.push(`/site/units/1/exercise/${response.id}`);
+      });
   }
 
   render() {
@@ -106,6 +120,10 @@ export default class NewExercise extends React.Component {
 
               )}/>
             </Switch>
+          </div>
+
+          <div className={style.wrapper}>
+            <TreniumButton onClick={this.onFormSubmit}>Guardar Ejercicio</TreniumButton>
           </div>
         </section>
       </div>

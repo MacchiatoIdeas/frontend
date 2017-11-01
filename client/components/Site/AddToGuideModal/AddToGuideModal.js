@@ -1,13 +1,13 @@
 import React from 'react';
 import TreniumModal from '../../Utilities/TreniumModal/index';
 
-import {Form} from '../../Utilities/TreniumForm/index';
-
 import * as icons from '../../../assets/flaticons';
 import Select from '../../Utilities/Select/index';
 import BodyLoading from '../../Utilities/BodyLoading/index';
 import {addDocumentToGuide, addExerciseToGuide, getAllOwnGuides} from '../../../requests/guides';
 import TreniumFormLoading from '../../Utilities/TreniumForm/TreniumFormLoading';
+import TreniumForm from '../../Utilities/TreniumForm/index';
+import showAlert from '../../Alert';
 
 export default class AddToGuideModal extends React.Component {
   constructor(props) {
@@ -52,11 +52,13 @@ export default class AddToGuideModal extends React.Component {
     if (this.props.documentId !== undefined) {
       addDocumentToGuide(this.state.selectedGuide, this.props.documentId, -1)
         .then(response => {
+          showAlert('¡Documento añadido con éxito!');
           this.props.onHide();
         });
     } else if (this.props.exerciseId) {
       addExerciseToGuide(this.state.selectedGuide, this.props.exerciseId, -1)
         .then(response => {
+          showAlert('¡Ejercicio añadido con éxito!');
           this.props.onHide();
         });
     }
@@ -71,7 +73,7 @@ export default class AddToGuideModal extends React.Component {
                     title={`Agregar ${documentId !== undefined ? 'documento' : 'ejercicio'} a guía`}
                     icon={icons.guidesv2}
                     color="#FFCA4F">
-        <form onSubmit={this.onFormSubmit} className={Form}>
+        <TreniumForm onSubmit={this.onFormSubmit}>
           <label>
             <div>Guía</div>
             {
@@ -84,7 +86,7 @@ export default class AddToGuideModal extends React.Component {
           <TreniumFormLoading isSending={this.state.isSending}/>
 
           <button>Continuar</button>
-        </form>
+        </TreniumForm>
       </TreniumModal>
     )
   }

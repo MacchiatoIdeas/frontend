@@ -2,7 +2,7 @@ import React from 'react';
 import {Link, NavLink, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import Exercise from '../Exercise';
+import Exercise from './Exercise';
 import Comments from '../../Comments/index';
 import {getExerciseByIdAction} from '../../../../actions/exercises';
 
@@ -10,10 +10,8 @@ import RecommendedExercises from '../RecommendedExercises';
 import Header from '../../../Utilities/Header/index';
 
 import * as icons from '../../../../assets/flaticons';
-import AppuntaModal from '../../../Utilities/TreniumModal/index';
 
 import {Form} from '../../../Utilities/TreniumForm/style.less';
-import Select from '../../../Utilities/Select/index';
 
 import style from './style.less';
 import Menu, {active} from '../../../Utilities/TreniumMenu/index';

@@ -2,10 +2,9 @@ import React from 'react';
 
 import AlternativeExercise from './AlternativeExercise';
 import MatchingExercise from './MatchingExercise';
-import style from './Exercise.less';
-import Button from '../../Utilities/TreniumButton';
-import InlineDocument from "../Document/InlineDocument";
-import CompletionExercise from "./CompletionExercise";
+import Button from '../../../Utilities/TreniumButton';
+import InlineDocument from '../../Document/InlineDocument';
+import CompletionExercise from './CompletionExercise';
 
 export default class Exercise extends React.Component {
   constructor(props) {

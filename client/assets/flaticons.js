@@ -20,6 +20,7 @@ import newMatching from './svg/flaticons/icons4/networking.svg';
 import newComplete from './svg/flaticons/icons4/exam-2.svg';
 import newTrueOrFalse from './svg/flaticons/icons1/notepad.svg';
 import document from './svg/flaticons/icons1/ebook.svg';
+import alert from './svg/flaticons/icons3/school-bell.svg';
 
 export {
   exercises,
@@ -44,4 +45,5 @@ export {
   newComplete,
   newTrueOrFalse,
   document,
+  alert,
 };

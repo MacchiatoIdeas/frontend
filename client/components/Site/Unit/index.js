@@ -35,7 +35,7 @@ export default class Unit extends React.Component {
             <UnitDocuments unit={unit} match={match} history={history}/>
           }/>
           <Route path="/site/units/:id/exercises/create" render={({match}) =>
-            <NewExercise unit={unit} match={match}/>
+            <NewExercise unit={unit} match={match} history={history}/>
           }/>
           <Route path="/site/units/:id/exercises" render={({match}) =>
             <UnitExercises unit={unit} match={match}/>
