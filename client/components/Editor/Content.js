@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../style/editor.css';
-import MarkdownKatex from '../Utilities/MarkdownKatex/index';
+import MarkdownKatex from '../Site/Document/MarkdownKatex/index';
 
 import ClickOutHandler from 'react-onclickout';
 
