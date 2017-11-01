@@ -2,7 +2,7 @@ import React from 'react';
 import {Link, NavLink, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import Exercise from '../Exercise';
+import Exercise from './Exercise';
 import Comments from '../../Comments/index';
 import {getExerciseByIdAction} from '../../../../actions/exercises';
 

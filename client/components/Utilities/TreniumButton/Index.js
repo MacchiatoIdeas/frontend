@@ -1,9 +1,9 @@
 import React from 'react';
 import style from './style.less';
 
-const Button = (props) =>
+const TreniumButton = (props) =>
   <button {...props} className={style.button} style={{backgroundColor: props.backgroundColor}}>
     {props.children}
   </button>;
 
-export default Button;
+export default TreniumButton;

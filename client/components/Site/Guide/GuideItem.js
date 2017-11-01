@@ -1,7 +1,7 @@
 import React from 'react';
 
 import style from './GuideItem.less'
-import Exercise from '../Exercises/Exercise';
+import Exercise from '../Exercises/ExerciseDetail/Exercise';
 
 import ClickOutHandler from 'react-onclickout';
 

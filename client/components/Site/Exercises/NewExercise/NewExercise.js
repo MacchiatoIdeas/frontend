@@ -10,10 +10,13 @@ import Editor from '../../../Editor/Editor';
 import {Form} from '../../../Utilities/TreniumForm/style.less';
 
 import style from './Form.less';
-import Header from "../../../Utilities/Header/index";
+import Header from '../../../Utilities/Header/index';
 
 import * as icons from '../../../../assets/flaticons';
-import NewTrueOrFalse from "./NewTrueOrFalse";
+import NewTrueOrFalse from './NewTrueOrFalse';
+
+import TreniumButton from '../../../Utilities/TreniumButton';
+import {createExercise} from "../../../../requests/exercises";
 
 export default class NewExercise extends React.Component {
   constructor(props) {
@@ -22,6 +25,7 @@ export default class NewExercise extends React.Component {
     this.updateBrief = this.updateBrief.bind(this);
     this.updateText = this.updateText.bind(this);
     this.updateQuestionAnswer = this.updateQuestionAnswer.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
 
     this.state = {
       brief: '',
@@ -30,7 +34,6 @@ export default class NewExercise extends React.Component {
       question: {},
       answer: {},
     };
-
   }
 
   updateBrief(event) {
@@ -50,6 +53,15 @@ export default class NewExercise extends React.Component {
       question,
       answer,
     });
+  }
+
+  onFormSubmit(e) {
+    e.preventDefault();
+
+    const {brief, content, text, answer, question} = this.state;
+    const unitId = this.props.unit;
+
+    // createExercise(unitId, brief, 5, content, text, answer);
   }
 
   render() {
@@ -90,6 +102,10 @@ export default class NewExercise extends React.Component {
 
               )}/>
             </Switch>
+          </div>
+
+          <div className={style.wrapper}>
+            <TreniumButton onChange={this.createExercise}>Guardar Ejercicio</TreniumButton>
           </div>
         </section>
       </div>

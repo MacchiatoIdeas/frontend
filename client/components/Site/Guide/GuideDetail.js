@@ -1,7 +1,7 @@
 import React from 'react';
 
 import css from '../../../style/FluidPage.less';
-import Exercise from '../Exercises/Exercise';
+import Exercise from '../Exercises/ExerciseDetail/Exercise';
 import Header from '../../Utilities/Header';
 
 import * as icons from '../../../assets/flaticons';
