@@ -4,6 +4,7 @@ import style from './Gallery.less';
 import ReactLoading from 'react-loading';
 import Dropzone from 'react-dropzone';
 import * as icons from '../../assets/flaticons';
+import BodyLoading from "../Utilities/BodyLoading/index";
 
 
 export default class Gallery extends React.Component {
@@ -49,7 +50,7 @@ export default class Gallery extends React.Component {
     if (this.state.loading) {
       return (
         <div className={`text-center ${style.loading}`}>
-          <ReactLoading type="bars" color="#666"/>
+          <BodyLoading padding={0}/>
         </div>
       )
     }

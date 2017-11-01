@@ -16,7 +16,7 @@ export default class Graph extends React.Component {
       checked: false,
       base64: this.props.editable !== undefined ? this.props.editable : '',
       PNGBase64: this.props.image !== undefined ? this.props.image : '',
-      placeholder: 'background-placeholder'
+      placeholder: this.props.image === undefined ?'background-placeholder' : '',
     };
 
     this.onClickFocus = this.onClickFocus.bind(this);
@@ -63,7 +63,8 @@ export default class Graph extends React.Component {
   }
 
   componentDidMount() {
-    this.openModalGraph()
+    if (this.state.PNGBase64 === '')
+      this.openModalGraph()
   }
 
   render() {
