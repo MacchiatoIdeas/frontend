@@ -2,9 +2,11 @@ import React from 'react';
 
 import style from './style.less';
 
-const Menu = ({children}) =>
+export const active = style.active;
+
+const TreniumMenu = ({children}) =>
   <div className={style.Menu}>
     {children}
   </div>;
 
-export default Menu;
+export default TreniumMenu;

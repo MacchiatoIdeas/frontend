@@ -10,15 +10,14 @@ import RecommendedExercises from '../RecommendedExercises';
 import Header from '../../../Utilities/Header/index';
 
 import * as icons from '../../../../assets/flaticons';
-import AppuntaModal from '../../../Utilities/AppuntaModal/index';
+import AppuntaModal from '../../../Utilities/TreniumModal/index';
 
 import {Form} from '../../../Utilities/Form/style.less';
 import Select from '../../../Utilities/Select/index';
 
 import style from './style.less';
-import Menu from '../../../Utilities/Menu/index';
+import Menu, {active} from '../../../Utilities/TreniumMenu/index';
 
-import {active} from '../../../Utilities/Menu/style.less';
 import BodyLoading from '../../../Utilities/BodyLoading/index';
 
 @connect((state, props) => ({

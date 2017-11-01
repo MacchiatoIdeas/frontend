@@ -35,7 +35,7 @@ export default class Comments extends React.Component {
         </section>
 
         {auth.isAuthenticated ?
-          <NewComment user={auth.user} exercise={exercise} content={content}/>
+          <NewComment user={auth.data.user} exercise={exercise} content={content}/>
           : null}
       </div>
     )

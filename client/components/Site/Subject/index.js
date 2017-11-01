@@ -1,0 +1,127 @@
+import React from 'react';
+import {Route, Switch} from 'react-router-dom';
+import {connect} from 'react-redux';
+
+import {getSubjectByIdAction} from '../../../actions/subjects';
+
+import SubjectBox from '../SubjectBox';
+import Sidebar from './Sidebar';
+import Header from '../../Utilities/Header';
+
+import * as icons from '../../../assets/flaticons';
+import Menu from './Menu';
+import Units from './Units';
+import Guides from './Guides';
+import Redirect from 'react-router-dom/es/Redirect';
+import TreniumModal from '../../Utilities/TreniumModal/index';
+
+import Textarea from 'react-textarea-autosize';
+
+import {Form} from '../../Utilities/Form';
+import HeaderSideButton from '../../Utilities/Header/HeaderSideButtonSideButton';
+import {createGuideAction} from '../../../actions/guides';
+
+@connect((state, props) => ({
+  subject: state.visibleSubject,
+}), {
+  getSubjectByIdAction,
+  createGuideAction,
+})
+export default class Subject extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onBriefChange = this.onBriefChange.bind(this);
+    this.onModalSubmit = this.onModalSubmit.bind(this);
+
+    this.state = {
+      showModal: false,
+      brief: '',
+    }
+  }
+
+  componentDidMount() {
+    const {id} = this.props.match.params;
+    this.props.getSubjectByIdAction(id);
+  }
+
+  onBriefChange(e) {
+    this.setState({brief: e.target.value});
+  }
+
+  onModalSubmit(e) {
+    e.preventDefault();
+
+    const title = this.refs.title.value;
+    const brief = this.state.brief;
+    const _public = this.refs.visibility.checked;
+
+    const {subject} = this.props;
+
+    this.props.createGuideAction(subject.id, title, brief, !_public).then(response => {
+      this.props.history.push(`/guides-editor/${response.id}`);
+    })
+  }
+
+  render() {
+    const {subject} = this.props;
+
+    if (subject.isLoading) {
+      return null;
+    }
+
+    return (
+      <div>
+        <Header icon={icons.subject} color="#FFCA4F" sideButton={
+          <Switch>
+            <Route path={`/site/subjects/${subject.id}/guides`} render={() =>
+              <HeaderSideButton onClick={() => this.setState({showModal: true})}/>
+            }/>
+          </Switch>
+        }>{subject.name}</Header>
+
+        <section>
+          <div className="col-md-4">
+            <SubjectBox subject={subject} showTitle/>
+            <Sidebar/>
+          </div>
+
+          <div className="col-md-8">
+            <Menu subjectId={subject.id}/>
+
+            <Switch>
+              <Route path={`/site/subjects/${subject.id}/units`} render={() => <Units units={subject.units}/>}/>
+              <Route path={`/site/subjects/${subject.id}/guides`} render={() => <Guides guides={subject.guides}/>}/>
+              <Redirect from={`/site/subjects/${subject.id}`} to={`/site/subjects/${subject.id}/units`}/>
+            </Switch>
+          </div>
+          <div className="clearfix"/>
+        </section>
+
+        <TreniumModal show={this.state.showModal}
+                      onHide={() => this.setState({showModal: false})}
+                      icon={icons.guidesv2}
+                      title="Crear guía"
+                      color="#FFCA4F">
+          <form onSubmit={this.onModalSubmit} className={Form}>
+            <label>
+              <div>Título</div>
+              <input type="text" ref="title" placeholder="Nombre de su guía" required/>
+            </label>
+
+            <label>
+              <div>Descripción</div>
+              <Textarea onChange={this.onBriefChange} placeholder="Descripción corta de su guía"/>
+            </label>
+
+            <label>
+              <div><input type="checkbox" ref="visibility" defaultChecked/> Pública</div>
+            </label>
+
+            <button>Continuar</button>
+          </form>
+        </TreniumModal>
+      </div>
+    )
+  }
+}

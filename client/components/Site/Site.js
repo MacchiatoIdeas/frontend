@@ -3,11 +3,11 @@ import {Route, Switch} from 'react-router-dom';
 
 import Navbar from '../Navbar/Navbar';
 import Body from '../Body';
-import Subject from './Subject/Subject';
+import Subject from './Subject/index';
 import Content from './Document';
 import Subjects from './Subjects';
-import Unit from './Unit/Unit';
-import Guide from './Guide/Guide';
+import Unit from './Unit/index';
+import Guide from './Guide/index';
 
 export default class Site extends React.Component {
   render() {

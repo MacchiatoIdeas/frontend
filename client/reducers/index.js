@@ -4,19 +4,16 @@ import {subjects, visibleSubject} from './subjects';
 import {visibleUnit} from './units';
 import {visibleDocument} from './documents';
 import {visibleExercise} from './exercises';
-import authors from './authors';
-import auth from './auth';
-import guides from './guides';
+import {visibleGuide} from './guides';
+import {auth} from './auth';
 
 const rootReducer = combineReducers({
+  auth,
   subjects, visibleSubject,
   visibleUnit,
   visibleDocument,
   visibleExercise,
-
-  authors,
-  auth,
-  guides,
+  visibleGuide,
 });
 
 export default rootReducer;

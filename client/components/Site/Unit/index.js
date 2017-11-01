@@ -24,7 +24,7 @@ export default class Unit extends React.Component {
     const {unit} = this.props;
 
     if (unit.isLoading) {
-      return null;
+      return <BodyLoading/>;
     }
 
     return (

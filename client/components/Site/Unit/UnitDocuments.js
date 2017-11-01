@@ -6,11 +6,11 @@ import Box from '../../Box';
 import Header from '../../Utilities/Header/index';
 
 import * as icons from '../../../assets/flaticons';
-import AppuntaModal from '../../Utilities/AppuntaModal/index';
+import AppuntaModal from '../../Utilities/TreniumModal/index';
 import Textarea from 'react-textarea-autosize';
 
 import {Form} from '../../Utilities/Form/style.less';
-import UnitMenu from './UnitMenu';
+import Menu from './Menu';
 
 export default class UnitDocuments extends React.Component {
   constructor(props) {
@@ -39,23 +39,19 @@ export default class UnitDocuments extends React.Component {
           </div>
 
           <div className="col-sm-8">
-            <UnitMenu unitId={unit.id}/>
+            <Menu unitId={unit.id}/>
 
-            <div className="row">
-              <div className="col-sm-12">
-                {unit.contents.map((content, i) =>
-                  <Box
-                    key={content.id}
-                    title={content.subtitle}
-                    author={content.author}
-                    date={'25 de Mayo de 2017'}
-                    text={content.summary}
-                    comments={0}
-                    link={`/site/contents/${content.id}`}
-                  />
-                )}
-              </div>
-            </div>
+            {unit.contents.map((document, i) =>
+              <Box
+                key={document.id}
+                title={document.title}
+                author={document.author}
+                date={document.moment}
+                text={document.summary}
+                comments={0}
+                link={`/site/contents/${document.id}`}
+              />
+            )}
           </div>
         </section>
 

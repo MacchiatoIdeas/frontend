@@ -15,7 +15,7 @@ import {Modal, ModalBody, ModalHeader, ModalTitle} from 'react-bootstrap';
 import Textarea from 'react-textarea-autosize';
 
 import {Form} from '../../../Utilities/Form/style.less';
-import AppuntaModal from '../../../Utilities/AppuntaModal/index';
+import AppuntaModal from '../../../Utilities/TreniumModal/index';
 
 export default class Course extends React.Component {
   constructor(props) {

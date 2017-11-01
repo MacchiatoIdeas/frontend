@@ -36,10 +36,8 @@ export default class Portal extends React.Component {
               <div className={`row ${style.summary}`}>
                 <div className="col-sm-12">
                   <h1 className="page-header">
-                    {auth.user.first_name} {auth.user.last_name}
-                    <span className="pull-right">
-
-                  </span>
+                    {auth.data.user.first_name} {auth.data.user.last_name}
+                    <span className="pull-right"/>
                   </h1>
 
                   <div className="row">

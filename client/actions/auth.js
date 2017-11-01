@@ -1,12 +1,7 @@
-import fetch from 'isomorphic-fetch';
-
-import {API_URL} from '../api';
 import {
   AUTH_LOGIN_FETCH, AUTH_LOGIN_RECEIVE, AUTH_USERDATA_FAILED, AUTH_USERDATA_FETCH,
   AUTH_USERDATA_RECEIVE
 } from './index';
-import {normalize} from 'normalizr';
-import {user} from '../schema';
 import {getOwnData, tryLogin} from '../requests/auth';
 
 export const getOwnDataAction = () => (dispatch) => {
@@ -14,13 +9,11 @@ export const getOwnDataAction = () => (dispatch) => {
     type: AUTH_USERDATA_FETCH
   });
 
-  console.log('[getUserData]', 'working...');
-
   return getOwnData()
     .then(data => {
       dispatch({
         type: AUTH_USERDATA_RECEIVE,
-        payload: normalize(data, user)
+        payload: data,
       });
     });
 };

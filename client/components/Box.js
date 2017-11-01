@@ -12,6 +12,12 @@ const Stars = ({stars, of}) => {
   )
 };
 
+function formatDateToLocale(date) {
+  return new Date(date).toLocaleDateString('es', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+}
+
 const Box = ({title, link, text, author, date, comments, linkText, stars}) =>
   <div className={`box box-fill ${style.Box}`}>
     <div className="row">
@@ -31,7 +37,7 @@ const Box = ({title, link, text, author, date, comments, linkText, stars}) =>
         </div>
 
         <div>
-          {date}
+          {formatDateToLocale(date)}
         </div>
       </div>
     </div>

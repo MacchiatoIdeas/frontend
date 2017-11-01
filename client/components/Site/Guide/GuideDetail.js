@@ -6,10 +6,11 @@ import Header from '../../Utilities/Header';
 
 import * as icons from '../../../assets/flaticons';
 import {Link} from 'react-router-dom';
-import AppuntaModal from '../../Utilities/AppuntaModal/index';
+import AppuntaModal from '../../Utilities/TreniumModal/index';
 
 import {Form} from '../../Utilities/Form/style.less';
 import Select from '../../Utilities/Select/index';
+import InlineDocument from '../Document/InlineDocument';
 
 export default class GuideDetail extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ export default class GuideDetail extends React.Component {
 
   render() {
     const {guide} = this.props;
+
     return (
       <div>
         <Header color="#efa467" textColor="#fff" icon={icons.guides} sideButton={
@@ -32,46 +34,24 @@ export default class GuideDetail extends React.Component {
 
         <section>
           <div className="row">
-            <div className={`col-sm-9 ${css.content}`}>
+            <div className={`col-sm-8 col-sm-offset-2 ${css.content}`}>
               {guide.items.map((item, i) => {
                 if (item.type === 'content') {
                   return (
                     <div key={i}>
-                      <div dangerouslySetInnerHTML={{__html: item.item.html_text}}/>
+                      <InlineDocument document={item.item}/>
                       <hr/>
                     </div>
-                  )
+                  );
                 } else if (item.type === 'exercise') {
-                  let exercise = {...item.item};
-                  exercise.content = JSON.parse(exercise.content);
-                  exercise.right_answer = JSON.parse(exercise.right_answer);
-
                   return (
                     <div key={i}>
-                      <h3>Ejercicio Propuesto:</h3>
-                      <Exercise exercise={exercise}/>
+                      <Exercise exercise={item.item}/>
                       <hr/>
                     </div>
                   )
                 }
               })}
-            </div>
-
-            <div className={`col-sm-3 ${css.toc}`}>
-              <div className="list-group">
-                <a href="#" className={`list-group-item ${css.tocItem}`}>
-                  <strong>1)</strong> Lorem ipsum dolor sit amet.
-                </a>
-                <a href="#" className={`list-group-item ${css.tocItem}`}>
-                  <strong>2)</strong> Lorem ipsum dolor sit.
-                </a>
-                <a href="#" className={`list-group-item ${css.tocItem}`}>
-                  Lorem ipsum dolor sit amet, consectetur.
-                </a>
-                <a href="#" className={`list-group-item ${css.tocItem}`}>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing.
-                </a>
-              </div>
             </div>
           </div>
         </section>

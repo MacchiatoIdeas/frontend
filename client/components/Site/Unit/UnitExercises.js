@@ -6,8 +6,8 @@ import Box from '../../Box';
 
 import * as icons from '../../../assets/flaticons';
 import Header from '../../Utilities/Header/index';
-import UnitMenu from './UnitMenu';
-import AppuntaModal from '../../Utilities/AppuntaModal/index';
+import UnitMenu from './Menu';
+import AppuntaModal from '../../Utilities/TreniumModal/index';
 
 import style from './style.less';
 import {Form} from '../../Utilities/Form/style.less';
@@ -74,7 +74,7 @@ export default class UnitExercises extends React.Component {
                     key={exercise.id}
                     title={''}
                     author={exercise.author}
-                    date={'25 de Mayo de 2017'}
+                    date={exercise.moment}
                     text={exercise.briefing}
                     comments={0}
                     link={`/site/units/${unit.id}/exercise/${exercise.id}`}

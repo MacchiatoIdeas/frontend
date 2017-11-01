@@ -3,44 +3,35 @@ import {connect} from 'react-redux';
 import {Route, Switch} from 'react-router-dom';
 
 
-import {getGuideById} from '../../../actions/guides';
+import {getGuideByIdAction} from '../../../actions/guides';
 
-import css from '../../../style/FluidPage.less';
 import GuideDetail from './GuideDetail';
 import GuideEdit from './GuideEdit';
+import BodyLoading from '../../Utilities/BodyLoading/index';
 
-@connect((state, props) => {
-  let guide = state.guides[props.match.params.id];
-
-  if (!guide || !guide.items) {
-    return {
-      isFetching: true
-    }
-  }
-
-  return {
-    guide
-  }
-}, {
-  getGuideById
+@connect((state, props) => ({
+  guide: state.visibleGuide,
+}), {
+  getGuideByIdAction
 })
 export default class Guide extends React.Component {
-  componentWillMount() {
-    this.props.getGuideById(this.props.match.params.id);
+  componentDidMount() {
+    this.props.getGuideByIdAction(this.props.match.params.id);
   }
 
   render() {
-    if (this.props.isFetching) {
-      return null;
-    }
-
     const {guide} = this.props;
+
+    if (guide.isLoading) {
+      return <BodyLoading/>;
+    }
 
     return (
       <Switch>
         <Route path="/site/guides/:id/edit" render={({match}) =>
           <GuideEdit guide={guide} match={match}/>
         }/>
+
         <Route path="/site/guides/:id" render={({match}) =>
           <GuideDetail guide={guide} match={match}/>
         }/>

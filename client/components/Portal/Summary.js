@@ -6,7 +6,7 @@ import Header from '../Utilities/Header/index';
 import style from './Portal.less';
 import CourseBox from './Courses/CourseBox';
 import {Link} from 'react-router-dom';
-import AppuntaModal from '../Utilities/AppuntaModal/index';
+import TreniumModal from '../Utilities/TreniumModal/index';
 
 import {Form} from '../Utilities/Form/style.less';
 import SubjectSelect from '../Utilities/SubjectSelect/index';
@@ -131,7 +131,7 @@ export default class Summary extends React.Component {
           </div>
         </section>
 
-        <AppuntaModal show={this.state.showCourseModal}
+        <TreniumModal show={this.state.showCourseModal}
                       icon={icons.courses}
                       onHide={() => this.setState({showCourseModal: false})}
                       color="#5DDDD3"
@@ -163,7 +163,7 @@ export default class Summary extends React.Component {
 
             <button>Continuar</button>
           </form>
-        </AppuntaModal>
+        </TreniumModal>
       </div>
     )
   }

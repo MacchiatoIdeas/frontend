@@ -1,6 +1,3 @@
-import fetch from 'isomorphic-fetch';
-
-import {API_URL} from '../api';
 import {DOCUMENT_COMMENT_SEND, DOCUMENT_COMMENT_RECEIVE, DOCUMENT_FETCH, DOCUMENT_RECEIVE} from './index';
 import {createDocumentComment, getDocumentById} from '../requests/documents';
 

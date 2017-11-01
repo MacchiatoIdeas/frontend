@@ -10,7 +10,7 @@ export const getAllOwnGuides = () => {
 };
 
 export const getGuideById = (guideId) => {
-  return fetch(`${API_URL}/material/guides/${guideId}`)
+  return fetch(`${API_URL}/material/guide/${guideId}`)
     .then(handleErrorIfAny);
 };
 
@@ -18,12 +18,12 @@ export const createGuide = (subjectId, title, brief, _private) => {
   return fetch(`${API_URL}/material/guide/`, {
     method: 'POST',
     headers: createAuthHeaders(store.getState().auth.access_token),
-    body: {
+    body: JSON.stringify({
       subject: subjectId,
       title,
       brief,
-      private: _private
-    }
+      private: _private ? 1 : 0,
+    })
   })
     .then(handleErrorIfAny);
 };

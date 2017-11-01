@@ -1,52 +1,28 @@
-import fetch from 'isomorphic-fetch';
 import {normalize} from 'normalizr';
 
 import {API_URL} from '../api';
-import {guide} from '../schema';
 import {GUIDE_FETCH, GUIDE_ITEM_RECEIVE, GUIDE_ITEM_SEND, GUIDE_RECEIVE, GUIDE_SEND} from './index';
-import {getUserData} from './auth';
+import {getOwnDataAction} from './auth';
+import {createGuide, getGuideById} from '../requests/guides';
 
-export const getGuideById = (id) => (dispatch) => {
+export const getGuideByIdAction = (guideId) => (dispatch) => {
   dispatch({
     type: GUIDE_FETCH
   });
 
-  return fetch(`${API_URL}/material/guides/${id}/`)
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    )
+  return getGuideById(guideId)
     .then(response => dispatch({
       type: GUIDE_RECEIVE,
-      payload: normalize(response, guide)
+      payload: response,
     }));
 };
 
-export const sendGuide = (token, guide) => (dispatch) => {
+export const createGuideAction = (...args) => (dispatch) => {
   dispatch({
     type: GUIDE_SEND
   });
 
-  return fetch(`${API_URL}/material/guides/`, {
-    method: 'POST',
-    body: JSON.stringify(guide),
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    }
-  })
-    .then(
-      response => response.json(),
-      error => console.log(error)
-    )
-    .then(response => {
-      dispatch(getUserData(token));
-
-      return dispatch({
-        type: GUIDE_RECEIVE,
-        payload: normalize(response, guide)
-      })
-    });
+  return createGuide(...args);
 };
 
 export const updateGuide = (token, id, guide) => (dispatch) => {

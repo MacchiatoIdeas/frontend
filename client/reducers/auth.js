@@ -1,6 +1,6 @@
 import {AUTH_LOGIN_RECEIVE, AUTH_USERDATA_FAILED, AUTH_USERDATA_RECEIVE} from '../actions';
 
-export default (state = {
+export const auth = (state = {
   isLoading: true,
   isAuthenticated: false,
 }, action) => {
@@ -14,7 +14,7 @@ export default (state = {
       // when user data is received, proceed with log-in.
       return {
         ...state,
-        user: action.payload,
+        data: action.payload,
         isAuthenticated: true,
         isLoading: false
       };
@@ -23,4 +23,4 @@ export default (state = {
       return {...state, isAuthenticated: false, isLoading: false};
   }
   return state;
-}
+};

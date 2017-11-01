@@ -10,16 +10,16 @@ import Header from '../../Utilities/Header/index';
 import * as icons from '../../../assets/flaticons';
 
 import style from './style.less';
-import AppuntaModal from '../../Utilities/AppuntaModal/index';
+import AppuntaModal from '../../Utilities/TreniumModal/index';
 import Select from '../../Utilities/Select/index';
 
 import {Form} from '../../Utilities/Form/style.less';
-import {active} from '../../Utilities/Menu/style.less';
-import Menu from '../../Utilities/Menu/index';
+import TreniumMenu, {active} from '../../Utilities/TreniumMenu/index';
 import BodyLoading from '../../Utilities/BodyLoading/index';
+import InlineDocument from './InlineDocument';
 
 @connect((state, props) => ({
-  content: state.visibleDocument,
+  document: state.visibleDocument,
   auth: state.auth,
 }), {
   getDocumentByIdAction
@@ -39,9 +39,9 @@ export default class Content extends React.Component {
   }
 
   render() {
-    const {auth, content} = this.props;
+    const {auth, document} = this.props;
 
-    if (content.isLoading) {
+    if (document.isLoading) {
       return <BodyLoading/>
     }
 
@@ -53,12 +53,16 @@ export default class Content extends React.Component {
           }}>
             <span className="glyphicon glyphicon-plus-sign"/>
           </Link>
-        }>{content.subtitle}</Header>
+        }>{document.title}</Header>
 
         <section>
           <div className="row">
+            <div className="col-md-8 col-sm-offset-2 ">
+              <InlineDocument document={document}/>
+            </div>
+
             <div className={`col-md-8 col-sm-offset-2 ${style.Document}`}
-                 dangerouslySetInnerHTML={{__html: content.html_text}}/>
+                 dangerouslySetInnerHTML={{__html: document.html_text}}/>
 
             <div className="col-md-6 col-sm-offset-2">
               <div className={`row ${style.Author}`}>
@@ -69,10 +73,10 @@ export default class Content extends React.Component {
 
                 <div className="col-sm-11">
                   <div>
-                    <Link to={`/site/users/${content.author.id}`}>
-                      {content.author.first_name}
+                    <Link to={`/site/users/${document.author.id}`}>
+                      {document.author.first_name}
                       {' '}
-                      {content.author.last_name}
+                      {document.author.last_name}
                     </Link>
                   </div>
 
@@ -86,19 +90,19 @@ export default class Content extends React.Component {
         </section>
 
         <section>
-          <Menu>
-            <NavLink exact to={`/site/contents/${content.id}`} activeClassName={active}>Comentarios</NavLink>
-            <NavLink exact to={`/site/contents/${content.id}/feedback`} activeClassName={active}>Feedback</NavLink>
-          </Menu>
+          <TreniumMenu>
+            <NavLink exact to={`/site/contents/${document.id}`} activeClassName={active}>Comentarios</NavLink>
+            <NavLink exact to={`/site/contents/${document.id}/feedback`} activeClassName={active}>Feedback</NavLink>
+          </TreniumMenu>
         </section>
 
         <Switch>
           <Route exact path="/site/contents/:id" render={({match}) => (
-            <Comments content={content} comments={content.comments}/>
+            <Comments content={document} comments={document.comments}/>
           )}/>
 
           <Route exact path="/site/contents/:id/feedback" render={({match}) => (
-            <Comments content={content} comments={[]}/>
+            <Comments content={document} comments={[]}/>
           )}/>
         </Switch>
 

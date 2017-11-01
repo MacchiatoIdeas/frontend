@@ -3,7 +3,7 @@ import {Modal, ModalBody, ModalHeader, ModalTitle} from 'react-bootstrap';
 
 import style from './style.less';
 
-export default class AppuntaModal extends React.Component {
+export default class TreniumModal extends React.Component {
   render() {
     const {title, show, onHide, icon, color, children} = this.props;
 

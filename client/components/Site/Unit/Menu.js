@@ -1,12 +1,11 @@
 import React from 'react';
-import Menu from '../../Utilities/Menu/index';
+import TreniumMenu, {active} from '../../Utilities/TreniumMenu/index';
 import {NavLink} from 'react-router-dom';
-import {active} from '../../Utilities/Menu/style.less';
 
-const UnitMenu = ({unitId}) =>
-  <Menu>
+const Menu = ({unitId}) =>
+  <TreniumMenu>
     <NavLink exact to={`/site/units/${unitId}/contents`} activeClassName={active}>Documentos</NavLink>
     <NavLink exact to={`/site/units/${unitId}/exercises`} activeClassName={active}>Ejercicios</NavLink>
-  </Menu>;
+  </TreniumMenu>;
 
-export default UnitMenu;
+export default Menu;
