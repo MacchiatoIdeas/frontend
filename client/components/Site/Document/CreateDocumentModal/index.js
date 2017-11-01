@@ -37,7 +37,7 @@ export default class CreateDocumentModal extends React.Component {
 
     createDocument(unitId, title, summary)
       .then(response => {
-        this.props.history.push(`/site/contents/${response.id}`);
+        this.props.history.push(`/site/contents/${response.id}/edit`);
       });
   }
 

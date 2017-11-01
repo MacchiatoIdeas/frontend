@@ -21,6 +21,25 @@ export const createDocument = (unitId, title, summary) => {
     .then(handleErrorIfAny);
 };
 
+export const updateDocument = (documentId, title, summary, text) => {
+  console.log(JSON.stringify({
+    title,
+    summary,
+    text,
+  }));
+
+  return fetch(`${API_URL}/material/contents/${documentId}/`, {
+    method: 'PATCH',
+    headers: createAuthHeaders(store.getState().auth.access_token),
+    body: JSON.stringify({
+      title,
+      summary,
+      text,
+    })
+  })
+    .then(handleErrorIfAny);
+};
+
 export const createDocumentComment = (documentId, text) => {
   return fetch(`${API_URL}/material/comments/`, {
     method: 'POST',

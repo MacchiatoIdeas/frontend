@@ -12,11 +12,11 @@ const Stars = ({stars, of}) => {
   )
 };
 
-function formatDateToLocale(date) {
+export const formatDateToLocale = (date) => {
   return new Date(date).toLocaleDateString('es', {
     year: 'numeric', month: 'long', day: 'numeric'
   });
-}
+};
 
 const Box = ({title, link, text, author, date, comments, linkText, stars}) =>
   <div className={`box box-fill ${style.Box}`}>

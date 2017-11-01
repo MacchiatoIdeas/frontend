@@ -1,5 +1,8 @@
-import {DOCUMENT_COMMENT_SEND, DOCUMENT_COMMENT_RECEIVE, DOCUMENT_FETCH, DOCUMENT_RECEIVE} from './index';
-import {createDocumentComment, getDocumentById} from '../requests/documents';
+import {
+  DOCUMENT_COMMENT_SEND, DOCUMENT_COMMENT_RECEIVE, DOCUMENT_FETCH, DOCUMENT_RECEIVE,
+  DOCUMENT_UPDATE_SEND, DOCUMENT_UPDATE_RECEIVE
+} from './index';
+import {createDocumentComment, getDocumentById, updateDocument} from '../requests/documents';
 
 export const getDocumentByIdAction = (documentId) => (dispatch) => {
   dispatch({
@@ -19,10 +22,20 @@ export const createDocumentCommentAction = (documentId, text) => (dispatch) => {
   });
 
   return createDocumentComment(documentId, text)
-    .then(data => {
-      dispatch({
-        type: DOCUMENT_COMMENT_RECEIVE,
-        payload: data,
-      });
-    });
+    .then(data => dispatch({
+      type: DOCUMENT_COMMENT_RECEIVE,
+      payload: data,
+    }));
+};
+
+export const updateDocumentAction = (...args) => (dispatch) => {
+  dispatch({
+    type: DOCUMENT_UPDATE_SEND
+  });
+
+  return updateDocument(...args)
+    .then(response => dispatch({
+      type: DOCUMENT_UPDATE_RECEIVE,
+      payload: response,
+    }));
 };
