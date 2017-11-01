@@ -1,7 +1,7 @@
 import React from 'react';
 
 import style from './AlternativeExercise.less'
-import MarkdownKatex from "../../Utilities/MarkdownKatex/index";
+import MarkdownKatex from "../Document/MarkdownKatex/index";
 
 export default class AlternativeExercise extends React.Component {
   updateAnswer(index) {
