@@ -22,7 +22,7 @@ export default class Unit extends React.Component {
   }
 
   render() {
-    const {unit} = this.props;
+    const {unit, history} = this.props;
 
     if (unit.isLoading) {
       return <BodyLoading/>;
@@ -32,7 +32,7 @@ export default class Unit extends React.Component {
       <div>
         <Switch>
           <Route path="/site/units/:id/contents" render={({match}) =>
-            <UnitDocuments unit={unit} match={match}/>
+            <UnitDocuments unit={unit} match={match} history={history}/>
           }/>
           <Route path="/site/units/:id/exercises/create" render={({match}) =>
             <NewExercise unit={unit} match={match}/>
