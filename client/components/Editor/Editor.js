@@ -150,7 +150,7 @@ export default class Editor extends React.Component {
     let newJson = {
       'key': inputCount,
       'schema': 'text',
-      'md': md,
+      'text': md,
     };
     json = [...json, newJson];
     this.setState({

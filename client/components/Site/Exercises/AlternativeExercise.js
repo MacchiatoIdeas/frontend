@@ -1,6 +1,7 @@
 import React from 'react';
 
 import style from './AlternativeExercise.less'
+import MarkdownKatex from "../../Utilities/MarkdownKatex/index";
 
 export default class AlternativeExercise extends React.Component {
   updateAnswer(index) {
@@ -22,7 +23,7 @@ export default class AlternativeExercise extends React.Component {
             <label htmlFor={`alternative${i}`} className={`playlist-item ${style.alternative}`} onClick={() => this.updateAnswer(i)}>
               <span className="playlist-item-body playlist-item-link">
                 <span className="icon-play-v3 step"/>
-                {alternative}
+                <MarkdownKatex markdown={alternative}/>
                 </span>
             </label>
           </div>

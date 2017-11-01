@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../style/editor.css';
+import MarkdownKatex from '../Utilities/MarkdownKatex/index';
 
 import ClickOutHandler from 'react-onclickout';
-
 
 export default class Content extends React.Component {
   constructor(props) {
@@ -10,9 +10,8 @@ export default class Content extends React.Component {
     this.state = {
       checked: false,
       markdown: this.props.text !== undefined ? this.props.text : '',
-      render: '',
       editorVisibility: '',
-      renderVisibility: 'hidden'
+      showRender: false,
     };
 
     this.onClickFocus = this.onClickFocus.bind(this);
@@ -42,50 +41,17 @@ export default class Content extends React.Component {
     console.log('Click!');
     this.setState({
       checked: true,
-      renderVisibility: 'hidden',
+      showRender: false,
       editorVisibility: ''
     });
   }
 
   onBlur() {
-    console.log('Blur!');
-    console.log(editor);
-
-    let html = this.editor.getHTML();
-    if (html === "") {
-      html = "<blockquote><span class='lead text-warning'>Elemento vacío</span></blockquote>"
-    }
-
     this.setState({
       checked: false,
       editorVisibility: 'hidden',
-      renderVisibility: '',
-      render: html
+      showRender: true,
     });
-    this.renderKatex();
-  }
-
-  renderKatex() {
-    // inline
-    let children = this.refs.render.querySelectorAll('.tex-inline');
-    for (let i = 0, len = children.length; i < len; i++) {
-      renderMathInElement(children[i], {
-        delimiters: [
-          {left: "$$", right: "$$", display: false},
-        ]
-      });
-    }
-
-    // line
-    children = this.refs.render.querySelectorAll('.tex-line');
-    for (let i = 0, len = children.length; i < len; i++) {
-      renderMathInElement(children[i], {
-        delimiters: [
-          {left: "$$", right: "$$", display: true},
-        ]
-      });
-      console.log('asd');
-    }
   }
 
   componentDidMount() {
@@ -126,10 +92,12 @@ export default class Content extends React.Component {
                           className="section-input"/>
                 </div>
               </div>
-              <div className={this.state.renderVisibility}>
-                <div ref="render" className="rendered"
-                     dangerouslySetInnerHTML={{__html: this.state.render}}>
-                </div>
+              <div>
+                {this.state.showRender ?
+                  <div ref="render" className="rendered">
+                    <MarkdownKatex markdown={this.state.markdown}/>
+                  </div>
+                  : undefined}
               </div>
             </div>
           </li>

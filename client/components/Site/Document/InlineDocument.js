@@ -1,6 +1,7 @@
 import React from 'react';
 
 import style from './InlineDocument.less';
+import MarkdownKatex from "../../Utilities/MarkdownKatex/index";
 
 export default class InlineDocument extends React.Component {
   render() {
@@ -13,14 +14,10 @@ export default class InlineDocument extends React.Component {
         {sections.map((section, i) => {
           switch (section.schema) {
             case 'text':
-              return <div key={i}>{this.renderTextSection(section.text)}</div>
+              return <MarkdownKatex markdown={section.text}/>
           }
         })}
       </div>
     )
-  }
-
-  renderTextSection(text) {
-    return <div dangerouslySetInnerHTML={{__html: text}}/>;
   }
 }
