@@ -4,15 +4,19 @@ import * as icons from '../../assets/flaticons';
 import Header from '../Utilities/Header/index';
 
 import style from './Portal.less';
-import CourseBox from './Courses/CourseBox';
+import CourseBox from './Course/CourseBox';
 import {Link} from 'react-router-dom';
-import TreniumModal from '../Utilities/TreniumModal/index';
 
-import {Form} from '../Utilities/Form/style.less';
-import SubjectSelect from '../Utilities/SubjectSelect/index';
+import BodyLoading from '../Utilities/BodyLoading';
+import CreateCourseModal from './CreateCourseModal';
 import {connect} from 'react-redux';
-import BodyLoading from '../Utilities/BodyLoading/index';
+import {getAllOwnCoursesAction} from '../../actions/courses';
 
+@connect(state => ({
+  auth: state.auth,
+}), {
+  getAllOwnCoursesAction
+})
 export default class Summary extends React.Component {
   constructor(props) {
     super(props);
@@ -22,16 +26,16 @@ export default class Summary extends React.Component {
     }
   }
 
-  onSubjectSelect() {
-
+  componentDidMount() {
+    this.props.getAllOwnCoursesAction();
   }
 
   render() {
-    const {guides, courses, userType} = this.props;
+    const {guides, courses, data} = this.props.auth;
 
     return (
       <div>
-        {userType === 'student' ?
+        {data.user_type === 'student' ?
           <div>
             <Header color="#0E7886" icon={icons.notes} textColor="#fff">Mis Recomendaciones</Header>
 
@@ -74,24 +78,23 @@ export default class Summary extends React.Component {
           </div>
         </section>
 
-        {userType === 'teacher' ?
+        {data.user_type === 'teacher' ?
           <div>
             <Header color="#FFCA4F" textColor="#fff" icon={icons.guidesv2}>Mis Guías</Header>
 
             <section className={style.section}>
               <div className="playlist playlist-accents">
-                {
-                  guides.isLoading ?
-                    <BodyLoading padding={16}/>
-                    :
-                    guides.all.map(guide =>
-                      <div className="playlist-item" style={{borderRightColor: guide.subject.color}} key={guide.id}>
-                        <a href="#" className="playlist-item-body playlist-item-link">
-                          <span className="icon-play-v3 step" style={{background: guide.subject.color}}/>
-                          <strong>{guide.title}</strong>
-                          <div className="playlist-item-tag">{guide.subject.name}</div>
-                        </a>
-                      </div>)
+                {guides.isLoading ?
+                  <BodyLoading padding={16}/>
+                  :
+                  guides.all.map(guide =>
+                    <div className="playlist-item" style={{borderRightColor: guide.subject.color}} key={guide.id}>
+                      <Link to={`/site/guides/${guide.id}`} className="playlist-item-body playlist-item-link">
+                        <span className="icon-play-v3 step" style={{background: guide.subject.color}}/>
+                        <strong>{guide.title}</strong>
+                        <div className="playlist-item-tag">{guide.subject.name}</div>
+                      </Link>
+                    </div>)
                 }
               </div>
             </section>
@@ -99,39 +102,9 @@ export default class Summary extends React.Component {
           : null
         }
 
-        <TreniumModal show={this.state.showCourseModal}
-                      icon={icons.courses}
-                      onHide={() => this.setState({showCourseModal: false})}
-                      color="#5DDDD3"
-                      title="Crear curso">
-
-          <form className={Form}>
-            <label>
-              <div>Nombre del curso</div>
-              <input type="text" placeholder="nombre de su curso"/>
-            </label>
-
-            <label style={{marginBottom: 0}}>
-              <div>Materia</div>
-            </label>
-
-            <div style={{marginBottom: 16}}>
-              <SubjectSelect subjects={[{
-                'id': 1,
-                'name': 'Matemáticas',
-                'color': '#1A91A1',
-                'thumbnail': 'http://static.macchiato.cl/images/mathematics.jpg'
-              }, {
-                'id': 2,
-                'name': 'Lenguaje',
-                'color': '#F1543F',
-                'thumbnail': 'http://static.macchiato.cl/images/language.jpg'
-              }]} onChange={this.onSubjectSelect}/>
-            </div>
-
-            <button>Continuar</button>
-          </form>
-        </TreniumModal>
+        <CreateCourseModal show={this.state.showCourseModal}
+                           onHide={() => this.setState({showCourseModal: false})}
+                           history={this.props.history}/>
       </div>
     )
   }

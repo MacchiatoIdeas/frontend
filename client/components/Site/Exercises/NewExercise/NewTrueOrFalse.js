@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form} from '../../../Utilities/Form/style.less';
+import {Form} from '../../../Utilities/TreniumForm/style.less';
 import TrueOrFalseLine from "./TrueOrFalseLine";
 
 export default class NewTrueOrFalse extends React.Component {

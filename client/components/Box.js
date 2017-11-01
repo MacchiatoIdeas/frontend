@@ -29,7 +29,7 @@ const Box = ({title, link, text, author, date, comments, linkText, stars}) =>
 
       <div className="col-sm-11">
         <div>
-          <Link to={`/site/users/${author.id}`}>
+          <Link to="#">
             {author.first_name}
             {' '}
             {author.last_name}

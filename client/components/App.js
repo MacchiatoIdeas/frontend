@@ -5,20 +5,22 @@ import Login from './Auth/Login/Login';
 import Portal from './Portal/Portal';
 import Site from './Site/Site';
 import Editor from './Editor/Editor';
-import GuidesEditor from './GuidesEditor/GuidesEditor'
 import Register from './Auth/Register/index';
 import {loadFromLocalStorage} from '../actions/auth';
 import {connect} from 'react-redux';
 import Loading from './Utilities/Loading/index';
+import {getAllSubjectsAction} from '../actions/subjects';
 
 @connect(state => ({
   auth: state.auth,
 }), {
-  loadFromLocalStorage
+  loadFromLocalStorage,
+  getAllSubjectsAction
 })
 export default class App extends React.Component {
   componentWillMount() {
     this.props.loadFromLocalStorage();
+    this.props.getAllSubjectsAction();
   }
 
   render() {
@@ -37,7 +39,6 @@ export default class App extends React.Component {
           <Route path="/register" component={Register}/>
           <Route path="/site" component={Site}/>
           <Route path="/editor" component={Editor}/>
-          <Route path="/guides-editor" component={GuidesEditor}/>
         </Switch>
       </BrowserRouter>
     )

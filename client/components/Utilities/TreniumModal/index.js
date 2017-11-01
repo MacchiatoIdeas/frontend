@@ -2,6 +2,9 @@ import React from 'react';
 import {Modal, ModalBody, ModalHeader, ModalTitle} from 'react-bootstrap';
 
 import style from './style.less';
+import * as flaticons from '../../../assets/flaticons';
+
+export const icons = flaticons;
 
 export default class TreniumModal extends React.Component {
   render() {

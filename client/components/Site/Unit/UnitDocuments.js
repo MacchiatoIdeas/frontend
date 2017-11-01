@@ -9,7 +9,7 @@ import * as icons from '../../../assets/flaticons';
 import AppuntaModal from '../../Utilities/TreniumModal/index';
 import Textarea from 'react-textarea-autosize';
 
-import {Form} from '../../Utilities/Form/style.less';
+import {Form} from '../../Utilities/TreniumForm/style.less';
 import Menu from './Menu';
 
 export default class UnitDocuments extends React.Component {

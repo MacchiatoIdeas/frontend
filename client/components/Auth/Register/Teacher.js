@@ -8,7 +8,7 @@ import * as icons from '../../../assets/flaticons';
 
 import Dropzone from 'react-dropzone';
 
-import {Form} from '../../Utilities/Form/style.less';
+import {Form} from '../../Utilities/TreniumForm/style.less';
 
 export default class Teacher extends React.Component {
   constructor(props) {

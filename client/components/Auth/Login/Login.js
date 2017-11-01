@@ -11,7 +11,7 @@ import * as icons from '../../../assets/flaticons';
 import AuthBox from '../AuthBox';
 import SpecialButton from '../SpecialButton';
 
-import {Form} from '../../Utilities/Form/style.less';
+import {Form} from '../../Utilities/TreniumForm/style.less';
 
 @connect((state) => ({
   auth: state.auth,

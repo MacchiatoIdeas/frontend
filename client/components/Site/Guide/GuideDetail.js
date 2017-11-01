@@ -8,7 +8,7 @@ import * as icons from '../../../assets/flaticons';
 import {Link} from 'react-router-dom';
 import AppuntaModal from '../../Utilities/TreniumModal/index';
 
-import {Form} from '../../Utilities/Form/style.less';
+import {Form} from '../../Utilities/TreniumForm/style.less';
 import Select from '../../Utilities/Select/index';
 import InlineDocument from '../Document/InlineDocument';
 

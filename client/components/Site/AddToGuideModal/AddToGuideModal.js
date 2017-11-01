@@ -1,7 +1,7 @@
 import React from 'react';
 import TreniumModal from '../../Utilities/TreniumModal/index';
 
-import {Form} from '../../Utilities/Form/index';
+import {Form} from '../../Utilities/TreniumForm/index';
 
 import * as icons from '../../../assets/flaticons';
 import Select from '../../Utilities/Select/index';
