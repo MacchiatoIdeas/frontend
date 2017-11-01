@@ -35,6 +35,8 @@ export const tryLoginAction = (username, password) => (dispatch) => {
         type: AUTH_LOGIN_RECEIVE,
         payload: response
       });
+
+      dispatch(getOwnDataAction());
     });
 };
 
