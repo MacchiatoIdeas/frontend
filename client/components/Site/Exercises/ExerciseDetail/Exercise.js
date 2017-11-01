@@ -5,6 +5,7 @@ import MatchingExercise from './MatchingExercise';
 import Button from '../../../Utilities/TreniumButton';
 import InlineDocument from '../../Document/InlineDocument';
 import CompletionExercise from './CompletionExercise';
+import TrueOrFalseExercise from "./TrueOrFalseExercise";
 
 export default class Exercise extends React.Component {
   constructor(props) {
@@ -37,6 +38,9 @@ export default class Exercise extends React.Component {
 
       case 'completion':
         return (<CompletionExercise update={this.updateAnswer} content={content}/>);
+
+      case 'trueorfalse':
+        return (<TrueOrFalseExercise update={this.updateAnswer} content={content}/>);
     }
   }
   checkAnswer() {
@@ -54,6 +58,10 @@ export default class Exercise extends React.Component {
 
         case 'completion':
           correct = this.areEqual(this.state.answer.words, this.state.correctAnswer.words);
+          break;
+
+        case 'trueorfalse':
+          correct = this.areEqual(this.state.answer.choices, this.state.correctAnswer.choices);
           break;
       }
 

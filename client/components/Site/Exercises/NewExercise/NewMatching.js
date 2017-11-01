@@ -79,7 +79,7 @@ export default class NewMatching extends React.Component {
     };
     let answer = {
       schema: 'matching',
-      answer: correctAnswer !== null ? correctAnswer : this.state.answer,
+      matchs: correctAnswer !== null ? correctAnswer : this.state.answer,
     };
     this.props.update(question, answer);
   }

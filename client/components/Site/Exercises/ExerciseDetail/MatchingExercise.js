@@ -68,6 +68,7 @@ export default class MatchingExercise extends React.Component {
     let {content} = this.props;
     return (
       <div>
+        <div className="alert alert-info">Ordene la segunda columna para que calce con la primera</div>
         <div className="col-sm-6">
           <div className="playlist playlist-accents">
             <ul className={style.list}>

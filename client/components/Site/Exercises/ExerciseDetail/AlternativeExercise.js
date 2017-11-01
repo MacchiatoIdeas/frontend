@@ -21,7 +21,7 @@ export default class AlternativeExercise extends React.Component {
                    hidden/>
 
             <label htmlFor={`alternative${i}`} className={`playlist-item ${style.alternative}`} onClick={() => this.updateAnswer(i)}>
-              <span className="playlist-item-body playlist-item-link">
+              <span className={`playlist-item-body playlist-item-link ${style.playlist}`}>
                 <span className="icon-play-v3 step"/>
                 <MarkdownKatex markdown={alternative}/>
                 </span>

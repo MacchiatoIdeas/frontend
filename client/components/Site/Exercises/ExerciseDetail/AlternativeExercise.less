@@ -1,3 +1,17 @@
 .alternative {
   border-bottom: 1px solid #ddd;
 }
+
+.playlist {
+  padding-left: 65px !important;
+  & > span {
+    padding: 0 20px !important;
+
+    &:before {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      display: block;
+    }
+  }
+}
