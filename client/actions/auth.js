@@ -31,8 +31,6 @@ export const tryLoginAction = (username, password) => (dispatch) => {
   });
   return tryLogin(username, password)
     .then(response => {
-      console.log(response.ok);
-
       dispatch({
         type: AUTH_LOGIN_RECEIVE,
         payload: response

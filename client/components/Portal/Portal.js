@@ -20,7 +20,9 @@ import {getOwnDataAction} from '../../actions/auth';
 })
 export default class Portal extends React.Component {
   componentDidMount() {
-    this.props.getOwnDataAction();
+    if (this.props.auth.isAuthenticated) {
+      this.props.getOwnDataAction();
+    }
   }
 
   render() {
