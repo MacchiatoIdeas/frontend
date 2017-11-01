@@ -18,7 +18,7 @@ import TreniumModal from '../../Utilities/TreniumModal/index';
 import Textarea from 'react-textarea-autosize';
 
 import {Form} from '../../Utilities/Form';
-import HeaderSideButton from '../../Utilities/Header/HeaderSideButtonSideButton';
+import HeaderSideButton from '../../Utilities/Header/HeaderSideButton';
 import {createGuideAction} from '../../../actions/guides';
 import {createGuide} from '../../../requests';
 

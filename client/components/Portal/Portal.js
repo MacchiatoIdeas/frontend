@@ -11,15 +11,20 @@ import Courses from './Courses';
 import Exercises from './Exercises';
 
 import style from './Portal.less';
+import {getOwnDataAction} from '../../actions/auth';
 
 @connect(state => ({
   auth: state.auth
-}))
+}), {
+  getOwnDataAction
+})
 export default class Portal extends React.Component {
+  componentDidMount() {
+    this.props.getOwnDataAction();
+  }
+
   render() {
     const {auth} = this.props;
-
-    console.log('[Portal]', auth);
 
     if (!auth.isAuthenticated) {
       return <Redirect to="/login"/>;
@@ -73,7 +78,9 @@ export default class Portal extends React.Component {
           <Switch>
             <Route path="/portal/courses" component={Courses}/>
             <Route path="/portal/exercises" component={Exercises}/>
-            <Route component={Summary}/>
+            <Route render={() =>
+              <Summary guides={auth.guides} courses={auth.courses} userType={auth.data.user_type}/>
+            }/>
           </Switch>
           </Body>
         </div>

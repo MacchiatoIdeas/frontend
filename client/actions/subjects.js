@@ -1,7 +1,3 @@
-import fetch from 'isomorphic-fetch';
-import {normalize} from 'normalizr';
-
-import {API_URL} from '../api';
 import {SUBJECT_FETCH, SUBJECT_LIST_FETCH, SUBJECT_LIST_RECEIVE, SUBJECT_RECEIVE} from './index';
 import {getAllSubjects, getSubjectById} from '../requests/subjects';
 

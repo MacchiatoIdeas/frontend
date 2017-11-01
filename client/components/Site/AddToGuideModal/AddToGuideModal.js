@@ -63,12 +63,12 @@ export default class AddToGuideModal extends React.Component {
   }
 
   render() {
-    const {show, onHide} = this.props;
+    const {show, onHide, documentId} = this.props;
 
     return (
       <TreniumModal show={show}
                     onHide={onHide}
-                    title="Agregar documento a guía"
+                    title={`Agregar ${documentId !== undefined ? 'documento' : 'ejercicio'} a guía`}
                     icon={icons.guidesv2}
                     color="#FFCA4F">
         <form onSubmit={this.onFormSubmit} className={Form}>

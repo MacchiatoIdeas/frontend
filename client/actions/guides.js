@@ -1,8 +1,5 @@
-import {normalize} from 'normalizr';
-
-import {API_URL} from '../api';
-import {GUIDE_FETCH, GUIDE_ITEM_SEND, GUIDE_RECEIVE, GUIDE_SEND, USER_GUIDES_FETCH} from './index';
-import {createGuide, getAllOwnGuides, getGuideById} from '../requests/guides';
+import {GUIDE_FETCH, GUIDE_RECEIVE, USER_GUIDES_FETCH, USER_GUIDES_RECEIVE} from './index';
+import {getAllOwnGuides, getGuideById} from '../requests/guides';
 
 export const getGuideByIdAction = (guideId) => (dispatch) => {
   dispatch({
@@ -23,15 +20,7 @@ export const getAllOwnGuidesAction = () => (dispatch) => {
 
   return getAllOwnGuides()
     .then(response => dispatch({
-      type: USER_GUIDES_FETCH,
+      type: USER_GUIDES_RECEIVE,
       payload: response,
     }));
-};
-
-export const createGuideAction = (...args) => (dispatch) => {
-  dispatch({
-    type: GUIDE_SEND
-  });
-
-  return createGuide(...args);
 };

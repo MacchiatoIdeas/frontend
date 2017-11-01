@@ -14,7 +14,7 @@ import style from './style.less';
 import TreniumMenu, {active} from '../../Utilities/TreniumMenu/index';
 import BodyLoading from '../../Utilities/BodyLoading/index';
 import InlineDocument from './InlineDocument';
-import HeaderSideButton from '../../Utilities/Header/HeaderSideButtonSideButton';
+import HeaderSideButton from '../../Utilities/Header/HeaderSideButton';
 import AddToGuideModal from '../AddToGuideModal/AddToGuideModal';
 
 @connect((state, props) => ({

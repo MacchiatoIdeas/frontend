@@ -5,6 +5,7 @@ import {
 import {getOwnData, tryLogin} from '../requests/auth';
 import {getAllOwnGuides} from '../requests/guides';
 import {getAllOwnGuidesAction} from './guides';
+import {getAllOwnCoursesAction} from './courses';
 
 export const getOwnDataAction = () => (dispatch) => {
   dispatch({
@@ -18,7 +19,9 @@ export const getOwnDataAction = () => (dispatch) => {
         payload: data,
       });
     }).then(response => {
-      return dispatch(getAllOwnGuidesAction());
+      // get remaining user data from other endpoints.
+      dispatch(getAllOwnGuidesAction());
+      dispatch(getAllOwnCoursesAction());
     });
 };
 

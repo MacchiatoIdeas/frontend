@@ -1,9 +1,6 @@
 import {
   EXERCISE_COMMENT_RECEIVE, EXERCISE_COMMENT_SEND, EXERCISE_FETCH, EXERCISE_RECEIVE
 } from './index';
-import {exercise} from '../schema';
-import {API_URL} from '../api';
-import {normalize} from 'normalizr';
 import {createExerciseComment, getExerciseById} from '../requests/exercises';
 
 export const getExerciseByIdAction = (exerciseId) => (dispatch) => {
