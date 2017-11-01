@@ -11,6 +11,7 @@ export const createAuthHeaders = (access_token) => {
 export const handleErrorIfAny = (response) => {
   if (!response.ok) {
     alert(response.statusText);
+    console.log(response);
     throw Error(response.statusText);
   }
   return response.json();

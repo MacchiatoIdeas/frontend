@@ -4,7 +4,7 @@ import SpecialButton from '../SpecialButton';
 import style from './style.less';
 import EqualFields from '../EqualFields';
 
-import {Form} from '../../Utilities/Form/style.less';
+import {Form} from '../../Utilities/TreniumForm/style.less';
 
 export default class Student extends React.Component {
   constructor(props) {

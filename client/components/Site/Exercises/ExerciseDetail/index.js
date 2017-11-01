@@ -12,7 +12,7 @@ import Header from '../../../Utilities/Header/index';
 import * as icons from '../../../../assets/flaticons';
 import AppuntaModal from '../../../Utilities/TreniumModal/index';
 
-import {Form} from '../../../Utilities/Form/style.less';
+import {Form} from '../../../Utilities/TreniumForm/style.less';
 import Select from '../../../Utilities/Select/index';
 
 import style from './style.less';

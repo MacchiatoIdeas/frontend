@@ -10,7 +10,7 @@ import UnitMenu from './Menu';
 import AppuntaModal from '../../Utilities/TreniumModal/index';
 
 import style from './style.less';
-import {Form} from '../../Utilities/Form/style.less';
+import {Form} from '../../Utilities/TreniumForm/style.less';
 
 export default class UnitExercises extends React.Component {
   constructor(props) {

@@ -7,7 +7,7 @@ import NewMatching from './NewMatching';
 import NewCompletion from './NewCompletion'
 import Editor from '../../../Editor/Editor';
 
-import {Form} from '../../../Utilities/Form/style.less';
+import {Form} from '../../../Utilities/TreniumForm/style.less';
 
 import style from './Form.less';
 import Header from "../../../Utilities/Header/index";

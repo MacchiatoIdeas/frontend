@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 const CourseBox = ({course}) =>
   <div className="playlist-item">
-    <Link to={`/portal/courses/${course.id}`}>
+    <Link to={`/portal/course/${course.id}`}>
       <div className="playlist-item-body" style={{paddingLeft: 16}}>
         <strong style={{marginLeft: 0}}>{course.name}</strong>
 

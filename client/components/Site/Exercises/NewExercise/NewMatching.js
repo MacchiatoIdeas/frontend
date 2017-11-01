@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form} from '../../../Utilities/Form/style.less';
+import {Form} from '../../../Utilities/TreniumForm/style.less';
 import MatchLineA from "./MatchLineA";
 import MatchLineB from "./MatchLineB";
 

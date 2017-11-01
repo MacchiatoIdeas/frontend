@@ -7,11 +7,11 @@ import Navbar from '../Navbar/Navbar';
 
 import Body from '../Body';
 import Summary from './Summary';
-import Courses from './Courses';
 import Exercises from './Exercises';
 
 import style from './Portal.less';
 import {getOwnDataAction} from '../../actions/auth';
+import Course from './Course/index';
 
 @connect(state => ({
   auth: state.auth
@@ -78,11 +78,9 @@ export default class Portal extends React.Component {
         <div className={style.body}>
           <Body>
           <Switch>
-            <Route path="/portal/courses" component={Courses}/>
+            <Route path="/portal/course/:id" component={Course}/>
             <Route path="/portal/exercises" component={Exercises}/>
-            <Route render={() =>
-              <Summary guides={auth.guides} courses={auth.courses} userType={auth.data.user_type}/>
-            }/>
+            <Route component={Summary}/>
           </Switch>
           </Body>
         </div>

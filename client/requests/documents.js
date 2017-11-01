@@ -7,7 +7,7 @@ export const getDocumentById = (documentId) => {
     .then(handleErrorIfAny);
 };
 
-export const createDocument = (unitId, title, summary, text) => {
+export const createDocument = (unitId, title, summary) => {
   return fetch(`${API_URL}/material/contents/`, {
     method: 'POST',
     headers: createAuthHeaders(store.getState().auth.access_token),
@@ -15,7 +15,7 @@ export const createDocument = (unitId, title, summary, text) => {
       unit: unitId,
       title,
       summary,
-      text,
+      text: '[]',
     })
   })
     .then(handleErrorIfAny);

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form} from '../../../Utilities/Form/style.less';
+import {Form} from '../../../Utilities/TreniumForm/style.less';
 import style from './NewCompletion.less'
 import Textarea from 'react-textarea-autosize';
 

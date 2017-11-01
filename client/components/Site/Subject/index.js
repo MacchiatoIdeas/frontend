@@ -17,10 +17,10 @@ import TreniumModal from '../../Utilities/TreniumModal/index';
 
 import Textarea from 'react-textarea-autosize';
 
-import {Form} from '../../Utilities/Form';
 import HeaderSideButton from '../../Utilities/Header/HeaderSideButton';
 import {createGuideAction} from '../../../actions/guides';
 import {createGuide} from '../../../requests';
+import TreniumForm from "../../Utilities/TreniumForm/index";
 
 @connect((state, props) => ({
   subject: state.visibleSubject,
@@ -54,7 +54,7 @@ export default class Subject extends React.Component {
 
     createGuide(this.props.subject.id, title, brief, !_public)
       .then(response => {
-        this.props.history.push(`/guides-editor/${response.id}`);
+        this.props.history.push(`/site/guides/${response.id}/edit`);
       });
   }
 
@@ -98,7 +98,7 @@ export default class Subject extends React.Component {
                       icon={icons.guidesv2}
                       title="Crear guía"
                       color="#FFCA4F">
-          <form onSubmit={this.onModalSubmit} className={Form}>
+          <TreniumForm onSubmit={this.onModalSubmit}>
             <label>
               <div>Título</div>
               <input type="text" ref="title" placeholder="Nombre de su guía" required/>
@@ -114,7 +114,7 @@ export default class Subject extends React.Component {
             </label>
 
             <button>Continuar</button>
-          </form>
+          </TreniumForm>
         </TreniumModal>
       </div>
     )

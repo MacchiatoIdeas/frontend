@@ -9,8 +9,9 @@ import * as icons from '../../../assets/flaticons';
 import AppuntaModal from '../../Utilities/TreniumModal/index';
 import Textarea from 'react-textarea-autosize';
 
-import {Form} from '../../Utilities/Form/style.less';
 import Menu from './Menu';
+import TreniumForm from '../../Utilities/TreniumForm';
+import CreateDocumentModal from '../Document/CreateDocumentModal/index';
 
 export default class UnitDocuments extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class UnitDocuments extends React.Component {
   }
 
   render() {
-    const {unit} = this.props;
+    const {unit, history} = this.props;
 
     return (
       <div>
@@ -55,25 +56,10 @@ export default class UnitDocuments extends React.Component {
           </div>
         </section>
 
-        <AppuntaModal show={this.state.showModal}
-                      onHide={() => this.setState({showModal: false})}
-                      title="Crear documento"
-                      icon={icons.document}
-                      color="#FF757C">
-          <form className={Form}>
-            <label>
-              <div>Nombre</div>
-              <input type="text" placeholder="título global del documento"/>
-            </label>
-
-            <label>
-              <div>Resumen</div>
-              <Textarea type="text" placeholder="de qué tratará su documento"/>
-            </label>
-
-            <button>Continuar</button>
-          </form>
-        </AppuntaModal>
+        <CreateDocumentModal show={this.state.showModal}
+                             history={history}
+                             unitId={unit.id}
+                             onHide={() => this.setState({showModal: false})}/>
       </div>
     )
   }

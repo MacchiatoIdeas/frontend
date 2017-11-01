@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Form} from '../../../Utilities/Form/style.less';
+import {Form} from '../../../Utilities/TreniumForm/style.less';
 import Alternative from './Alternative';
 
 export default class NewAlternatives extends React.Component {

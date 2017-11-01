@@ -1,13 +1,13 @@
 import React from 'react';
 import TreniumModal from '../../Utilities/TreniumModal/index';
 
-import {Form} from '../../Utilities/Form/index';
+import {Form} from '../../Utilities/TreniumForm/index';
 
 import * as icons from '../../../assets/flaticons';
 import Select from '../../Utilities/Select/index';
 import BodyLoading from '../../Utilities/BodyLoading/index';
 import {addDocumentToGuide, addExerciseToGuide, getAllOwnGuides} from '../../../requests/guides';
-import ReactLoading from 'react-loading';
+import TreniumFormLoading from '../../Utilities/TreniumForm/TreniumFormLoading';
 
 export default class AddToGuideModal extends React.Component {
   constructor(props) {
@@ -81,12 +81,7 @@ export default class AddToGuideModal extends React.Component {
             }
           </label>
 
-          {this.state.isSending ?
-            <div className="pull-right" style={{paddingTop: 26}}>
-              <ReactLoading type="spin" color="#000" width={32}/>
-            </div>
-            : null
-          }
+          <TreniumFormLoading isSending={this.state.isSending}/>
 
           <button>Continuar</button>
         </form>
