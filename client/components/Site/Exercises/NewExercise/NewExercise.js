@@ -13,11 +13,11 @@ import style from './Form.less';
 import Header from '../../../Utilities/Header/index';
 
 import * as icons from '../../../../assets/flaticons';
-import NewTrueOrFalse from './NewTrueOrFalse';
-
+import NewTrueOrFalse from "./NewTrueOrFalse";
+import ReactStars from 'react-stars'
 import TreniumButton from '../../../Utilities/TreniumButton';
 import {createExercise} from '../../../../requests/exercises';
-import showAlert from '../../../Alert';
+
 
 export default class NewExercise extends React.Component {
   constructor(props) {
@@ -26,13 +26,16 @@ export default class NewExercise extends React.Component {
     this.updateBrief = this.updateBrief.bind(this);
     this.updateText = this.updateText.bind(this);
     this.updateQuestionAnswer = this.updateQuestionAnswer.bind(this);
+    this.updateDifficulty = this.updateDifficulty.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+
 
     this.state = {
       brief: '',
       text: [],
       question: {},
       answer: {},
+      difficulty: 2,
     };
   }
 
@@ -55,13 +58,19 @@ export default class NewExercise extends React.Component {
     });
   }
 
+  updateDifficulty(difficulty) {
+    this.setState({
+      difficulty,
+    });
+  }
+
   onFormSubmit(e) {
     e.preventDefault();
 
-    const {brief, text, answer, question} = this.state;
+    const {brief, text, answer, difficulty, question} = this.state;
     const unitId = this.props.unit.id;
 
-    createExercise(unitId, brief, 4, JSON.stringify(question), JSON.stringify(text), JSON.stringify(answer))
+    createExercise(unitId, brief, difficulty, JSON.stringify(question), JSON.stringify(text), JSON.stringify(answer))
       .then(response => {
         this.props.history.push(`/site/units/1/exercise/${response.id}`);
       });
@@ -82,6 +91,12 @@ export default class NewExercise extends React.Component {
           </div>
 
           <div className={style.wrapper}>
+            <div className={style.text}>Dificultad</div>
+            <ReactStars count={4} value={this.state.difficulty} size={40} half={false}
+                        onChange={this.updateDifficulty}/>
+          </div>
+
+          <div className={style.wrapper}>
             <div className={style.text}>Enunciado</div>
             <div className={style.editorContainer}>
               <Editor useTitle={false} update={this.updateText}/>
@@ -95,7 +110,7 @@ export default class NewExercise extends React.Component {
               )}/>
               <Route path="/site/units/:id/exercises/create/matching" render={({match}) => (
                 <NewMatching update={this.updateQuestionAnswer} match={match}/>
-                )}/>
+              )}/>
               <Route path="/site/units/:id/exercises/create/completion" render={({match}) => (
                 <NewCompletion update={this.updateQuestionAnswer} match={match}/>
 
