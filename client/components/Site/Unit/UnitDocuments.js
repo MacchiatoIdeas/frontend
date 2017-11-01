@@ -56,7 +56,7 @@ export default class UnitDocuments extends React.Component {
           </div>
         </section>
 
-        <CreateDocumentModal show={true}
+        <CreateDocumentModal show={this.state.showModal}
                              history={history}
                              unitId={unit.id}
                              onHide={() => this.setState({showModal: false})}/>
