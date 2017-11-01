@@ -1,0 +1,49 @@
+.paragraph {
+  font-size: 17px;
+  line-height: 40px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  border-radius: 5px;
+
+  & input {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid #ccc;
+    min-width: 50px;
+    width: inherit;
+    padding: 0;
+    text-align: center;
+    height: 30px;
+    margin: 0 5px;
+    border-radius: 5px;
+
+    &:focus {
+      background: transparent;
+      border: 1px solid #ccc;
+    }
+  }
+}
+
+.wordsWrapper {
+  padding: 10px;
+  border-radius: 5px;
+
+  & button {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    background: #1A91A1;
+    color: #fff;
+    margin: 5px;
+    position: relative;
+    border: none;
+
+    &:focus, &:hover {
+      background: #1A91A1;
+      border: none;
+    }
+  }
+
+}

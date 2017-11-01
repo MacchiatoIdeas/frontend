@@ -14,16 +14,16 @@ export default class InlineDocument extends React.Component {
         {sections.map((section, i) => {
           switch (section.schema) {
             case 'text':
-              return <MarkdownKatex markdown={section.text}/>;
+              return <MarkdownKatex key={i} markdown={section.text}/>;
 
             case 'title':
-              return <h1>{section.title}</h1>;
+              return <h1 key={i}>{section.title}</h1>;
 
             case 'image':
-              return <img className={style.image} src={section.url}/>;
+              return <img key={i} className={style.image} src={section.url}/>;
 
             case 'geogebra':
-              return <img className={style.image} src={section.image}/>;
+              return <img key={i} className={style.image} src={section.image}/>;
           }
         })}
       </div>

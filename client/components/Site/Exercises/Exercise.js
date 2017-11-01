@@ -4,6 +4,8 @@ import AlternativeExercise from './AlternativeExercise';
 import MatchingExercise from './MatchingExercise';
 import style from './Exercise.less';
 import Button from '../../Utilities/TreniumButton';
+import InlineDocument from "../Document/InlineDocument";
+import CompletionExercise from "./CompletionExercise";
 
 export default class Exercise extends React.Component {
   constructor(props) {
@@ -16,7 +18,6 @@ export default class Exercise extends React.Component {
     };
 
     this.updateAnswer = this.updateAnswer.bind(this);
-    this.renderText = this.renderText.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
   }
 
@@ -28,16 +29,17 @@ export default class Exercise extends React.Component {
 
   showSchema() {
     let content = JSON.parse(this.props.exercise.content);
-    if (content.schema === 'alternatives')
-      return (<AlternativeExercise update={this.updateAnswer} content={content}/>);
-    else if (content.schema === 'matching')
-      return (<MatchingExercise update={this.updateAnswer} content={content}/>)
-  }
+    switch (content.schema) {
+      case 'alternatives':
+        return (<AlternativeExercise update={this.updateAnswer} content={content}/>);
 
-  renderText() {
-    // Render exercise text
-  }
+      case 'matching':
+        return (<MatchingExercise update={this.updateAnswer} content={content}/>);
 
+      case 'completion':
+        return (<CompletionExercise update={this.updateAnswer} content={content}/>);
+    }
+  }
   checkAnswer() {
     let {schema} = this.state;
     let correct = false;
@@ -49,6 +51,10 @@ export default class Exercise extends React.Component {
 
         case 'matching':
           correct = this.areEqual(this.state.answer.matchs, this.state.correctAnswer.matchs);
+          break;
+
+        case 'completion':
+          correct = this.areEqual(this.state.answer.words, this.state.correctAnswer.words);
           break;
       }
 
@@ -64,15 +70,16 @@ export default class Exercise extends React.Component {
   }
 
   areEqual(array1, array2) {
-    return (array1.length === array2.length) && array1.every(function(element, index) {
+    return (array1.length === array2.length) && array1.every(function (element, index) {
       return element === array2[index];
     });
   }
 
   render() {
+    let {exercise} = this.props;
     return (
       <div>
-        <p className="lead">{this.props.exercise.briefing}</p>
+        <InlineDocument document={exercise}/>
         {this.showSchema.bind(this)()}
         <Button onClick={this.checkAnswer}>Enviar respuestas</Button>
       </div>
