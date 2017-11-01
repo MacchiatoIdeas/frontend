@@ -8,6 +8,15 @@ export const getExerciseById = (exerciseId) => {
 };
 
 export const createExercise = (unitId, description, difficulty, content, text, right_answer) => {
+  console.log(JSON.stringify({
+    unit: unitId,
+    briefing: description,
+    difficulty,
+    content,
+    text,
+    right_answer,
+  }));
+
   return fetch(`${API_URL}/exercises/exercises/`, {
     method: 'POST',
     headers: createAuthHeaders(store.getState().auth.access_token),

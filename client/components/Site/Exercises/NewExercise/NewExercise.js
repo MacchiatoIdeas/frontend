@@ -17,6 +17,7 @@ import NewTrueOrFalse from './NewTrueOrFalse';
 
 import TreniumButton from '../../../Utilities/TreniumButton';
 import {createExercise} from '../../../../requests/exercises';
+import showAlert from '../../../Alert';
 
 export default class NewExercise extends React.Component {
   constructor(props) {
@@ -29,7 +30,6 @@ export default class NewExercise extends React.Component {
 
     this.state = {
       brief: '',
-      content: {},
       text: [],
       question: {},
       answer: {},
@@ -58,10 +58,13 @@ export default class NewExercise extends React.Component {
   onFormSubmit(e) {
     e.preventDefault();
 
-    const {brief, content, text, answer, question} = this.state;
-    const unitId = this.props.unit;
+    const {brief, text, answer, question} = this.state;
+    const unitId = this.props.unit.id;
 
-    // createExercise(unitId, brief, 5, content, text, answer);
+    createExercise(unitId, brief, 4, JSON.stringify(question), JSON.stringify(text), JSON.stringify(answer))
+      .then(response => {
+        this.props.history.push(`/site/units/1/exercise/${response.id}`);
+      });
   }
 
   render() {
@@ -105,7 +108,7 @@ export default class NewExercise extends React.Component {
           </div>
 
           <div className={style.wrapper}>
-            <TreniumButton onChange={this.createExercise}>Guardar Ejercicio</TreniumButton>
+            <TreniumButton onClick={this.onFormSubmit}>Guardar Ejercicio</TreniumButton>
           </div>
         </section>
       </div>
