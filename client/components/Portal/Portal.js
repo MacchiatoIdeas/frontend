@@ -7,7 +7,6 @@ import Navbar from '../Navbar/Navbar';
 
 import Body from '../Body';
 import Summary from './Summary';
-import Exercises from './Exercises';
 
 import style from './Portal.less';
 import {getOwnDataAction} from '../../actions/auth';
@@ -59,7 +58,6 @@ export default class Portal extends React.Component {
           <Body>
           <Switch>
             <Route path="/portal/course/:id" component={Course}/>
-            <Route path="/portal/exercises" component={Exercises}/>
             <Route component={Summary}/>
           </Switch>
           </Body>
