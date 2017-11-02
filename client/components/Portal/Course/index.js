@@ -20,6 +20,7 @@ import showAlert from '../../Alert';
 import {addStudentsToCourse} from '../../../requests/courses';
 
 @connect(state => ({
+  auth: state.auth,
   course: state.visibleCourse,
 }), {
   getCourseByIdAction,
@@ -70,7 +71,7 @@ export default class Course extends React.Component {
   }
 
   render() {
-    const {course} = this.props;
+    const {course, auth} = this.props;
 
     if (course.isLoading) {
       return <BodyLoading/>;
@@ -101,12 +102,12 @@ export default class Course extends React.Component {
 
             <div className="col-sm-4">
               <h3 className="page-header">
-                <div className="">
+                {auth.data.user_type === 'teacher' ?
                   <div className={`pull-right ${style.sideButton}`}
                        onClick={() => this.setState({showAddStudentModal: true})}>
                     <span className="glyphicon glyphicon-plus"/>
                   </div>
-                </div>
+                  : null}
 
                 Lista de curso
               </h3>

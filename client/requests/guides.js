@@ -28,6 +28,19 @@ export const createGuide = (subjectId, title, brief, _private) => {
     .then(handleErrorIfAny);
 };
 
+export const updateGuide = (guideId, subjectId, title, brief) => {
+  return fetch(`${API_URL}/material/guide/${guideId}/`, {
+    method: 'PUT',
+    headers: createAuthHeaders(store.getState().auth.access_token),
+    body: JSON.stringify({
+      subject: subjectId,
+      title,
+      brief,
+    })
+  })
+    .then(handleErrorIfAny);
+};
+
 export const addDocumentToGuide = (guideId, documentId, order) => {
   return fetch(`${API_URL}/material/guideitems/`, {
     method: 'POST',

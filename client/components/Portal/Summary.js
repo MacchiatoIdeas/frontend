@@ -25,6 +25,7 @@ export default class Summary extends React.Component {
 
     this.state = {
       showCourseModal: false,
+      recommendations: []
     }
   }
 
@@ -47,21 +48,15 @@ export default class Summary extends React.Component {
 
             <section className={style.section}>
               <div className="playlist playlist-accents">
-                <div className="playlist-item" style={{borderRightColor: '#6699dd'}}>
-                  <a href="#" className="playlist-item-body playlist-item-link">
-                    <span className="icon-play-v3 step" style={{background: '#6699dd'}}/>
-                    <strong>Ecuaciones Diferenciales Ordinarias</strong>
-                    <div className="playlist-item-tag">Matemáticas</div>
-                  </a>
-                </div>
-
-                <div className="playlist-item" style={{borderRightColor: '#d9534f'}}>
-                  <div className="playlist-item-body">
-                    <span className="icon-play-v3 step" style={{background: '#d9534f'}}/>
-                    <strong>Conectores</strong>
-                    <div className="playlist-item-tag">Lenguaje</div>
+                {this.state.recommendations.map(exercise =>
+                  <div className="playlist-item" style={{borderRightColor: '#6699dd'}}>
+                    <a href="#" className="playlist-item-body playlist-item-link">
+                      <span className="icon-play-v3 step" style={{background: '#6699dd'}}/>
+                      <strong>{exercise.name}</strong>
+                      <div className="playlist-item-tag">Matemáticas</div>
+                    </a>
                   </div>
-                </div>
+                )}
               </div>
             </section>
           </div>

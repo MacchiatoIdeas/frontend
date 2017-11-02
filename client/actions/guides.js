@@ -1,5 +1,5 @@
 import {GUIDE_FETCH, GUIDE_RECEIVE, USER_GUIDES_FETCH, USER_GUIDES_RECEIVE} from './index';
-import {getAllOwnGuides, getGuideById} from '../requests/guides';
+import {getAllOwnGuides, getGuideById, updateGuide} from '../requests/guides';
 
 export const getGuideByIdAction = (guideId) => (dispatch) => {
   dispatch({
@@ -23,4 +23,8 @@ export const getAllOwnGuidesAction = () => (dispatch) => {
       type: USER_GUIDES_RECEIVE,
       payload: response,
     }));
+};
+
+export const updateGuideAction = (...args) => (dispatch) => {
+  return updateGuide(...args);
 };

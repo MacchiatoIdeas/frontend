@@ -5,15 +5,16 @@ import style from './GuideEdit.less'
 import GuideItem from './GuideItem'
 import Textarea from 'react-textarea-autosize';
 import {connect} from 'react-redux';
-import {updateGuide} from '../../../actions/guides';
-import Header from "../../Utilities/Header/index";
+import {updateGuide, updateGuideAction} from '../../../actions/guides';
+import Header from '../../Utilities/Header/index';
 import * as icons from '../../../assets/flaticons';
-import HeaderSideButton from "../../Utilities/Header/HeaderSideButton";
+import HeaderSideButton from '../../Utilities/Header/HeaderSideButton';
+import showAlert from "../../Alert";
 
 @connect((state) => ({
   auth: state.auth,
 }), {
-  updateGuide
+  updateGuideAction
 })
 export default class GuideEdit extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class GuideEdit extends React.Component {
 
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onBriefChange = this.onBriefChange.bind(this);
-    this.submit = this.submit.bind(this);
+    this.onSaveClick = this.onSaveClick.bind(this);
     this.updatePosition = this.updatePosition.bind(this);
   }
 
@@ -88,23 +89,23 @@ export default class GuideEdit extends React.Component {
     }
   }
 
-  submit() {
-    const guide = {
-      title: this.state.title,
-      brief: this.state.brief,
-      subject: this.props.guide.subject
-    };
+  onSaveClick() {
+    const title = this.state.title;
+    const brief = this.state.brief;
+    const subject = this.props.guide.subject;
 
-    this.props.updateGuide(this.props.auth.access_token, this.props.guide.id, guide);
+    this.props.updateGuideAction(this.props.guide.id, subject.id, title, brief)
+      .then(response => {
+        showAlert('Guía guardada con éxito.');
+      });
   }
 
   render() {
-    console.log(this.props.guide);
-    let {document} = this.props;
     return (
       <div>
-        <Header icon={icons.guidesv2} onClick={this.submit} color="#FFCA4F" sideButton={
-          <HeaderSideButton icon="floppy-disk"/>}>
+        <Header icon={icons.guidesv2} color="#FFCA4F" sideButton={
+          <HeaderSideButton onClick={this.onSaveClick} icon="floppy-disk"/>
+        }>
           {this.state.title}
         </Header>
         <section>
