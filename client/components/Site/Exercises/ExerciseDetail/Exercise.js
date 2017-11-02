@@ -8,7 +8,11 @@ import CompletionExercise from './CompletionExercise';
 import TrueOrFalseExercise from './TrueOrFalseExercise';
 import {getAnswerById, getPreviousAnswer, sendAnswer} from '../../../../requests/exercises';
 import TreniumFormLoading from '../../../Utilities/TreniumForm/TreniumFormLoading';
+import {connect} from "react-redux";
 
+@connect(state => ({
+  auth: state.auth,
+}))
 export default class Exercise extends React.Component {
   constructor(props) {
     super(props);
@@ -29,6 +33,10 @@ export default class Exercise extends React.Component {
   }
 
   componentDidMount() {
+    if (this.props.auth.data.user_type === 'teacher') {
+      return;
+    }
+
     getPreviousAnswer(this.props.exercise.id)
       .then(response => {
         if (response.length > 0) {
@@ -83,7 +91,7 @@ export default class Exercise extends React.Component {
   }
 
   render() {
-    let {exercise} = this.props;
+    let {exercise, auth} = this.props;
 
     return (
       <div>
@@ -91,15 +99,20 @@ export default class Exercise extends React.Component {
         <br/>
         {this.showSchema.bind(this)()}
 
-        {!this.state.correction.isCorrected ?
+        {auth.data.user_type === 'student' ?
           <div>
-            <TreniumFormLoading isSending={this.state.isSending}/>
-            <Button onClick={this.checkAnswer}>Enviar respuestas</Button>
+            {!this.state.correction.isCorrected ?
+              <div>
+                <TreniumFormLoading isSending={this.state.isSending}/>
+                <Button onClick={this.checkAnswer}>Enviar respuestas</Button>
+              </div>
+              :
+              <div className="text-center" style={{fontSize: 18}}>
+                Ya contestó esta pregunta, su puntaje fue: {this.state.correction.score}
+              </div>}
           </div>
-          :
-          <div className="text-center" style={{fontSize: 18}}>
-            Ya contestó esta pregunta, su puntaje fue: {this.state.correction.score}
-          </div>}
+          : null
+        }
       </div>
     )
   }

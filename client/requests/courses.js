@@ -39,3 +39,15 @@ export const addGuideToCourse = (courseId, guideId) => {
   })
     .then(handleErrorIfAny);
 };
+
+export const addStudentsToCourse = (courseId, name, emails) => {
+  return fetch(`${API_URL}/courses/courses/${courseId}/`, {
+    method: 'PUT',
+    headers: createAuthHeaders(store.getState().auth.access_token),
+    body: JSON.stringify({
+      name: name,
+      participants: emails,
+    })
+  })
+    .then(handleErrorIfAny);
+};

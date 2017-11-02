@@ -5,7 +5,6 @@ import * as icons from '../../../assets/flaticons';
 
 import Guides from './Guides';
 import Header from '../../Utilities/Header/index';
-import Student from './Student/index';
 
 import style from './style.less';
 import Students from './Students';
@@ -17,6 +16,8 @@ import {connect} from 'react-redux';
 import {getCourseByIdAction} from '../../../actions/courses';
 import BodyLoading from '../../Utilities/BodyLoading';
 import StudentModal from './StudentModal';
+import showAlert from '../../Alert';
+import {addStudentsToCourse} from '../../../requests/courses';
 
 @connect(state => ({
   course: state.visibleCourse,
@@ -28,11 +29,14 @@ export default class Course extends React.Component {
     super(props);
 
     this.onStudentClick = this.onStudentClick.bind(this);
+    this.onModalSubmit = this.onModalSubmit.bind(this);
+    this.onModalEmailsChange = this.onModalEmailsChange.bind(this);
 
     this.state = {
       showAddStudentModal: false,
       showStudentModal: false,
       visibleStudent: undefined,
+      emails: '',
     };
   }
 
@@ -46,6 +50,23 @@ export default class Course extends React.Component {
       showStudentModal: true,
       visibleStudent: student
     });
+  }
+
+  onModalEmailsChange(e) {
+    this.setState({
+      emails: e.target.value,
+    })
+  }
+
+  onModalSubmit(e) {
+    e.preventDefault();
+
+    addStudentsToCourse(this.props.course.id, this.props.course.name, this.state.emails)
+      .then(response => {
+        showAlert('Estudiantes agregados con éxito.');
+        this.props.getCourseByIdAction(this.props.course.id);
+        this.setState({showAddStudentModal: false});
+      });
   }
 
   render() {
@@ -100,6 +121,9 @@ export default class Course extends React.Component {
         </section>
 
         <AddStudentModal show={this.state.showAddStudentModal}
+                         onEmailsChange={this.onModalEmailsChange}
+                         onSubmit={this.onModalSubmit}
+                         initialParticipants={this.props.course.participants}
                          onHide={() => this.setState({showAddStudentModal: false})}/>
 
         <StudentModal show={this.state.showStudentModal}

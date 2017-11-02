@@ -46,7 +46,7 @@ export default class DocumentEdit extends React.Component {
   render() {
     const {document, auth} = this.props;
 
-    if (!(auth.isAuthenticated && auth.data.user.id === document.author.id)) {
+    if (!(auth.isAuthenticated && auth.data.id === document.author.id)) {
       return <Redirect to="/"/>;
     }
 
