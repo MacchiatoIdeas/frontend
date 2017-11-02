@@ -8,6 +8,8 @@ import style from './Navbar.less';
 import ReactLoading from 'react-loading';
 import Box from '../Box';
 import ContextMenu from './ContextMenu';
+import {searchDocuments, searchExercises, searchGuides} from "../../requests/search";
+import MarkdownKatex from "../Site/Document/MarkdownKatex/index";
 
 export default class Navbar extends React.Component {
   constructor(props) {
@@ -25,6 +27,9 @@ export default class Navbar extends React.Component {
       showing: false,
       showContextMenu: false,
       listResult: [],
+      documentsReady: false,
+      exercisesReady: false,
+      guidesReady: false,
     };
   }
 
@@ -66,86 +71,65 @@ export default class Navbar extends React.Component {
       this.setState({
         searching: this.state.searchInput !== '',
         showing: false,
+        documentsReady: false,
+        exercisesReady: false,
+        guidesReady: false,
         listResult: [],
       });
+
       if (this.state.searchInput !== '') {
-        setTimeout(() => {
-          this.searchRequest()
-        }, 1000);
+        this.searchRequest();
       }
     }
   }
 
   searchRequest() {
-    let list = [
-      {
-        'title': 'Primer elemento de la búsqueda',
-        'link': '#',
-        'author': {
-          'id': 1,
-          'first_name': 'Hernán',
-          'last_name': 'Herreros Niño',
-        },
-        'text': 'Texto del primer elemento de la búsqueda',
-        'date': '28 de Octubre de 2017',
-        'comments': '10',
-        'linkText': undefined,
-      }, {
-        'title': 'Segundo elemento de la búsqueda',
-        'link': '#',
-        'author': {
-          'id': 2,
-          'first_name': 'Marcelo',
-          'last_name': 'Jara Almeyda',
-        },
-        'text': 'Texto del segundo elemento de la búsqueda',
-        'date': '28 de Octubre de 2017',
-        'comments': '12',
-        'linkText': undefined,
-      }, {
-        'title': 'Tercer elemento de la búsqueda',
-        'link': '#',
-        'author': {
-          'id': 3,
-          'first_name': 'Rodolfo',
-          'last_name': 'Castillo Mateluna',
-        },
-        'text': 'Texto del tercer elemento de la búsqueda',
-        'date': '28 de Octubre de 2017',
-        'comments': '12',
-        'linkText': undefined,
-      }, {
-        'title': 'Tercer elemento de la búsqueda',
-        'link': '#',
-        'author': {
-          'id': 3,
-          'first_name': 'Rodolfo',
-          'last_name': 'Castillo Mateluna',
-        },
-        'text': 'Texto del tercer elemento de la búsqueda',
-        'date': '28 de Octubre de 2017',
-        'comments': '12',
-        'linkText': undefined,
-      }, {
-        'title': 'Tercer elemento de la búsqueda',
-        'link': '#',
-        'author': {
-          'id': 3,
-          'first_name': 'Rodolfo',
-          'last_name': 'Castillo Mateluna',
-        },
-        'text': 'Texto del tercer elemento de la búsqueda',
-        'date': '28 de Octubre de 2017',
-        'comments': '12',
-        'linkText': undefined,
-      }
-    ];
+    searchDocuments(this.state.searchInput)
+      .then(response => this.setState({
+        searching: false,
+        showing: true,
+        documentsReady: true,
+        listResult: [...this.state.listResult, ...response.map(item => ({
+          key: item.id,
+          title: item.title,
+          author: item.author,
+          date: item.moment,
+          text: item.summary,
+          comments: undefined,
+          link: `/site/contents/${item.id}`,
+        }))]
+      }));
 
-    this.setState({
-      searching: false,
-      showing: true,
-      listResult: list,
-    })
+    searchExercises(this.state.searchInput)
+      .then(response => this.setState({
+        searching: false,
+        showing: true,
+        exercisesReady: true,
+        listResult: [...this.state.listResult, ...response.map(item => ({
+          title: '',
+          author: item.author,
+          date: item.moment,
+          text: item.briefing,
+          comments: item.comments.length,
+          link: `/site/units/${item.unit}/exercise/${item.id}`,
+          linkText: 'Ver Ejercicio',
+          stars: item.difficulty
+        }))]
+      }));
+
+    searchGuides(this.state.searchInput)
+      .then(response => this.setState({
+        searching: false,
+        showing: true,
+        guidesReady: true,
+        listResult: [...this.state.listResult, ...response.map(item => ({
+          title: item.title,
+          author: item.user,
+          text: item.brief,
+          link: `/site/guides/${item.id}`,
+          date: item.moment,
+        }))]
+      }));
   }
 
   render() {
@@ -184,7 +168,8 @@ export default class Navbar extends React.Component {
                       this.setState({showContextMenu: !this.state.showContextMenu});
                     }}><span className="icon-cog-v3"/></a>
 
-                    <ContextMenu onHide={() => this.setState({showContextMenu: false})} show={this.state.showContextMenu}/>
+                    <ContextMenu onHide={() => this.setState({showContextMenu: false})}
+                                 show={this.state.showContextMenu}/>
                   </li>
                 </ul>
               </div>
@@ -235,8 +220,14 @@ export default class Navbar extends React.Component {
           </div>
           <div className={style.list}>
             {this.state.listResult.map((item, key) =>
-              <Box key={key} title={item.title} link={item.title} text={item.text} author={item.author} date={item.date}
-                   comments={item.comments} linkText={item.linkText}/>
+              <Box key={key}
+                   title={item.title}
+                   link={item.link}
+                   text={item.text}
+                   author={item.author}
+                   date={item.date}
+                   comments={item.comments}
+                   linkText={item.linkText}/>
             )}
           </div>
         </div>
