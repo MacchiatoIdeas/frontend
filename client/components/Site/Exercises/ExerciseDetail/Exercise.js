@@ -22,7 +22,7 @@ export default class Exercise extends React.Component {
     this.checkAnswer = this.checkAnswer.bind(this);
 
     this.state = {
-      answer: {},
+      answer: props.answer !== undefined ? props.answer : {},
       correction: {
         isCorrected: false,
         score: 0
@@ -31,6 +31,18 @@ export default class Exercise extends React.Component {
       schema: JSON.parse(this.props.exercise.content).schema,
       isSending: false,
     };
+  }
+
+  componentWillReceiveProps(props) {
+    if (props.answer) {
+      this.setState({
+        answer: props.answer,
+        correction: {
+          isCorrected: true,
+          score: props.score
+        }
+      });
+    }
   }
 
   componentDidMount() {
@@ -54,12 +66,18 @@ export default class Exercise extends React.Component {
   }
 
   updateAnswer(answer) {
+    if (this.props.auth.data.user_type === 'teacher') {
+      return;
+    }
+
     if (!this.state.correction.isCorrected) {
       this.setState({answer});
     }
   }
 
   showSchema() {
+    console.log(this.state.answer);
+
     let content = JSON.parse(this.props.exercise.content);
     switch (content.schema) {
       case 'alternatives':
@@ -76,6 +94,10 @@ export default class Exercise extends React.Component {
   }
 
   checkAnswer() {
+    if (this.props.auth.data.user_type === 'teacher') {
+      return;
+    }
+
     this.setState({isSending: true});
 
     sendAnswer(this.props.exercise.id, JSON.stringify(this.state.answer))
@@ -111,11 +133,17 @@ export default class Exercise extends React.Component {
               </div>
               :
               <div className="text-center" style={{fontSize: 18}}>
-                Ya contestó esta pregunta, su puntaje fue: {this.state.correction.score}
+                Puntaje: {this.state.correction.score}
               </div>}
           </div>
           : null
         }
+
+        {this.state.correction.score ?
+          <div className="text-center" style={{fontSize: 18}}>
+            Puntaje: {this.state.correction.score}
+          </div>
+          : null}
       </div>
     )
   }

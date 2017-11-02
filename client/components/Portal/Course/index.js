@@ -92,7 +92,7 @@ export default class Course extends React.Component {
               <Switch>
                 <Redirect exact from={`/portal/course/${course.id}`} to={`/portal/course/${course.id}/guides`}/>
                 <Route exact path="/portal/course/:id/guides" render={() =>
-                  <Guides guides={course.guides}/>
+                  <Guides guides={course.guides} courseId={course.id}/>
                 }/>
                 <Route exact path="/portal/course/:id/students" render={() =>
                   <Students students={course.participants} onStudentClick={this.onStudentClick}/>

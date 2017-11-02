@@ -5,7 +5,7 @@ import style from './style.less';
 
 export default class Guides extends React.Component {
   render() {
-    const {guides} = this.props;
+    const {guides, courseId} = this.props;
 
     return (
       <div style={{marginLeft: 8}}>
@@ -24,7 +24,7 @@ export default class Guides extends React.Component {
             text={guide.guide.brief}
             author={guide.guide.author}
             date={guide.guide.moment}
-            link={`/site/guides/${guide.guide.id}`}
+            link={`/site/guides/${guide.guide.id}/course/${courseId}`}
             key={guide.guide.id}/>
         )}
       </div>

@@ -10,9 +10,10 @@ import {Link} from 'react-router-dom';
 import InlineDocument from '../Document/InlineDocument';
 import AddToCourseModal from './AddToCourseModal/index';
 import {connect} from 'react-redux';
-import {getCourseByIdAction} from "../../../actions/courses";
-import Select from "../../Utilities/Select/index";
-import BodyLoading from "../../Utilities/BodyLoading/index";
+import {getCourseByIdAction} from '../../../actions/courses';
+import Select from '../../Utilities/Select/index';
+import BodyLoading from '../../Utilities/BodyLoading/index';
+import TreniumForm from '../../Utilities/TreniumForm/index';
 
 @connect(state => ({
   auth: state.auth,
@@ -24,9 +25,37 @@ export default class GuideDetail extends React.Component {
   constructor(props) {
     super(props);
 
+    this.onStudentChange = this.onStudentChange.bind(this);
+
     this.state = {
       showModal: false,
+      student: 0,
+      answers: {},
+      answersLoaded: false,
     };
+  }
+
+  onStudentChange(studentId) {
+    this.setState({
+      student: studentId,
+      answersLoaded: true,
+    });
+
+    let guideAnswer = this.props.course.guides.find(guide =>
+      this.props.guide.id === guide.guide.id);
+
+    let studentAnswers = guideAnswer.answers.filter(answer =>
+      answer.student.user.id === studentId);
+
+    const answers = {};
+
+    studentAnswers.map(answer => {
+      answers[answer.exercise.id] = answer;
+    });
+
+    this.setState({
+      answers,
+    });
   }
 
   componentDidMount() {
@@ -65,10 +94,12 @@ export default class GuideDetail extends React.Component {
                     </div>
                   );
                 } else if (item.type === 'exercise') {
-                  console.log(item.item);
                   return (
                     <div key={i}>
-                      <Exercise exercise={item.item} autoCorrect/>
+                      <Exercise exercise={item.item}
+                                visualize
+                                score={this.state.answersLoaded ? JSON.parse(this.state.answers[item.item.id].score) : undefined}
+                                answer={this.state.answersLoaded ? JSON.parse(this.state.answers[item.item.id].answer) : undefined}/>
                       <hr/>
                     </div>
                   )
@@ -76,11 +107,16 @@ export default class GuideDetail extends React.Component {
               })}
             </div>
 
-            <div>
-              <Select options={course.participants.map(student => ({
-                value: student.user.id,
-                name: student.user.first_name,
-              }))}/>
+            <div className="col-sm-4">
+              <TreniumForm>
+                <label>
+                  <div>Respuestas</div>
+                  <Select options={course.participants.map(student => ({
+                    value: student.user.id,
+                    name: `${student.user.first_name} ${student.user.last_name}`,
+                  }))} onChange={this.onStudentChange}/>
+                </label>
+              </TreniumForm>
             </div>
           </div>
         </section>
