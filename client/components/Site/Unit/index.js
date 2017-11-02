@@ -10,6 +10,7 @@ import UnitExercises from './UnitExercises';
 import ExerciseDetail from '../Exercises/ExerciseDetail/index';
 import NewExercise from '../Exercises/NewExercise/NewExercise';
 import BodyLoading from '../../Utilities/BodyLoading/index';
+import EditExercise from "../Exercises/EditExercise/EditExercise";
 
 @connect((state, props) => ({
   unit: state.visibleUnit,
@@ -39,6 +40,9 @@ export default class Unit extends React.Component {
           }/>
           <Route path="/site/units/:id/exercises" render={({match}) =>
             <UnitExercises unit={unit} match={match}/>
+          }/>
+          <Route path="/site/units/:id/exercise/:exerciseId/edit" render={({match}) =>
+            <EditExercise unit={unit} match={match}/>
           }/>
           <Route path="/site/units/:id/exercise/:exerciseId" render={({match}) =>
             <ExerciseDetail unit={unit} match={match}/>
