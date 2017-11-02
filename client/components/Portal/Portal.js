@@ -38,36 +38,16 @@ export default class Portal extends React.Component {
           <div id="header" className={`appunta-bg ${style.header}`}>
             <Navbar transparent={true}/>
 
-            <div className="container-fluid">
-              <div className={`row ${style.summary}`}>
-                <div className="col-sm-12">
-                  <h1 className="page-header">
-                    {auth.data.user.first_name} {auth.data.user.last_name}
-                    <span className="pull-right"/>
-                  </h1>
+            <div className="container-fluid clearfix">
+              <div className="col-sm-4">
+                <div className={style.avatar}>
+                  <img src="https://placeimg.com/1000/1000/any" alt=""/>
+                </div>
+              </div>
+              <div className="col-sm-8">
+                <div className={style.info}>
+                  <h1>{auth.data.user.first_name} {auth.data.user.last_name}</h1>
 
-                  <div className="row">
-                    <div className="col-sm-4">
-                      <div className="box-alt">
-                        <div className="box-jumbo">4</div>
-                        <div className="box-body"><h3>Controles Pendientes</h3></div>
-                      </div>
-                    </div>
-
-                    <div className="col-sm-4">
-                      <div className="box-alt">
-                        <div className="box-jumbo">7</div>
-                        <div className="box-body"><h3>Respuestas Nuevas</h3></div>
-                      </div>
-                    </div>
-
-                    <div className="col-sm-4">
-                      <div className="box-alt">
-                        <div className="box-jumbo">3</div>
-                        <div className="box-body"><h3>Cursos</h3></div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

@@ -171,3 +171,24 @@ footer a:hover, footer a:focus {
   color: #6699dd;
   border-color: #6699dd;
 }
+
+@media print {
+  *, .playlist-item {
+    -webkit-print-color-adjust: exact;
+  }
+  p {
+    font-size: 100% !important;
+  }
+  img {
+    width: 60% !important;
+    margin: 0 auto !important;
+  }
+  .no-print, .no-print *
+  {
+    display: none !important;
+  }
+
+  footer, footer *, nav, nav * {
+    display: none !important;
+  }
+}

@@ -19,6 +19,7 @@ import newAlternatives from './svg/flaticons/icons4/clipboard-2.svg';
 import newMatching from './svg/flaticons/icons4/networking.svg';
 import newComplete from './svg/flaticons/icons4/exam-2.svg';
 import newTrueOrFalse from './svg/flaticons/icons1/notepad.svg';
+import newWritten from './svg/flaticons/icons1/ereader.svg'
 import document from './svg/flaticons/icons1/ebook.svg';
 import alert from './svg/flaticons/icons3/school-bell.svg';
 
@@ -44,6 +45,7 @@ export {
   newMatching,
   newComplete,
   newTrueOrFalse,
+  newWritten,
   document,
   alert,
 };
