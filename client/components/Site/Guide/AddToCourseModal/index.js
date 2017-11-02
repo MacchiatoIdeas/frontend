@@ -30,13 +30,20 @@ export default class AddToCourseModal extends React.Component {
 
     getAllOwnCourses()
       .then(response => {
+        let firstId = 0;
+
+        if (response.length > 0) {
+          firstId = response[0].id;
+        }
+
         this.setState({
           isLoading: false,
           courses: response.map(course => ({
             value: course.id,
             name: course.name,
             sideText: '',
-          }))
+          })),
+          courseId: firstId
         })
       });
   }

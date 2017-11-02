@@ -22,7 +22,7 @@ export const createGuide = (subjectId, title, brief, _private) => {
       subject: subjectId,
       title,
       brief,
-      private: _private ? 1 : 0,
+      private: _private,
     })
   })
     .then(handleErrorIfAny);

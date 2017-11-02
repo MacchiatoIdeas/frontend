@@ -22,7 +22,7 @@ export default class Guides extends React.Component {
           <Box
             title={guide.guide.title}
             text={guide.guide.brief}
-            author={guide.guide.user}
+            author={guide.guide.author}
             date={guide.guide.moment}
             link={`/site/guides/${guide.guide.id}`}
             key={guide.guide.id}/>

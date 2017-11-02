@@ -11,11 +11,13 @@ import BodyLoading from '../Utilities/BodyLoading';
 import CreateCourseModal from './CreateCourseModal';
 import {connect} from 'react-redux';
 import {getAllOwnCoursesAction} from '../../actions/courses';
+import {getAllOwnGuidesAction} from '../../actions/guides';
 
 @connect(state => ({
   auth: state.auth,
 }), {
-  getAllOwnCoursesAction
+  getAllOwnCoursesAction,
+  getAllOwnGuidesAction
 })
 export default class Summary extends React.Component {
   constructor(props) {
@@ -28,6 +30,10 @@ export default class Summary extends React.Component {
 
   componentDidMount() {
     this.props.getAllOwnCoursesAction();
+
+    if (this.props.auth.data.user_type === 'teacher') {
+      this.props.getAllOwnGuidesAction();
+    }
   }
 
   render() {

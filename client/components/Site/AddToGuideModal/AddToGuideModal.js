@@ -33,13 +33,20 @@ export default class AddToGuideModal extends React.Component {
 
     getAllOwnGuides()
       .then(response => {
+        let firstId = 0;
+
+        if (response.length > 0) {
+          firstId = response[0].id;
+        }
+
         this.setState({
           isLoading: false,
           guides: response.filter(guide => guide.subject.id === subjectId).map(guide => ({
             value: guide.id,
             name: guide.title,
             sideText: '',
-          }))
+          })),
+          selectedGuide: firstId,
         })
       });
   }

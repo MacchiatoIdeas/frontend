@@ -13,15 +13,18 @@ export const getOwnDataAction = () => (dispatch) => {
   });
 
   return getOwnData()
-    .then(data => {
+    .then(response => {
       dispatch({
         type: AUTH_USERDATA_RECEIVE,
-        payload: data,
+        payload: response,
       });
-    }).then(response => {
+
       // get remaining user data from other endpoints.
-      dispatch(getAllOwnGuidesAction());
       dispatch(getAllOwnCoursesAction());
+
+      if (response.user_type === 'teacher') {
+        dispatch(getAllOwnGuidesAction());
+      }
     });
 };
 

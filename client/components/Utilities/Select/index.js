@@ -7,13 +7,17 @@ export default class Select extends React.Component {
   constructor(props) {
     super(props);
 
-    const {options} = this.props;
-
     this.onOptionClick = this.onOptionClick.bind(this);
 
     this.state = {
-      selected: options[0].value,
+      selected: 0,
     };
+  }
+
+  componentWillReceiveProps({options}) {
+    this.setState({
+      selected: options.length > 0 ? options[0].value : 0,
+    });
   }
 
   onOptionClick(value) {
