@@ -45,6 +45,10 @@ export default class Summary extends React.Component {
             getAllRecommended(subject.id)
               .then(response => {
                 console.log(response);
+
+                this.setState({
+                  recommendations: [...this.state.recommendations, ...response]
+                });
               })
           })
         });
@@ -60,19 +64,9 @@ export default class Summary extends React.Component {
           <div>
             <Header color="#0E7886" icon={icons.notes} textColor="#fff">Mis Recomendaciones</Header>
 
-            <section className={style.section}>
-              <div className="playlist playlist-accents">
-                {this.state.recommendations.map(exercise =>
-                  <div className="playlist-item" style={{borderRightColor: '#6699dd'}}>
-                    <a href="#" className="playlist-item-body playlist-item-link">
-                      <span className="icon-play-v3 step" style={{background: '#6699dd'}}/>
-                      <strong>{exercise.name}</strong>
-                      <div className="playlist-item-tag">Matemáticas</div>
-                    </a>
-                  </div>
-                )}
-              </div>
-            </section>
+            <div className="text-center" style={{margin: 32, fontSize: 18}}>
+              No tiene recomendaciones actualmente, desarrolle ejercicios para crear su perfil!
+            </div>
           </div>
           : null
         }

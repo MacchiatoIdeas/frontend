@@ -93,7 +93,7 @@ export default class DocumentDetail extends React.Component {
 
           {auth.data.user_type === 'teacher' ?
             <Route exact path="/site/contents/:id/feedback" render={({match}) => (
-              <Comments content={document} comments={[]} feedback/>
+              <Comments content={document} comments={document.feedback_comments} feedback/>
             )}/>
             : null
           }
