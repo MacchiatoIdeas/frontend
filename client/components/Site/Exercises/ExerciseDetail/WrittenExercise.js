@@ -1,6 +1,6 @@
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
-import MarkdownKatex from "../../Document/MarkdownKatex/index";
+import MarkdownKatex from '../../Document/MarkdownKatex';
 import style from '../NewExercise/NewCompletion.less';
 
 
