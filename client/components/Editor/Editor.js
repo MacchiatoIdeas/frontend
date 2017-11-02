@@ -78,7 +78,7 @@ export default class Editor extends React.Component {
   addTitle(text = "", inputList, inputCount) {
     let newItem = {
       'key': inputCount,
-      'item': <Title text={text} key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}
+      'item': <Title title={text} key={inputCount} index={inputCount} remove={(index) => this.removeChild(index)}
                      update={(text) => this.updateTitle(text, inputCount)}/>
     };
     return [[...inputList, newItem], inputCount + 1];

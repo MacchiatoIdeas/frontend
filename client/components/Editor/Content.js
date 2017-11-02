@@ -17,6 +17,7 @@ export default class Content extends React.Component {
     this.onClickFocus = this.onClickFocus.bind(this);
     this.updateText = this.updateText.bind(this);
     this.onBlur = this.onBlur.bind(this);
+    this.showEditor = this.showEditor.bind(this);
 
     this.params = {
       path: 'http://static.macchiato.cl/editormd/lib/',
@@ -32,8 +33,16 @@ export default class Content extends React.Component {
       lineNumbers: false,
       styleActiveLine: false,
       autoFocus: false,
-      appendMarkdown: this.state.markdown
+      appendMarkdown: this.state.markdown,
+      onload: this.showEditor,
     };
+  }
+
+  showEditor() {
+    this.setState({
+      editorVisibility: this.props.text !== undefined ? 'hidden' : '',
+      showRender: this.props.text !== undefined,
+    });
   }
 
 
