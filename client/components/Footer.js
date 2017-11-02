@@ -14,22 +14,6 @@ export default class Footer extends React.Component {
                 <a className="text-muted" href="mailto:contacto@macchiato.cl">contacto@macchiato.cl</a>
               </div>
             </div>
-            <div id="center-footer" className="col-md-4">
-              <h3>Footer centro</h3>
-              <div className="list-group borderless nobg">
-                <div className="list-group-item"><a href="#">Lorem ipsum dolor sit amet, consectetur</a></div>
-                <div className="list-group-item"><a href="#">Lorem ipsum dolor sit amet, consectetur</a></div>
-                <div className="list-group-item"><a href="#">Lorem ipsum dolor sit amet, consectetur</a></div>
-              </div>
-            </div>
-            <div id="right-footer" className="col-md-4">
-              <h3>Footer derecho</h3>
-              <div className="list-group borderless nobg">
-                <div className="list-group-item"><a href="#">Lorem ipsum dolor sit amet, consectetur</a></div>
-                <div className="list-group-item"><a href="#">Lorem ipsum dolor sit amet, consectetur</a></div>
-                <div className="list-group-item"><a href="#">Lorem ipsum dolor sit amet, consectetur</a></div>
-              </div>
-            </div>
           </div>
         </div>
         <div className="row">
