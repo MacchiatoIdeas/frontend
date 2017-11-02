@@ -6,6 +6,9 @@ import GuideItem from './GuideItem'
 import Textarea from 'react-textarea-autosize';
 import {connect} from 'react-redux';
 import {updateGuide} from '../../../actions/guides';
+import Header from "../../Utilities/Header/index";
+import * as icons from '../../../assets/flaticons';
+import HeaderSideButton from "../../Utilities/Header/HeaderSideButton";
 
 @connect((state) => ({
   auth: state.auth,
@@ -42,7 +45,7 @@ export default class GuideEdit extends React.Component {
   }
 
   updatePosition(start, end) {
-    let items =  this.state.items;
+    let items = this.state.items;
     let element = items[start];
     items.splice(start, 1);
     items.splice(end, 0, element);
@@ -61,14 +64,16 @@ export default class GuideEdit extends React.Component {
         ui.placeholder.height(ui.helper.outerHeight());
         ui.item.startPos = ui.item.index();
       },
-      update: (event, ui) => {this.updatePosition(ui.item.startPos, ui.item.index())},
+      update: (event, ui) => {
+        this.updatePosition(ui.item.startPos, ui.item.index())
+      },
     });
   }
 
   removeChild(index) {
     console.log('remove', index);
     let {items} = this.state;
-    let deleted = this.state[index];
+    let deleted = items[index].id;
     items.splice(index, 1);
     this.setState({
       items: items,
@@ -95,28 +100,36 @@ export default class GuideEdit extends React.Component {
 
   render() {
     console.log(this.props.guide);
+    let {document} = this.props;
     return (
       <div>
-        <div className="row">
-          <div className="col-sm-12">
-            <h1 className={`page-header ${style.title}`}>
-              <div className="col-sm-10"> <input className="pull" value={this.state.title} onChange={this.onTitleChange} placeholder="Inserte título aquí"/></div>
-              <div className="col-sm-2"> <button className={`btn btn-warning pull-right ${style.submit}`} onClick={this.submit}>Guardar cambios</button></div>
-              <div className="clearfix"/>
-            </h1>
-            <small className={style.brief}>
-              <Textarea value={this.state.brief} onChange={this.onBriefChange} placeholder="Inserte descripción aquí"/>
-            </small>
+        <Header icon={icons.guides} onClick={this.submit} color="#FF757C" sideButton={
+          <HeaderSideButton icon="floppy-disk"/>}>
+          {this.state.title}
+        </Header>
+        <section>
+          <div className="row">
+            <div className="col-sm-12">
+              <h1 className={`page-header clearfix ${style.title}`}>
+                <div className="col-sm-10"><input className="pull" value={this.state.title}
+                                                  onChange={this.onTitleChange} placeholder="Inserte título aquí"/>
+                </div>
+              </h1>
+              <small className={style.brief}>
+                <Textarea value={this.state.brief} onChange={this.onBriefChange}
+                          placeholder="Inserte descripción aquí"/>
+              </small>
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div id="guide" className={`col-sm-12 ${css.content}`}>
-            {this.state.items.map((item, i) =>
-              <GuideItem item={item} key={i} index={i} remove={(index) => this.removeChild(index)}/>
-            )}
-            {this.showWarning.bind(this)()}
+          <div className="row">
+            <div id="guide" className={`col-sm-12 ${css.content}`}>
+              {this.state.items.map((item, i) =>
+                <GuideItem item={item} key={i} index={i} removeItem={(index) => this.removeChild(index)}/>
+              )}
+              {this.showWarning.bind(this)()}
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     )
   }

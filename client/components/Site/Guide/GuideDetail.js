@@ -62,6 +62,7 @@ export default class GuideDetail extends React.Component {
                     </div>
                   );
                 } else if (item.type === 'exercise') {
+                  console.log(item.item);
                   return (
                     <div key={i}>
                       <Exercise exercise={item.item} autoCorrect/>
