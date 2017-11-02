@@ -1,7 +1,7 @@
 import {AUTH_LOGIN_RECEIVE, AUTH_USERDATA_FAILED, AUTH_USERDATA_RECEIVE} from '../actions';
-import {USER_COURSES_RECEIVE, USER_GUIDES_RECEIVE} from '../actions/index';
+import {AUTH_LOGOUT, USER_COURSES_RECEIVE, USER_GUIDES_RECEIVE} from '../actions/index';
 
-export const auth = (state = {
+const defaultState = {
   isLoading: true,
   isAuthenticated: false,
   guides: {
@@ -12,7 +12,9 @@ export const auth = (state = {
     isLoading: true,
     all: []
   }
-}, action) => {
+};
+
+export const auth = (state = defaultState, action) => {
   switch (action.type) {
     case AUTH_LOGIN_RECEIVE:
       // just save auth data, don't actually log-in.
@@ -30,6 +32,10 @@ export const auth = (state = {
 
     case AUTH_USERDATA_FAILED:
       return {...state, isAuthenticated: false, isLoading: false};
+
+    case AUTH_LOGOUT:
+      localStorage.removeItem('auth');
+      return {...defaultState, isLoading: false};
 
     case USER_GUIDES_RECEIVE:
       return {

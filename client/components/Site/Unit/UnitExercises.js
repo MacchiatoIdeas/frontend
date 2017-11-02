@@ -48,6 +48,8 @@ export default class UnitExercises extends React.Component {
       }
     ];
 
+    console.log(unit.exercises);
+
     return (
       <div>
         <Header icon={icons.exercises} color="#5DDDD3" sideButton={
@@ -79,7 +81,7 @@ export default class UnitExercises extends React.Component {
                     comments={exercise.comment_count}
                     link={`/site/units/${unit.id}/exercise/${exercise.id}`}
                     linkText='Ver Ejercicio'
-                    stars={4}
+                    stars={exercise.difficulty}
                   />
                 )}
               </div>

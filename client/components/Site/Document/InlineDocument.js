@@ -1,7 +1,7 @@
 import React from 'react';
 
 import style from './InlineDocument.less';
-import MarkdownKatex from "./MarkdownKatex/index";
+import MarkdownKatex from './MarkdownKatex/index';
 
 export default class InlineDocument extends React.Component {
   render() {

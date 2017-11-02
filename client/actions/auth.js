@@ -1,5 +1,5 @@
 import {
-  AUTH_LOGIN_FETCH, AUTH_LOGIN_RECEIVE, AUTH_USERDATA_FAILED, AUTH_USERDATA_FETCH,
+  AUTH_LOGIN_FETCH, AUTH_LOGIN_RECEIVE, AUTH_LOGOUT, AUTH_USERDATA_FAILED, AUTH_USERDATA_FETCH,
   AUTH_USERDATA_RECEIVE
 } from './index';
 import {getOwnData, tryLogin} from '../requests/auth';
@@ -38,6 +38,12 @@ export const tryLoginAction = (username, password) => (dispatch) => {
 
       dispatch(getOwnDataAction());
     });
+};
+
+export const logOutAction = () => {
+  return {
+    type: AUTH_LOGOUT,
+  }
 };
 
 export const loadFromLocalStorage = () => (dispatch) => {

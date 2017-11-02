@@ -7,21 +7,25 @@ import * as icons from '../../assets/flaticons';
 import style from './Navbar.less';
 import ReactLoading from 'react-loading';
 import Box from '../Box';
+import ContextMenu from './ContextMenu';
 
 export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      searchOpen: false,
-      searchInput: "",
-      searching: false,
-      showing: false,
-      listResult: [],
-    };
+
     this.openSearch = this.openSearch.bind(this);
     this.closeSearch = this.closeSearch.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.search = this.search.bind(this);
+
+    this.state = {
+      searchOpen: false,
+      searchInput: '',
+      searching: false,
+      showing: false,
+      showContextMenu: false,
+      listResult: [],
+    };
   }
 
   openSearch() {
@@ -36,7 +40,7 @@ export default class Navbar extends React.Component {
   closeSearch() {
     this.setState({
       searchOpen: false,
-      searchInput: "",
+      searchInput: '',
       searching: false,
       showing: false,
       listResult: [],
@@ -60,11 +64,11 @@ export default class Navbar extends React.Component {
   search(ev) {
     if (ev.keyCode === 13) {
       this.setState({
-        searching: this.state.searchInput !== "",
+        searching: this.state.searchInput !== '',
         showing: false,
         listResult: [],
       });
-      if (this.state.searchInput !== "") {
+      if (this.state.searchInput !== '') {
         setTimeout(() => {
           this.searchRequest()
         }, 1000);
@@ -73,7 +77,6 @@ export default class Navbar extends React.Component {
   }
 
   searchRequest() {
-
     let list = [
       {
         'title': 'Primer elemento de la búsqueda',
@@ -146,10 +149,10 @@ export default class Navbar extends React.Component {
   }
 
   render() {
-    let transparentClass = this.props.transparent ? style.transparent : "";
-    let searchStyle = this.state.searchOpen ? style.navbarSearch : "";
-    let loading = this.state.searching ? style.isLoading : "";
-    let showing = this.state.showing ? style.isShowing : "";
+    let transparentClass = this.props.transparent ? style.transparent : '';
+    let searchStyle = this.state.searchOpen ? style.navbarSearch : '';
+    let loading = this.state.searching ? style.isLoading : '';
+    let showing = this.state.showing ? style.isShowing : '';
 
     return (
       <nav id="navbar" className={`navbar navbar-default ${transparentClass} ${style.navbar} ${searchStyle}`}>
@@ -175,7 +178,14 @@ export default class Navbar extends React.Component {
               <div className="navbar-nav navbar-right">
                 <ul className="nav navbar-nav">
                   <li><a className={style.button} onClick={this.openSearch}><span className="icon-search-v3"/></a></li>
-                  <li><a href="/"><span className="icon-cog-v3"/></a></li>
+                  <li>
+                    <a href="#" onClick={(e) => {
+                      e.preventDefault();
+                      this.setState({showContextMenu: !this.state.showContextMenu});
+                    }}><span className="icon-cog-v3"/></a>
+
+                    <ContextMenu onHide={() => this.setState({showContextMenu: false})} show={this.state.showContextMenu}/>
+                  </li>
                 </ul>
               </div>
             </div>

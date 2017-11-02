@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Route, Switch} from 'react-router-dom';
 
-
 import {getGuideByIdAction} from '../../../actions/guides';
 
 import GuideDetail from './GuideDetail';

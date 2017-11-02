@@ -18,6 +18,7 @@ import Menu, {active} from '../../../Utilities/TreniumMenu/index';
 
 import BodyLoading from '../../../Utilities/BodyLoading/index';
 import AddToGuideModal from '../../AddToGuideModal/AddToGuideModal';
+import {formatDateToLocale} from "../../../Box";
 
 @connect((state, props) => ({
   exercise: state.visibleExercise,
@@ -80,7 +81,7 @@ export default class ExerciseDetail extends React.Component {
                 </div>
 
                 <div>
-                  25 de Mayo de 2017
+                  {formatDateToLocale(exercise.moment)}
                 </div>
               </div>
             </div>

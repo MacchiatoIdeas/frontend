@@ -1,0 +1,30 @@
+.ContextMenu {
+  @keyframes fade-in {
+    0% {
+      transform: translateY(-15px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  width: 200px;
+  background-color: #ffffff;
+  border-radius: 3px;
+  border: 1px #999 solid;
+  animation: fade-in 0.2s ease;
+
+  .Item {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover {
+      background-color: #f7f7f7;
+    }
+  }
+}
