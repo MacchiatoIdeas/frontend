@@ -3,14 +3,13 @@ import SpecialButton from '../SpecialButton';
 
 import style from './style.less';
 import EqualFields from '../EqualFields';
-import Textarea from 'react-textarea-autosize';
 import * as icons from '../../../assets/flaticons';
 
 import Dropzone from 'react-dropzone';
 
 import {Form} from '../../Utilities/TreniumForm/style.less';
 import {registerTeacher} from '../../../requests/auth';
-import showAlert from "../../Alert";
+import showAlert from '../../Alert';
 
 export default class Teacher extends React.Component {
   constructor(props) {

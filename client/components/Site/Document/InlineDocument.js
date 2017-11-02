@@ -6,9 +6,8 @@ import MarkdownKatex from './MarkdownKatex/index';
 export default class InlineDocument extends React.Component {
   render() {
     const {document} = this.props;
-
     const sections = JSON.parse(document.text);
-    console.log(sections);
+
     return (
       <div className={`${style.Document}`}>
         {sections.map((section, i) => {

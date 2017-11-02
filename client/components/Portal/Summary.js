@@ -69,9 +69,10 @@ export default class Summary extends React.Component {
         }
 
         <Header color="#5DDDD3" textColor="#fff" icon={icons.courses} sideButton={
-          <Link to="#" onClick={() => this.setState({showCourseModal: true})}>
-            <span className="glyphicon glyphicon-plus-sign"/>
-          </Link>
+          data.user_type === 'teacher' ?
+            <Link to="#" onClick={() => this.setState({showCourseModal: true})}>
+              <span className="glyphicon glyphicon-plus-sign"/>
+            </Link> : null
         }>
           Mis Cursos
         </Header>

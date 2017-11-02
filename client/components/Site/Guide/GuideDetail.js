@@ -9,8 +9,11 @@ import {Link} from 'react-router-dom';
 
 import InlineDocument from '../Document/InlineDocument';
 import AddToCourseModal from './AddToCourseModal/index';
-import TreniumButton from "../../Utilities/TreniumButton/index";
+import {connect} from 'react-redux';
 
+@connect(state => ({
+  auth: state.auth,
+}))
 export default class GuideDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -21,16 +24,30 @@ export default class GuideDetail extends React.Component {
   }
 
   render() {
-    const {guide} = this.props;
+    const {auth, guide} = this.props;
 
     return (
       <div>
         <Header color="#efa467" textColor="#fff" icon={icons.guides} sideButton={
-          <Link to="#" onClick={() => {
-            this.setState({showModal: true})
-          }}>
-            <span className="glyphicon glyphicon-plus-sign"/>
-          </Link>
+          <div>
+            {auth.data.user_type === 'teacher' ?
+              <Link to="#" onClick={() => {
+                this.setState({showModal: true})
+              }}>
+                <span className="glyphicon glyphicon-plus-sign"/>
+              </Link>
+              : null}
+
+            {auth.data.user.id === guide.author.id ?
+              <Link to={`/site/guides/${guide.id}/edit`}>
+                <span className="glyphicon glyphicon-pencil"/>
+              </Link>
+              : null}
+
+            <Link to="#" style={{marginLeft: 32}}>
+              <span onClick={window.print} className="glyphicon glyphicon-print"/>
+            </Link>
+          </div>
         }>{guide.title}</Header>
 
         <section ref="printArea">
@@ -54,11 +71,6 @@ export default class GuideDetail extends React.Component {
                 }
               })}
             </div>
-          </div>
-        </section>
-        <section>
-          <div>
-            <TreniumButton onClick={window.print}>Imprimir documento</TreniumButton>
           </div>
         </section>
 
