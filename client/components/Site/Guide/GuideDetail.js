@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom';
 
 import InlineDocument from '../Document/InlineDocument';
 import AddToCourseModal from './AddToCourseModal/index';
+import TreniumButton from "../../Utilities/TreniumButton/index";
 
 export default class GuideDetail extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export default class GuideDetail extends React.Component {
 
     this.state = {
       showModal: false,
-    }
+    };
   }
 
   render() {
@@ -25,12 +26,14 @@ export default class GuideDetail extends React.Component {
     return (
       <div>
         <Header color="#efa467" textColor="#fff" icon={icons.guides} sideButton={
-          <Link to="#" onClick={() => {this.setState({showModal: true})}}>
+          <Link to="#" onClick={() => {
+            this.setState({showModal: true})
+          }}>
             <span className="glyphicon glyphicon-plus-sign"/>
           </Link>
         }>{guide.title}</Header>
 
-        <section>
+        <section ref="printArea">
           <div className="row">
             <div className={`col-sm-8 col-sm-offset-2 ${style.content}`}>
               {guide.items.map((item, i) => {
@@ -53,10 +56,17 @@ export default class GuideDetail extends React.Component {
             </div>
           </div>
         </section>
+        <section>
+          <div>
+            <TreniumButton onClick={window.print}>Imprimir documento</TreniumButton>
+          </div>
+        </section>
 
         <AddToCourseModal show={this.state.showModal}
                           guideId={guide.id}
-                          onHide={() => {this.setState({showModal: false})}} />
+                          onHide={() => {
+                            this.setState({showModal: false})
+                          }}/>
       </div>
     )
   }

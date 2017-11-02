@@ -17,6 +17,7 @@ import NewTrueOrFalse from './NewTrueOrFalse';
 import ReactStars from 'react-stars';
 import TreniumButton from '../../../Utilities/TreniumButton';
 import {createExercise} from '../../../../requests/exercises';
+import NewWritten from "./NewWritten";
 
 export default class NewExercise extends React.Component {
   constructor(props) {
@@ -116,6 +117,9 @@ export default class NewExercise extends React.Component {
               <Route path="/site/units/:id/exercises/create/trueorfalse" render={({match}) => (
                 <NewTrueOrFalse update={this.updateQuestionAnswer} match={match}/>
 
+              )}/>
+              <Route path="/site/units/:id/exercises/create/written" render={({match}) => (
+                <NewWritten update={this.updateQuestionAnswer} match={match}/>
               )}/>
             </Switch>
           </div>

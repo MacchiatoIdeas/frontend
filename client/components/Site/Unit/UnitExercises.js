@@ -45,6 +45,11 @@ export default class UnitExercises extends React.Component {
         'url': '/site/units/' + this.props.unit.id + '/exercises/create/trueorfalse',
         'icon': icons.newTrueOrFalse,
         'class': style.trueOrFalse,
+      }, {
+        'name': 'Desarrollo',
+        'url': '/site/units/' + this.props.unit.id + '/exercises/create/written',
+        'icon': icons.newWritten,
+        'class': style.written,
       }
     ];
 

@@ -6,7 +6,7 @@ const Header = ({color, icon, children, textColor, sideButton}) =>
   <div className={style.Header} style={{backgroundColor: color}}>
     <img src={icon} className={style.icon}/>
     
-    <div className={style.sideButton}>
+    <div className={`no-print ${style.sideButton}`}>
       {sideButton}
     </div>
 
