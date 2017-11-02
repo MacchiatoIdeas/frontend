@@ -38,8 +38,8 @@ export default class GuideDetail extends React.Component {
               </Link>
               : null}
 
-            {auth.data.user.id === guide.author.id ?
-              <Link to={`/site/guides/${guide.id}/edit`}>
+            {auth.data.id === guide.author.id ?
+              <Link to={`/site/guides/${guide.id}/edit`} style={{marginLeft: 32}}>
                 <span className="glyphicon glyphicon-pencil"/>
               </Link>
               : null}

@@ -1,6 +1,5 @@
-
 import {COURSE_FETCH, COURSE_RECEIVE, USER_COURSES_FETCH, USER_COURSES_RECEIVE} from './index';
-import {getAllOwnCourses, getCourseById} from '../requests/courses';
+import {addStudentsToCourse, getAllOwnCourses, getCourseById} from '../requests/courses';
 
 export const getAllOwnCoursesAction = () => (dispatch) => {
   dispatch({

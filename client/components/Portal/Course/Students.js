@@ -21,7 +21,7 @@ export default class Students extends React.Component {
       <div>
         {(students.length === 0) && (limit === undefined) ?
           <div className={style.Jumbo}>
-            <h1>Su curso no estudiantes.</h1>
+            <h1>Su curso no tiene estudiantes.</h1>
 
             <h2>Puede agregar estudiantes presionando <span className="glyphicon glyphicon-plus"/>
               {' '}
