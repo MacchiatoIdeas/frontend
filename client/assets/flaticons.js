@@ -22,6 +22,7 @@ import newTrueOrFalse from './svg/flaticons/icons1/notepad.svg';
 import newWritten from './svg/flaticons/icons1/ereader.svg'
 import document from './svg/flaticons/icons1/ebook.svg';
 import alert from './svg/flaticons/icons3/school-bell.svg';
+import teacher from './svg/flaticons/icons4/teacher-1.svg';
 
 export {
   exercises,
@@ -48,4 +49,5 @@ export {
   newWritten,
   document,
   alert,
+  teacher,
 };

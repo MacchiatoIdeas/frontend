@@ -35,9 +35,27 @@ export const registerStudent = (firstName, lastName, email, birthDate, instituti
 
   return fetch(`${API_URL}/users/students/register/`, {
     method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${store.getState().auth.access_token}`,
-    },
+    body: formData
+  })
+    .then(handleErrorIfAny);
+};
+
+export const registerTeacher = (firstName, lastName, email, birthDate, institution,
+                                password, profilePicture, curriculum, rut, bio) => {
+  const formData = new FormData();
+  formData.append('first_name', firstName);
+  formData.append('last_name', lastName);
+  formData.append('password', password);
+  formData.append('email', email);
+  formData.append('institution', institution);
+  formData.append('birth_date', birthDate);
+  formData.append('avatar', profilePicture);
+  formData.append('curriculum', curriculum);
+  formData.append('rut', rut);
+  formData.append('bio', bio);
+
+  return fetch(`${API_URL}/users/teachers/register/`, {
+    method: 'POST',
     body: formData
   })
     .then(handleErrorIfAny);
