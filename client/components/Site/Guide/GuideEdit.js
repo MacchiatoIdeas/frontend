@@ -103,7 +103,7 @@ export default class GuideEdit extends React.Component {
     let {document} = this.props;
     return (
       <div>
-        <Header icon={icons.guides} onClick={this.submit} color="#FF757C" sideButton={
+        <Header icon={icons.guidesv2} onClick={this.submit} color="#FFCA4F" sideButton={
           <HeaderSideButton icon="floppy-disk"/>}>
           {this.state.title}
         </Header>
