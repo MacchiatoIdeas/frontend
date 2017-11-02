@@ -69,10 +69,31 @@ export const addExerciseToGuide = (guideId, exerciseId, order) => {
     .then(handleErrorIfAny);
 };
 
-export const deleteItemFromGuide = (id) => {
-  return fetch(`${API_URL}/material/guideitems/${id}`, {
+export const deleteItemFromGuide = (itemId) => {
+  return fetch(`${API_URL}/material/guideitems/${itemId}/`, {
     method: 'DELETE',
     headers: createAuthHeaders(store.getState().auth.access_token),
+  })
+    .then(response => {
+      if (!response.ok) {
+        alert(response.statusText);
+        response.text().then(response => console.log(response));
+        throw Error(response.statusText);
+      }
+      return response.text();
+    });
+};
+
+export const updateGuideItem = (guideItemId, guideId, content, exercise, order) => {
+  return fetch(`${API_URL}/material/guideitems/${guideItemId}/`, {
+    method: 'PATCH',
+    headers: createAuthHeaders(store.getState().auth.access_token),
+    body: JSON.stringify({
+      guide: guideId,
+      content,
+      exercise,
+      order,
+    })
   })
     .then(handleErrorIfAny);
 };

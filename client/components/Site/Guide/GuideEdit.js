@@ -10,6 +10,7 @@ import Header from '../../Utilities/Header/index';
 import * as icons from '../../../assets/flaticons';
 import HeaderSideButton from '../../Utilities/Header/HeaderSideButton';
 import showAlert from "../../Alert";
+import {deleteItemFromGuide, updateGuideItem} from "../../../requests/guides";
 
 @connect((state) => ({
   auth: state.auth,
@@ -98,6 +99,27 @@ export default class GuideEdit extends React.Component {
       .then(response => {
         showAlert('Guía guardada con éxito.');
       });
+
+    this.state.deleted.map(item => deleteItemFromGuide(item)
+      .then(response => {
+        showAlert('Elemento eliminado de la guía.');
+      }));
+
+    this.state.items.map((item, order) => {
+      let exercise = null;
+      let content = null;
+
+      if (item.type === 'content') {
+        content = item.item.id;
+      } else {
+        exercise = item.item.id;
+      }
+
+      updateGuideItem(item.id, this.props.guide.id, content, exercise, order)
+        .then(response => {
+          console.log(response);
+        });
+    })
   }
 
   render() {
