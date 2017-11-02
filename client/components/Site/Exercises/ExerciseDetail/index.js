@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, NavLink, Route, Switch} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import Exercise from './Exercise';
@@ -18,7 +18,7 @@ import Menu, {active} from '../../../Utilities/TreniumMenu/index';
 
 import BodyLoading from '../../../Utilities/BodyLoading/index';
 import AddToGuideModal from '../../AddToGuideModal/AddToGuideModal';
-import {formatDateToLocale} from "../../../Box";
+import {formatDateToLocale} from '../../../Box';
 
 @connect((state, props) => ({
   exercise: state.visibleExercise,

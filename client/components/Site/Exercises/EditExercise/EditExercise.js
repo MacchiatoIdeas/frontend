@@ -17,8 +17,17 @@ import NewTrueOrFalse from '../NewExercise/NewTrueOrFalse';
 import ReactStars from 'react-stars';
 import TreniumButton from '../../../Utilities/TreniumButton';
 import {createExercise} from '../../../../requests/exercises';
-import NewWritten from "../NewExercise/NewWritten";
+import NewWritten from '../NewExercise/NewWritten';
+import {getExerciseByIdAction} from '../../../../actions/exercises';
+import {connect} from 'react-redux';
+import BodyLoading from "../../../Utilities/BodyLoading/index";
 
+@connect(state => ({
+  exercise: state.visibleExercise,
+  auth: state.auth,
+}), {
+  getExerciseByIdAction
+})
 export default class EditExercise extends React.Component {
   constructor(props) {
     super(props);
@@ -37,6 +46,11 @@ export default class EditExercise extends React.Component {
       answer: {},
       difficulty: 2,
     };
+  }
+
+  componentDidMount() {
+    const {exerciseId} = this.props.match.params;
+    this.props.getExerciseByIdAction(exerciseId);
   }
 
   updateBrief(event) {
@@ -93,6 +107,14 @@ export default class EditExercise extends React.Component {
   }
 
   render() {
+    const {exercise} = this.props;
+
+    if (exercise.isLoading) {
+      return <BodyLoading/>;
+    }
+
+    console.log('EJ', exercise);
+
     return (
       <div>
         <Header icon={icons.exercises} color="#5DDDD3">Editor de Ejercicios</Header>

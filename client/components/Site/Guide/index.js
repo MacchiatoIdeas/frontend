@@ -7,6 +7,7 @@ import {getGuideByIdAction} from '../../../actions/guides';
 import GuideDetail from './GuideDetail';
 import GuideEdit from './GuideEdit';
 import BodyLoading from '../../Utilities/BodyLoading/index';
+import GuideDetailForCourse from "./GuideDetailForCourse";
 
 @connect((state, props) => ({
   guide: state.visibleGuide,
@@ -31,8 +32,12 @@ export default class Guide extends React.Component {
           <GuideEdit guide={guide} match={match}/>
         }/>
 
-        <Route path="/site/guides/:id" render={({match}) =>
+        <Route exact path="/site/guides/:id" render={({match}) =>
           <GuideDetail guide={guide} match={match}/>
+        }/>
+
+        <Route exact path="/site/guides/:id/course/:courseId" render={({match}) =>
+          <GuideDetailForCourse guide={guide} match={match}/>
         }/>
       </Switch>
     )
