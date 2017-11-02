@@ -62,7 +62,7 @@ export default class GuideItem extends React.Component {
             <span className="btn btn-link drag">
               <span className="glyphicon glyphicon-th"/>
             </span>
-            <button className="btn btn-link remove" onClick={() => this.props.removeItem(this.props.index)}>
+            <button className="btn btn-link remove" onClick={() => this.props.removeItem()}>
               <span className="glyphicon glyphicon-remove"/>
             </button>
           </div>

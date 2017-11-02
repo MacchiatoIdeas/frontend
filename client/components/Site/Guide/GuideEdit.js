@@ -145,12 +145,12 @@ export default class GuideEdit extends React.Component {
             </div>
           </div>
           <div className="row">
-            <div id="guide" className={`col-sm-12 ${css.content}`}>
-              {this.state.items.map((item, i) =>
-                <GuideItem item={item} key={i} index={i} removeItem={(index) => this.removeChild(index)}/>
-              )}
+            <ul id="guide" className={`col-sm-12 ${css.content}`}>
+                {this.state.items.map((item, i) =>
+                  <GuideItem item={item} key={i} index={i} removeItem={(index) => this.removeChild(index)}/>
+                )}
               {this.showWarning.bind(this)()}
-            </div>
+            </ul>
           </div>
         </section>
       </div>

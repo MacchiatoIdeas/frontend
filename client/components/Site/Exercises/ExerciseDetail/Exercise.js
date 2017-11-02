@@ -9,6 +9,7 @@ import TrueOrFalseExercise from './TrueOrFalseExercise';
 import {getAnswerById, getPreviousAnswer, sendAnswer} from '../../../../requests/exercises';
 import TreniumFormLoading from '../../../Utilities/TreniumForm/TreniumFormLoading';
 import {connect} from "react-redux";
+import WrittenExercise from "./WrittenExercise";
 
 @connect(state => ({
   auth: state.auth,
@@ -69,6 +70,8 @@ export default class Exercise extends React.Component {
         return (<CompletionExercise update={this.updateAnswer} answer={this.state.answer} content={content}/>);
       case 'trueorfalse':
         return (<TrueOrFalseExercise update={this.updateAnswer} answer={this.state.answer} content={content}/>);
+      case 'written':
+        return (<WrittenExercise update={this.updateAnswer} answer={this.state.answer} content={content}/>);
     }
   }
 

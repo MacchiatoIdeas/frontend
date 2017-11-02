@@ -6,6 +6,9 @@ export default class NewWritten extends React.Component {
 
     this.props.update({
       schema: 'written',
+    }, {
+      schema: 'written',
+      draft: '',
     });
   }
   render() {
