@@ -1,5 +1,5 @@
 export const API_URL = 'http://api.macchiato.cl';
-export const API_BASIC = 'NGlrc3FDOEtCV1o2V0ljdGN2d1dTSlJWa3IzRFZiZ1cyeVF1Qk9nOTp1Q1hscWw0Q0c3VkExeG5oYm1jbHN1cU1IY2tYODRnWklRS1ZtTHkwOFg3bkJ3UGV1RERkbzB1elpyZFVnclUzVmQ5enVQdVJ3TmFDMTVjbDJRSkNuOU5YZ0JvZzduSndWcmc2V2djYnZLSWNzV3dZWm9vdWJ6MmRwUUxZZkRKUg==';
+export const API_BASIC = 'NXNTUUdFeFJ6dE1nUk4ySkRRZ01xbkpIV0JvWnZOSmRka2JOMDVxQzpiSUVDZVpZMGQyU0NEcnhDaVA5MjVYSlRrNzFqdUF5UE9Za0tleFg3eGw3aDh3Y1loRkh6R0ZxVVlHbWdkdmViMjZoSHV1Rk1oMVE4cHA4eDdDRHNnRmRqRzVxTXFneDd0V0R4OGxFcGdwUkM3akxscks0WW1VOWQ4RFZlNkZndw==';
 
 export const createAuthHeaders = (access_token) => {
   return {
@@ -11,7 +11,7 @@ export const createAuthHeaders = (access_token) => {
 export const handleErrorIfAny = (response) => {
   if (!response.ok) {
     alert(response.statusText);
-    console.log(response);
+    response.text().then(response => console.log(response));
     throw Error(response.statusText);
   }
   return response.json();

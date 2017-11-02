@@ -55,3 +55,22 @@ export const createExerciseAnswer = (exerciseId, answer) => {
   })
     .then(handleErrorIfAny);
 };
+
+export const getAnswerById = (answerId) => {
+  return fetch(`${API_URL}/exercises/answers/${answerId}/`, {
+    headers: createAuthHeaders(store.getState().auth.access_token),
+  })
+    .then(handleErrorIfAny);
+};
+
+export const sendAnswer = (exerciseId, answer) => {
+  return fetch(`${API_URL}/exercises/answers/`, {
+    method: 'POST',
+    headers: createAuthHeaders(store.getState().auth.access_token),
+    body: JSON.stringify({
+      exercise: exerciseId,
+      answer,
+    }),
+  })
+    .then(handleErrorIfAny);
+};

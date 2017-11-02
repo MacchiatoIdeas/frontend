@@ -124,7 +124,7 @@ export default class Navbar extends React.Component {
         guidesReady: true,
         listResult: [...this.state.listResult, ...response.map(item => ({
           title: item.title,
-          author: item.user,
+          author: item.author,
           text: item.brief,
           link: `/site/guides/${item.id}`,
           date: item.moment,

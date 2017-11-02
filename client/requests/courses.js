@@ -15,6 +15,7 @@ export const createCourse = (name) => {
     headers: createAuthHeaders(store.getState().auth.access_token),
     body: JSON.stringify({
       name,
+      participants: '',
     })
   })
     .then(handleErrorIfAny);

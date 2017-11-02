@@ -8,7 +8,7 @@ const TreniumFormLoading = ({isSending}) => {
 
   return (
     <div className="pull-right" style={{paddingTop: 26}}>
-      <ReactLoading type="spin" color="#000" width={32}/>
+      <ReactLoading type="spin" color="#000" width={32} delay={0}/>
     </div>
   )
 };

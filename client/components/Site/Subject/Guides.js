@@ -7,7 +7,7 @@ const Guides = ({guides}) =>
       <Box
         key={guide.id}
         title={guide.title}
-        author={guide.user}
+        author={guide.author}
         text={guide.brief}
         link={`/site/guides/${guide.id}`}
         date={guide.moment}

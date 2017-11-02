@@ -5,81 +5,67 @@ import MatchingExercise from './MatchingExercise';
 import Button from '../../../Utilities/TreniumButton';
 import InlineDocument from '../../Document/InlineDocument';
 import CompletionExercise from './CompletionExercise';
-import TrueOrFalseExercise from "./TrueOrFalseExercise";
+import TrueOrFalseExercise from './TrueOrFalseExercise';
+import {getAnswerById, sendAnswer} from '../../../../requests/exercises';
+import TreniumFormLoading from '../../../Utilities/TreniumForm/TreniumFormLoading';
 
 export default class Exercise extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      answer: {},
-      correctAnswer: JSON.parse(this.props.exercise.right_answer),
-      schema: JSON.parse(this.props.exercise.content).schema,
-    };
-
     this.updateAnswer = this.updateAnswer.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
+
+    this.state = {
+      answer: {},
+      correction: {
+        isCorrected: false,
+        score: 0
+      },
+      correctAnswer: JSON.parse(this.props.exercise.right_answer),
+      schema: JSON.parse(this.props.exercise.content).schema,
+      isSending: false,
+    };
+  }
+
+  componentDidMount() {
+
   }
 
   updateAnswer(answer) {
-    this.setState({
-      answer,
-    });
+    this.setState({answer});
   }
 
   showSchema() {
     let content = JSON.parse(this.props.exercise.content);
     switch (content.schema) {
       case 'alternatives':
-        return (<AlternativeExercise update={this.updateAnswer} content={content}/>);
-
+        return (<AlternativeExercise update={this.updateAnswer} answer={this.state.answer} content={content}/>);
       case 'matching':
-        return (<MatchingExercise update={this.updateAnswer} content={content}/>);
-
+        return (<MatchingExercise update={this.updateAnswer} answer={this.state.answer} content={content}/>);
       case 'completion':
-        return (<CompletionExercise update={this.updateAnswer} content={content}/>);
-
+        return (<CompletionExercise update={this.updateAnswer} answer={this.state.answer} content={content}/>);
       case 'trueorfalse':
-        return (<TrueOrFalseExercise update={this.updateAnswer} content={content}/>);
+        return (<TrueOrFalseExercise update={this.updateAnswer} answer={this.state.answer} content={content}/>);
     }
   }
+
   checkAnswer() {
-    let {schema} = this.state;
-    let correct = false;
-    if (Object.keys(this.state.answer).length !== 0 || this.state.answer.constructor !== Object) {
-      switch (schema) {
-        case 'alternatives':
-          correct = this.state.answer.answer === this.state.correctAnswer.answer;
-          break;
+    this.setState({isSending: true});
 
-        case 'matching':
-          correct = this.areEqual(this.state.answer.matchs, this.state.correctAnswer.matchs);
-          break;
-
-        case 'completion':
-          correct = this.areEqual(this.state.answer.words, this.state.correctAnswer.words);
-          break;
-
-        case 'trueorfalse':
-          correct = this.areEqual(this.state.answer.choices, this.state.correctAnswer.choices);
-          break;
-      }
-
-      if (correct) {
-        alert('Respuesta Correcta');
-      } else {
-        alert('Respuesta Incorrecta');
-      }
-
-    } else {
-      alert('Complete las preguntas');
-    }
-  }
-
-  areEqual(array1, array2) {
-    return (array1.length === array2.length) && array1.every(function (element, index) {
-      return element === array2[index];
-    });
+    sendAnswer(this.props.exercise.id, JSON.stringify(this.state.answer))
+      .then(response => {
+        getAnswerById(response.id)
+          .then(response => {
+            this.setState({
+              isSending: false,
+              correction: {
+                isCorrected: true,
+                score: response.score,
+              }
+            });
+          });
+      });
   }
 
   render() {
@@ -88,7 +74,17 @@ export default class Exercise extends React.Component {
       <div>
         <InlineDocument document={exercise}/>
         {this.showSchema.bind(this)()}
-        <Button onClick={this.checkAnswer}>Enviar respuestas</Button>
+
+        {!this.state.correction.isCorrected ?
+          <div>
+            <TreniumFormLoading isSending={this.state.isSending}/>
+            <Button onClick={this.checkAnswer}>Enviar respuestas</Button>
+          </div>
+          :
+          <div className="text-center" style={{fontSize: 18}}>
+            Ya contestó esta pregunta, su puntaje fue de: {this.state.correction.score}
+          </div>
+        }
       </div>
     )
   }

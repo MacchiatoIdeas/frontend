@@ -1,13 +1,12 @@
 import React from 'react';
 
-import css from '../../../style/FluidPage.less';
+import style from '../../../style/FluidPage.less';
 import Exercise from '../Exercises/ExerciseDetail/Exercise';
 import Header from '../../Utilities/Header';
 
 import * as icons from '../../../assets/flaticons';
 import {Link} from 'react-router-dom';
 
-import {Form} from '../../Utilities/TreniumForm/style.less';
 import InlineDocument from '../Document/InlineDocument';
 import AddToCourseModal from './AddToCourseModal/index';
 
@@ -33,7 +32,7 @@ export default class GuideDetail extends React.Component {
 
         <section>
           <div className="row">
-            <div className={`col-sm-8 col-sm-offset-2 ${css.content}`}>
+            <div className={`col-sm-8 col-sm-offset-2 ${style.content}`}>
               {guide.items.map((item, i) => {
                 if (item.type === 'content') {
                   return (
@@ -45,7 +44,7 @@ export default class GuideDetail extends React.Component {
                 } else if (item.type === 'exercise') {
                   return (
                     <div key={i}>
-                      <Exercise exercise={item.item}/>
+                      <Exercise exercise={item.item} autoCorrect/>
                       <hr/>
                     </div>
                   )

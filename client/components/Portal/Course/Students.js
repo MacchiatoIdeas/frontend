@@ -29,7 +29,6 @@ export default class Students extends React.Component {
           </div>
           : null
         }
-
         {students.map((student, i) =>
           <Student image={images[i % images.length]}
                    onClick={() => onStudentClick(student)}
