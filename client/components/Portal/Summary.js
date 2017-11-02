@@ -12,6 +12,8 @@ import CreateCourseModal from './CreateCourseModal';
 import {connect} from 'react-redux';
 import {getAllOwnCoursesAction} from '../../actions/courses';
 import {getAllOwnGuidesAction} from '../../actions/guides';
+import {getAllRecommended} from '../../requests/exercises';
+import {getAllSubjects} from '../../requests/subjects';
 
 @connect(state => ({
   auth: state.auth,
@@ -34,6 +36,18 @@ export default class Summary extends React.Component {
 
     if (this.props.auth.data.user_type === 'teacher') {
       this.props.getAllOwnGuidesAction();
+    }
+
+    if (this.props.auth.data.user_type === 'student') {
+      getAllSubjects()
+        .then(response => {
+          response.map(subject => {
+            getAllRecommended(subject.id)
+              .then(response => {
+                console.log(response);
+              })
+          })
+        });
     }
   }
 

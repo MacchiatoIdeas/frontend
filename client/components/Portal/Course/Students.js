@@ -1,5 +1,5 @@
 import React from 'react';
-import Student from './Student';
+import Student from './Student/index';
 import style from './style.less';
 
 export default class Students extends React.Component {

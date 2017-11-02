@@ -81,3 +81,8 @@ export const getPreviousAnswer = (exerciseId) => {
   })
     .then(handleErrorIfAny);
 };
+
+export const getAllRecommended = (subjectId) => {
+  return fetch(`${API_URL}/exercises/recommended/${subjectId}`)
+    .then(handleErrorIfAny);
+};

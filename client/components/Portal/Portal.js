@@ -10,7 +10,7 @@ import Summary from './Summary';
 
 import style from './Portal.less';
 import {getOwnDataAction} from '../../actions/auth';
-import Course from './Course/index';
+import Course from './Course';
 
 @connect(state => ({
   auth: state.auth
@@ -40,12 +40,13 @@ export default class Portal extends React.Component {
             <div className="container-fluid clearfix">
               <div className="col-sm-4">
                 <div className={style.avatar}>
-                  <img src="https://placeimg.com/1000/1000/any" alt=""/>
+                  <img src={`https://sigil.cupcake.io/${auth.data.user.email}`} alt=""/>
                 </div>
               </div>
               <div className="col-sm-8">
                 <div className={style.info}>
                   <h1>{auth.data.user.first_name} {auth.data.user.last_name}</h1>
+                  <h3>{auth.data.user_type === 'teacher' ? 'Profesor/a' : 'Estudiante'}</h3>
                 </div>
               </div>
             </div>
