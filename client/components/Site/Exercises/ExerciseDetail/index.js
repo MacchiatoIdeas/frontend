@@ -51,9 +51,11 @@ export default class ExerciseDetail extends React.Component {
     return (
       <div>
         <Header icon={icons.exercises} color="#5DDDD3" sideButton={
-          <Link to="#" onClick={() => this.setState({showModal: true})}>
-            <span className="glyphicon glyphicon-plus-sign"/>
-          </Link>
+          auth.data.user_type === 'teacher' ?
+            <Link to="#" onClick={() => this.setState({showModal: true})}>
+              <span className="glyphicon glyphicon-plus-sign"/>
+            </Link>
+            : null
         }>{unit.name}</Header>
 
         <section>
