@@ -9,12 +9,14 @@ export default class TrueOrFalseExercise extends React.Component {
 
     let choices = [];
     for (let i = 0; i < this.props.content.sentences.length; i++)
-      choices.push(false);
+      choices.push(null);
     this.state = {
       choices: choices,
     };
 
     this.updateAnswer = this.updateAnswer.bind(this);
+    this.updateItem = this.updateItem.bind(this);
+    this.getStyle = this.getStyle.bind(this);
   }
 
   updateAnswer(choices = []) {
@@ -24,6 +26,25 @@ export default class TrueOrFalseExercise extends React.Component {
     };
     this.props.update(json);
   }
+
+  getStyle(value, index) {
+    let current = this.state.choices[index];
+    let className = current === value ? style.selected : '';
+    className = className.concat(` ${current !== value ? style.noSelected : ''}`);
+    return className
+
+  }
+
+  updateItem(value, index) {
+    let {choices} = this.state;
+    choices[index] = value;
+    this.setState({
+      choices,
+    });
+    this.updateAnswer(choices);
+  }
+
+
 
   render() {
     return (
@@ -35,7 +56,10 @@ export default class TrueOrFalseExercise extends React.Component {
                 <div className="alternative">
                   <label className="playlist-item">
                         <span className="playlist-item-body playlist-item-link">
-                          <span className="step">{i + 1}</span>
+                          <span className={`step ${style.step}`}>
+                            <button onClick={() => this.updateItem(true, i)} className={`${style.true} ${this.getStyle(true, i)}`}>V</button>
+                            <button onClick={() => this.updateItem(false, i)} className={`${style.false} ${this.getStyle(false, i)}`}>F</button>
+                        </span>
                           {alternative}
                         </span>
                   </label>

@@ -1,8 +1,59 @@
 .item {
+  margin: 0;
   margin-bottom: 10px;
+  list-style: none;
+  padding: 0;
   & label {
     border-bottom: 1px #ccc solid;
     margin: 0 !important;
     display: block;
+
+    & > span {
+      padding-left: 120px !important;
+    }
+
+    & .step {
+      padding: 0 !important;
+      background: #b3c4d2 !important;
+      overflow: hidden;
+
+      & button {
+        border: none;
+        background: #b3c4d2;
+        border-radius: 0;
+        padding: 0 20px;
+        display: inline-block;
+        height: 100%;
+        transition: all .1s;
+
+        &:first-child {
+          border-radius: 4px 0 0 4px;
+          border-right: 1px solid darken(#b3c4d2, 2%);
+        }
+      }
+
+      & .true {
+        &.selected {
+          background: #90DFAA;
+          transform: scale(1.2, 1.2);
+        }
+
+        &.noSelected {
+          transform: scale(.8, .8);
+
+        }
+
+      }
+
+      & .false {
+        &.selected {
+          background: #FF757C;
+          transform: scale(1.2, 1.2);
+        }
+        &.noSelected {
+          transform: scale(.8, .8);
+          }
+      }
+    }
   }
 }
