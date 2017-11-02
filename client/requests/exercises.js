@@ -74,3 +74,10 @@ export const sendAnswer = (exerciseId, answer) => {
   })
     .then(handleErrorIfAny);
 };
+
+export const getPreviousAnswer = (exerciseId) => {
+  return fetch(`${API_URL}/exercises/myanswers/${exerciseId}`, {
+    headers: createAuthHeaders(store.getState().auth.access_token),
+  })
+    .then(handleErrorIfAny);
+};

@@ -18,7 +18,6 @@ export default class CommentDetail extends React.Component {
             <div className={`text-center ${style.profile}`}>
               <img src="https://placeimg.com/250/250/any" alt={comment.user.name} className="rounded-circle"/>
               <h4>{`${comment.user.first_name} ${comment.user.last_name}`}</h4>
-              <h5 className="text-muted">@{comment.user.username}</h5>
             </div>
 
           </div>

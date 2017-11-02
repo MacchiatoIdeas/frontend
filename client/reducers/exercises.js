@@ -12,7 +12,7 @@ export const visibleExercise = (state = {
       return {
         ...state,
         comments: [...state.comments, action.payload]
-      }
+      };
   }
   return state;
 };

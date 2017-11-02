@@ -1,5 +1,6 @@
 import {
-  DOCUMENT_COMMENT_RECEIVE, DOCUMENT_FETCH, DOCUMENT_RECEIVE, DOCUMENT_UPDATE_RECEIVE,
+  DOCUMENT_COMMENT_RECEIVE, DOCUMENT_FEEDBACK_COMMENT_RECEIVE, DOCUMENT_FETCH, DOCUMENT_RECEIVE,
+  DOCUMENT_UPDATE_RECEIVE,
   DOCUMENT_UPDATE_SEND
 } from '../actions/index';
 
@@ -16,6 +17,11 @@ export const visibleDocument = (state = {
       return {
         ...state,
         comments: [...state.comments, action.payload]
+      };
+    case DOCUMENT_FEEDBACK_COMMENT_RECEIVE:
+      return {
+        ...state,
+        feedback_comments: [...state.feedback_comments, action.payload]
       };
     case DOCUMENT_UPDATE_SEND:
       return {

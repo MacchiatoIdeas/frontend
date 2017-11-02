@@ -98,9 +98,11 @@ export default class ExerciseDetail extends React.Component {
 
         <Comments exercise={exercise} comments={exercise.comments}/>
 
-        <AddToGuideModal exerciseId={exercise.id} subjectId={unit.subject.id} show={this.state.showModal} onHide={() => {
-          this.setState({showModal: false})
-        }}/>
+        {auth.data.user_type === 'teacher' ?
+          <AddToGuideModal exerciseId={exercise.id} subjectId={unit.subject.id} show={this.state.showModal} onHide={() => {
+            this.setState({showModal: false})
+          }}/>
+          : null}
       </div>
     )
   }

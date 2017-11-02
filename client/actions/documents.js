@@ -1,8 +1,11 @@
 import {
   DOCUMENT_COMMENT_SEND, DOCUMENT_COMMENT_RECEIVE, DOCUMENT_FETCH, DOCUMENT_RECEIVE,
-  DOCUMENT_UPDATE_SEND, DOCUMENT_UPDATE_RECEIVE
+  DOCUMENT_UPDATE_SEND, DOCUMENT_UPDATE_RECEIVE, DOCUMENT_FEEDBACK_COMMENT_SEND, DOCUMENT_FEEDBACK_COMMENT_RECEIVE
 } from './index';
-import {createDocumentComment, getDocumentById, updateDocument} from '../requests/documents';
+import {
+  createDocumentComment, createDocumentFeedbackComment, getDocumentById,
+  updateDocument
+} from '../requests/documents';
 
 export const getDocumentByIdAction = (documentId) => (dispatch) => {
   dispatch({
@@ -24,6 +27,18 @@ export const createDocumentCommentAction = (documentId, text) => (dispatch) => {
   return createDocumentComment(documentId, text)
     .then(data => dispatch({
       type: DOCUMENT_COMMENT_RECEIVE,
+      payload: data,
+    }));
+};
+
+export const createDocumentFeedbackCommentAction = (documentId, text) => (dispatch) => {
+  dispatch({
+    type: DOCUMENT_FEEDBACK_COMMENT_SEND,
+  });
+
+  return createDocumentFeedbackComment(documentId, 'not implemented', text)
+    .then(data => dispatch({
+      type: DOCUMENT_FEEDBACK_COMMENT_RECEIVE,
       payload: data,
     }));
 };

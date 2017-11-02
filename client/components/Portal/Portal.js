@@ -46,7 +46,6 @@ export default class Portal extends React.Component {
               <div className="col-sm-8">
                 <div className={style.info}>
                   <h1>{auth.data.user.first_name} {auth.data.user.last_name}</h1>
-
                 </div>
               </div>
             </div>

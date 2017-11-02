@@ -6,7 +6,7 @@ import Button from '../../../Utilities/TreniumButton';
 import InlineDocument from '../../Document/InlineDocument';
 import CompletionExercise from './CompletionExercise';
 import TrueOrFalseExercise from './TrueOrFalseExercise';
-import {getAnswerById, sendAnswer} from '../../../../requests/exercises';
+import {getAnswerById, getPreviousAnswer, sendAnswer} from '../../../../requests/exercises';
 import TreniumFormLoading from '../../../Utilities/TreniumForm/TreniumFormLoading';
 
 export default class Exercise extends React.Component {
@@ -29,11 +29,25 @@ export default class Exercise extends React.Component {
   }
 
   componentDidMount() {
-
+    getPreviousAnswer(this.props.exercise.id)
+      .then(response => {
+        if (response.length > 0) {
+          let answer = response[0];
+          this.setState({
+            correction: {
+              isCorrected: true,
+              score: answer.score,
+            },
+            answer: JSON.parse(answer.answer),
+          })
+        }
+      });
   }
 
   updateAnswer(answer) {
-    this.setState({answer});
+    if (!this.state.correction.isCorrected) {
+      this.setState({answer});
+    }
   }
 
   showSchema() {
@@ -70,9 +84,11 @@ export default class Exercise extends React.Component {
 
   render() {
     let {exercise} = this.props;
+
     return (
       <div>
         <InlineDocument document={exercise}/>
+        <br/>
         {this.showSchema.bind(this)()}
 
         {!this.state.correction.isCorrected ?
@@ -82,9 +98,8 @@ export default class Exercise extends React.Component {
           </div>
           :
           <div className="text-center" style={{fontSize: 18}}>
-            Ya contestó esta pregunta, su puntaje fue de: {this.state.correction.score}
-          </div>
-        }
+            Ya contestó esta pregunta, su puntaje fue: {this.state.correction.score}
+          </div>}
       </div>
     )
   }

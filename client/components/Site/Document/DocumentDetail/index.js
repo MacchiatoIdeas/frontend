@@ -28,9 +28,11 @@ export default class DocumentDetail extends React.Component {
       <div>
         <Header icon={icons.document} color="#FF757C" sideButton={
           <div>
-            <HeaderSideButton onClick={() => {
-              this.setState({showModal: true})
-            }}/>
+            {auth.data.user_type === 'teacher' ?
+              <HeaderSideButton onClick={() => {
+                this.setState({showModal: true})
+              }}/>
+              : null}
 
             {document.author.id === auth.data.user.id ?
               <span style={{float: 'right', marginLeft: 32}}>
@@ -77,7 +79,10 @@ export default class DocumentDetail extends React.Component {
         <section>
           <TreniumMenu>
             <NavLink exact to={`/site/contents/${document.id}`} activeClassName={active}>Comentarios</NavLink>
-            <NavLink exact to={`/site/contents/${document.id}/feedback`} activeClassName={active}>Feedback</NavLink>
+            {auth.data.user_type === 'teacher' ?
+              <NavLink exact to={`/site/contents/${document.id}/feedback`} activeClassName={active}>Feedback</NavLink>
+              : null
+            }
           </TreniumMenu>
         </section>
 
@@ -86,17 +91,21 @@ export default class DocumentDetail extends React.Component {
             <Comments content={document} comments={document.comments}/>
           )}/>
 
-          <Route exact path="/site/contents/:id/feedback" render={({match}) => (
-            <Comments content={document} comments={[]}/>
-          )}/>
+          {auth.data.user_type === 'teacher' ?
+            <Route exact path="/site/contents/:id/feedback" render={({match}) => (
+              <Comments content={document} comments={[]} feedback/>
+            )}/>
+            : null
+          }
         </Switch>
 
-        <AddToGuideModal documentId={document.id}
-                         subjectId={document.unit.subject.id}
-                         show={this.state.showModal}
-                         onHide={() => {
-                           this.setState({showModal: false})
-                         }}/>
+        {auth.data.user_type === 'teacher' ?
+          <AddToGuideModal documentId={document.id}
+                           subjectId={document.unit.subject.id}
+                           show={this.state.showModal}
+                           onHide={() => {this.setState({showModal: false})}}/>
+          : null
+        }
       </div>
     )
   }
