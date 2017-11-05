@@ -32,7 +32,6 @@ export default class GuideItem extends React.Component {
 
   showItem() {
     const {item} = this.props;
-    console.log("CONTENT", item);
     if (item.type === 'content') {
       return (
         <div>
@@ -66,7 +65,7 @@ export default class GuideItem extends React.Component {
               <span className="glyphicon glyphicon-remove"/>
             </button>
           </div>
-          {this.showItem()}
+          <h2>Item {this.props.index} - {item.id}</h2>
         </div>
       </div>
     )
