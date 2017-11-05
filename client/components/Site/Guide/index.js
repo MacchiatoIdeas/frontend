@@ -7,9 +7,10 @@ import {getGuideByIdAction} from '../../../actions/guides';
 import GuideDetail from './GuideDetail';
 import GuideEdit from './GuideEdit';
 import BodyLoading from '../../Utilities/BodyLoading/index';
-import GuideDetailForCourse from "./GuideDetailForCourse";
+import GuideDetailForCourse from './GuideDetailForCourse';
 
 @connect((state, props) => ({
+  auth: state.auth,
   guide: state.visibleGuide,
 }), {
   getGuideByIdAction
@@ -20,7 +21,7 @@ export default class Guide extends React.Component {
   }
 
   render() {
-    const {guide} = this.props;
+    const {guide, auth} = this.props;
 
     if (guide.isLoading) {
       return <BodyLoading/>;
@@ -33,7 +34,7 @@ export default class Guide extends React.Component {
         }/>
 
         <Route exact path="/site/guides/:id" render={({match}) =>
-          <GuideDetail guide={guide} match={match}/>
+          <GuideDetail guide={guide} match={match} auth={auth}/>
         }/>
 
         <Route exact path="/site/guides/:id/course/:courseId" render={({match}) =>

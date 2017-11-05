@@ -36,13 +36,11 @@ export default class ExerciseDetail extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getExerciseByIdAction(this.props.match.params.exerciseId);
+    this.props.getExerciseByIdAction(this.props.match.params.id);
   }
 
   render() {
-    const {auth, exercise, unit} = this.props;
-
-    console.log(exercise);
+    const {auth, exercise} = this.props;
 
     if (exercise.isLoading) {
       return <BodyLoading/>;
@@ -56,7 +54,7 @@ export default class ExerciseDetail extends React.Component {
               <span className="glyphicon glyphicon-plus-sign"/>
             </Link>
             : null
-        }>{unit.name}</Header>
+        }>{exercise.unit.name}</Header>
 
         <section>
           <div className="row">
@@ -94,16 +92,17 @@ export default class ExerciseDetail extends React.Component {
 
         <section>
           <Menu>
-            <NavLink exact to={`/site/units/${unit.id}/exercise/${exercise.id}`} activeClassName={active}>Comentarios</NavLink>
+            <NavLink exact to={`/site/exercises/${exercise.id}`} activeClassName={active}>Comentarios</NavLink>
           </Menu>
         </section>
 
         <Comments exercise={exercise} comments={exercise.comments}/>
 
         {auth.data.user_type === 'teacher' ?
-          <AddToGuideModal exerciseId={exercise.id} subjectId={unit.subject.id} show={this.state.showModal} onHide={() => {
-            this.setState({showModal: false})
-          }}/>
+          <AddToGuideModal exerciseId={exercise.id}
+                           subjectId={exercise.unit.subject.id}
+                           show={this.state.showModal}
+                           onHide={() => {this.setState({showModal: false})}}/>
           : null}
       </div>
     )

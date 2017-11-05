@@ -8,6 +8,9 @@ import Content from './Document';
 import Subjects from './Subjects';
 import Unit from './Unit/index';
 import Guide from './Guide/index';
+import NewExercise from './Exercises/NewExercise/NewExercise';
+import ExerciseEdit from './Exercises/EditExercise/EditExercise';
+import ExerciseDetail from './Exercises/ExerciseDetail/index';
 
 export default class Site extends React.Component {
   render() {
@@ -19,6 +22,11 @@ export default class Site extends React.Component {
             <Route path="/site/subjects/:id" component={Subject}/>
             <Route path="/site/units/:id" component={Unit}/>
             <Route path="/site/contents/:id" component={Content}/>
+
+            <Route exact path="/site/exercises/create" component={NewExercise}/>
+            <Route exact path="/site/exercises/:id" component={ExerciseDetail}/>
+            <Route exact path="/site/exercises/:id/edit" component={ExerciseEdit}/>
+
             <Route path="/site/guides/:id" component={Guide}/>
             <Route component={Subjects}/>
           </Switch>

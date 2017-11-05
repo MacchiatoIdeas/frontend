@@ -9,11 +9,8 @@ import {Link} from 'react-router-dom';
 
 import InlineDocument from '../Document/InlineDocument';
 import AddToCourseModal from './AddToCourseModal/index';
-import {connect} from 'react-redux';
 
-@connect(state => ({
-  auth: state.auth,
-}))
+
 export default class GuideDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +22,6 @@ export default class GuideDetail extends React.Component {
 
   render() {
     const {auth, guide} = this.props;
-    const {courseId} = this.props.match.params;
 
     return (
       <div>
@@ -39,7 +35,7 @@ export default class GuideDetail extends React.Component {
               </Link>
               : null}
 
-            {auth.data.id === guide.author.id ?
+            {auth.data.user_type === 'teacher' && auth.data.id === guide.author.id ?
               <Link to={`/site/guides/${guide.id}/edit`} style={{marginLeft: 32}}>
                 <span className="glyphicon glyphicon-pencil"/>
               </Link>
@@ -78,9 +74,7 @@ export default class GuideDetail extends React.Component {
 
         <AddToCourseModal show={this.state.showModal}
                           guideId={guide.id}
-                          onHide={() => {
-                            this.setState({showModal: false})
-                          }}/>
+                          onHide={() => {this.setState({showModal: false})}}/>
       </div>
     )
   }

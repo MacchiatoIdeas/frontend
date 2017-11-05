@@ -20,7 +20,7 @@ import {createExercise} from '../../../../requests/exercises';
 import NewWritten from '../NewExercise/NewWritten';
 import {getExerciseByIdAction} from '../../../../actions/exercises';
 import {connect} from 'react-redux';
-import BodyLoading from "../../../Utilities/BodyLoading/index";
+import BodyLoading from '../../../Utilities/BodyLoading/index';
 
 @connect(state => ({
   exercise: state.visibleExercise,
@@ -28,7 +28,7 @@ import BodyLoading from "../../../Utilities/BodyLoading/index";
 }), {
   getExerciseByIdAction
 })
-export default class EditExercise extends React.Component {
+export default class ExerciseEdit extends React.Component {
   constructor(props) {
     super(props);
 

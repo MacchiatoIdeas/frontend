@@ -5,7 +5,7 @@ import Exercise from '../Exercises/ExerciseDetail/Exercise';
 import Header from '../../Utilities/Header';
 
 import * as icons from '../../../assets/flaticons';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 import InlineDocument from '../Document/InlineDocument';
 import AddToCourseModal from './AddToCourseModal/index';
@@ -70,11 +70,15 @@ export default class GuideDetail extends React.Component {
       return <BodyLoading/>;
     }
 
+    if (auth.data.user_type !== 'teacher' || course.teacher.id !== auth.data.id) {
+      return <Redirect to="/"/>
+    }
+
     return (
       <div>
         <Header color="#efa467" textColor="#fff" icon={icons.guides} sideButton={
           <div>
-            {auth.data.id === guide.author.id ?
+            {auth.data.user_type === 'teacher' && auth.data.id === guide.author.id ?
               <Link to={`/site/guides/${guide.id}/edit`} style={{marginLeft: 32}}>
                 <span className="glyphicon glyphicon-pencil"/>
               </Link>

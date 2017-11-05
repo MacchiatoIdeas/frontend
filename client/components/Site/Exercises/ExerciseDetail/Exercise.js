@@ -133,17 +133,16 @@ export default class Exercise extends React.Component {
               </div>
               :
               <div className="text-center" style={{fontSize: 18}}>
-                Puntaje: {this.state.correction.score}
+                Puntaje: {Math.round(this.state.correction.score * 100)}
               </div>}
           </div>
-          : null
-        }
-
-        {this.state.correction.score ?
-          <div className="text-center" style={{fontSize: 18}}>
-            Puntaje: {this.state.correction.score}
-          </div>
-          : null}
+          : (
+            this.state.correction.score ?
+              <div className="text-center" style={{fontSize: 18}}>
+                Puntaje: {Math.round(this.state.correction.score * 100)}
+              </div>
+              : null
+          )}
       </div>
     )
   }
