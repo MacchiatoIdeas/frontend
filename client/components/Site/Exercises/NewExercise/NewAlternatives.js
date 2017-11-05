@@ -12,10 +12,8 @@ export default class NewAlternatives extends React.Component {
     this.updateParent = this.updateParent.bind(this);
 
     this.state = {
-      alternatives: [
-        '',
-      ],
-      answer: undefined,
+      alternatives: this.props.content !== undefined ? this.props.content.alts : [''],
+      answer: this.props.answer !== undefined ? this.props.answer.answer : undefined,
     };
   }
 

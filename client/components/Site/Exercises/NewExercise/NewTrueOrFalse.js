@@ -11,12 +11,8 @@ export default class NewTrueOrFalse extends React.Component {
     this.updateParent = this.updateParent.bind(this);
 
     this.state = {
-      sentences: [
-        '',
-      ],
-      choices: [
-        false,
-      ],
+      sentences: this.props.content !== undefined ? this.props.content.sentences : [''],
+      choices: this.props.answer !== undefined ? this.props.answer.choices : [false],
     };
   }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './TrueOrFalseExercise.less';
+import MarkdownKatex from "../../Document/MarkdownKatex/index";
 
 export default class TrueOrFalseExercise extends React.Component {
   constructor(props) {
@@ -60,7 +61,7 @@ export default class TrueOrFalseExercise extends React.Component {
                             <button onClick={() => this.updateItem(true, i)} className={`${style.true} ${this.getStyle(true, i)}`}>V</button>
                             <button onClick={() => this.updateItem(false, i)} className={`${style.false} ${this.getStyle(false, i)}`}>F</button>
                         </span>
-                          {alternative}
+                          <MarkdownKatex markdown={alternative}/>
                         </span>
                   </label>
                 </div>

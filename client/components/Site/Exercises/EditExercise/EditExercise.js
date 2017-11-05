@@ -45,6 +45,7 @@ export default class ExerciseEdit extends React.Component {
       question: {},
       answer: {},
       difficulty: 2,
+      isLoading: true,
     };
   }
 
@@ -52,7 +53,16 @@ export default class ExerciseEdit extends React.Component {
     this.props.getExerciseByIdAction(this.props.match.params.id)
       .then(response => {
         // response is the exercise data.
-        console.log(response);
+        console.log(":D", response);
+        console.log(response.payload.text);
+        this.setState({
+          brief: response.payload.briefing,
+          text: JSON.parse(response.payload.text),
+          question: JSON.parse(response.payload.content),
+          answer: JSON.parse(response.payload.right_answer),
+          difficulty: response.payload.difficulty,
+          isLoading: false,
+        });
       });
   }
 
@@ -94,29 +104,29 @@ export default class ExerciseEdit extends React.Component {
   }
 
   showSchema() {
-    let content = JSON.parse(this.props.exercise.content);
-    switch (content.schema) {
+    let {question, answer} = this.state;
+    switch (question.schema) {
       case 'alternatives':
-        return (<NewAlternatives update={this.updateQuestionAnswer} answer={this.state.answer} content={content}/>);
+        return (<NewAlternatives update={this.updateQuestionAnswer} answer={answer} content={question}/>);
       case 'matching':
-        return (<NewMatching update={this.updateQuestionAnswer} answer={this.state.answer} content={content}/>);
+        return (<NewMatching update={this.updateQuestionAnswer} answer={answer} content={question}/>);
       case 'completion':
-        return (<NewCompletion update={this.updateQuestionAnswer} answer={this.state.answer} content={content}/>);
+        return (<NewCompletion update={this.updateQuestionAnswer} answer={answer} content={question}/>);
       case 'trueorfalse':
-        return (<NewTrueOrFalse update={this.updateQuestionAnswer} answer={this.state.answer} content={content}/>);
+        return (<NewTrueOrFalse update={this.updateQuestionAnswer} answer={answer} content={question}/>);
       case 'written':
         return (<NewWritten update={this.updateQuestionAnswer}/>);
     }
   }
 
   render() {
-    const {exercise} = this.props;
+    const {isLoading} = this.state;
 
-    if (exercise.isLoading) {
+    if (isLoading) {
+      console.log('ads', isLoading);
       return <BodyLoading/>;
     }
-
-    console.log('EJ', exercise);
+    console.log('ads', isLoading);
 
     return (
       <div>
@@ -126,7 +136,7 @@ export default class ExerciseEdit extends React.Component {
           <div className={Form} style={{paddingBottom: 0}}>
             <label>
               <div>Descripción</div>
-              <Textarea val={this.state.brief} onChange={this.updateBrief} ref="experience"
+              <Textarea value={this.state.brief} onChange={this.updateBrief} ref="experience"
                         placeholder="Aquí escriba una descripción del ejercicio"/>
             </label>
           </div>
@@ -140,28 +150,12 @@ export default class ExerciseEdit extends React.Component {
           <div className={style.wrapper}>
             <div className={style.text}>Enunciado</div>
             <div className={style.editorContainer}>
-              <Editor useTitle={false} update={this.updateText}/>
+              <Editor json={this.state.text} useTitle={false} update={this.updateText}/>
             </div>
           </div>
 
           <div className={style.wrapper}>
-            <Switch>
-              <Route path="/site/units/:id/exercises/create/alternatives" render={({match}) => (
-                <NewAlternatives update={this.updateQuestionAnswer} match={match}/>
-              )}/>
-              <Route path="/site/units/:id/exercises/create/matching" render={({match}) => (
-                <NewMatching update={this.updateQuestionAnswer} match={match}/>
-              )}/>
-              <Route path="/site/units/:id/exercises/create/completion" render={({match}) => (
-                <NewCompletion update={this.updateQuestionAnswer} match={match}/>
-              )}/>
-              <Route path="/site/units/:id/exercises/create/trueorfalse" render={({match}) => (
-                <NewTrueOrFalse update={this.updateQuestionAnswer} match={match}/>
-              )}/>
-              <Route path="/site/units/:id/exercises/create/written" render={({match}) => (
-                <NewWritten update={this.updateQuestionAnswer} match={match}/>
-              )}/>
-            </Switch>
+            {this.showSchema()}
           </div>
 
           <div className={style.wrapper}>

@@ -8,6 +8,7 @@ import Document from './Document';
 import Subjects from './Subjects';
 import Unit from './Unit/index';
 import Guide from './Guide/index';
+import Teacher from "./Users/Teacher/Index";
 import NewExercise from './Exercises/NewExercise/NewExercise';
 import ExerciseEdit from './Exercises/EditExercise/EditExercise';
 import ExerciseDetail from './Exercises/ExerciseDetail/index';
@@ -28,6 +29,7 @@ export default class Site extends React.Component {
             <Route exact path="/site/exercises/:id/edit" component={ExerciseEdit}/>
 
             <Route path="/site/guides/:id" component={Guide}/>
+            <Route path="/site/teachers/:id" component={Teacher}/>
             <Route component={Subjects}/>
           </Switch>
         </Body>

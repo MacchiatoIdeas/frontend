@@ -14,8 +14,8 @@ export default class NewCompletion extends React.Component {
     this.onKeyDownInputword = this.onKeyDownInputword.bind(this);
 
     this.state = {
-      text: "",
-      words: [],
+      text: this.props.content !== undefined ? this.props.content.text : '',
+      words: this.props.answer !== undefined ? this.props.answer.words : [],
     };
   }
 

@@ -13,14 +13,10 @@ export default class NewMatching extends React.Component {
     this.updateAnswer = this.updateAnswer.bind(this);
 
     this.state = {
-      sideA: [
-        '',
-      ],
-      sideB: [
-        '',
-      ],
+      sideA: this.props.content !== undefined ? this.props.content.sideA : [''],
+      sideB: this.props.content !== undefined ? this.props.content.sideB : [''],
       hover: undefined,
-      answer: [],
+      answer: this.props.answer !== undefined ? this.props.answer.matchs : [],
     };
   }
 
