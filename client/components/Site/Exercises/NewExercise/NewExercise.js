@@ -71,7 +71,7 @@ export default class NewExercise extends React.Component {
 
     createExercise(unitId, brief, difficulty, JSON.stringify(question), JSON.stringify(text), JSON.stringify(answer))
       .then(response => {
-        this.props.history.push(`/site/units/1/exercise/${response.id}`);
+        this.props.history.push(`/site/exercises/${response.id}`);
       });
   }
 

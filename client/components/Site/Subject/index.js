@@ -23,6 +23,7 @@ import {createGuide} from '../../../requests';
 import TreniumForm from "../../Utilities/TreniumForm/index";
 
 @connect((state, props) => ({
+  auth: state.auth,
   subject: state.visibleSubject,
 }), {
   getSubjectByIdAction,
@@ -59,7 +60,7 @@ export default class Subject extends React.Component {
   }
 
   render() {
-    const {subject} = this.props;
+    const {auth, subject} = this.props;
 
     if (subject.isLoading) {
       return null;
@@ -68,11 +69,13 @@ export default class Subject extends React.Component {
     return (
       <div>
         <Header icon={icons.subject} color="#FFCA4F" sideButton={
-          <Switch>
-            <Route path={`/site/subjects/${subject.id}/guides`} render={() =>
-              <HeaderSideButton onClick={() => this.setState({showModal: true})}/>
-            }/>
-          </Switch>
+          auth.data.user_type === 'teacher' ?
+            <Switch>
+              <Route path={`/site/subjects/${subject.id}/guides`} render={() =>
+                <HeaderSideButton onClick={() => this.setState({showModal: true})}/>
+              }/>
+            </Switch>
+            : null
         }>{subject.name}</Header>
 
         <section>

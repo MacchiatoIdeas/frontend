@@ -14,13 +14,13 @@ import HeaderSideButton from '../../Utilities/Header/HeaderSideButton';
 import DocumentDetail from './DocumentDetail/index';
 import DocumentEdit from './DocumentEdit/index';
 
-@connect((state, props) => ({
+@connect(state => ({
   document: state.visibleDocument,
   auth: state.auth,
 }), {
   getDocumentByIdAction
 })
-export default class Content extends React.Component {
+export default class Document extends React.Component {
   componentDidMount() {
     const {id} = this.props.match.params;
     this.props.getDocumentByIdAction(id);

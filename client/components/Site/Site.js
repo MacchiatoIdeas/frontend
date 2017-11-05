@@ -4,7 +4,7 @@ import {Route, Switch} from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Body from '../Body';
 import Subject from './Subject/index';
-import Content from './Document';
+import Document from './Document';
 import Subjects from './Subjects';
 import Unit from './Unit/index';
 import Guide from './Guide/index';
@@ -21,7 +21,8 @@ export default class Site extends React.Component {
           <Switch>
             <Route path="/site/subjects/:id" component={Subject}/>
             <Route path="/site/units/:id" component={Unit}/>
-            <Route path="/site/contents/:id" component={Content}/>
+
+            <Route path="/site/contents/:id" component={Document}/>
 
             <Route exact path="/site/exercises/create" component={NewExercise}/>
             <Route exact path="/site/exercises/:id" component={ExerciseDetail}/>
