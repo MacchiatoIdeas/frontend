@@ -20,6 +20,16 @@ export default class NewMatching extends React.Component {
     };
   }
 
+  componentWillMount() {
+    let lastIndexA = this.state.sideA.length - 1;
+    if (this.state.sideA[lastIndexA] !== '')
+      this.onSideChange('A', lastIndexA, this.state.sideA[lastIndexA]);
+
+    let lastIndexB = this.state.sideB.length - 1;
+    if (this.state.sideA[lastIndexB] !== '')
+      this.onSideChange('B', lastIndexB, this.state.sideB[lastIndexB]);
+  }
+
   onSideChange(_side, index, newValue) {
     let side;
     let answer = this.state.answer;

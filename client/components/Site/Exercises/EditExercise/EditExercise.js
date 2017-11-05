@@ -23,6 +23,7 @@ import BodyLoading from '../../../Utilities/BodyLoading/index';
 import showAlert from '../../../Alert';
 import HeaderSideButton from '../../../Utilities/Header/HeaderSideButton';
 import ReactLoading from 'react-loading';
+import TreniumButton from "../../../Utilities/TreniumButton/index";
 
 @connect(state => ({
   exercise: state.visibleExercise,
@@ -169,7 +170,7 @@ export default class ExerciseEdit extends React.Component {
           </div>
 
           <div className={style.wrapper}>
-
+            <TreniumButton onClick={this.onFormSubmit}>Guardar Ejercicio</TreniumButton>
           </div>
         </section>
       </div>

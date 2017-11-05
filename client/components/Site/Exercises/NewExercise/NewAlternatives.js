@@ -17,6 +17,12 @@ export default class NewAlternatives extends React.Component {
     };
   }
 
+  componentWillMount() {
+    let lastIndex = this.state.alternatives.length - 1;
+    if (this.state.alternatives[lastIndex] !== '')
+      this.onAlternativeChange(lastIndex, this.state.alternatives[lastIndex]);
+  }
+
   onAlternativeChange(index, newValue) {
     let alternatives = [...this.state.alternatives];
     let answer = this.state.answer;

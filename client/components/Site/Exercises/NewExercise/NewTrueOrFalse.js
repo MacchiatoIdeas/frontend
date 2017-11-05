@@ -16,6 +16,12 @@ export default class NewTrueOrFalse extends React.Component {
     };
   }
 
+  componentWillMount() {
+      let lastIndex = this.state.sentences.length - 1;
+      if (this.state.sentences[lastIndex] !== '')
+        this.onSentenceChange(lastIndex, this.state.sentences[lastIndex]);
+  }
+
   onSentenceChange(index, newValue) {
     let sentences = [...this.state.sentences];
     let choices = this.state.choices;
