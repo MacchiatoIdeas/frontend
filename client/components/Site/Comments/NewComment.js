@@ -5,14 +5,15 @@ import style from './NewComment.less';
 import Textarea from 'react-textarea-autosize';
 import {connect} from 'react-redux';
 import {createExerciseCommentAction} from '../../../actions/exercises';
-import {createDocumentCommentAction} from '../../../actions/documents';
+import {createDocumentCommentAction, createDocumentFeedbackCommentAction} from '../../../actions/documents';
 
 
 @connect((state) => ({
   auth: state.auth
 }), {
   createExerciseCommentAction,
-  createDocumentCommentAction
+  createDocumentCommentAction,
+  createDocumentFeedbackCommentAction,
 })
 export default class NewComment extends React.Component {
   constructor(props) {
@@ -33,7 +34,10 @@ export default class NewComment extends React.Component {
     if (this.state.comment !== '') {
       if (this.props.exercise) {
         this.props.createExerciseCommentAction(this.props.exercise.id, this.state.comment);
+
       } else if (this.props.content) {
+        console.log(this.props.feedback);
+        
         if (this.props.feedback) {
           this.props.createDocumentFeedbackCommentAction(this.props.content.id, this.state.comment);
         } else {

@@ -11,7 +11,7 @@ import style from './style.less';
 }))
 export default class Comments extends React.Component {
   render() {
-    const {auth, feedback} = this.props;
+    const {auth, feedback = false} = this.props;
     const {content, exercise, comments} = this.props;
 
     return (
@@ -35,7 +35,7 @@ export default class Comments extends React.Component {
         </section>
 
         {auth.isAuthenticated ?
-          <NewComment user={auth.data.user} exercise={exercise} content={content} feedback/>
+          <NewComment user={auth.data.user} exercise={exercise} content={content} feedback={feedback}/>
           : null}
       </div>
     )
