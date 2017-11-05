@@ -24,7 +24,6 @@ export default class Site extends React.Component {
 
             <Route path="/site/contents/:id" component={Document}/>
 
-            <Route exact path="/site/exercises/create" component={NewExercise}/>
             <Route exact path="/site/exercises/:id" component={ExerciseDetail}/>
             <Route exact path="/site/exercises/:id/edit" component={ExerciseEdit}/>
 

@@ -49,8 +49,7 @@ export default class ExerciseEdit extends React.Component {
   }
 
   componentDidMount() {
-    const {exerciseId} = this.props.match.params;
-    this.props.getExerciseByIdAction(exerciseId);
+    this.props.getExerciseByIdAction(this.props.match.params.id);
   }
 
   updateBrief(event) {
