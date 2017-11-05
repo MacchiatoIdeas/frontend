@@ -15,12 +15,14 @@ import Header from '../../../Utilities/Header/index';
 import * as icons from '../../../../assets/flaticons';
 import NewTrueOrFalse from '../NewExercise/NewTrueOrFalse';
 import ReactStars from 'react-stars';
-import TreniumButton from '../../../Utilities/TreniumButton';
-import {createExercise} from '../../../../requests/exercises';
+import {updateExercise} from '../../../../requests/exercises';
 import NewWritten from '../NewExercise/NewWritten';
 import {getExerciseByIdAction} from '../../../../actions/exercises';
 import {connect} from 'react-redux';
 import BodyLoading from '../../../Utilities/BodyLoading/index';
+import showAlert from '../../../Alert';
+import HeaderSideButton from '../../../Utilities/Header/HeaderSideButton';
+import ReactLoading from 'react-loading';
 
 @connect(state => ({
   exercise: state.visibleExercise,
@@ -46,15 +48,13 @@ export default class ExerciseEdit extends React.Component {
       answer: {},
       difficulty: 2,
       isLoading: true,
+      isSending: false,
     };
   }
 
   componentDidMount() {
     this.props.getExerciseByIdAction(this.props.match.params.id)
       .then(response => {
-        // response is the exercise data.
-        console.log(":D", response);
-        console.log(response.payload.text);
         this.setState({
           brief: response.payload.briefing,
           text: JSON.parse(response.payload.text),
@@ -94,12 +94,15 @@ export default class ExerciseEdit extends React.Component {
   onFormSubmit(e) {
     e.preventDefault();
 
-    const {brief, text, answer, difficulty, question} = this.state;
-    const unitId = this.props.unit.id;
+    this.setState({isSending: true});
 
-    createExercise(unitId, brief, difficulty, JSON.stringify(question), JSON.stringify(text), JSON.stringify(answer))
+    const {brief, text, answer, difficulty, question} = this.state;
+    const {id} = this.props.match.params;
+
+    updateExercise(id, brief, difficulty, JSON.stringify(question), JSON.stringify(text), JSON.stringify(answer))
       .then(response => {
-        this.props.history.push(`/site/units/1/exercise/${response.id}`);
+        showAlert('Ejercicio actualizado con éxito');
+        this.setState({isSending: false});
       });
   }
 
@@ -130,7 +133,14 @@ export default class ExerciseEdit extends React.Component {
 
     return (
       <div>
-        <Header icon={icons.exercises} color="#5DDDD3">Editor de Ejercicios</Header>
+        <Header icon={icons.exercises} color="#5DDDD3" sideButton={
+          this.state.isSending ?
+            <ReactLoading type="spin" delay={0} width={36} height={36}/>
+            :
+            <HeaderSideButton onClick={this.onFormSubmit} icon="floppy-disk">
+              Guardar Ejercicio
+            </HeaderSideButton>
+        }>Editor de Ejercicios</Header>
 
         <section>
           <div className={Form} style={{paddingBottom: 0}}>
@@ -159,7 +169,7 @@ export default class ExerciseEdit extends React.Component {
           </div>
 
           <div className={style.wrapper}>
-            <TreniumButton onClick={this.onFormSubmit}>Guardar Ejercicio</TreniumButton>
+
           </div>
         </section>
       </div>
