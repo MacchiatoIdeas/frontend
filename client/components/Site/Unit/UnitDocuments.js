@@ -23,14 +23,16 @@ export default class UnitDocuments extends React.Component {
   }
 
   render() {
-    const {unit, history} = this.props;
+    const {auth, unit, history} = this.props;
 
     return (
       <div>
         <Header icon={icons.document} color="#FF757C" sideButton={
-          <Link to="#" onClick={() => this.setState({showModal: true})}>
-            <span className="glyphicon glyphicon-plus-sign"/>
-          </Link>
+          auth.data.user_type === 'teacher' ?
+            <Link to="#" onClick={() => this.setState({showModal: true})}>
+              <span className="glyphicon glyphicon-plus-sign"/>
+            </Link>
+            : null
         }>{unit.name}</Header>
 
         <section>

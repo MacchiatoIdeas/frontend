@@ -13,6 +13,7 @@ import BodyLoading from '../../Utilities/BodyLoading/index';
 import EditExercise from "../Exercises/EditExercise/EditExercise";
 
 @connect((state, props) => ({
+  auth: state.auth,
   unit: state.visibleUnit,
 }), {
   getUnitByIdAction
@@ -23,7 +24,7 @@ export default class Unit extends React.Component {
   }
 
   render() {
-    const {unit, history} = this.props;
+    const {auth, unit, history} = this.props;
 
     if (unit.isLoading) {
       return <BodyLoading/>;
@@ -33,13 +34,13 @@ export default class Unit extends React.Component {
       <div>
         <Switch>
           <Route path="/site/units/:id/contents" render={({match}) =>
-            <UnitDocuments unit={unit} match={match} history={history}/>
+            <UnitDocuments unit={unit} match={match} history={history} auth={auth}/>
           }/>
           <Route path="/site/units/:id/exercises/create" render={({match}) =>
-            <NewExercise unit={unit} match={match} history={history}/>
+            <NewExercise unit={unit} match={match} history={history} auth={auth}/>
           }/>
           <Route path="/site/units/:id/exercises" render={({match}) =>
-            <UnitExercises unit={unit} match={match}/>
+            <UnitExercises unit={unit} match={match} auth={auth}/>
           }/>
 
           <Route path="/site/units/:id" render={({match}) => (

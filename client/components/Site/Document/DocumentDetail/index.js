@@ -34,14 +34,13 @@ export default class DocumentDetail extends React.Component {
               }}/>
               : null}
 
-            {document.author.id === auth.data.id ?
+            {auth.data.user_type === 'teacher' && document.author.id === auth.data.id ?
               <span style={{float: 'right', marginLeft: 32}}>
                 <Link to={`/site/contents/${document.id}/edit`}>
                   <span className="glyphicon glyphicon-pencil"/>
                 </Link>
               </span>
-              : null
-            }
+              : null}
           </div>
         }>{document.title}</Header>
 

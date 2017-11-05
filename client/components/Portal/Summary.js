@@ -64,21 +64,28 @@ export default class Summary extends React.Component {
           <div>
             <Header color="#0E7886" icon={icons.notes} textColor="#fff">Mis Recomendaciones</Header>
 
-            <div className="text-center" style={{margin: 32, fontSize: 18}}>
-              No tiene recomendaciones actualmente, desarrolle ejercicios para crear su perfil!
-            </div>
+            <section className={style.section}>
+              <div className="playlist playlist-accents">
+                {this.state.recommendations.map(exercise =>
+                  <div className="playlist-item" style={{borderRightColor: '#6699dd'}} key={exercise.id}>
+                    <Link to={`/site/exercises/${exercise.id}`} className="playlist-item-body playlist-item-link">
+                      <span className="icon-play-v3 step" style={{background: '#6699dd'}}/>
+                      <strong>{exercise.briefing}</strong>
+                      <div className="playlist-item-tag">Matemáticas</div>
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </section>
           </div>
-          : null
-        }
+          : null}
 
         <Header color="#5DDDD3" textColor="#fff" icon={icons.courses} sideButton={
           data.user_type === 'teacher' ?
             <Link to="#" onClick={() => this.setState({showCourseModal: true})}>
               <span className="glyphicon glyphicon-plus-sign"/>
             </Link> : null
-        }>
-          Mis Cursos
-        </Header>
+        }>Mis Cursos</Header>
 
         <section className={style.section}>
           <div className="playlist playlist-accents">
