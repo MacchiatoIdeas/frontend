@@ -49,7 +49,11 @@ export default class ExerciseEdit extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getExerciseByIdAction(this.props.match.params.id);
+    this.props.getExerciseByIdAction(this.props.match.params.id)
+      .then(response => {
+        // response is the exercise data.
+        console.log(response);
+      });
   }
 
   updateBrief(event) {
@@ -150,11 +154,9 @@ export default class ExerciseEdit extends React.Component {
               )}/>
               <Route path="/site/units/:id/exercises/create/completion" render={({match}) => (
                 <NewCompletion update={this.updateQuestionAnswer} match={match}/>
-
               )}/>
               <Route path="/site/units/:id/exercises/create/trueorfalse" render={({match}) => (
                 <NewTrueOrFalse update={this.updateQuestionAnswer} match={match}/>
-
               )}/>
               <Route path="/site/units/:id/exercises/create/written" render={({match}) => (
                 <NewWritten update={this.updateQuestionAnswer} match={match}/>
