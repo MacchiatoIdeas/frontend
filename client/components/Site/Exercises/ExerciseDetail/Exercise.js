@@ -8,8 +8,8 @@ import CompletionExercise from './CompletionExercise';
 import TrueOrFalseExercise from './TrueOrFalseExercise';
 import {getAnswerById, getPreviousAnswer, sendAnswer} from '../../../../requests/exercises';
 import TreniumFormLoading from '../../../Utilities/TreniumForm/TreniumFormLoading';
-import {connect} from "react-redux";
-import WrittenExercise from "./WrittenExercise";
+import {connect} from 'react-redux';
+import WrittenExercise from './WrittenExercise';
 
 @connect(state => ({
   auth: state.auth,
@@ -25,7 +25,8 @@ export default class Exercise extends React.Component {
       answer: props.answer !== undefined ? props.answer : {},
       correction: {
         isCorrected: false,
-        score: 0
+        score: 0,
+        tscore: 0
       },
       correctAnswer: JSON.parse(this.props.exercise.right_answer),
       schema: JSON.parse(this.props.exercise.content).schema,
@@ -39,7 +40,8 @@ export default class Exercise extends React.Component {
         answer: props.answer,
         correction: {
           isCorrected: true,
-          score: props.score
+          score: props.score,
+          tscore: props.tscore
         }
       });
     }
@@ -54,10 +56,12 @@ export default class Exercise extends React.Component {
       .then(response => {
         if (response.length > 0) {
           let answer = response[0];
+
           this.setState({
             correction: {
               isCorrected: true,
               score: answer.score,
+              tscore: answer.tscore,
             },
             answer: JSON.parse(answer.answer),
           })
@@ -109,6 +113,7 @@ export default class Exercise extends React.Component {
               correction: {
                 isCorrected: true,
                 score: response.score,
+                tscore: response.tscore,
               }
             });
           });
@@ -125,24 +130,29 @@ export default class Exercise extends React.Component {
         {this.showSchema.bind(this)()}
 
         {auth.data.user_type === 'student' ?
-          <div>
-            {!this.state.correction.isCorrected ?
-              <div>
-                <TreniumFormLoading isSending={this.state.isSending}/>
-                <Button onClick={this.checkAnswer}>Enviar respuestas</Button>
-              </div>
-              :
-              <div className="text-center" style={{fontSize: 18}}>
-                Puntaje: {Math.round(this.state.correction.score * 100)}
-              </div>}
+          !this.state.correction.isCorrected ?
+            <div>
+              <TreniumFormLoading isSending={this.state.isSending}/>
+              <Button onClick={this.checkAnswer}>Enviar respuestas</Button>
+            </div>
+            :
+            <div className="text-center" style={{fontSize: 18}}>
+              Puntaje: {Math.round(this.state.correction.score * 100)}
+            </div>
+          :
+          this.state.correction.score ?
+            <div className="text-center" style={{fontSize: 18}}>
+              Puntaje: {Math.round(this.state.correction.score * 100)}
+            </div>
+            : null
+        }
+
+        {auth.data.user_type === 'teacher' && this.state.correction.tscore ?
+          <div className="text-center" style={{fontSize: 18}}>
+            Puntaje final: {Math.round(this.state.correction.tscore * 100)}
           </div>
-          : (
-            this.state.correction.score ?
-              <div className="text-center" style={{fontSize: 18}}>
-                Puntaje: {Math.round(this.state.correction.score * 100)}
-              </div>
-              : null
-          )}
+          : null
+        }
       </div>
     )
   }

@@ -92,3 +92,14 @@ export const getAllRecommended = (subjectId) => {
   return fetch(`${API_URL}/exercises/recommended/${subjectId}`)
     .then(handleErrorIfAny);
 };
+
+export const sendTeacherScore = (exerciseId, teacherScore) => {
+  return fetch(`${API_URL}/exercises/answers/${exerciseId}/`, {
+    method: 'PATCH',
+    headers: createAuthHeaders(store.getState().auth.access_token),
+    body: JSON.stringify({
+      tscore: teacherScore,
+    }),
+  })
+    .then(handleErrorIfAny);
+};

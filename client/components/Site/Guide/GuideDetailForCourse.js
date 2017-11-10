@@ -14,6 +14,8 @@ import {getCourseByIdAction} from '../../../actions/courses';
 import Select from '../../Utilities/Select/index';
 import BodyLoading from '../../Utilities/BodyLoading/index';
 import TreniumForm from '../../Utilities/TreniumForm/index';
+import TreniumButton from '../../Utilities/TreniumButton/index';
+import TeacherScoreForm from './TeacherScoreForm';
 
 @connect(state => ({
   auth: state.auth,
@@ -98,12 +100,20 @@ export default class GuideDetail extends React.Component {
                     </div>
                   );
                 } else if (item.type === 'exercise') {
+                  let answer = this.state.answers[item.item.id];
+
                   return (
                     <div key={i}>
                       <Exercise exercise={item.item}
                                 visualize
-                                score={this.state.answersLoaded ? JSON.parse(this.state.answers[item.item.id].score) : undefined}
-                                answer={this.state.answersLoaded ? JSON.parse(this.state.answers[item.item.id].answer) : undefined}/>
+                                score={this.state.answersLoaded ? JSON.parse(answer.score) : undefined}
+                                tscore={this.state.answersLoaded ? JSON.parse(answer.tscore) : undefined}
+                                answer={this.state.answersLoaded ? JSON.parse(answer.answer) : undefined}/>
+
+                      {this.state.answersLoaded ?
+                        <TeacherScoreForm answer={answer}/>
+                        : null
+                      }
                       <hr/>
                     </div>
                   )
