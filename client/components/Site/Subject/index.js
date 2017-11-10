@@ -81,7 +81,12 @@ export default class Subject extends React.Component {
         <section>
           <div className="col-md-4">
             <SubjectBox subject={subject} showTitle/>
-            <Sidebar subjectId={subject.id}/>
+
+            <Switch>
+              <Route path={`/site/subjects/${subject.id}/units`} render={() =>
+                <Sidebar subjectId={subject.id}/>
+              }/>
+            </Switch>
           </div>
 
           <div className="col-md-8">
