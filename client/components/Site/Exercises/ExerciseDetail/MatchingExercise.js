@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './MatchingExercise.less';
+import MarkdownKatex from "../../Document/MarkdownKatex/index";
 
 export default class MatchingExercise extends React.Component {
   constructor(props) {
@@ -80,7 +81,7 @@ export default class MatchingExercise extends React.Component {
                           <span className="step">
                             {i + 1}
                           </span>
-                          {alternative}
+                          <MarkdownKatex markdown={alternative}/>
                         </span>
                     </label>
                   </div>
