@@ -20,7 +20,7 @@ import Textarea from 'react-textarea-autosize';
 import HeaderSideButton from '../../Utilities/Header/HeaderSideButton';
 import {createGuideAction} from '../../../actions/guides';
 import {createGuide} from '../../../requests';
-import TreniumForm from "../../Utilities/TreniumForm/index";
+import TreniumForm from '../../Utilities/TreniumForm/index';
 
 @connect((state, props) => ({
   auth: state.auth,
