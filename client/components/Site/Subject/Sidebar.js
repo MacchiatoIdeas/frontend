@@ -1,33 +1,47 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-export default class Sidebar extends React.Component {
-  render() {
-    return (
-      <div className="playlist playlist-compact" style={{marginTop: 16}}>
-        <div className="playlist-item">
-          <a href="#">
-            <div className="playlist-item-body">
-              Primero Medio
-            </div>
-          </a>
+const Sidebar = ({subjectId}) =>
+  <div className="playlist playlist-compact" style={{marginTop: 16}}>
+    <div className="playlist-item">
+      <Link to={`/site/subjects/${subjectId}/units`}>
+        <div className="playlist-item-body">
+          Todos
         </div>
+      </Link>
+    </div>
 
-        <div className="playlist-item">
-          <a href="#">
-            <div className="playlist-item-body">
-              Segundo Medio
-            </div>
-          </a>
+    <div className="playlist-item">
+      <Link to={`/site/subjects/${subjectId}/units/1`}>
+        <div className="playlist-item-body">
+          Primero Medio
         </div>
+      </Link>
+    </div>
 
-        <div className="playlist-item">
-          <a href="#">
-            <div className="playlist-item-body">
-              Tercero Medio
-            </div>
-          </a>
+    <div className="playlist-item">
+      <Link to={`/site/subjects/${subjectId}/units/2`}>
+        <div className="playlist-item-body">
+          Segundo Medio
         </div>
-      </div>
-    )
-  }
-}
+      </Link>
+    </div>
+
+    <div className="playlist-item">
+      <Link to={`/site/subjects/${subjectId}/units/3`}>
+        <div className="playlist-item-body">
+          Tercero Medio
+        </div>
+      </Link>
+    </div>
+
+    <div className="playlist-item">
+      <Link to={`/site/subjects/${subjectId}/units/4`}>
+        <div className="playlist-item-body">
+          Cuarto medio
+        </div>
+      </Link>
+    </div>
+  </div>;
+
+export default Sidebar;
