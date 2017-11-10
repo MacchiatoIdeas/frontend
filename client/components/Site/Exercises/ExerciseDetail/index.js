@@ -88,7 +88,9 @@ export default class ExerciseDetail extends React.Component {
           </div>
         </section>
 
-        <RecommendedExercises/>
+        <div className="clearfix"/>
+
+        <br/>
 
         <section>
           <Menu>
