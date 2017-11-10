@@ -6,8 +6,8 @@ import * as icons from '../../../assets/flaticons';
 import AuthBox from '../AuthBox';
 import {Route, Switch} from 'react-router-dom';
 import Select from './Select';
-import Student from "./Student";
-import Teacher from "./Teacher";
+import Student from './Student';
+import Teacher from './Teacher';
 
 @connect((state) => {
   return {
@@ -31,7 +31,7 @@ export default class Register extends React.Component {
 
     return (
       <div>
-        <Navbar backgroundColor="rgba(255, 255, 255)"/>
+        <Navbar backgroundColor="rgba(255, 255, 255)" showSpecial={false}/>
 
         <AuthBox icon={icons.register} color="#1A91A1" title="Crear Cuenta">
           <Switch>
