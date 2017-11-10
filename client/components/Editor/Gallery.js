@@ -5,6 +5,7 @@ import ReactLoading from 'react-loading';
 import Dropzone from 'react-dropzone';
 import * as icons from '../../assets/flaticons';
 import BodyLoading from "../Utilities/BodyLoading/index";
+import {getAllOwnImages, sendImage} from '../../requests/gallery';
 
 
 export default class Gallery extends React.Component {
@@ -13,24 +14,7 @@ export default class Gallery extends React.Component {
 
     this.state = {
       loading: true,
-      images: [
-        {
-          'key': 1,
-          'url': 'https://placeimg.com/1000/1000/any',
-        }, {
-          'key': 2,
-          'url': 'https://placeimg.com/1000/700/any',
-        }, {
-          'key': 3,
-          'url': 'https://placeimg.com/900/800/any',
-        }, {
-          'key': 4,
-          'url': 'https://placeimg.com/800/600/any',
-        }, {
-          'key': 5,
-          'url': 'https://placeimg.com/500/500/any',
-        },
-      ],
+      images: [],
       selectedUrl: null,
       selected: null,
       showImages: true,
@@ -94,6 +78,16 @@ export default class Gallery extends React.Component {
   }
 
   componentDidMount() {
+    getAllOwnImages()
+      .then((response) => {
+        this.setState({
+          images: response.map(item => ({
+            key: item.id,
+            url: item.image,
+          }))
+        })
+      });
+
     setTimeout(() => {
       this.setState({
         loading: false,
@@ -115,11 +109,12 @@ export default class Gallery extends React.Component {
   }
 
   uploadImage() {
-    // Do Something
+    sendImage(this.state.uploaded[0]);
+
     this.setState({
       uploaded: [],
       showImages: true,
-    })
+    });
   }
 
   useImage() {

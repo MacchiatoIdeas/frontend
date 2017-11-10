@@ -33,8 +33,6 @@ class Student extends React.Component {
   }
 
   onDrop(files) {
-    console.log(files);
-
     this.setState({
       files
     });

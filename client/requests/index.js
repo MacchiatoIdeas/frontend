@@ -4,3 +4,4 @@ export {getExerciseById, createExerciseComment, createExerciseAnswer} from './ex
 export {createGuide, getAllOwnGuides, addExerciseToGuide, addDocumentToGuide, deleteItemFromGuide} from './guides';
 export {getAllSubjects, getSubjectById} from './subjects';
 export {getUnitById} from './units';
+export {getAllOwnImages, sendImage} from './gallery';
