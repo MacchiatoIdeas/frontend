@@ -39,7 +39,7 @@ export default class Login extends React.Component {
 
     return (
       <div>
-        <Navbar backgroundColor="rgba(255, 255, 255)"/>
+        <Navbar backgroundColor="rgba(255, 255, 255)" showSpecial={false}/>
 
         <AuthBox icon={icons.login} title="Iniciar Sesión" color="#FFCA4F">
           <form onSubmit={this.handleSubmit.bind(this)} className={Form} style={{marginTop: 8}}>

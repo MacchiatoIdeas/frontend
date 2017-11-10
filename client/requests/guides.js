@@ -10,7 +10,9 @@ export const getAllOwnGuides = () => {
 };
 
 export const getGuideById = (guideId) => {
-  return fetch(`${API_URL}/material/guide/${guideId}`)
+  return fetch(`${API_URL}/material/guide/${guideId}`, {
+    headers: createAuthHeaders(store.getState().auth.access_token),
+  })
     .then(handleErrorIfAny);
 };
 

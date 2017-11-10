@@ -138,6 +138,8 @@ export default class Navbar extends React.Component {
     let loading = this.state.searching ? style.isLoading : '';
     let showing = this.state.showing ? style.isShowing : '';
 
+    const {showSpecial = true} = this.props;
+
     return (
       <nav id="navbar" className={`navbar navbar-default ${transparentClass} ${style.navbar} ${searchStyle}`}>
         <div className={`container-fluid ${style.containerFluid}`}>
@@ -159,20 +161,23 @@ export default class Navbar extends React.Component {
                 <li><NavLink to="/site" activeClassName="active">Materias</NavLink></li>
               </ul>
 
-              <div className="navbar-nav navbar-right">
-                <ul className="nav navbar-nav">
-                  <li><a className={style.button} onClick={this.openSearch}><span className="icon-search-v3"/></a></li>
-                  <li>
-                    <a href="#" onClick={(e) => {
-                      e.preventDefault();
-                      this.setState({showContextMenu: !this.state.showContextMenu});
-                    }}><span className="icon-cog-v3"/></a>
+              {showSpecial ?
+                <div className="navbar-nav navbar-right">
+                  <ul className="nav navbar-nav">
+                    <li><a className={style.button} onClick={this.openSearch}><span className="icon-search-v3"/></a></li>
+                    <li>
+                      <a href="#" onClick={(e) => {
+                        e.preventDefault();
+                        this.setState({showContextMenu: !this.state.showContextMenu});
+                      }}><span className="icon-cog-v3"/></a>
 
-                    <ContextMenu onHide={() => this.setState({showContextMenu: false})}
-                                 show={this.state.showContextMenu}/>
-                  </li>
-                </ul>
-              </div>
+                      <ContextMenu onHide={() => this.setState({showContextMenu: false})}
+                                   show={this.state.showContextMenu}/>
+                    </li>
+                  </ul>
+                </div>
+                : null
+              }
             </div>
           </div>
           <div className={style.searchBody}>

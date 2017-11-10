@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 
 import Navbar from '../Navbar/Navbar';
 import Body from '../Body';
@@ -12,9 +12,17 @@ import Teacher from "./Users/Teacher/Index";
 import NewExercise from './Exercises/NewExercise/NewExercise';
 import ExerciseEdit from './Exercises/EditExercise/EditExercise';
 import ExerciseDetail from './Exercises/ExerciseDetail/index';
+import {connect} from 'react-redux';
 
+@connect(state => ({
+  auth: state.auth,
+}))
 export default class Site extends React.Component {
   render() {
+    if (!this.props.auth.isAuthenticated) {
+      return <Redirect to="/login"/>
+    }
+
     return (
       <div>
         <Navbar backgroundColor="rgba(255, 255, 255)"/>
