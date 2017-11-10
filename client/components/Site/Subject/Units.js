@@ -10,11 +10,11 @@ const Units = ({units}) =>
         {unit.name}
 
         <span className={style.Badge}>
-          {unit.ncontents} <span className="glyphicon glyphicon-play" style={{fontSize: 12}}/>
+          {unit.nexercises} <span className="glyphicon glyphicon-play" style={{fontSize: 12}}/>
         </span>
 
         <span className={style.Badge}>
-          {unit.nexercises} <span className="glyphicon glyphicon-file" style={{fontSize: 12}}/>
+          {unit.ncontents} <span className="glyphicon glyphicon-file" style={{fontSize: 12}}/>
         </span>
       </Link>
     )}
