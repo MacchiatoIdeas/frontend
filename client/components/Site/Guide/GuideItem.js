@@ -65,7 +65,7 @@ export default class GuideItem extends React.Component {
               <span className="glyphicon glyphicon-remove"/>
             </button>
           </div>
-          <h2>Item {this.props.index} - {item.id}</h2>
+          {this.showItem()}
         </div>
       </div>
     )
